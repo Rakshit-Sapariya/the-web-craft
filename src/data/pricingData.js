@@ -1,0 +1,141 @@
+export const COMPANY_CONFIG = {
+  name: 'THE WEBCRAFT',
+  tagline: 'Custom Tailored Websites Engineered for Maximum Conversion',
+  whatsappNumber: '8511439894',
+  whatsappDisplay: '+91 85114 39894',
+  whatsappLink: 'https://wa.me/918511439894',
+  email: 'thewebcraft404@gmail.com',
+  startingPrice: 13000,
+  tokenAdvance: 5000,
+  earlyBirdDiscountPercent: 15,
+  earlyBirdSlotsRemaining: 4, // "First 10 customers" promo counter
+  upiId: 'rakshitptl9828@oksbi',
+  payeeName: 'Rakshit Patel',
+  bankDetails: {
+    accountName: 'Rakshit Patel (THE WEBCRAFT)',
+    bankName: 'State Bank of India (SBI)',
+    accountNumber: '38920194829',
+    ifscCode: 'SBIN0001234',
+    branch: 'Ahmedabad Main Branch, Gujarat',
+    accountType: 'Current / Commercial Account',
+  },
+};
+
+export const WEBSITE_TYPES = [
+  {
+    id: 'landing',
+    name: 'High-Converting Landing Page',
+    basePrice: 13000,
+    idealFor: 'Product launches, marketing campaigns, lead capture',
+    deliveryDays: '3-4 Days',
+    includedPages: 1,
+  },
+  {
+    id: 'hairparlour',
+    name: "Men's Barber & Hair Lounge",
+    basePrice: 13500,
+    idealFor: 'Gents salons, barbershops, grooming lounges, tattoo studios',
+    deliveryDays: '4-5 Days',
+    includedPages: 3,
+  },
+  {
+    id: 'beautyparlour',
+    name: 'Beauty Salon & Bridal Studio',
+    basePrice: 14000,
+    idealFor: 'Bridal studios, women salons, skin & hair aesthetic clinics',
+    deliveryDays: '4-5 Days',
+    includedPages: 4,
+  },
+  {
+    id: 'portfolio',
+    name: 'Creative Portfolio / Personal Brand',
+    basePrice: 15000,
+    idealFor: 'Designers, photographers, executives, artists',
+    deliveryDays: '4-6 Days',
+    includedPages: 4,
+  },
+  {
+    id: 'gym',
+    name: 'Gym & CrossFit Fitness Center',
+    basePrice: 17000,
+    idealFor: 'Fitness clubs, yoga studios, MMA & CrossFit arenas',
+    deliveryDays: '5-7 Days',
+    includedPages: 5,
+  },
+  {
+    id: 'restaurant',
+    name: 'Restaurant & Table Reservation',
+    basePrice: 18000,
+    idealFor: 'Fine dining, cafes, cloud kitchens, banquet halls',
+    deliveryDays: '5-7 Days',
+    includedPages: 5,
+  },
+  {
+    id: 'custombuild',
+    name: 'Custom Build Website & Architecture',
+    basePrice: 18500,
+    idealFor: 'Bespoke business logic, custom calculators, web portals, tailored workflows',
+    deliveryDays: '6-8 Days',
+    includedPages: 6,
+  },
+  {
+    id: 'corporate',
+    name: 'Corporate & Real Estate Website',
+    basePrice: 19000,
+    idealFor: 'Enterprises, agencies, builders, infrastructure developers',
+    deliveryDays: '6-8 Days',
+    includedPages: 6,
+  },
+  {
+    id: 'ecommerce',
+    name: 'E-Commerce Online Store',
+    basePrice: 22000,
+    idealFor: 'Direct-to-consumer brands, retail shops, fashion boutiques',
+    deliveryDays: '8-10 Days',
+    includedPages: 8,
+  },
+];
+
+export const ADDON_OPTIONS = [
+  { id: 'payment', name: 'Razorpay / UPI Payment Gateway Integration', price: 2500, popular: true },
+  { id: 'whatsapp', name: 'One-Click WhatsApp Chat & Order Automation', price: 1200, popular: true },
+  { id: 'cms', name: 'Easy Admin Panel (Update products/blogs without coding)', price: 4500, popular: false },
+  { id: 'seo', name: 'Advanced SEO Audit & Google Search Console Indexing', price: 2000, popular: true },
+  { id: 'speed', name: 'Ultra-Performance Optimization (95+ Google PageSpeed)', price: 1800, popular: false },
+  { id: 'revisions', name: 'Priority VIP Revision Pass (Same-day turnarounds)', price: 2200, popular: false },
+];
+
+export const PROCESS_STAGES = [
+  {
+    step: '01',
+    title: 'Order Placement & ₹5,000 Advance Token',
+    duration: 'Day 1',
+    desc: 'You submit your requirements, assets (up to 1 GB), and pay the mandatory ₹5,000 advance booking fee to lock your project slot.',
+    policyNote: 'Strictly non-refundable once paid, as design resources are reserved immediately.',
+  },
+  {
+    step: '02',
+    title: 'Wireframing & Visual Mockup Review',
+    duration: 'Day 2 - 3',
+    desc: 'We craft high-fidelity desktop and mobile visual prototypes matching your brand identity and seek your preliminary greenlight.',
+  },
+  {
+    step: '03',
+    title: 'Custom Clean-Code Development',
+    duration: 'Day 4 - 7',
+    desc: 'Our senior developers build your responsive, high-speed frontend with ultra-fast loading, SEO optimization, and interactive features.',
+  },
+  {
+    step: '04',
+    title: 'Client Demo Preview & Revision Round',
+    duration: 'Day 8 - 9',
+    desc: 'You receive a private staging link to test every button and page. Minor alignment tweaks are included; major scope changes or design overhauls will incur transparent revision fees.',
+    policyNote: 'Fair scope management: Changes outside initial brief are billed at nominal rates.',
+  },
+  {
+    step: '05',
+    title: 'Final Settlement & Domain Launch',
+    duration: 'Launch Day',
+    desc: 'Upon final satisfaction, settle the remaining balance. We connect your custom domain, install SSL security, and hand over 100% full ownership.',
+  },
+];
