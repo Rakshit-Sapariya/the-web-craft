@@ -14,6 +14,15 @@ export default function Footer() {
     resetOrderCount 
   } = useOrderOffer();
 
+  React.useEffect(() => {
+    window.__simulate10Orders = () => setOrderCount(10);
+    window.__resetOrders = (count = 6) => resetOrderCount(count);
+    return () => {
+      delete window.__simulate10Orders;
+      delete window.__resetOrders;
+    };
+  }, [setOrderCount, resetOrderCount]);
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -136,14 +145,6 @@ export default function Footer() {
                 title="Add 1 order"
               >
                 +1 Order ({orderCount})
-              </button>
-              <button
-                type="button"
-                onClick={() => setOrderCount(10)}
-                className="px-3 py-1.5 rounded-lg bg-red-900/60 hover:bg-red-800/80 border border-red-500/40 text-red-200 text-[11px] font-semibold transition-all"
-                title="Set orders to 10 to test auto-deletion"
-              >
-                Simulate 10 Orders (Auto-Delete)
               </button>
               <button
                 type="button"
