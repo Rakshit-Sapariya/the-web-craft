@@ -50,8 +50,8 @@ export default function DemosPage({ onSelectCategoryForOrder }) {
             <h3 className="font-heading font-extrabold text-lg sm:text-xl text-white">Want a High-Converting Website Like These?</h3>
             <p className="text-xs text-[#DDD5CD]/80">
               {isOfferActive 
-                ? 'Lock your development slot with a ₹5,000 online token advance. 15% discount for first 10 customers.' 
-                : 'Lock your development slot with a ₹5,000 online token advance. Pay the remaining balance only upon complete satisfaction.'}
+                ? 'Direct developer booking with 15% discount for first 10 customers. Zero upfront online payment.' 
+                : 'Direct developer booking. Pay only upon complete satisfaction with your live demo.'}
             </p>
           </div>
           <button

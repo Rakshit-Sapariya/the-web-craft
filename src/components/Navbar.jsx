@@ -40,7 +40,7 @@ export default function Navbar() {
             <div className="flex items-center gap-1.5">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0 inline-block" />
               <span>
-                <strong>Bespoke Web Studio:</strong> Direct Booking &bull; ₹5k Advance
+                <strong>Bespoke Web Studio:</strong> Direct Booking &bull; Custom Web Engineering
               </span>
             </div>
             <Link 
@@ -114,7 +114,7 @@ export default function Navbar() {
             to="/order"
             className="inline-flex items-center gap-1.5 px-3.5 lg:px-4 py-2.5 rounded-xl text-xs font-bold text-white bg-[#7D4047] hover:bg-[#67333a] shadow-wine hover:shadow-lg transition-all active:scale-95 whitespace-nowrap shrink-0"
           >
-            <span className="whitespace-nowrap">Book Website (₹5k Adv)</span>
+            <span className="whitespace-nowrap">Book Website</span>
             <ArrowUpRight className="w-4 h-4 shrink-0" />
           </Link>
         </div>
@@ -166,7 +166,7 @@ export default function Navbar() {
               onClick={() => setMobileMenuOpen(false)}
               className="flex items-center justify-center gap-2 w-full py-2.5 rounded-lg text-sm font-bold text-white bg-[#7D4047]"
             >
-              <span>Book Custom Website (₹5,000 Advance)</span>
+              <span>Book Custom Website</span>
               <ArrowUpRight className="w-4 h-4" />
             </Link>
           </div>

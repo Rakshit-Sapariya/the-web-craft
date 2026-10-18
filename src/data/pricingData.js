@@ -6,7 +6,8 @@ export const COMPANY_CONFIG = {
   whatsappLink: 'https://wa.me/918511439894',
   email: 'thewebcraft404@gmail.com',
   startingPrice: 13000,
-  tokenAdvance: 5000,
+  tokenAdvance: 0,
+  requireOnlinePayment: false,
   earlyBirdDiscountPercent: 15,
   earlyBirdSlotsRemaining: 4, // "First 10 customers" promo counter
   upiId: 'rakshitptl9828@oksbi',
@@ -108,10 +109,10 @@ export const ADDON_OPTIONS = [
 export const PROCESS_STAGES = [
   {
     step: '01',
-    title: 'Order Placement & ₹5,000 Advance Token',
+    title: 'Project Submission & Requirement Review',
     duration: 'Day 1',
-    desc: 'You submit your requirements, assets (up to 1 GB), and pay the mandatory ₹5,000 advance booking fee to lock your project slot.',
-    policyNote: 'Strictly non-refundable once paid, as design resources are reserved immediately.',
+    desc: 'You submit your requirements, assets (up to 1 GB), and custom design brief directly through the site with zero upfront fees.',
+    policyNote: 'Direct consultation on WhatsApp/Phone within 2 hours to confirm your project schedule.',
   },
   {
     step: '02',

@@ -15,8 +15,8 @@ export function generateWebsiteProductionPlan(order) {
   };
 
   const typeName = categoryNames[order.websiteType] || order.websiteType;
-  const advancePaid = 5000;
-  const remaining = Math.max(0, (order.finalBudget || 13000) - advancePaid);
+  const advancePaid = 0;
+  const remaining = order.finalBudget || 13000;
   const orderDate = new Date().toLocaleDateString('en-IN', {
     day: 'numeric',
     month: 'short',
@@ -115,13 +115,12 @@ export function generateWebsiteProductionPlan(order) {
   const plainTextPlan = `=====================================================
 THE WEBCRAFT - CLIENT PROJECT PRODUCTION BLUEPRINT
 =====================================================
-Generated Automatically Upon Confirmed Order & Advance Payment
+Generated Automatically Upon Project Request & Database Registration
 Client: ${order.clientName}
 Date: ${orderDate}
-Payee Account: Rakshit Patel (rakshitptl9828@oksbi)
-Compulsory Advance: Rs. 5,000 (PAID & VERIFIED)
-Remaining Balance: Rs. ${remaining.toLocaleString('en-IN')} (Payable on completion)
-Total Project Value: Rs. ${(order.finalBudget || 13000).toLocaleString('en-IN')}
+Direct Lead: Rakshit Patel (+91 85114 39894 - Only Message)
+Online Payment: None Required (Direct Consultation on WhatsApp/Call)
+Target Project Value: Rs. ${(order.finalBudget || 13000).toLocaleString('en-IN')}
 
 -----------------------------------------------------
 1. CLIENT PROFILE & SCOPE
@@ -173,7 +172,7 @@ ${selectedSitemap.join('\n')}
 -----------------------------------------------------
 - Included: 2 rounds of minor text, typo, color, and image adjustments.
 - Extra Charges: Out-of-scope structural redesigns or adding new pages.
-- Deposit: The Rs. 5,000 advance booking fee is non-refundable upon cancellation.
+- Deposit: Zero upfront online fees. Project settlement discussed upon demo satisfaction.
 
 -----------------------------------------------------
 Ready for immediate development by THE WEBCRAFT.

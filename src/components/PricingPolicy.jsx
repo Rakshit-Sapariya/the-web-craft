@@ -27,9 +27,9 @@ export default function PricingPolicy({ onSelectTier }) {
           </h2>
           <p className="text-xs sm:text-base text-[#625f5c]">
             {isOfferActive ? (
-              <>Take advantage of our <strong>15% Early-Bird Discount</strong> reserved for the first 10 clients. Pay only ₹5,000 advance now; rest after completion.</>
+              <>Take advantage of our <strong>15% Early-Bird Discount</strong> reserved for the first 10 clients. Zero upfront online fees; pay only upon demo satisfaction.</>
             ) : (
-              <>Direct developer pricing with zero agency markups. Pay only <strong>₹5,000 advance now</strong>; the remaining balance only after full demo satisfaction.</>
+              <>Direct developer pricing with zero agency markups. Zero upfront online fees; pay only after full demo satisfaction.</>
             )}
           </p>
         </div>
@@ -124,8 +124,8 @@ export default function PricingPolicy({ onSelectTier }) {
                 {/* Card CTA */}
                 <div className="pt-4 border-t border-[#DDD5CD]/60 space-y-2">
                   <div className="text-[11px] text-[#625f5c] flex justify-between">
-                    <span>Advance Token:</span>
-                    <strong className="text-[#2E2E2E]">₹5,000 now</strong>
+                    <span>Online Payment:</span>
+                    <strong className="text-emerald-700 font-semibold">Zero Online Pay</strong>
                   </div>
                   <button
                     onClick={() => handleSelectTier(tier.id, activePrice)}
@@ -161,11 +161,10 @@ export default function PricingPolicy({ onSelectTier }) {
           <div className="space-y-3">
             <h4 className="font-heading font-bold text-base text-[#2E2E2E] flex items-center gap-2">
               <ShieldCheck className="w-5 h-5 text-[#7D4047]" />
-              <span>Token Advance & Non-Refundable Policy</span>
+              <span>Transparent Settlement Policy</span>
             </h4>
             <p className="text-xs text-[#625f5c] leading-relaxed">
-              The <strong>₹5,000 online advance payment</strong> is mandatory to lock your slot and assign senior engineers. 
-              <strong> If you cancel your order after paying the ₹5,000 token, it is strictly non-refundable.</strong> The remaining balance is payable only after your website is ready and approved.
+              <strong>Zero online upfront payment is required on this website.</strong> You submit your specifications, assets, and wishlist for free. Our team crafts the preliminary prototype, and you pay only after reviewing and approving your live working demo.
             </p>
           </div>
         </div>

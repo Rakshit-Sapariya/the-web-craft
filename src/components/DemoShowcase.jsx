@@ -349,7 +349,7 @@ export default function DemoShowcase({ onSelectCategoryForOrder }) {
                 onClick={() => handleOrderThisDesign(activeProject)}
                 className="px-4 py-2 rounded-xl bg-[#7D4047] hover:bg-[#67333a] text-white text-xs font-bold uppercase tracking-wider shadow-wine flex items-center gap-1.5"
               >
-                <span>Order This Design (₹5,000 Advance)</span>
+                <span>Order This Design</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
 

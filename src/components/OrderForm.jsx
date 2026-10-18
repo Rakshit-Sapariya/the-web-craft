@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { 
   FileUp, AlertCircle, CheckCircle, ShieldAlert, ArrowRight, 
   HelpCircle, Link as LinkIcon, DollarSign, Phone, User, Globe, 
-  FileText, X, Sparkles, Lock, IndianRupee, Edit3
+  FileText, X, Sparkles, Lock, IndianRupee, Edit3, ShieldCheck
 } from 'lucide-react';
 import { WEBSITE_TYPES, COMPANY_CONFIG } from '../data/pricingData';
 import { useOrderOffer } from '../utils/orderTracker';
@@ -112,7 +112,7 @@ export default function OrderForm({ preselectedCategory, prefilledBudget, onProc
       errors.finalBudget = 'Minimum budget should be at least ₹10,000.';
     }
     if (!formData.acceptedTerms) {
-      errors.acceptedTerms = 'You must acknowledge that the ₹5,000 booking fee is non-refundable upon cancellation.';
+      errors.acceptedTerms = 'Please check the box to confirm your project specifications.';
     }
     setFormErrors(errors);
     return Object.keys(errors).length === 0;
@@ -124,8 +124,8 @@ export default function OrderForm({ preselectedCategory, prefilledBudget, onProc
       onProceedToPayment({
         ...formData,
         files: uploadedFiles,
-        tokenAdvance: COMPANY_CONFIG.tokenAdvance,
-        remainingBalance: Math.max(0, formData.finalBudget - COMPANY_CONFIG.tokenAdvance),
+        tokenAdvance: 0,
+        remainingBalance: formData.finalBudget,
       });
     }
   };
@@ -146,7 +146,7 @@ export default function OrderForm({ preselectedCategory, prefilledBudget, onProc
             Order Your Custom Website
           </h2>
           <p className="text-xs sm:text-base text-[#625f5c]">
-            Submit your requirements below and lock your project slot with a mandatory <strong>₹5,000 online token advance</strong>. The remaining balance is payable only after your website is built and approved!
+            Submit your requirements below. Zero online payment required—our engineering team will review your specifications and connect directly on WhatsApp or call!
           </p>
         </div>
 
@@ -421,8 +421,8 @@ export default function OrderForm({ preselectedCategory, prefilledBudget, onProc
                   </label>
                   <p className="text-xs text-[#625f5c]">
                     {isOfferActive 
-                      ? 'Starting baseline is ₹13,000. 15% discount will be applied during final billing.' 
-                      : 'Starting baseline is ₹13,000. ₹5,000 advance; balance upon full demo satisfaction.'}
+                      ? 'Starting baseline is ₹13,000. 15% discount will be applied during project quote.' 
+                      : 'Starting baseline is ₹13,000. Pay only upon full demo satisfaction.'}
                   </p>
                 </div>
                 <div className="relative w-full sm:w-56">
@@ -442,30 +442,25 @@ export default function OrderForm({ preselectedCategory, prefilledBudget, onProc
               )}
             </div>
 
-            {/* Step 5: Mandatory ₹5,000 Advance & Strict Cancellation Disclaimer */}
+            {/* Step 5: Direct Booking & Zero Online Payment Notice */}
             <div className="pt-4 border-t border-[#DDD5CD]">
-              <div className="bg-red-50/60 border-2 border-[#7D4047]/30 rounded-2xl p-5 sm:p-6 space-y-4">
+              <div className="bg-emerald-50/70 border-2 border-emerald-500/30 rounded-2xl p-5 sm:p-6 space-y-4">
                 
                 <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-[#7D4047] text-white flex items-center justify-center shrink-0 mt-0.5">
-                    <ShieldAlert className="w-5 h-5" />
+                  <div className="w-8 h-8 rounded-lg bg-emerald-600 text-white flex items-center justify-center shrink-0 mt-0.5">
+                    <ShieldCheck className="w-5 h-5" />
                   </div>
                   <div>
                     <h4 className="font-heading font-bold text-base text-[#2E2E2E]">
-                      Mandatory Booking Advance: ₹5,000 Online Payment
+                      Direct Booking &bull; Zero Online Payment Required
                     </h4>
                     <p className="text-xs text-[#625f5c] mt-1 leading-relaxed">
-                      To prevent slot abandonment and initiate instant design & development, an online advance payment of <strong>₹5,000</strong> is compulsory. The remaining balance (<strong>₹{(formData.finalBudget - 5000).toLocaleString('en-IN')}</strong>) is payable only after your website is completed and you approve the live demo.
+                      You do not need to pay anything on this website. When you submit your requirements, your custom brief and uploaded assets are saved directly into our studio database, and Lead Developer <strong>Rakshit Patel</strong> will personally reach out on WhatsApp/Phone to finalize milestones and schedule your live demo walkthrough.
                     </p>
                   </div>
                 </div>
 
-                {/* Cancellation Disclaimer Highlight */}
-                <div className="bg-white border border-red-200 rounded-xl p-3.5 text-xs text-red-700 leading-relaxed font-medium">
-                  <strong>Notice on Order Cancellation:</strong> Once you pay the ₹5,000 advance and confirm the order, our developer team is booked immediately. Therefore, <strong>if you cancel your order after paying ₹5,000, it is STRICTLY NON-REFUNDABLE.</strong>
-                </div>
-
-                {/* Mandatory Agreement Checkbox */}
+                {/* Terms Agreement Checkbox */}
                 <label className="flex items-start gap-3 cursor-pointer pt-1">
                   <input
                     type="checkbox"
@@ -474,7 +469,7 @@ export default function OrderForm({ preselectedCategory, prefilledBudget, onProc
                     className="mt-0.5 h-4 w-4 rounded border-gray-300 text-[#7D4047] focus:ring-[#7D4047] accent-[#7D4047]"
                   />
                   <span className="text-xs font-bold text-[#2E2E2E]">
-                    I acknowledge that a ₹5,000 token advance is allocated for developer scheduling, and my custom website specifications will be registered in the studio database. <span className="text-red-500">*</span>
+                    I confirm that the submitted project specifications and contact details are accurate, and I agree to discuss development milestones directly with the team. <span className="text-red-500">*</span>
                   </span>
                 </label>
                 {formErrors.acceptedTerms && (
@@ -490,7 +485,7 @@ export default function OrderForm({ preselectedCategory, prefilledBudget, onProc
                 type="submit"
                 className="w-full py-4 px-6 rounded-2xl bg-[#7D4047] hover:bg-[#67333a] text-white font-bold text-base shadow-wine hover:shadow-2xl hover:-translate-y-0.5 transition-all flex items-center justify-center gap-3 active:scale-[0.99] group"
               >
-                <span>Confirm Website Order Booking (Advance ₹5,000)</span>
+                <span>Submit Website Request (Zero Online Payment)</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1.5 transition-transform" />
               </button>
 
@@ -500,9 +495,9 @@ export default function OrderForm({ preselectedCategory, prefilledBudget, onProc
                   Direct SQLite Database Registration
                 </span>
                 <span>&bull;</span>
-                <span>Payment on Consultation with Lead Developer</span>
+                <span>No Upfront Credit Card or UPI Required</span>
                 <span>&bull;</span>
-                <span>Direct Line: +91 85114 39894 <span className="font-semibold text-amber-700">(Only Message, Not Call)</span></span>
+                <span>WhatsApp: +91 85114 39894 <span className="font-semibold text-amber-700">(Only Message, Not Call)</span></span>
               </div>
             </div>
 

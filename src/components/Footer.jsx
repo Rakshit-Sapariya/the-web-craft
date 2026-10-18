@@ -95,10 +95,10 @@ export default function Footer() {
             </h4>
             <div className="bg-white/5 border border-white/10 rounded-xl p-3.5 space-y-2 text-[11px] text-[#DDD5CD]/80 leading-relaxed">
               <p>
-                &bull; <strong>Advance Deposit:</strong> ₹5,000 online token advance is required to book your development slot.
+                &bull; <strong>Zero Online Upfront:</strong> Submit your specifications for free. No online payment required on the website.
               </p>
               <p>
-                &bull; <strong>Non-Refundable Clause:</strong> If the client cancels after paying the ₹5,000 token, the advance is strictly non-refundable.
+                &bull; <strong>Demo Approval First:</strong> Pay only after reviewing and approving your live working demo.
               </p>
               <p>
                 &bull; <strong>Revisions:</strong> Minor tweaks during demo review are included; scope additions or structural redesigns incur nominal revision charges.

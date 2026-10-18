@@ -268,7 +268,7 @@ export default function AdminPage() {
                               ? 'bg-emerald-100 text-emerald-800'
                               : 'bg-amber-100 text-amber-800'
                           }`}>
-                            {ord.payment_status === 'verified' ? '✓ Verified' : 'Pending on Discussion'}
+                            {ord.payment_status === 'verified' ? '✓ Verified' : 'Direct Request'}
                           </span>
                         </td>
                         <td className="py-3.5 px-4 text-right">
@@ -379,8 +379,8 @@ export default function AdminPage() {
                   <strong className="text-[#2E2E2E] font-mono">₹{selectedOrder.final_budget.toLocaleString('en-IN')}</strong>
                 </div>
                 <div className="bg-[#F1ECE6]/60 p-3 rounded-xl border border-[#DDD5CD]">
-                  <span className="text-[#625f5c] block">Token Advance:</span>
-                  <strong className="text-[#7D4047] font-mono">₹5,000 ({selectedOrder.payment_status})</strong>
+                  <span className="text-[#625f5c] block">Consultation:</span>
+                  <strong className="text-[#7D4047] font-mono">Direct Request ({selectedOrder.payment_status})</strong>
                 </div>
               </div>
 
@@ -436,7 +436,7 @@ export default function AdminPage() {
                         : 'bg-[#7D4047] text-white'
                     }`}
                   >
-                    {selectedOrder.payment_status === 'verified' ? 'Payment Verified ✓' : 'Mark ₹5,000 Received'}
+                    {selectedOrder.payment_status === 'verified' ? 'Settlement Verified ✓' : 'Mark Project Settled'}
                   </button>
 
                   <button

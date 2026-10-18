@@ -41,9 +41,9 @@ export default function PricingPage({ onApplyEstimate, onSelectTier }) {
           </h1>
           <p className="text-xs sm:text-base text-[#625f5c] max-w-2xl mx-auto leading-relaxed">
             {isOfferActive ? (
-              <>Starting from <strong>₹13,000</strong>. Take advantage of our <strong className="text-[#7D4047]">15% Early-Bird Discount</strong> reserved for the first 10 clients. Pay only ₹5,000 advance now; rest after completion.</>
+              <>Starting from <strong>₹13,000</strong>. Take advantage of our <strong className="text-[#7D4047]">15% Early-Bird Discount</strong> reserved for the first 10 clients. Zero upfront online payment; pay only upon demo approval.</>
             ) : (
-              <>Starting from <strong>₹13,000</strong>. Handcrafted bespoke development with zero hidden fees. Pay only ₹5,000 advance now; rest after full demo approval.</>
+              <>Starting from <strong>₹13,000</strong>. Handcrafted bespoke development with zero hidden fees. Zero upfront online payment; pay only after full demo approval.</>
             )}
           </p>
         </div>
@@ -65,23 +65,23 @@ export default function PricingPage({ onApplyEstimate, onSelectTier }) {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs text-[#625f5c] leading-relaxed">
             <div className="p-5 bg-[#F1ECE6]/50 rounded-2xl border border-[#DDD5CD] space-y-2 hover-glow-card transition-all duration-300 hover:-translate-y-1 hover:border-[#7D4047]/40 group">
-              <h4 className="font-bold text-sm text-[#2E2E2E] group-hover:text-[#7D4047] transition-colors">Why is the ₹5,000 advance compulsory?</h4>
+              <h4 className="font-bold text-sm text-[#2E2E2E] group-hover:text-[#7D4047] transition-colors">Do I need to pay anything online right now?</h4>
               <p>
-                The ₹5,000 online token advance locks your project slot on our calendar and covers initial wireframing and dedicated developer allocation immediately.
+                No. Submitting your project specifications on our website is 100% free with zero online upfront payment. You do not need to enter any UPI or credit card details.
               </p>
             </div>
 
             <div className="p-5 bg-[#F1ECE6]/50 rounded-2xl border border-[#DDD5CD] space-y-2 hover-glow-card transition-all duration-300 hover:-translate-y-1 hover:border-[#7D4047]/40 group">
-              <h4 className="font-bold text-sm text-[#2E2E2E] group-hover:text-[#7D4047] transition-colors">Why is the advance non-refundable upon cancellation?</h4>
+              <h4 className="font-bold text-sm text-[#2E2E2E] group-hover:text-[#7D4047] transition-colors">How does project onboarding work?</h4>
               <p>
-                Once an order is confirmed, our senior developers immediately begin wireframing, architecture planning, and asset processing. If an order is cancelled, this deposit compensates for dedicated hours spent.
+                Once you submit your requirements, Lead Developer Rakshit Patel directly connects with you on WhatsApp (+91 85114 39894 - Only Message) or phone to review your assets, discuss milestones, and schedule your live demo walkthrough.
               </p>
             </div>
 
             <div className="p-5 bg-[#F1ECE6]/50 rounded-2xl border border-[#DDD5CD] space-y-2 hover-glow-card transition-all duration-300 hover:-translate-y-1 hover:border-[#7D4047]/40 group">
-              <h4 className="font-bold text-sm text-[#2E2E2E] group-hover:text-[#7D4047] transition-colors">When is the remaining balance paid?</h4>
+              <h4 className="font-bold text-sm text-[#2E2E2E] group-hover:text-[#7D4047] transition-colors">When is payment settled?</h4>
               <p>
-                The remaining balance (Final Budget &minus; ₹5,000) is paid only after we complete the full website and you test and approve your live private demo link.
+                Payment is settled only after we complete the full website and you inspect, test, and approve your live private demo link.
               </p>
             </div>
 

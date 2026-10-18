@@ -36,7 +36,7 @@ export default function OrderPage({ selectedCategory, prefilledBudget, onProceed
             Order Your Custom Website &amp; Connect
           </h1>
           <p className="text-xs sm:text-base text-[#625f5c] max-w-2xl mx-auto leading-relaxed">
-            Fill in your project specifications, upload your assets (up to 1 GB), and confirm your order with a mandatory <strong className="text-[#7D4047]">₹5,000 online token advance</strong>.
+            Fill in your project specifications, upload your assets (up to 1 GB), and submit your order. <strong className="text-[#7D4047]">Zero online payment required</strong>—our team will review and connect with you directly!
           </p>
         </div>
       </div>

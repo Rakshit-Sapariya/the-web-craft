@@ -239,22 +239,20 @@ export default function PriceEstimator({ onApplyEstimate }) {
               </div>
             </div>
 
-            {/* Mandatory Token Advance Highlight */}
+            {/* Direct Booking & Zero Online Payment Highlight */}
             <div className="bg-white/5 border border-white/15 p-4 rounded-xl space-y-2 text-xs relative z-10">
               <div className="flex justify-between font-bold text-white">
                 <span className="flex items-center gap-1.5">
                   <Sparkles className="w-3.5 h-3.5 text-amber-300 animate-pulse" />
-                  Compulsory Booking Token:
+                  Online Payment:
                 </span>
-                <span className="text-amber-300 font-mono text-sm">₹{tokenAdvance.toLocaleString('en-IN')}</span>
+                <span className="text-emerald-400 font-mono text-xs font-bold bg-emerald-500/20 px-2 py-0.5 rounded border border-emerald-500/30">
+                  Zero Online Pay
+                </span>
               </div>
               <p className="text-[11px] text-[#DDD5CD]/70 leading-relaxed">
-                Pay ₹5,000 online now to lock your developer schedule. The remaining balance of <strong className="text-white">₹{remainingBalance.toLocaleString('en-IN')}</strong> is only paid after you inspect and approve your live website.
+                Zero upfront payment required on website. Submit your configuration for free. Milestones, timeline, and deliverables are confirmed directly with Lead Developer Rakshit Patel before any settlement.
               </p>
-              <div className="flex items-center gap-1.5 text-[11px] text-red-300 pt-1">
-                <ShieldAlert className="w-3.5 h-3.5 shrink-0" />
-                <span>Notice: Token advance is non-refundable upon cancellation.</span>
-              </div>
             </div>
 
             {/* Action */}

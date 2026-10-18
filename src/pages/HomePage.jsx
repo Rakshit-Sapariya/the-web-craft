@@ -106,7 +106,7 @@ export default function HomePage() {
   const tickerItems = [
     { icon: Zap, label: '0.4s Fast Core Web Vitals' },
     { icon: Code2, label: '100% Handwritten React 19 & Tailwind' },
-    { icon: ShieldCheck, label: '₹5,000 Advance Token &bull; Balance on Demo Approval' },
+    { icon: ShieldCheck, label: 'Zero Online Payment • Pay Only on Demo Approval' },
     { icon: Layers, label: 'Real SQLite Database Integration' },
     { icon: Eye, label: '8 Live Interactive Client Demos' },
     { icon: Cpu, label: 'Up to 1 GB Design Asset Portal' },
@@ -213,9 +213,9 @@ export default function HomePage() {
               </div>
 
               <div className="bg-white/70 backdrop-blur-sm border border-[#DDD5CD] rounded-xl sm:rounded-2xl p-2.5 sm:p-4 hover-glow-card transition-all group">
-                <span className="text-[10px] sm:text-xs text-[#625f5c] block font-medium">Booking Token</span>
-                <span className="text-sm sm:text-lg font-extrabold text-[#2E2E2E] group-hover:text-[#7D4047] transition-colors">₹5,000 Online</span>
-                <span className="text-[9px] sm:text-[11px] text-[#625f5c] block mt-0.5">Compulsory advance</span>
+                <span className="text-[10px] sm:text-xs text-[#625f5c] block font-medium">Direct Booking</span>
+                <span className="text-sm sm:text-lg font-extrabold text-[#2E2E2E] group-hover:text-[#7D4047] transition-colors">Zero Online Pay</span>
+                <span className="text-[9px] sm:text-[11px] text-[#625f5c] block mt-0.5">Discuss on WhatsApp</span>
               </div>
 
               <div className="bg-white/70 backdrop-blur-sm border border-[#DDD5CD] rounded-xl sm:rounded-2xl p-2.5 sm:p-4 hover-glow-card transition-all group">
@@ -239,7 +239,7 @@ export default function HomePage() {
                 to="/order"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 rounded-xl text-sm sm:text-base font-bold text-white bg-[#7D4047] hover:bg-[#67333a] shadow-wine hover:shadow-2xl hover:-translate-y-0.5 transition-all active:scale-95 group"
               >
-                <span>Book Your Custom Website (₹5,000 Adv)</span>
+                <span>Book Your Custom Website Now</span>
                 <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
 
@@ -254,7 +254,7 @@ export default function HomePage() {
 
             <div className="inline-flex items-center gap-2 text-[10px] sm:text-xs text-[#625f5c] pt-1">
               <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#7D4047] shrink-0" />
-              <span>Balance payable only after website completion. Advance is strictly non-refundable upon cancellation.</span>
+              <span>Direct collaboration with developer. Pay only after reviewing your live website demo.</span>
             </div>
 
           </div>
@@ -605,7 +605,7 @@ export default function StudioProject({ clientRequirement }) {
               <div className="grid grid-cols-2 gap-2 sm:gap-3 text-[11px] sm:text-xs text-[#625f5c]">
                 <div className="flex items-center gap-1.5 sm:gap-2">
                   <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-600 shrink-0" />
-                  <span>₹5,000 Advance Token Lock</span>
+                  <span>Zero Online Upfront Fee</span>
                 </div>
                 <div className="flex items-center gap-1.5 sm:gap-2">
                   <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-600 shrink-0" />
@@ -645,13 +645,13 @@ export default function StudioProject({ clientRequirement }) {
 
               <div className="bg-white/10 rounded-xl p-3 sm:p-3.5 space-y-1.5 sm:space-y-2 text-xs">
                 <div className="flex justify-between">
-                  <span className="text-[#DDD5CD] text-[11px] sm:text-xs">Booking Token Advance:</span>
-                  <span className="font-bold text-white font-mono text-[11px] sm:text-xs">₹5,000</span>
+                  <span className="text-[#DDD5CD] text-[11px] sm:text-xs">Online Payment:</span>
+                  <span className="font-bold text-emerald-400 font-mono text-[11px] sm:text-xs">Zero Online Pay</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-[#DDD5CD] text-[11px] sm:text-xs">Remaining on Demo:</span>
+                  <span className="text-[#DDD5CD] text-[11px] sm:text-xs">Settlement:</span>
                   <span className="font-bold text-white font-mono text-[11px] sm:text-xs">
-                    ₹{(finalDiscountedBudget - 5000).toLocaleString('en-IN')}
+                    Pay only upon Demo Approval
                   </span>
                 </div>
               </div>
@@ -660,7 +660,7 @@ export default function StudioProject({ clientRequirement }) {
                 to={`/order?pages=${estPages}&budget=${finalDiscountedBudget}`}
                 className="w-full py-2.5 sm:py-3.5 px-4 rounded-xl bg-[#7D4047] hover:bg-[#67333a] text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-wine transition-all"
               >
-                <span>Book This Configuration (₹5k Adv)</span>
+                <span>Book This Configuration</span>
                 <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               </Link>
             </div>
@@ -695,8 +695,8 @@ export default function StudioProject({ clientRequirement }) {
             </h2>
             <p className="text-xs sm:text-sm text-[#DDD5CD]/80 leading-relaxed max-w-xl">
               {isOfferActive 
-                ? 'Lock in your 15% discount today with a ₹5,000 online advance token. Pay the rest only after inspecting your finished website demo.' 
-                : 'Book your bespoke website development today with a ₹5,000 online advance token. Pay the rest only after inspecting your finished website demo.'}
+                ? 'Lock in your 15% discount today with zero online payment. Pay only after inspecting your finished website demo.' 
+                : 'Book your bespoke website development today with zero online payment. Pay only after inspecting your finished website demo.'}
             </p>
           </div>
           <div className="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-2.5 sm:gap-3 relative z-10">
@@ -704,7 +704,7 @@ export default function StudioProject({ clientRequirement }) {
               to="/order"
               className="py-3 px-5 sm:py-3.5 sm:px-6 rounded-xl bg-[#7D4047] hover:bg-[#67333a] text-white font-bold text-xs uppercase tracking-wider text-center shadow-wine transition-all"
             >
-              Order Custom Website (₹5k Adv)
+              Order Custom Website
             </Link>
             <Link
               to="/pricing"

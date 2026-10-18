@@ -51,9 +51,9 @@ export default function Hero({ onSelectCategory }) {
             </div>
 
             <div className="bg-[#DDD5CD]/40 border border-[#DDD5CD] rounded-xl p-3.5">
-              <span className="text-xs text-[#625f5c] block font-medium">Booking Token</span>
-              <span className="text-lg font-bold text-[#2E2E2E]">₹5,000 Online</span>
-              <span className="text-[11px] text-[#625f5c] block mt-0.5">Locks your slot</span>
+              <span className="text-xs text-[#625f5c] block font-medium">Direct Booking</span>
+              <span className="text-lg font-bold text-[#2E2E2E]">Zero Online Pay</span>
+              <span className="text-[11px] text-[#625f5c] block mt-0.5">Discuss on WhatsApp</span>
             </div>
 
             <div className="bg-[#DDD5CD]/40 border border-[#DDD5CD] rounded-xl p-3.5">
@@ -75,7 +75,7 @@ export default function Hero({ onSelectCategory }) {
               onClick={() => scrollTo('#order-form')}
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-base font-bold text-white bg-[#7D4047] hover:bg-[#67333a] shadow-wine hover:shadow-xl transition-all active:scale-95"
             >
-              <span>Book Your Website Now (₹5,000 Advance)</span>
+              <span>Book Your Custom Website Now</span>
               <ArrowRight className="w-5 h-5" />
             </button>
 
@@ -91,7 +91,7 @@ export default function Hero({ onSelectCategory }) {
           {/* Important note banner */}
           <div className="inline-flex items-center gap-2 text-xs text-[#625f5c] pt-2">
             <CheckCircle2 className="w-4 h-4 text-[#7D4047] shrink-0" />
-            <span>Balance payment only upon completion and final approval. Cancellation policy applies to advance fee.</span>
+            <span>Pay only after full demo satisfaction. No upfront online payment required on website.</span>
           </div>
         </div>
       </div>

@@ -98,8 +98,8 @@ export default function ProcessRoadmap() {
                   <span><strong>Additional Scope:</strong> New extra pages or major redesigns outside initial brief are billed transparently.</span>
                 </div>
                 <div className="flex items-start gap-2">
-                  <AlertCircle className="w-4 h-4 text-red-600 shrink-0 mt-0.5" />
-                  <span><strong>Cancellation Clause:</strong> The initial <strong>₹5,000 token advance</strong> is strictly non-refundable upon cancellation.</span>
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                  <span><strong>Zero Upfront Risk:</strong> No online payment required on website. Review your full working demo before final handover.</span>
                 </div>
               </div>
             </div>

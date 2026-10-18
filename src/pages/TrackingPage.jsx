@@ -160,12 +160,8 @@ export default function TrackingPage() {
                     <span className="text-[11px] text-[#625f5c] block">Agreed Budget</span>
                     <span className="text-xl font-black text-[#2E2E2E] font-mono">₹{order.final_budget.toLocaleString('en-IN')}</span>
                   </div>
-                  <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
-                    order.payment_status === 'verified'
-                      ? 'bg-emerald-100 text-emerald-800'
-                      : 'bg-amber-100 text-amber-800'
-                  }`}>
-                    Token Advance: {order.payment_status === 'verified' ? '₹5,000 Verified' : '₹5,000 (Payment on Discussion)'}
+                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800">
+                    Project Registered &bull; Direct Consultation
                   </span>
                 </div>
               </div>
