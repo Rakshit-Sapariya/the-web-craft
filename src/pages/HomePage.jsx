@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   ArrowRight, Sparkles, CheckCircle2, ShieldCheck, Eye, 
-  Layers, Code2, Zap, MessageSquare, Tag, Clock, ArrowUpRight,
+  Layers, Code2, Zap, Phone, Tag, Clock, ArrowUpRight,
   Cpu, Check, Smartphone, Laptop, Globe, Flame, Filter, Sliders, ChevronRight
 } from 'lucide-react';
 import { COMPANY_CONFIG } from '../data/pricingData';
