@@ -110,7 +110,7 @@ export default function HomePage() {
     { icon: Layers, label: 'Real SQLite Database Integration' },
     { icon: Eye, label: '8 Live Interactive Client Demos' },
     { icon: Cpu, label: 'Up to 1 GB Design Asset Portal' },
-    { icon: MessageSquare, label: 'Direct Lead Developer WhatsApp Line' },
+    { icon: Phone, label: 'Direct Lead Developer Studio Line' },
     { icon: Sparkles, label: 'First 10 Customers 15% OFF Promo' },
   ];
 
@@ -215,7 +215,7 @@ export default function HomePage() {
               <div className="bg-white/70 backdrop-blur-sm border border-[#DDD5CD] rounded-xl sm:rounded-2xl p-2.5 sm:p-4 hover-glow-card transition-all group">
                 <span className="text-[10px] sm:text-xs text-[#625f5c] block font-medium">Direct Booking</span>
                 <span className="text-sm sm:text-lg font-extrabold text-[#2E2E2E] group-hover:text-[#7D4047] transition-colors">Zero Online Pay</span>
-                <span className="text-[9px] sm:text-[11px] text-[#625f5c] block mt-0.5">Discuss on WhatsApp</span>
+                <span className="text-[9px] sm:text-[11px] text-[#625f5c] block mt-0.5">Direct Phone / Email</span>
               </div>
 
               <div className="bg-white/70 backdrop-blur-sm border border-[#DDD5CD] rounded-xl sm:rounded-2xl p-2.5 sm:p-4 hover-glow-card transition-all group">
@@ -226,9 +226,9 @@ export default function HomePage() {
 
               <div className="bg-white/70 backdrop-blur-sm border border-[#DDD5CD] rounded-xl sm:rounded-2xl p-2.5 sm:p-4 hover-glow-card transition-all group">
                 <span className="text-[10px] sm:text-xs text-[#625f5c] block font-medium">Direct Developer</span>
-                <span className="text-sm sm:text-lg font-extrabold text-[#2E2E2E] group-hover:text-[#7D4047] transition-colors">WhatsApp Line</span>
+                <span className="text-sm sm:text-lg font-extrabold text-[#2E2E2E] group-hover:text-[#7D4047] transition-colors">Studio Line</span>
                 <span className="text-[9px] sm:text-[11px] text-[#7D4047] font-semibold block mt-0.5 whitespace-nowrap">
-                  85114 39894 <span className="font-normal text-[8px] sm:text-[10px] text-[#7D4047] block sm:inline">(Only Message)</span>
+                  +91 85114 39894 <span className="font-normal text-[8px] sm:text-[10px] text-[#7D4047] block sm:inline">(Only Message)</span>
                 </span>
               </div>
             </div>

@@ -256,7 +256,7 @@ export default function RestaurantClientDemo({ onOrderDesign, isMobileView }) {
             <h2 className="text-lg sm:text-xl font-extrabold text-[#2E2E2E] font-heading">
               Reserve An Evening At The Courtyard
             </h2>
-            <p className="text-xs text-[#625f5c]">Instant WhatsApp reservation confirmation pass.</p>
+            <p className="text-xs text-[#625f5c]">Instant table reservation confirmation pass.</p>
           </div>
 
           {!reserveSuccess ? (
@@ -328,7 +328,7 @@ export default function RestaurantClientDemo({ onOrderDesign, isMobileView }) {
                   />
                 </div>
                 <div>
-                  <label className="block font-bold text-[#2E2E2E] mb-1">WhatsApp Phone</label>
+                  <label className="block font-bold text-[#2E2E2E] mb-1">Contact Phone Number</label>
                   <input
                     type="tel"
                     required
@@ -352,7 +352,7 @@ export default function RestaurantClientDemo({ onOrderDesign, isMobileView }) {
               <CheckCircle2 className="w-10 h-10 text-emerald-600 mx-auto" />
               <h4 className="font-heading font-extrabold text-base text-[#2E2E2E]">Table Reserved Successfully!</h4>
               <p className="text-xs text-[#625f5c]">
-                Hosting {reserveForm.guests} at {reserveForm.time} in our {reserveForm.seating}. WhatsApp pass dispatched.
+                Hosting {reserveForm.guests} at {reserveForm.time} in our {reserveForm.seating}. SMS pass dispatched.
               </p>
               <button
                 onClick={() => setReserveSuccess(false)}

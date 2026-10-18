@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
 import { 
-  Search, CheckCircle2, Clock, ArrowRight, MessageSquare, 
+  Search, CheckCircle2, Clock, ArrowRight, Mail, 
   FileText, ShieldCheck, AlertCircle, Sparkles, Phone, Globe, Layers, Eye
 } from 'lucide-react';
 import { api } from '../services/api';
@@ -248,13 +248,11 @@ export default function TrackingPage() {
               {/* Action Buttons */}
               <div className="mt-6 pt-4 border-t border-[#DDD5CD]/60 flex flex-col sm:flex-row items-center justify-between gap-3">
                 <a
-                  href={`https://wa.me/91${COMPANY_CONFIG.whatsappNumber}?text=${encodeURIComponent(`Hello Rakshit, I am tracking my website order ${order.id} (${order.client_name}). Can you give me an update?`)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full sm:w-auto py-2.5 px-4 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white text-xs font-bold flex items-center justify-center gap-2 transition-all shadow-sm"
+                  href={`mailto:${COMPANY_CONFIG.email}?subject=${encodeURIComponent(`Project Status Inquiry: Order ${order.id}`)}&body=${encodeURIComponent(`Hello Rakshit Patel,\n\nI am tracking my website project (${order.id}) for ${order.client_name}.\n\nPlease provide me with an update on current milestone progress.\n\nThank you!`)}`}
+                  className="w-full sm:w-auto py-2.5 px-4 rounded-xl bg-[#7D4047] hover:bg-[#67333a] text-white text-xs font-bold flex items-center justify-center gap-2 transition-all shadow-sm"
                 >
-                  <MessageSquare className="w-4 h-4" />
-                  <span>Chat on WhatsApp (+91 85114 39894 &bull; Only Message, Not Call)</span>
+                  <Mail className="w-4 h-4" />
+                  <span>Email Developer Desk ({COMPANY_CONFIG.email})</span>
                 </a>
 
                 <Link

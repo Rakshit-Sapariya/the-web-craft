@@ -257,7 +257,7 @@ export default function HairParlourDemo({ onOrderDesign, isMobileView }) {
               <CheckCircle2 className="w-10 h-10 text-emerald-400 mx-auto" />
               <h4 className="font-heading font-extrabold text-base text-white">Chair Confirmed!</h4>
               <p className="text-xs text-neutral-300">
-                See you on {barberBooking.date} at {barberBooking.time} with {selectedStylist}. WhatsApp reminder dispatched.
+                See you on {barberBooking.date} at {barberBooking.time} with {selectedStylist}. SMS reminder dispatched.
               </p>
               <button
                 onClick={() => setBooked(false)}
@@ -280,7 +280,7 @@ export default function HairParlourDemo({ onOrderDesign, isMobileView }) {
           onClick={onOrderDesign}
           className="px-3.5 py-1.5 rounded-lg bg-[#7D4047] hover:bg-[#67333a] text-white font-bold flex items-center gap-1.5"
         >
-          <span>Order A Barbershop Website (₹5k Adv)</span>
+          <span>Order A Barbershop Website (Zero Pay)</span>
           <ArrowRight className="w-3.5 h-3.5" />
         </button>
       </div>

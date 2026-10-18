@@ -127,7 +127,7 @@ export default function RealEstateClientDemo({ onOrderDesign, isMobileView }) {
             <div>
               <span className="text-[10px] font-bold text-[#7D4047] uppercase tracking-wider">Fast Enquiry</span>
               <h3 className="font-heading font-extrabold text-base sm:text-lg">Download Official E-Brochure</h3>
-              <p className="text-[11px] text-[#625f5c]">Instant delivery on WhatsApp with floor plans & pricing.</p>
+              <p className="text-[11px] text-[#625f5c]">Instant delivery via Email/SMS with floor plans & pricing.</p>
             </div>
 
             <form onSubmit={handleBooking} className="space-y-2.5">
@@ -140,7 +140,7 @@ export default function RealEstateClientDemo({ onOrderDesign, isMobileView }) {
               <input
                 type="tel"
                 required
-                placeholder="WhatsApp Phone Number"
+                placeholder="Mobile Phone Number"
                 className="w-full px-3 py-2 rounded-xl border border-[#DDD5CD] text-xs bg-[#F1ECE6]/40"
               />
               <button

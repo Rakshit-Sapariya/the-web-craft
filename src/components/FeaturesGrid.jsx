@@ -1,5 +1,5 @@
 import React from 'react';
-import { Code2, Zap, ShieldCheck, Sparkles, MessageCircle, RefreshCw, UserCheck, Lock } from 'lucide-react';
+import { Code2, Zap, ShieldCheck, Sparkles, Phone, RefreshCw, UserCheck, Lock } from 'lucide-react';
 import { useOrderOffer } from '../utils/orderTracker';
 
 export default function FeaturesGrid() {
@@ -27,9 +27,9 @@ export default function FeaturesGrid() {
       desc: 'Send all your design references, high-res photos, PDFs, and Figma assets directly with our 1 GB limit support.'
     },
     {
-      icon: MessageCircle,
-      title: 'Direct WhatsApp Line',
-      desc: 'No ticketing queues. Chat directly with the lead developer on +91 85114 39894 (Only Message, Not Call) throughout the project lifecycle.'
+      icon: Phone,
+      title: 'Direct Studio Developer Line',
+      desc: 'No ticketing queues. Connect directly with the lead developer on +91 85114 39894 (Only Message, Not Call) throughout the project lifecycle.'
     },
     isOfferActive ? {
       icon: Sparkles,

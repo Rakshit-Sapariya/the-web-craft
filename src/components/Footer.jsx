@@ -52,7 +52,7 @@ export default function Footer() {
               <span className="flex items-center gap-2">
                 <Phone className="w-3.5 h-3.5 text-[#DDD5CD] shrink-0" />
                 <span className="flex flex-wrap items-center gap-1.5">
-                  <span>WhatsApp: <strong>+91 85114 39894</strong></span>
+                  <span>Direct Studio Line: <strong>+91 85114 39894</strong></span>
                   <span className="text-[10px] text-amber-300 font-bold px-2 py-0.5 rounded-full bg-amber-400/10 border border-amber-400/30">
                     Only Message, Not Call
                   </span>
@@ -174,24 +174,6 @@ export default function Footer() {
         </div>
 
       </div>
-
-      {/* Persistent Floating WhatsApp Action Button with gentle pulse ring */}
-      <a
-        href={COMPANY_CONFIG.whatsappLink}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 z-40 bg-[#25D366] text-white p-3.5 rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300 flex items-center gap-2 group border-2 border-white/20 hover:border-white shadow-emerald-500/20"
-        title="Chat on WhatsApp (+91 85114 39894 - Only Message, Not Call)"
-      >
-        <span className="absolute -top-1 -right-1 flex h-3 w-3">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-          <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-400"></span>
-        </span>
-        <MessageSquare className="w-6 h-6" />
-        <span className="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs transition-all duration-300 text-xs font-bold px-0 group-hover:px-1">
-          Chat on WhatsApp (Only Message, Not Call)
-        </span>
-      </a>
     </footer>
   );
 }

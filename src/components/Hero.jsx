@@ -53,7 +53,7 @@ export default function Hero({ onSelectCategory }) {
             <div className="bg-[#DDD5CD]/40 border border-[#DDD5CD] rounded-xl p-3.5">
               <span className="text-xs text-[#625f5c] block font-medium">Direct Booking</span>
               <span className="text-lg font-bold text-[#2E2E2E]">Zero Online Pay</span>
-              <span className="text-[11px] text-[#625f5c] block mt-0.5">Discuss on WhatsApp</span>
+              <span className="text-[11px] text-[#625f5c] block mt-0.5">Direct Phone / Email</span>
             </div>
 
             <div className="bg-[#DDD5CD]/40 border border-[#DDD5CD] rounded-xl p-3.5">
@@ -64,8 +64,8 @@ export default function Hero({ onSelectCategory }) {
 
             <div className="bg-[#DDD5CD]/40 border border-[#DDD5CD] rounded-xl p-3.5">
               <span className="text-xs text-[#625f5c] block font-medium">Direct Developer</span>
-              <span className="text-lg font-bold text-[#2E2E2E]">WhatsApp</span>
-              <span className="text-[11px] text-[#7D4047] font-semibold block mt-0.5">85114 39894 <span className="font-normal text-[10px] text-[#7D4047] block sm:inline">(Only Message, Not Call)</span></span>
+              <span className="text-lg font-bold text-[#2E2E2E]">Studio Line</span>
+              <span className="text-[11px] text-[#7D4047] font-semibold block mt-0.5">+91 85114 39894 <span className="font-normal text-[10px] text-[#7D4047] block sm:inline">(Only Message, Not Call)</span></span>
             </div>
           </div>
 

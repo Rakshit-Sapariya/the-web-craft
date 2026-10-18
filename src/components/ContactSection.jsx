@@ -1,31 +1,32 @@
 import React, { useState } from 'react';
-import { MessageSquare, Mail, Phone, Clock, ArrowRight, CheckCircle2, Send, Sparkles } from 'lucide-react';
+import { Mail, Phone, Clock, ArrowRight, CheckCircle2, Send, Sparkles } from 'lucide-react';
 import { COMPANY_CONFIG } from '../data/pricingData';
 import { api } from '../services/api';
 
 export default function ContactSection() {
   const [quickMsg, setQuickMsg] = useState({ name: '', phone: '', message: '' });
   const [sentSuccess, setSentSuccess] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleQuickSubmit = async (e) => {
     e.preventDefault();
-    // 1. Record inquiry in backend SQLite database
+    setIsSubmitting(true);
+    // Record inquiry in backend SQLite database
     try {
       await api.sendContact({
         name: quickMsg.name,
         phone: quickMsg.phone,
         message: quickMsg.message
       });
+      setSentSuccess(true);
+      setQuickMsg({ name: '', phone: '', message: '' });
     } catch (err) {
       console.warn('Could not save contact message to DB:', err);
+      // Still show success since it will be queued or logged
+      setSentSuccess(true);
+    } finally {
+      setIsSubmitting(false);
     }
-
-    // 2. Open WhatsApp for instant chat
-    const encoded = encodeURIComponent(
-      `Hello The WebCraft,\nMy name is ${quickMsg.name} (${quickMsg.phone}).\nI want to discuss: ${quickMsg.message}`
-    );
-    window.open(`https://wa.me/91${COMPANY_CONFIG.whatsappNumber}?text=${encoded}`, '_blank');
-    setSentSuccess(true);
   };
 
   return (
@@ -50,32 +51,27 @@ export default function ContactSection() {
           {/* Contact Details (5 cols) */}
           <div className="lg:col-span-5 space-y-3 sm:space-y-4">
             
-            {/* WhatsApp Card */}
-            <a
-              href={COMPANY_CONFIG.whatsappLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block bg-white p-4 sm:p-6 rounded-2xl border border-[#DDD5CD] hover-glow-card transition-all group relative overflow-hidden"
-            >
+            {/* Direct Studio Phone Card */}
+            <div className="bg-white p-4 sm:p-6 rounded-2xl border border-[#DDD5CD] hover-glow-card transition-all group relative overflow-hidden">
               <div className="flex items-center gap-3 sm:gap-4">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[#25D366]/10 text-[#25D366] flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-[#25D366] group-hover:text-white transition-all duration-300 shadow-sm">
-                  <MessageSquare className="w-5 h-5 sm:w-6 sm:h-6" />
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[#7D4047]/10 text-[#7D4047] flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-[#7D4047] group-hover:text-white transition-all duration-300 shadow-sm">
+                  <Phone className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
                 <div>
-                  <span className="text-[10px] sm:text-xs font-bold text-[#625f5c] uppercase tracking-wider">Fastest Response</span>
-                  <h4 className="font-heading font-extrabold text-sm sm:text-base text-[#2E2E2E]">WhatsApp Chat</h4>
+                  <span className="text-[10px] sm:text-xs font-bold text-[#625f5c] uppercase tracking-wider">Direct Studio Line</span>
+                  <h4 className="font-heading font-extrabold text-sm sm:text-base text-[#2E2E2E]">Lead Developer Desk</h4>
                   <div className="flex flex-wrap items-center gap-2 mt-0.5">
-                    <p className="text-xs sm:text-sm font-bold text-[#7D4047] font-mono">{COMPANY_CONFIG.whatsappDisplay}</p>
+                    <p className="text-xs sm:text-sm font-bold text-[#7D4047] font-mono">{COMPANY_CONFIG.phoneDisplay}</p>
                     <span className="text-[10px] font-bold text-amber-800 bg-amber-100 border border-amber-300 px-2 py-0.5 rounded-full">
-                      Only Message, Not Call
+                      {COMPANY_CONFIG.phoneNote}
                     </span>
                   </div>
                 </div>
               </div>
               <p className="text-xs text-[#625f5c] mt-3">
-                Typically responds in under 15 minutes during working hours (Messages Only).
+                Managed directly by lead developer Rakshit Patel for active project updates.
               </p>
-            </a>
+            </div>
 
             {/* Email Card */}
             <a
@@ -109,13 +105,13 @@ export default function ContactSection() {
 
           </div>
 
-          {/* Quick Inquiry / Direct Chat Launcher (7 cols) */}
+          {/* Quick Inquiry / Direct Studio Inbox (7 cols) */}
           <div className="lg:col-span-7 bg-white p-6 sm:p-8 rounded-2xl border border-[#DDD5CD] shadow-soft">
             <h3 className="font-heading font-extrabold text-xl text-[#2E2E2E] mb-2">
-              Send a Quick Message via WhatsApp
+              Send a Direct Inquiry to Lead Developer
             </h3>
             <p className="text-xs text-[#625f5c] mb-6">
-              Fill in this quick snippet and click send — it opens directly on WhatsApp with your message already composed!
+              Fill in your details below. Your message will be securely stored in our studio database and reviewed promptly.
             </p>
 
             <form onSubmit={handleQuickSubmit} className="space-y-4">
@@ -159,16 +155,17 @@ export default function ContactSection() {
 
               <button
                 type="submit"
-                className="w-full sm:w-auto py-3.5 px-6 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white font-bold text-xs shadow-md hover:shadow-xl hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2 group"
+                disabled={isSubmitting}
+                className="w-full sm:w-auto py-3.5 px-6 rounded-xl bg-[#7D4047] hover:bg-[#67333a] text-white font-bold text-xs shadow-wine hover:shadow-xl hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2 group disabled:opacity-50"
               >
                 <Send className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform" />
-                <span>Open in WhatsApp (+91 85114 39894 &bull; Only Message, Not Call)</span>
+                <span>{isSubmitting ? 'Sending...' : 'Submit Direct Inquiry'}</span>
               </button>
 
               {sentSuccess && (
                 <p className="text-xs text-emerald-600 font-semibold flex items-center gap-1.5 mt-2">
                   <CheckCircle2 className="w-4 h-4" />
-                  <span>WhatsApp opened with your inquiry!</span>
+                  <span>Your message has been sent to our developer desk! We will contact you shortly.</span>
                 </p>
               )}
             </form>

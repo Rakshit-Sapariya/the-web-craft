@@ -103,7 +103,7 @@ export default function OrderForm({ preselectedCategory, prefilledBudget, onProc
       errors.clientName = 'Please enter your full name.';
     }
     if (!formData.clientPhone.trim() || formData.clientPhone.trim().length < 10) {
-      errors.clientPhone = 'Please enter a valid 10-digit phone / WhatsApp number.';
+      errors.clientPhone = 'Please enter a valid 10-digit phone number.';
     }
     if (!formData.websiteType) {
       errors.websiteType = 'Please select a website type.';
@@ -146,7 +146,7 @@ export default function OrderForm({ preselectedCategory, prefilledBudget, onProc
             Order Your Custom Website
           </h2>
           <p className="text-xs sm:text-base text-[#625f5c]">
-            Submit your requirements below. Zero online payment required—our engineering team will review your specifications and connect directly on WhatsApp or call!
+            Submit your requirements below. Zero online payment required—our engineering team will review your specifications and connect directly via phone or email!
           </p>
         </div>
 
@@ -205,7 +205,7 @@ export default function OrderForm({ preselectedCategory, prefilledBudget, onProc
 
                 <div>
                   <label className="block text-xs font-bold text-[#2E2E2E] mb-1.5">
-                    WhatsApp / Phone Number <span className="text-red-500">*</span>
+                    Phone / Mobile Number <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="tel"
@@ -380,14 +380,14 @@ export default function OrderForm({ preselectedCategory, prefilledBudget, onProc
                 </div>
 
                 <p className="text-xs text-[#625f5c] mb-3 leading-relaxed">
-                  તમારી વેબસાઇટમાં તમને જે પણ જોઈતું હોય (જેમ કે: ક્યા-ક્યા ખાસ પેજીસ જોઈએ, ક્યા કલર્સ, ફોન્ટ્સ, ઓનલાઇન બુકિંગ, વોટ્સએપ ઓર્ડર બટન, સ્પેશિયલ ફીચર્સ કે તમને ગમતી કોઈ રેફરન્સ વેબસાઇટ્સની લિંક) તે બધું અહીં પોતાની રીતે વિગતવાર લખી શકો છો. <strong>(મહત્તમ 7,000 અક્ષરોની લિમિટ)</strong>
+                  તમારી વેબસાઇટમાં તમને જે પણ જોઈતું હોય (જેમ કે: ક્યા-ક્યા ખાસ પેજીસ જોઈએ, ક્યા કલર્સ, ફોન્ટ્સ, ઓનલાઇન બુકિંગ, ડાયરેક્ટ ઇન્ક્વાયરી ફોર્મ, સ્પેશિયલ ફીચર્સ કે તમને ગમતી કોઈ રેફરન્સ વેબસાઇટ્સની લિંક) તે બધું અહીં પોતાની રીતે વિગતવાર લખી શકો છો. <strong>(મહત્તમ 7,000 અક્ષરોની લિમિટ)</strong>
                 </p>
 
                 <div className="relative">
                   <textarea
                     rows="4"
                     maxLength={7000}
-                    placeholder="અહીં તમારી તમામ જરૂરિયાતો વિગતવાર લખો... / Write all your custom requirements here in detail (e.g. I need a responsive booking calendar, product catalog with WhatsApp checkout, gold & dark wine luxury theme, client review slider, and FAQ section)..."
+                    placeholder="અહીં તમારી તમામ જરૂરિયાતો વિગતવાર લખો... / Write all your custom requirements here in detail (e.g. I need a responsive booking calendar, product catalog with direct inquiry form, gold & dark wine luxury theme, client review slider, and FAQ section)..."
                     value={formData.customInstructions}
                     onChange={(e) => setFormData({ ...formData, customInstructions: e.target.value })}
                     className="w-full p-3.5 sm:p-4 rounded-xl sm:rounded-2xl border border-[#DDD5CD] text-xs sm:text-sm text-[#2E2E2E] bg-[#F1ECE6]/30 focus:outline-none focus:ring-2 focus:ring-[#7D4047] transition-all leading-relaxed"
@@ -455,7 +455,7 @@ export default function OrderForm({ preselectedCategory, prefilledBudget, onProc
                       Direct Booking &bull; Zero Online Payment Required
                     </h4>
                     <p className="text-xs text-[#625f5c] mt-1 leading-relaxed">
-                      You do not need to pay anything on this website. When you submit your requirements, your custom brief and uploaded assets are saved directly into our studio database, and Lead Developer <strong>Rakshit Patel</strong> will personally reach out on WhatsApp/Phone to finalize milestones and schedule your live demo walkthrough.
+                      You do not need to pay anything on this website. When you submit your requirements, your custom brief and uploaded assets are saved directly into our studio database, and Lead Developer <strong>Rakshit Patel</strong> will personally reach out via phone or email to finalize milestones and schedule your live demo walkthrough.
                     </p>
                   </div>
                 </div>
@@ -497,7 +497,7 @@ export default function OrderForm({ preselectedCategory, prefilledBudget, onProc
                 <span>&bull;</span>
                 <span>No Upfront Credit Card or UPI Required</span>
                 <span>&bull;</span>
-                <span>WhatsApp: +91 85114 39894 <span className="font-semibold text-amber-700">(Only Message, Not Call)</span></span>
+                <span>Studio Line: +91 85114 39894 <span className="font-semibold text-amber-700">(Only Message, Not Call)</span></span>
               </div>
             </div>
 

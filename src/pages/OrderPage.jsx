@@ -48,7 +48,7 @@ export default function OrderPage({ selectedCategory, prefilledBudget, onProceed
         onProceedToPayment={handlePaymentInitiate}
       />
 
-      {/* Direct Contact Section (WhatsApp & Email) */}
+      {/* Direct Contact Section (Studio Line & Email) */}
       <ContactSection />
 
       {/* Payment Checkout & Confirmation Modal */}

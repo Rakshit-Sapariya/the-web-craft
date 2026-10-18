@@ -26,7 +26,7 @@ export default function DemoShowcase({ onSelectCategoryForOrder }) {
       location: 'Drive-In, Ahmedabad',
       category: 'Beauty Parlour & Bridal Studio',
       tagline: 'Luxury bridal airbrush packages, pre-bridal skincare, hair spa, and instant appointment booking.',
-      stats: { rating: '5.0 ★ (1.2k Reviews)', artists: 'Certified Artists', booking: 'Instant WhatsApp' },
+      stats: { rating: '5.0 ★ (1.2k Reviews)', artists: 'Certified Artists', booking: 'Instant Booking' },
       icon: Sparkles,
       accentColor: '#7D4047',
     },

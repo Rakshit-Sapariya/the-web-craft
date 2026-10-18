@@ -209,7 +209,7 @@ export default function GymFitnessDemo({ onOrderDesign, isMobileView }) {
                   />
                 </div>
                 <div>
-                  <label className="block text-neutral-300 font-bold mb-1">WhatsApp Phone Number</label>
+                  <label className="block text-neutral-300 font-bold mb-1">Mobile Phone Number</label>
                   <input
                     type="tel"
                     required
@@ -225,7 +225,7 @@ export default function GymFitnessDemo({ onOrderDesign, isMobileView }) {
                 type="submit"
                 className="w-full py-3.5 rounded-xl bg-[#7D4047] hover:bg-[#67333a] text-white font-bold text-xs uppercase tracking-wider shadow-wine mt-2"
               >
-                Send Me Free Gym Pass On WhatsApp
+                Claim Instant Free Gym Pass
               </button>
             </form>
           ) : (
@@ -233,7 +233,7 @@ export default function GymFitnessDemo({ onOrderDesign, isMobileView }) {
               <CheckCircle2 className="w-10 h-10 text-emerald-400 mx-auto" />
               <h4 className="font-heading font-extrabold text-base text-white">Free Pass Generated!</h4>
               <p className="text-xs text-neutral-300">
-                Welcome, {trialForm.name}! Your 1-Day Free Arena Pass has been dispatched to your WhatsApp. Show it at reception.
+                Welcome, {trialForm.name}! Your 1-Day Free Arena Pass has been dispatched to your mobile. Show it at reception.
               </p>
               <button
                 onClick={() => setTrialSuccess(false)}

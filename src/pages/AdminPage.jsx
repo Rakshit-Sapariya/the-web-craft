@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { 
   Layers, CheckCircle2, Clock, Search, RefreshCw, Eye, 
   Phone, Mail, FileText, Database, ShieldCheck, AlertCircle, 
-  ExternalLink, User, DollarSign, Filter, ArrowUpRight, MessageSquare
+  ExternalLink, User, DollarSign, Filter, ArrowUpRight
 } from 'lucide-react';
 import { api } from '../services/api';
 import { COMPANY_CONFIG } from '../data/pricingData';
@@ -99,13 +99,11 @@ export default function AdminPage() {
               <span>Refresh</span>
             </button>
             <a
-              href={`https://wa.me/91${COMPANY_CONFIG.whatsappNumber}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-4 py-2.5 rounded-xl bg-[#25D366] hover:bg-[#20ba59] active:scale-95 text-white text-xs font-bold flex items-center gap-2 transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5"
+              href={`mailto:${COMPANY_CONFIG.email}`}
+              className="px-4 py-2.5 rounded-xl bg-[#7D4047] hover:bg-[#67333a] active:scale-95 text-white text-xs font-bold flex items-center gap-2 transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5"
             >
-              <MessageSquare className="w-3.5 h-3.5" />
-              <span>Developer WhatsApp (Only Message, Not Call)</span>
+              <Mail className="w-3.5 h-3.5" />
+              <span>Studio Email Desk ({COMPANY_CONFIG.email})</span>
             </a>
           </div>
         </div>

@@ -112,7 +112,7 @@ export default function PricingPolicy({ onSelectTier }) {
                     </div>
                     <div className="flex items-center gap-2">
                       <Check className="w-4 h-4 text-[#7D4047] shrink-0" />
-                      <span>WhatsApp Direct Connect Integration</span>
+                      <span>Direct Inquiry & Lead Capture Setup</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <Check className="w-4 h-4 text-[#7D4047] shrink-0" />

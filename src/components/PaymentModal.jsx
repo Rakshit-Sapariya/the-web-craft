@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
-  X, CheckCircle2, MessageSquare, Copy, 
+  X, CheckCircle2, Mail, Copy, 
   Check, FileText, ChevronDown, ChevronUp, Send, 
   Database, ArrowRight, ShieldCheck, Sparkles, Loader2
 } from 'lucide-react';
@@ -105,19 +105,6 @@ export default function PaymentModal({ orderDetails, onClose }) {
     setTimeout(() => setCopiedPlan(false), 3000);
   };
 
-  // WhatsApp formatted direct link
-  const whatsappMsg = encodeURIComponent(
-    `*NEW PROJECT REQUEST - THE WEBCRAFT*\n\n` +
-    `*Order ID:* ${orderId}\n` +
-    `*Client:* ${planData.clientName}\n` +
-    `*Phone:* +91 ${planData.clientPhone}\n` +
-    `*Website Type:* ${planData.websiteType}\n` +
-    `*Estimated Budget:* Rs. ${planData.finalBudget.toLocaleString('en-IN')}\n` +
-    `*Payment Policy:* Zero Online Payment (Direct Consultation)\n\n` +
-    `Hi Rakshit Patel, I have submitted my website specifications on thewebcraft. Please review and connect with me.`
-  );
-  const whatsappDirectLink = `https://wa.me/918511439894?text=${whatsappMsg}`;
-
   const directGmailLink = `mailto:thewebcraft404@gmail.com?subject=${encodeURIComponent(`Website Project Request: ${planData.clientName} [${orderId}]`)}&body=${encodeURIComponent(planData.plainText)}`;
 
   return (
@@ -176,7 +163,7 @@ export default function PaymentModal({ orderDetails, onClose }) {
               Next Steps &amp; Milestone Schedule
             </span>
             <p className="leading-relaxed text-[#625f5c]">
-              No online payment is charged on this website. Our Lead Developer <strong>Rakshit Patel</strong> will personally review your specifications and reach out via WhatsApp or phone within <strong>2 hours</strong> to confirm wireframes and live demo walkthrough.
+              No online payment is charged on this website. Our Lead Developer <strong>Rakshit Patel</strong> will personally review your specifications and reach out via phone or email within <strong>2 hours</strong> to confirm wireframes and live demo walkthrough.
             </p>
             <div className="flex flex-wrap items-center gap-2 pt-1 font-semibold text-[11px] text-[#2E2E2E]">
               <span>Direct Line:</span>
@@ -206,24 +193,23 @@ export default function PaymentModal({ orderDetails, onClose }) {
           {/* Quick Action Dispatch Buttons */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
             <a
-              href={whatsappDirectLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="py-3 px-4 rounded-xl bg-[#25D366] hover:bg-[#20ba59] text-white font-bold text-xs flex items-center justify-center gap-2 transition-all shadow-sm"
-            >
-              <MessageSquare className="w-4 h-4" />
-              <span>Connect on WhatsApp</span>
-            </a>
-
-            <a
               href={directGmailLink}
               target="_blank"
               rel="noopener noreferrer"
               className="py-3 px-4 rounded-xl bg-[#2E2E2E] hover:bg-[#111] text-white font-bold text-xs flex items-center justify-center gap-2 transition-all shadow-sm"
             >
-              <Send className="w-4 h-4 text-[#DDD5CD]" />
-              <span>Open in Gmail</span>
+              <Mail className="w-4 h-4 text-[#DDD5CD]" />
+              <span>Email Specifications</span>
             </a>
+
+            <button
+              type="button"
+              onClick={handleCopyPlan}
+              className="py-3 px-4 rounded-xl bg-[#7D4047] hover:bg-[#67333a] text-white font-bold text-xs flex items-center justify-center gap-2 transition-all shadow-wine"
+            >
+              {copiedPlan ? <Check className="w-4 h-4 text-emerald-300" /> : <Copy className="w-4 h-4" />}
+              <span>{copiedPlan ? 'Blueprint Copied!' : 'Copy Project Blueprint'}</span>
+            </button>
           </div>
 
           {/* Copyable Plan Button & Expandable Preview */}

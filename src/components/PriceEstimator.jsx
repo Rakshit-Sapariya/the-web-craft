@@ -7,7 +7,7 @@ export default function PriceEstimator({ onApplyEstimate }) {
   const { isOfferActive } = useOrderOffer();
   const [selectedType, setSelectedType] = useState('corporate');
   const [pageCount, setPageCount] = useState(6);
-  const [selectedAddons, setSelectedAddons] = useState(['payment', 'whatsapp']);
+  const [selectedAddons, setSelectedAddons] = useState(['payment', 'crm']);
 
   const currentTypeObj = WEBSITE_TYPES.find(t => t.id === selectedType) || WEBSITE_TYPES[0];
 

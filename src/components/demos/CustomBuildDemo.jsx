@@ -7,13 +7,13 @@ import {
 
 export default function CustomBuildDemo({ onOrderDesign, isMobileView }) {
   const [activeTab, setActiveTab] = useState('dashboard');
-  const [selectedModules, setSelectedModules] = useState(['auth', 'payment', 'whatsapp']);
+  const [selectedModules, setSelectedModules] = useState(['auth', 'payment', 'notifications']);
   const [simulatedAction, setSimulatedAction] = useState(false);
 
   const availableModules = [
     { id: 'auth', name: 'Role-Based Authentication & OTP', desc: 'Secure staff and customer login with phone OTP verification.', latency: '18ms' },
     { id: 'payment', name: 'Custom UPI & Automated Reconciliation', desc: 'Direct bank settlement with instant webhook verification.', latency: '35ms' },
-    { id: 'whatsapp', name: 'WhatsApp Business API Dispatcher', desc: 'Auto-send PDF invoices and order status directly to clients.', latency: '42ms' },
+    { id: 'notifications', name: 'Automated SMS & Email Dispatcher', desc: 'Auto-send PDF invoices and order status directly to clients.', latency: '42ms' },
     { id: 'crm', name: 'Custom CRM & Client Pipeline Board', desc: 'Manage inbound client inquiries and lead status in real-time.', latency: '22ms' },
     { id: 'analytics', name: 'Executive Revenue & Conversion Dashboard', desc: 'Live operational metrics with zero third-party tracking scripts.', latency: '15ms' },
   ];
@@ -195,7 +195,7 @@ export default function CustomBuildDemo({ onOrderDesign, isMobileView }) {
                     <tr className="hover:bg-white/5 transition-colors">
                       <td className="py-3 px-4 text-white font-bold">#NX-9822</td>
                       <td className="py-3 px-4">Apex Diagnostic Laboratory, Navrangpura</td>
-                      <td className="py-3 px-4">Patient Report Portal &bull; WhatsApp Bot</td>
+                      <td className="py-3 px-4">Patient Report Portal &bull; SMS Alert Engine</td>
                       <td className="py-3 px-4 text-emerald-400 font-bold">₹16,400</td>
                       <td className="py-3 px-4">
                         <span className="px-2 py-0.5 rounded text-[10px] bg-amber-500/20 text-amber-300 border border-amber-500/30">Processing</span>

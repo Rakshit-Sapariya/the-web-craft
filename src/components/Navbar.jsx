@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { Layers, MessageSquare, ArrowUpRight, Menu, X, Sparkles } from 'lucide-react';
+import { Layers, MessageSquare, ArrowUpRight, Menu, X, Sparkles, Mail } from 'lucide-react';
 import { COMPANY_CONFIG } from '../data/pricingData';
 import { useOrderOffer } from '../utils/orderTracker';
 
@@ -91,23 +91,16 @@ export default function Navbar() {
         {/* Action Buttons (Strictly single-line, perfectly aligned) */}
         <div className="hidden sm:flex items-center gap-2.5 lg:gap-3 shrink-0">
           <a
-            href={COMPANY_CONFIG.whatsappLink}
-            target="_blank"
-            rel="noopener noreferrer"
+            href={`mailto:${COMPANY_CONFIG.email}`}
             className="inline-flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-bold text-[#2E2E2E] bg-white hover:bg-[#DDD5CD]/40 border border-[#DDD5CD] hover:border-[#7D4047]/40 shadow-sm transition-all whitespace-nowrap shrink-0"
-            title="Chat on WhatsApp (+91 85114 39894 - Only Message, Not Call)"
+            title="Email us at thewebcraft404@gmail.com"
           >
-            <div className="w-5 h-5 rounded-md bg-[#25D366]/15 text-[#25D366] flex items-center justify-center shrink-0">
-              <MessageSquare className="w-3.5 h-3.5" />
+            <div className="w-5 h-5 rounded-md bg-[#7D4047]/10 text-[#7D4047] flex items-center justify-center shrink-0">
+              <Mail className="w-3.5 h-3.5" />
             </div>
-            <div className="flex items-center gap-1.5 whitespace-nowrap">
-              <span className="font-mono text-xs font-bold text-[#2E2E2E] whitespace-nowrap">
-                {COMPANY_CONFIG.whatsappDisplay}
-              </span>
-              <span className="text-[10px] font-bold text-[#7D4047] bg-[#7D4047]/10 border border-[#7D4047]/20 px-1.5 py-0.5 rounded whitespace-nowrap">
-                Only Message, Not Call
-              </span>
-            </div>
+            <span className="font-mono text-xs font-bold text-[#2E2E2E] whitespace-nowrap">
+              {COMPANY_CONFIG.email}
+            </span>
           </a>
 
           <Link
@@ -148,18 +141,11 @@ export default function Navbar() {
           ))}
           <div className="pt-3 border-t border-[#DDD5CD] space-y-2">
             <a
-              href={COMPANY_CONFIG.whatsappLink}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={`mailto:${COMPANY_CONFIG.email}`}
               className="flex items-center justify-center gap-2 w-full py-2.5 rounded-lg text-xs font-bold text-[#2E2E2E] bg-[#DDD5CD]/60 border border-[#DDD5CD]"
             >
-              <MessageSquare className="w-4 h-4 text-[#7D4047]" />
-              <div className="flex flex-wrap items-center justify-center gap-1.5">
-                <span>WhatsApp: {COMPANY_CONFIG.whatsappDisplay}</span>
-                <span className="text-[10px] text-[#7D4047] font-bold bg-[#7D4047]/15 px-1.5 py-0.5 rounded border border-[#7D4047]/20">
-                  Only Message, Not Call
-                </span>
-              </div>
+              <Mail className="w-4 h-4 text-[#7D4047]" />
+              <span>Email: {COMPANY_CONFIG.email}</span>
             </a>
             <Link
               to="/order"

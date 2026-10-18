@@ -219,7 +219,7 @@ export default function BeautyParlourDemo({ onOrderDesign, isMobileView }) {
           <div className="text-center mb-6 space-y-1">
             <span className="text-[10px] font-bold text-[#7D4047] uppercase tracking-wider">Hassle-Free Booking</span>
             <h3 className="text-lg sm:text-xl font-extrabold text-[#2E2E2E]">Schedule Your Salon Visit</h3>
-            <p className="text-xs text-[#625f5c]">Instant WhatsApp confirmation sent to your number.</p>
+            <p className="text-xs text-[#625f5c]">Instant booking confirmation sent to your number.</p>
           </div>
 
           {!bookingSuccess ? (
@@ -278,7 +278,7 @@ export default function BeautyParlourDemo({ onOrderDesign, isMobileView }) {
                   />
                 </div>
                 <div>
-                  <label className="block font-bold text-[#2E2E2E] mb-1">WhatsApp Number</label>
+                  <label className="block font-bold text-[#2E2E2E] mb-1">Contact Phone Number</label>
                   <input
                     type="tel"
                     required
@@ -302,7 +302,7 @@ export default function BeautyParlourDemo({ onOrderDesign, isMobileView }) {
               <CheckCircle2 className="w-10 h-10 text-emerald-600 mx-auto" />
               <h4 className="font-heading font-extrabold text-base text-[#2E2E2E]">Appointment Reserved!</h4>
               <p className="text-xs text-[#625f5c]">
-                Thank you, {bookingForm.clientName}! Your slot for {bookingForm.service} on {bookingForm.date} at {bookingForm.time} is reserved. We will ping you on WhatsApp.
+                Thank you, {bookingForm.clientName}! Your slot for {bookingForm.service} on {bookingForm.date} at {bookingForm.time} is reserved. We will confirm your appointment via phone/SMS.
               </p>
               <button
                 onClick={() => setBookingSuccess(false)}

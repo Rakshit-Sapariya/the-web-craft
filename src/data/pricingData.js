@@ -1,9 +1,10 @@
 export const COMPANY_CONFIG = {
   name: 'THE WEBCRAFT',
   tagline: 'Custom Tailored Websites Engineered for Maximum Conversion',
-  whatsappNumber: '8511439894',
-  whatsappDisplay: '+91 85114 39894',
-  whatsappLink: 'https://wa.me/918511439894',
+  phone: '+91 85114 39894',
+  phoneDisplay: '+91 85114 39894',
+  phoneRaw: '8511439894',
+  phoneNote: 'Only Message, Not Call',
   email: 'thewebcraft404@gmail.com',
   startingPrice: 13000,
   tokenAdvance: 0,
@@ -99,7 +100,7 @@ export const WEBSITE_TYPES = [
 
 export const ADDON_OPTIONS = [
   { id: 'payment', name: 'Razorpay / UPI Payment Gateway Integration', price: 2500, popular: true },
-  { id: 'whatsapp', name: 'One-Click WhatsApp Chat & Order Automation', price: 1200, popular: true },
+  { id: 'crm', name: 'Direct Customer Inquiry & Lead Management Setup', price: 1200, popular: true },
   { id: 'cms', name: 'Easy Admin Panel (Update products/blogs without coding)', price: 4500, popular: false },
   { id: 'seo', name: 'Advanced SEO Audit & Google Search Console Indexing', price: 2000, popular: true },
   { id: 'speed', name: 'Ultra-Performance Optimization (95+ Google PageSpeed)', price: 1800, popular: false },
@@ -112,7 +113,7 @@ export const PROCESS_STAGES = [
     title: 'Project Submission & Requirement Review',
     duration: 'Day 1',
     desc: 'You submit your requirements, assets (up to 1 GB), and custom design brief directly through the site with zero upfront fees.',
-    policyNote: 'Direct consultation on WhatsApp/Phone within 2 hours to confirm your project schedule.',
+    policyNote: 'Direct consultation via Phone / Email within 2 hours to confirm your project schedule.',
   },
   {
     step: '02',

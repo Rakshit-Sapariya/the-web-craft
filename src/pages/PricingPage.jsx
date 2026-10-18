@@ -74,7 +74,7 @@ export default function PricingPage({ onApplyEstimate, onSelectTier }) {
             <div className="p-5 bg-[#F1ECE6]/50 rounded-2xl border border-[#DDD5CD] space-y-2 hover-glow-card transition-all duration-300 hover:-translate-y-1 hover:border-[#7D4047]/40 group">
               <h4 className="font-bold text-sm text-[#2E2E2E] group-hover:text-[#7D4047] transition-colors">How does project onboarding work?</h4>
               <p>
-                Once you submit your requirements, Lead Developer Rakshit Patel directly connects with you on WhatsApp (+91 85114 39894 - Only Message) or phone to review your assets, discuss milestones, and schedule your live demo walkthrough.
+                Once you submit your requirements, Lead Developer Rakshit Patel directly connects with you via phone (+91 85114 39894 - Only Message) or email to review your assets, discuss milestones, and schedule your live demo walkthrough.
               </p>
             </div>
 

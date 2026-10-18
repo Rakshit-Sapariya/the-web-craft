@@ -95,10 +95,10 @@ if (checkOrders && checkOrders.count === 0) {
       advance_amount: 5000,
       payment_status: 'pending',
       order_status: 'demo_ready',
-      custom_instructions: 'We need luxury bridal makeup showcase, WhatsApp consultation button, and warm rose-gold palette with price list for HD airbrush & haldi packages.',
+      custom_instructions: 'We need luxury bridal makeup showcase, direct consultation inquiry form, and warm rose-gold palette with price list for HD airbrush & haldi packages.',
       cloud_link: 'https://drive.google.com/drive/folders/sample-glamour-glow',
       custom_notes: 'Urgent wedding season launch needed by this weekend.',
-      blueprint: 'Phase 1: Brand & Theme Approval\nPhase 2: Bridal Showcase & Price Cards\nPhase 3: WhatsApp Booking Widget\nPhase 4: Client Demo Approval (Current)\nPhase 5: Domain Setup & Launch',
+      blueprint: 'Phase 1: Brand & Theme Approval\nPhase 2: Bridal Showcase & Price Cards\nPhase 3: Direct Booking Widget\nPhase 4: Client Demo Approval (Current)\nPhase 5: Domain Setup & Launch',
       created_at: new Date(Date.now() - 4 * 86400000).toISOString(),
       updated_at: new Date().toISOString()
     },
