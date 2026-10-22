@@ -58,6 +58,8 @@ app.use(
           'http://localhost:*',
           'http://127.0.0.1:*',
           'http://10.114.61.234:*',
+          'https:',
+          'wss:',
         ],
         objectSrc: ["'none'"],
         frameAncestors: ["'self'"], // Allow embedding for Studio Preview & Admin Tour
@@ -99,13 +101,22 @@ const TRUSTED_ORIGINS = new Set([
   'http://127.0.0.1:5000',
   'http://10.114.61.234:5173',
   'http://10.114.61.234:5000',
+  ...(process.env.ALLOWED_ORIGINS ? process.env.ALLOWED_ORIGINS.split(',').map((s) => s.trim()) : [])
 ]);
 
 app.use(
   cors({
     origin: (origin, callback) => {
-      // Allow browser requests from trusted origins or non-browser server-to-server calls
-      if (!origin || TRUSTED_ORIGINS.has(origin) || origin.startsWith('http://localhost:') || origin.startsWith('http://127.0.0.1:')) {
+      // Allow browser requests from trusted origins, same-origin, or GoDaddy / custom domain
+      if (
+        !origin || 
+        TRUSTED_ORIGINS.has(origin) || 
+        origin.startsWith('http://localhost:') || 
+        origin.startsWith('http://127.0.0.1:') ||
+        origin.includes('godaddy') ||
+        origin.includes('lhr.life') ||
+        process.env.NODE_ENV === 'production'
+      ) {
         return callback(null, true);
       }
       return callback(new Error('Blocked by CORS policy: Untrusted cross-origin request rejected.'));
@@ -1133,6 +1144,20 @@ app.post('/api/ai/mind/refresh-now', requireAdminAuth, async (req, res) => {
     res.status(500).json({ success: false, message: error.message });
   }
 });
+
+// 9. Serve Production Built Frontend Assets & Single-Page Application (SPA)
+const distPath = path.join(__dirname, '..', 'dist');
+if (fs.existsSync(distPath)) {
+  app.use(express.static(distPath, { dotfiles: 'allow' }));
+
+  // SPA Fallback: Send index.html for non-API client routes in Express 5
+  app.use((req, res, next) => {
+    if (req.method === 'GET' && !req.path.startsWith('/api') && !req.path.startsWith('/uploads') && !req.path.startsWith('/client-demos')) {
+      return res.sendFile(path.join(distPath, 'index.html'), { dotfiles: 'allow' });
+    }
+    next();
+  });
+}
 
 // Global Secure Error Handling Middleware (Catches unhandled errors without leaking stack trace)
 app.use((err, req, res, next) => {

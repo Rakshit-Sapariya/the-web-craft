@@ -1,17 +1,23 @@
 {
   "name": "the-webcraft",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
+  "engines": {
+    "node": ">=22.0.0"
+  },
   "scripts": {
     "start": "node start.js",
-    "dev": "vite --host",
-    "server": "node server/index.js",
+    "dev": "node start.js",
     "build": "vite build",
+    "postinstall": "vite build",
+    "server": "node server/index.js",
     "lint": "oxlint",
     "preview": "vite preview"
   },
   "dependencies": {
+    "@vitejs/plugin-react": "^6.1.1",
+    "autoprefixer": "^10.6.1",
     "canvas-confetti": "^1.9.4",
     "cors": "^2.8.6",
     "express": "^5.3.0",
@@ -19,19 +25,17 @@
     "helmet": "^8.3.0",
     "lucide-react": "^1.55.0",
     "multer": "^2.4.0",
+    "postcss": "^8.5.29",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
-    "react-router-dom": "^7.18.4"
+    "react-router-dom": "^7.18.4",
+    "tailwindcss": "^3.4.17",
+    "vite": "^8.3.0"
   },
   "devDependencies": {
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.7",
-    "@vitejs/plugin-react": "^6.1.1",
-    "autoprefixer": "^10.6.1",
-    "oxlint": "^1.81.0",
-    "postcss": "^8.5.29",
-    "tailwindcss": "^3.4.17",
-    "vite": "^8.3.0"
+    "oxlint": "^1.81.0"
   },
   "overrides": {
     "braces": "3.0.3",
