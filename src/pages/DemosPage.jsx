@@ -2,11 +2,9 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Sparkles, ArrowRight, ShieldCheck } from 'lucide-react';
 import DemoShowcase from '../components/DemoShowcase';
-import { useOrderOffer } from '../utils/orderTracker';
 
 export default function DemosPage({ onSelectCategoryForOrder }) {
   const navigate = useNavigate();
-  const { isOfferActive } = useOrderOffer();
 
   const handleSelectFromDemo = (catId) => {
     if (onSelectCategoryForOrder) {
@@ -49,9 +47,7 @@ export default function DemosPage({ onSelectCategoryForOrder }) {
           <div className="space-y-1 relative z-10 text-center sm:text-left">
             <h3 className="font-heading font-extrabold text-lg sm:text-xl text-white">Want a High-Converting Website Like These?</h3>
             <p className="text-xs text-[#DDD5CD]/80">
-              {isOfferActive 
-                ? 'Direct developer booking with 15% discount for first 10 customers. Zero upfront online payment.' 
-                : 'Direct developer booking. Pay only upon complete satisfaction with your live demo.'}
+              Direct developer booking. Pay on WhatsApp only after you see your website completed, before it goes live on the browser.
             </p>
           </div>
           <button

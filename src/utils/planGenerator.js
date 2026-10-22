@@ -1,4 +1,4 @@
-import { WEBSITE_TYPES, COMPANY_CONFIG } from '../data/pricingData';
+import { WEBSITE_TYPES, COMPANY_CONFIG, ADDON_OPTIONS } from '../data/pricingData';
 
 export function generateWebsiteProductionPlan(order) {
   const categoryNames = {
@@ -16,7 +16,7 @@ export function generateWebsiteProductionPlan(order) {
 
   const typeName = categoryNames[order.websiteType] || order.websiteType;
   const advancePaid = 0;
-  const remaining = order.finalBudget || 13000;
+  const remaining = order.finalBudget || 19500;
   const orderDate = new Date().toLocaleDateString('en-IN', {
     day: 'numeric',
     month: 'short',
@@ -50,7 +50,7 @@ export function generateWebsiteProductionPlan(order) {
       '4. Membership Tiers (Monthly ₹2,200, 3-Month ₹5,499, Annual Elite ₹13,999)',
       '5. Free 1-Day Trial Pass Claim Form (Instant Digital Pass)',
       '6. Certified Trainer Credentials & Transformation Stories',
-      '7. Footer (Prahladnagar Branch, Contact 85114 39894, Timings 6am-10pm)',
+      '7. Footer (Prahladnagar Branch, WhatsApp 94282 98134, Timings 6am-10pm)',
     ],
     restaurant: [
       '1. Header (Brand, Sindhu Bhavan Location, Valet Parking)',
@@ -112,23 +112,30 @@ export function generateWebsiteProductionPlan(order) {
   const selectedSitemap = sitemaps[order.websiteType] || sitemaps.default;
 
   // Plain Text formatted for Email and Production Blueprint
+  const addonsSummary = (order.selectedAddons || []).map(aId => {
+    const a = ADDON_OPTIONS.find(opt => opt.id === aId);
+    return a ? `  - ${a.name} (+₹${a.price})` : null;
+  }).filter(Boolean);
+
   const plainTextPlan = `=====================================================
 THE WEBCRAFT - CLIENT PROJECT PRODUCTION BLUEPRINT
 =====================================================
 Generated Automatically Upon Project Request & Database Registration
 Client: ${order.clientName}
 Date: ${orderDate}
-Direct Lead: Rakshit Patel (+91 85114 39894 - Only Message)
-Online Payment: None Required (Direct Consultation via Phone/Email)
-Target Project Value: Rs. ${(order.finalBudget || 13000).toLocaleString('en-IN')}
+Direct WhatsApp: Rakshit Patel (+91 94282 98134 - WhatsApp Chat Only, No Calls)
+Online Payment: None Required (Pay on WhatsApp after completed demo, before live browser launch)
+Target Project Value: Rs. ${(order.finalBudget || 19500).toLocaleString('en-IN')}
 
 -----------------------------------------------------
 1. CLIENT PROFILE & SCOPE
 -----------------------------------------------------
 Client Full Name: ${order.clientName}
 Phone: +91 ${order.clientPhone}
-Email: ${order.clientEmail || 'Direct phone/email contact preferred'}
+Email: ${order.clientEmail || 'Direct message/email contact preferred'}
 Website Category: ${typeName}
+Optional Features & Integrations:
+${addonsSummary.length > 0 ? addonsSummary.join('\n') : '  - None selected (Standard base features)'}
 Assets Uploaded: ${order.files?.length || 0} file(s)
 ${order.files?.length > 0 ? order.files.map((f, i) => `  - [File ${i + 1}] ${f.name} (${f.sizeFormatted})`).join('\n') : '  - No direct uploads attached'}
 Cloud Drive Link: ${order.cloudAssetLink || 'None provided (direct files / email)'}
@@ -187,7 +194,7 @@ Direct Phone: ${COMPANY_CONFIG.phoneDisplay} (Only Message, Not Call)
     clientPhone: order.clientPhone,
     clientEmail: order.clientEmail,
     websiteType: typeName,
-    finalBudget: order.finalBudget || 13000,
+    finalBudget: order.finalBudget || 19500,
     advancePaid,
     remaining,
     sitemap: selectedSitemap,

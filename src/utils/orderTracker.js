@@ -1,97 +1,192 @@
 import { useState, useEffect } from 'react';
+import { api } from '../services/api';
 
-export const MAX_PROMO_ORDERS = 10;
-export const DEFAULT_INITIAL_ORDERS = 6; // 6 orders done -> 4 slots remaining
-const STORAGE_KEY = 'thewebcraft_confirmed_orders_count';
+export const MAX_PROMO_ORDERS = 300;
+export const DEFAULT_INITIAL_ORDERS = 6;
+const STORAGE_KEY = 'twc_confirmed_orders_count';
 
-// Read current count from localStorage or fallback
+/**
+ * Calculates current tier based on order count (300 orders path):
+ * - First 100 clients (0 - 99): 50% discount
+ * - Second 100 clients (100 - 199): 25% discount
+ * - Last 100 clients (200 - 299): 15% discount
+ * - 300+ orders: All discounts automatically removed (0% discount)
+ */
+export function calculateTier(count) {
+  const num = Math.max(0, parseInt(count, 10) || 0);
+
+  if (num < 100) {
+    const tierSlotsLeft = 100 - num;
+    const totalSlotsLeft = 300 - num;
+    return {
+      orderCount: num,
+      isOfferActive: true,
+      tier: 1,
+      tierName: 'Tier 1: First 100 Clients (50% OFF)',
+      discountPercent: 50,
+      tierSlotsLeft,
+      totalSlotsLeft,
+      badgeText: 'Tier 1: 50% FLAT DISCOUNT',
+      announcement: '⚡ Tier 1 Exclusive: First 100 Clients Get 50% OFF!',
+      headlineHighlight: 'First 100 Clients Get 50% Flat Discount'
+    };
+  } else if (num < 200) {
+    const tierSlotsLeft = 200 - num;
+    const totalSlotsLeft = 300 - num;
+    return {
+      orderCount: num,
+      isOfferActive: true,
+      tier: 2,
+      tierName: 'Tier 2: Next 100 Clients (25% OFF)',
+      discountPercent: 25,
+      tierSlotsLeft,
+      totalSlotsLeft,
+      badgeText: 'Tier 2: 25% FLAT DISCOUNT',
+      announcement: '⚡ Tier 2 Special: Next 100 Clients Get 25% OFF!',
+      headlineHighlight: 'Next 100 Clients Get 25% Flat Discount'
+    };
+  } else if (num < 300) {
+    const tierSlotsLeft = 300 - num;
+    const totalSlotsLeft = 300 - num;
+    return {
+      orderCount: num,
+      isOfferActive: true,
+      tier: 3,
+      tierName: 'Tier 3: Final 100 Clients (15% OFF)',
+      discountPercent: 15,
+      tierSlotsLeft,
+      totalSlotsLeft,
+      badgeText: 'Tier 3: 15% FLAT DISCOUNT',
+      announcement: '⚡ Tier 3 Final Wave: Final 100 Clients Get 15% OFF!',
+      headlineHighlight: 'Final 100 Clients Get 15% Flat Discount'
+    };
+  } else {
+    return {
+      orderCount: num,
+      isOfferActive: false,
+      tier: 4,
+      tierName: 'Promotion Concluded (Standard Pricing)',
+      discountPercent: 0,
+      tierSlotsLeft: 0,
+      totalSlotsLeft: 0,
+      badgeText: 'Standard Studio Pricing',
+      announcement: 'Bespoke Web Studio: Direct Booking • Custom Web Engineering • Zero Online Upfront',
+      headlineHighlight: 'Handcrafted Bespoke Web Engineering'
+    };
+  }
+}
+
 export function getOrderCount() {
   if (typeof window === 'undefined') return DEFAULT_INITIAL_ORDERS;
-  try {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored !== null) {
-      const parsed = parseInt(stored, 10);
-      return isNaN(parsed) ? DEFAULT_INITIAL_ORDERS : Math.max(0, parsed);
-    }
-  } catch (e) {
-    console.warn('Could not read from localStorage:', e);
+  const stored = localStorage.getItem(STORAGE_KEY);
+  if (stored !== null) {
+    const val = parseInt(stored, 10);
+    if (!isNaN(val)) return val;
   }
   return DEFAULT_INITIAL_ORDERS;
 }
 
-// Check if early bird offer is still active
 export function isEarlyBirdActive() {
   return getOrderCount() < MAX_PROMO_ORDERS;
 }
 
-// Calculate remaining promotional slots
 export function getSlotsRemaining() {
-  return Math.max(0, MAX_PROMO_ORDERS - getOrderCount());
+  const current = getOrderCount();
+  return Math.max(0, MAX_PROMO_ORDERS - current);
 }
 
-// Update order count and notify all components
-export function setOrderCount(count) {
-  if (typeof window === 'undefined') return;
-  const safeCount = Math.max(0, parseInt(count, 10) || 0);
-  try {
+export function setOrderCount(newCount) {
+  const safeCount = Math.max(0, parseInt(newCount, 10) || 0);
+  if (typeof window !== 'undefined') {
     localStorage.setItem(STORAGE_KEY, safeCount.toString());
-  } catch (e) {
-    console.warn('Could not write to localStorage:', e);
+    window.dispatchEvent(new CustomEvent('twc_order_count_updated', { detail: safeCount }));
   }
-  window.dispatchEvent(new CustomEvent('webcraft_order_updated', {
-    detail: { orderCount: safeCount, isOfferActive: safeCount < MAX_PROMO_ORDERS }
-  }));
+  // Sync with backend API
+  api.setOfferCount(safeCount).catch(() => {});
+  return safeCount;
 }
 
-// Increment order count by 1 (e.g. when payment confirmed)
 export function incrementOrderCount() {
   const current = getOrderCount();
-  const next = current + 1;
-  setOrderCount(next);
-  return next;
+  return setOrderCount(current + 1);
 }
 
-// Reset order count for testing
-export function resetOrderCount(count = DEFAULT_INITIAL_ORDERS) {
-  setOrderCount(count);
+export function resetOrderCount() {
+  return setOrderCount(DEFAULT_INITIAL_ORDERS);
 }
 
-// React Hook for reactive order & offer state across all pages and components
+// Quick Simulator triggers for owner / developer verification
+export function setTier1() {
+  return setOrderCount(DEFAULT_INITIAL_ORDERS); // Tier 1: 50% OFF (6 orders in, 94 left)
+}
+
+export function setTier2() {
+  return setOrderCount(115); // Tier 2: 25% OFF (115 orders in, 85 left in tier)
+}
+
+export function setTier3() {
+  return setOrderCount(220); // Tier 3: 15% OFF (220 orders in, 80 left in tier)
+}
+
+export function setExpire300() {
+  return setOrderCount(300); // Concluded: 0% discount (All discounts removed)
+}
+
+/**
+ * React Hook for reactive 300 Customers Tier Offer state
+ */
 export function useOrderOffer() {
-  const [orderState, setOrderState] = useState(() => {
-    const count = getOrderCount();
-    return {
-      orderCount: count,
-      isOfferActive: count < MAX_PROMO_ORDERS,
-      slotsRemaining: Math.max(0, MAX_PROMO_ORDERS - count),
-      discountPercent: count < MAX_PROMO_ORDERS ? 15 : 0,
-    };
-  });
+  const [offerState, setOfferState] = useState(() => calculateTier(getOrderCount()));
 
   useEffect(() => {
-    const syncState = () => {
-      const count = getOrderCount();
-      setOrderState({
-        orderCount: count,
-        isOfferActive: count < MAX_PROMO_ORDERS,
-        slotsRemaining: Math.max(0, MAX_PROMO_ORDERS - count),
-        discountPercent: count < MAX_PROMO_ORDERS ? 15 : 0,
-      });
+    // 1. Initial sync with backend
+    let isMounted = true;
+    api.getOfferStatus().then((res) => {
+      if (isMounted && res && typeof res.orderCount === 'number') {
+        localStorage.setItem(STORAGE_KEY, res.orderCount.toString());
+        setOfferState(calculateTier(res.orderCount));
+      }
+    }).catch(() => {});
+
+    // 2. Listen to custom event and cross-tab storage changes
+    const handleUpdate = (e) => {
+      const count = e.detail !== undefined ? e.detail : getOrderCount();
+      setOfferState(calculateTier(count));
     };
 
-    window.addEventListener('webcraft_order_updated', syncState);
-    window.addEventListener('storage', syncState);
+    const handleStorage = (e) => {
+      if (e.key === STORAGE_KEY) {
+        setOfferState(calculateTier(getOrderCount()));
+      }
+    };
+
+    window.addEventListener('twc_order_count_updated', handleUpdate);
+    window.addEventListener('storage', handleStorage);
 
     return () => {
-      window.removeEventListener('webcraft_order_updated', syncState);
-      window.removeEventListener('storage', syncState);
+      isMounted = false;
+      window.removeEventListener('twc_order_count_updated', handleUpdate);
+      window.removeEventListener('storage', handleStorage);
     };
   }, []);
 
+  const applyDiscount = (price) => {
+    if (!offerState.isOfferActive || offerState.discountPercent <= 0) {
+      return price;
+    }
+    const factor = (100 - offerState.discountPercent) / 100;
+    return Math.round(price * factor);
+  };
+
   return {
-    ...orderState,
-    incrementOrderCount,
+    ...offerState,
+    applyDiscount,
     setOrderCount,
+    incrementOrderCount,
     resetOrderCount,
+    setTier1,
+    setTier2,
+    setTier3,
+    setExpire300,
   };
 }

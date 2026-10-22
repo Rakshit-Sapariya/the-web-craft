@@ -7,10 +7,35 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Dependencies
 node_modules
 dist
 dist-ssr
 *.local
+
+# Environment Variables & Secrets (CRITICAL SECURITY)
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.cert
+*.crt
+public/tunnel-url.txt
+
+# Databases & Runtime Data (CRITICAL PRIVACY)
+server/data/*.db
+server/data/*.db-shm
+server/data/*.db-wal
+server/data/*.sqlite
+*.db
+*.db-shm
+*.db-wal
+
+# Client Builds & Uploads
+client-builds/
+uploads/*
+!uploads/.gitkeep
 
 # Editor directories and files
 .vscode/*

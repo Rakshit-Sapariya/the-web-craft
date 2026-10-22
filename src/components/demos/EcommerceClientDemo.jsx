@@ -174,8 +174,8 @@ export default function EcommerceClientDemo({ onOrderDesign, isMobileView }) {
           <div className={`${isMobileView ? 'pt-2' : 'lg:col-span-5'}`}>
             <div className="relative rounded-2xl overflow-hidden shadow-xl border-4 border-white aspect-[4/3] sm:aspect-[4/5] max-w-sm mx-auto">
               <img 
-                src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=800&q=80" 
-                alt="Festive Collection Model" 
+                src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80" 
+                alt="Boutique Fashion Collection" 
                 className="w-full h-full object-cover"
               />
               <div className="absolute bottom-3 left-3 right-3 bg-white/95 backdrop-blur-md p-2.5 rounded-xl shadow-lg border border-[#DDD5CD] flex items-center justify-between">
@@ -318,41 +318,122 @@ export default function EcommerceClientDemo({ onOrderDesign, isMobileView }) {
 
       {/* 6. Customer Testimonials */}
       <section id="reviews" className="bg-[#F1ECE6] border-y border-[#DDD5CD] py-8 sm:py-12 px-4 sm:px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center max-w-xl mx-auto mb-6">
-            <span className="text-[10px] sm:text-xs font-bold text-[#7D4047] uppercase tracking-wider">Customer Love</span>
-            <h2 className="text-lg sm:text-2xl font-extrabold text-[#2E2E2E] font-heading mt-0.5">Loved By 12,000+ Women Across India</h2>
+        <div className="max-w-7xl mx-auto space-y-10">
+          <div>
+            <div className="text-center max-w-xl mx-auto mb-6">
+              <span className="text-[10px] sm:text-xs font-bold text-[#7D4047] uppercase tracking-wider">Customer Love</span>
+              <h2 className="text-lg sm:text-2xl font-extrabold text-[#2E2E2E] font-heading mt-0.5">Loved By 12,000+ Women Across India</h2>
+            </div>
+
+            <div className={`grid gap-4 ${isMobileView ? 'grid-cols-1' : 'grid-cols-1 sm:grid-cols-3'}`}>
+              <div className="bg-white p-4 rounded-2xl border border-[#DDD5CD] shadow-sm space-y-2">
+                <div className="flex text-amber-500">
+                  {[...Array(5)].map((_, i) => <Star key={i} className="w-3 h-3 fill-current" />)}
+                </div>
+                <p className="text-xs text-[#2E2E2E] italic leading-relaxed">
+                  "The Chanderi suit set fabric is so pure! Wore it for Sangeet in Ahmedabad and got countless compliments. Super fast 2-day delivery."
+                </p>
+                <div className="pt-2 border-t border-[#DDD5CD] flex items-center justify-between text-[11px]">
+                  <span className="font-bold text-[#2E2E2E]">Pooja Patel</span>
+                  <span className="text-[#625f5c]">Ahmedabad</span>
+                </div>
+              </div>
+
+              <div className="bg-white p-4 rounded-2xl border border-[#DDD5CD] shadow-sm space-y-2">
+                <div className="flex text-amber-500">
+                  {[...Array(5)].map((_, i) => <Star key={i} className="w-3 h-3 fill-current" />)}
+                </div>
+                <p className="text-xs text-[#2E2E2E] italic leading-relaxed">
+                  "Zari needlework quality is exceptional, looks like a boutique designer piece. Exactly as shown in photos. Beautiful luxury packaging."
+                </p>
+                <div className="pt-2 border-t border-[#DDD5CD] flex items-center justify-between text-[11px]">
+                  <span className="font-bold text-[#2E2E2E]">Ananya Verma</span>
+                  <span className="text-[#625f5c]">Mumbai</span>
+                </div>
+              </div>
+
+              <div className="bg-white p-4 rounded-2xl border border-[#DDD5CD] shadow-sm space-y-2">
+                <div className="flex text-amber-500">
+                  {[...Array(5)].map((_, i) => <Star key={i} className="w-3 h-3 fill-current" />)}
+                </div>
+                <p className="text-xs text-[#2E2E2E] italic leading-relaxed">
+                  "The flare and lining on the Lehengas are top notch. Sizing was true to the chart and the doorstep return policy gave me total peace of mind."
+                </p>
+                <div className="pt-2 border-t border-[#DDD5CD] flex items-center justify-between text-[11px]">
+                  <span className="font-bold text-[#2E2E2E]">Rhea Kothari</span>
+                  <span className="text-[#625f5c]">Bengaluru</span>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div className={`grid gap-4 ${isMobileView ? 'grid-cols-1' : 'grid-cols-1 sm:grid-cols-3'}`}>
-            <div className="bg-white p-4 rounded-2xl border border-[#DDD5CD] shadow-sm space-y-2">
-              <div className="flex text-amber-500">
-                {[...Array(5)].map((_, i) => <Star key={i} className="w-3 h-3 fill-current" />)}
-              </div>
-              <p className="text-xs text-[#2E2E2E] italic leading-relaxed">
-                "The Chanderi suit set fabric is so pure! Wore it for Sangeet in Ahmedabad and got countless compliments. Super fast 2-day delivery."
+          {/* Artisan Heritage Strip */}
+          <div className={`bg-white rounded-3xl p-5 sm:p-8 border border-[#DDD5CD] shadow-sm flex items-center justify-between gap-6 ${isMobileView ? 'flex-col text-center' : 'flex-col lg:flex-row text-center lg:text-left'}`}>
+            <div className={`space-y-1.5 ${isMobileView ? 'text-center' : 'text-center lg:text-left'}`}>
+              <span className="text-[10px] font-bold text-[#7D4047] uppercase tracking-wider">Heritage Craftsmanship</span>
+              <h3 className="text-base sm:text-lg font-extrabold text-[#2E2E2E] font-heading">
+                Hand-Spun Silks & Ethical Weaver Cooperatives
+              </h3>
+              <p className="text-xs text-[#625f5c] max-w-xl">
+                Every Zahra Couture garment supports master handloom artisans across Madhya Pradesh, Gujarat, and Varanasi. 100% azo-free natural dyes and direct fair-trade wages.
               </p>
-              <div className="pt-2 border-t border-[#DDD5CD] flex items-center justify-between text-[11px]">
-                <span className="font-bold text-[#2E2E2E]">Pooja Patel</span>
-                <span className="text-[#625f5c]">Ahmedabad</span>
+              <div className={`flex flex-wrap items-center gap-3 pt-1 text-xs text-[#2E2E2E] ${isMobileView ? 'justify-center' : ''}`}>
+                <span className="text-[#7D4047] font-bold">Free Express Delivery on Orders &gt; ₹1,999</span>
+                <span className="text-[#625f5c]">&bull;</span>
+                <span className="text-[#625f5c]">7-Day No-Questions Exchange</span>
               </div>
             </div>
 
-            <div className="bg-white p-4 rounded-2xl border border-[#DDD5CD] shadow-sm space-y-2">
-              <div className="flex text-amber-500">
-                {[...Array(5)].map((_, i) => <Star key={i} className="w-3 h-3 fill-current" />)}
-              </div>
-              <p className="text-xs text-[#2E2E2E] italic leading-relaxed">
-                "Zari needlework quality is exceptional, looks like a boutique designer piece. Exactly as shown in photos. Beautiful packaging."
-              </p>
-              <div className="pt-2 border-t border-[#DDD5CD] flex items-center justify-between text-[11px]">
-                <span className="font-bold text-[#2E2E2E]">Ananya Verma</span>
-                <span className="text-[#625f5c]">Mumbai</span>
-              </div>
+            <div className={`flex flex-wrap items-center gap-3 shrink-0 ${isMobileView ? 'w-full flex-col' : ''}`}>
+              <button
+                onClick={() => setCartOpen(true)}
+                className={`px-5 py-3 rounded-2xl bg-[#7D4047] hover:bg-[#67333a] text-white text-xs font-bold uppercase tracking-wider flex items-center gap-2 shadow-wine transition-all ${isMobileView ? 'w-full justify-center' : ''}`}
+              >
+                <ShoppingBag className="w-4 h-4" />
+                <span>View Bag ({cart.length})</span>
+              </button>
             </div>
           </div>
         </div>
       </section>
+
+      {/* Complete E-Commerce Footer */}
+      <footer className="bg-[#2E2E2E] text-white pt-10 pb-6 px-4 sm:px-6 border-t border-[#DDD5CD]">
+        <div className={`max-w-7xl mx-auto grid pb-8 border-b border-neutral-700 ${isMobileView ? 'grid-cols-1 gap-6 text-center' : 'grid-cols-1 md:grid-cols-4 gap-8'}`}>
+          <div className={`space-y-3 md:col-span-1 ${isMobileView ? 'flex flex-col items-center' : ''}`}>
+            <span className="font-heading font-black text-base text-white tracking-widest uppercase">ZAHRA COUTURE</span>
+            <p className="text-xs text-neutral-400 leading-relaxed">
+              Curated artisanal Indian luxury handlooms, royal festive wear & handcrafted heirloom silhouettes.
+            </p>
+          </div>
+
+          <div className="space-y-2 text-xs">
+            <h4 className="font-bold text-amber-200 uppercase tracking-wider text-[11px]">Collections</h4>
+            <p className="text-neutral-300">Chanderi Silk Ensembles</p>
+            <p className="text-neutral-300">Handcrafted Festive Lehengas</p>
+            <p className="text-neutral-300">Zari Embroidered Kurtis</p>
+          </div>
+
+          <div className="space-y-2 text-xs">
+            <h4 className="font-bold text-amber-200 uppercase tracking-wider text-[11px]">Customer Support</h4>
+            <p className="text-neutral-300">Support Line: +91 98250 11223</p>
+            <p className="text-neutral-300">Order Tracking & Returns Desk</p>
+            <p className="text-neutral-400 text-[11px]">Mon &ndash; Sat: 10:00 AM &ndash; 07:00 PM</p>
+          </div>
+
+          <div className="space-y-2 text-xs">
+            <h4 className="font-bold text-amber-200 uppercase tracking-wider text-[11px]">Boutique Address</h4>
+            <p className="text-neutral-300">Boutique Lane, Sindhu Bhavan Road,</p>
+            <p className="text-neutral-300">Ahmedabad, Gujarat 380054</p>
+            <p className="text-neutral-400 text-[11px]">100% Secure Encrypted Checkout</p>
+          </div>
+        </div>
+
+        <div className={`max-w-7xl mx-auto pt-6 flex items-center justify-between text-xs text-neutral-400 gap-2 ${isMobileView ? 'flex-col text-center' : 'flex-col sm:flex-row'}`}>
+          <span>&copy; {new Date().getFullYear()} Zahra Couture India. All Rights Reserved.</span>
+          <span>Crafted with pure performance &bull; Powered by THE WEBCRAFT</span>
+        </div>
+      </footer>
 
       {/* 7. Slide-over Shopping Cart */}
       {cartOpen && (
@@ -428,14 +509,14 @@ export default function EcommerceClientDemo({ onOrderDesign, isMobileView }) {
       )}
 
       {/* 8. Demo Project Floating Banner */}
-      <div className="bg-[#2E2E2E] text-white p-3 sm:p-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs border-t border-[#DDD5CD]">
+      <div className={`bg-[#2E2E2E] text-white p-3 sm:p-4 flex items-center justify-between gap-2 text-xs border-t border-[#DDD5CD] ${isMobileView ? 'flex-col text-center' : 'flex-col sm:flex-row'}`}>
         <div className="flex items-center gap-2">
           <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
           <span><strong>Client Demo:</strong> Zahra Couture &bull; Built by <strong>THE WEBCRAFT</strong></span>
         </div>
         <button
           onClick={onOrderDesign}
-          className="px-3 py-1.5 rounded-lg bg-[#7D4047] hover:bg-[#67333a] text-white font-bold flex items-center gap-1"
+          className={`px-3 py-1.5 rounded-lg bg-[#7D4047] hover:bg-[#67333a] text-white font-bold flex items-center gap-1 ${isMobileView ? 'w-full justify-center' : ''}`}
         >
           <span>Get An E-Commerce Site</span>
           <ArrowRight className="w-3.5 h-3.5" />

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Phone, Clock, ArrowRight, CheckCircle2, Send, Sparkles } from 'lucide-react';
+import { Mail, Phone, MessageCircle, Clock, ArrowRight, CheckCircle2, Send, Sparkles } from 'lucide-react';
 import { COMPANY_CONFIG } from '../data/pricingData';
 import { api } from '../services/api';
 
@@ -51,27 +51,33 @@ export default function ContactSection() {
           {/* Contact Details (5 cols) */}
           <div className="lg:col-span-5 space-y-3 sm:space-y-4">
             
-            {/* Direct Studio Phone Card */}
-            <div className="bg-white p-4 sm:p-6 rounded-2xl border border-[#DDD5CD] hover-glow-card transition-all group relative overflow-hidden">
+            {/* Direct Studio WhatsApp Card */}
+            <a 
+              href="https://wa.me/919428298134?text=Hello%20The%20Webcraft%2C%20I%20have%20an%20inquiry%20regarding%20a%20website"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white p-4 sm:p-6 rounded-2xl border border-[#DDD5CD] hover:border-emerald-500/50 hover-glow-card transition-all group relative overflow-hidden block"
+              title="Chat on WhatsApp (No Direct Calls)"
+            >
               <div className="flex items-center gap-3 sm:gap-4">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[#7D4047]/10 text-[#7D4047] flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-[#7D4047] group-hover:text-white transition-all duration-300 shadow-sm">
-                  <Phone className="w-5 h-5 sm:w-6 sm:h-6" />
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-emerald-600 group-hover:text-white transition-all duration-300 shadow-sm">
+                  <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
                 <div>
-                  <span className="text-[10px] sm:text-xs font-bold text-[#625f5c] uppercase tracking-wider">Direct Studio Line</span>
-                  <h4 className="font-heading font-extrabold text-sm sm:text-base text-[#2E2E2E]">Lead Developer Desk</h4>
+                  <span className="text-[10px] sm:text-xs font-bold text-emerald-800 uppercase tracking-wider">Direct WhatsApp Desk</span>
+                  <h4 className="font-heading font-extrabold text-sm sm:text-base text-[#2E2E2E] group-hover:text-emerald-700 transition-colors">Lead Developer Chat</h4>
                   <div className="flex flex-wrap items-center gap-2 mt-0.5">
-                    <p className="text-xs sm:text-sm font-bold text-[#7D4047] font-mono">{COMPANY_CONFIG.phoneDisplay}</p>
-                    <span className="text-[10px] font-bold text-amber-800 bg-amber-100 border border-amber-300 px-2 py-0.5 rounded-full">
-                      {COMPANY_CONFIG.phoneNote}
+                    <p className="text-xs sm:text-sm font-bold text-emerald-800 font-mono">+91 94282 98134</p>
+                    <span className="text-[10px] font-bold text-emerald-800 bg-emerald-100 border border-emerald-300 px-2 py-0.5 rounded-full">
+                      WhatsApp Chat Only &bull; No Calls
                     </span>
                   </div>
                 </div>
               </div>
               <p className="text-xs text-[#625f5c] mt-3">
-                Managed directly by lead developer Rakshit Patel for active project updates.
+                Chat directly with lead developer Rakshit Patel for requirements &amp; updates. (No voice calls).
               </p>
-            </div>
+            </a>
 
             {/* Email Card */}
             <a

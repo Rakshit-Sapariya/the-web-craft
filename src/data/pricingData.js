@@ -1,16 +1,16 @@
 export const COMPANY_CONFIG = {
   name: 'THE WEBCRAFT',
   tagline: 'Custom Tailored Websites Engineered for Maximum Conversion',
-  phone: '+91 85114 39894',
-  phoneDisplay: '+91 85114 39894',
-  phoneRaw: '8511439894',
-  phoneNote: 'Only Message, Not Call',
+  phone: '+91 94282 98134',
+  phoneDisplay: '+91 94282 98134',
+  phoneRaw: '9428298134',
+  phoneNote: 'WhatsApp Only • No Direct Calls',
+  whatsappOnly: true,
+  whatsappUrl: 'https://wa.me/919428298134?text=Hello%20The%20Webcraft%2C%20I%20am%20interested%20in%20building%20a%20website',
   email: 'thewebcraft404@gmail.com',
-  startingPrice: 13000,
+  startingPrice: 19500,
   tokenAdvance: 0,
   requireOnlinePayment: false,
-  earlyBirdDiscountPercent: 15,
-  earlyBirdSlotsRemaining: 4, // "First 10 customers" promo counter
   upiId: 'rakshitptl9828@oksbi',
   payeeName: 'Rakshit Patel',
   bankDetails: {
@@ -27,7 +27,7 @@ export const WEBSITE_TYPES = [
   {
     id: 'landing',
     name: 'High-Converting Landing Page',
-    basePrice: 13000,
+    basePrice: 19500,
     idealFor: 'Product launches, marketing campaigns, lead capture',
     deliveryDays: '3-4 Days',
     includedPages: 1,
@@ -35,7 +35,7 @@ export const WEBSITE_TYPES = [
   {
     id: 'hairparlour',
     name: "Men's Barber & Hair Lounge",
-    basePrice: 13500,
+    basePrice: 20250,
     idealFor: 'Gents salons, barbershops, grooming lounges, tattoo studios',
     deliveryDays: '4-5 Days',
     includedPages: 3,
@@ -43,7 +43,7 @@ export const WEBSITE_TYPES = [
   {
     id: 'beautyparlour',
     name: 'Beauty Salon & Bridal Studio',
-    basePrice: 14000,
+    basePrice: 21000,
     idealFor: 'Bridal studios, women salons, skin & hair aesthetic clinics',
     deliveryDays: '4-5 Days',
     includedPages: 4,
@@ -51,7 +51,7 @@ export const WEBSITE_TYPES = [
   {
     id: 'portfolio',
     name: 'Creative Portfolio / Personal Brand',
-    basePrice: 15000,
+    basePrice: 22500,
     idealFor: 'Designers, photographers, executives, artists',
     deliveryDays: '4-6 Days',
     includedPages: 4,
@@ -59,7 +59,7 @@ export const WEBSITE_TYPES = [
   {
     id: 'gym',
     name: 'Gym & CrossFit Fitness Center',
-    basePrice: 17000,
+    basePrice: 25500,
     idealFor: 'Fitness clubs, yoga studios, MMA & CrossFit arenas',
     deliveryDays: '5-7 Days',
     includedPages: 5,
@@ -67,7 +67,7 @@ export const WEBSITE_TYPES = [
   {
     id: 'restaurant',
     name: 'Restaurant & Table Reservation',
-    basePrice: 18000,
+    basePrice: 27000,
     idealFor: 'Fine dining, cafes, cloud kitchens, banquet halls',
     deliveryDays: '5-7 Days',
     includedPages: 5,
@@ -75,7 +75,7 @@ export const WEBSITE_TYPES = [
   {
     id: 'custombuild',
     name: 'Custom Build Website & Architecture',
-    basePrice: 18500,
+    basePrice: 27750,
     idealFor: 'Bespoke business logic, custom calculators, web portals, tailored workflows',
     deliveryDays: '6-8 Days',
     includedPages: 6,
@@ -83,7 +83,7 @@ export const WEBSITE_TYPES = [
   {
     id: 'corporate',
     name: 'Corporate & Real Estate Website',
-    basePrice: 19000,
+    basePrice: 28500,
     idealFor: 'Enterprises, agencies, builders, infrastructure developers',
     deliveryDays: '6-8 Days',
     includedPages: 6,
@@ -91,7 +91,7 @@ export const WEBSITE_TYPES = [
   {
     id: 'ecommerce',
     name: 'E-Commerce Online Store',
-    basePrice: 22000,
+    basePrice: 33000,
     idealFor: 'Direct-to-consumer brands, retail shops, fashion boutiques',
     deliveryDays: '8-10 Days',
     includedPages: 8,
@@ -99,12 +99,12 @@ export const WEBSITE_TYPES = [
 ];
 
 export const ADDON_OPTIONS = [
-  { id: 'payment', name: 'Razorpay / UPI Payment Gateway Integration', price: 2500, popular: true },
-  { id: 'crm', name: 'Direct Customer Inquiry & Lead Management Setup', price: 1200, popular: true },
-  { id: 'cms', name: 'Easy Admin Panel (Update products/blogs without coding)', price: 4500, popular: false },
-  { id: 'seo', name: 'Advanced SEO Audit & Google Search Console Indexing', price: 2000, popular: true },
-  { id: 'speed', name: 'Ultra-Performance Optimization (95+ Google PageSpeed)', price: 1800, popular: false },
-  { id: 'revisions', name: 'Priority VIP Revision Pass (Same-day turnarounds)', price: 2200, popular: false },
+  { id: 'payment', name: 'Razorpay / UPI Payment Gateway Integration', price: 3750, popular: true },
+  { id: 'crm', name: 'Direct Customer Inquiry & Lead Management Setup', price: 1800, popular: true },
+  { id: 'cms', name: 'Easy Admin Panel (Update products/blogs without coding)', price: 6750, popular: false },
+  { id: 'seo', name: 'Advanced SEO Audit & Google Search Console Indexing', price: 3000, popular: true },
+  { id: 'speed', name: 'Ultra-Performance Optimization (95+ Google PageSpeed)', price: 2700, popular: false },
+  { id: 'revisions', name: 'Priority VIP Revision Pass (Same-day turnarounds)', price: 3300, popular: false },
 ];
 
 export const PROCESS_STAGES = [
@@ -113,7 +113,7 @@ export const PROCESS_STAGES = [
     title: 'Project Submission & Requirement Review',
     duration: 'Day 1',
     desc: 'You submit your requirements, assets (up to 1 GB), and custom design brief directly through the site with zero upfront fees.',
-    policyNote: 'Direct consultation via Phone / Email within 2 hours to confirm your project schedule.',
+    policyNote: 'Direct consultation via Message / Email within 2 hours to confirm your project schedule.',
   },
   {
     step: '02',
@@ -136,8 +136,8 @@ export const PROCESS_STAGES = [
   },
   {
     step: '05',
-    title: 'Final Settlement & Domain Launch',
+    title: 'Payment on WhatsApp & Live Browser Launch',
     duration: 'Launch Day',
-    desc: 'Upon final satisfaction, settle the remaining balance. We connect your custom domain, install SSL security, and hand over 100% full ownership.',
+    desc: 'Pay securely on WhatsApp only after you see your website completed and approved on staging. Once settled, we connect your custom domain, install SSL security, and take your website live on the browser.',
   },
 ];

@@ -1,10 +1,7 @@
 import React from 'react';
-import { Code2, Zap, ShieldCheck, Sparkles, Phone, RefreshCw, UserCheck, Lock } from 'lucide-react';
-import { useOrderOffer } from '../utils/orderTracker';
+import { Code2, Zap, ShieldCheck, MessageCircle, UserCheck, Lock } from 'lucide-react';
 
 export default function FeaturesGrid() {
-  const { isOfferActive } = useOrderOffer();
-
   const features = [
     {
       icon: Lock,
@@ -27,15 +24,11 @@ export default function FeaturesGrid() {
       desc: 'Send all your design references, high-res photos, PDFs, and Figma assets directly with our 1 GB limit support.'
     },
     {
-      icon: Phone,
-      title: 'Direct Studio Developer Line',
-      desc: 'No ticketing queues. Connect directly with the lead developer on +91 85114 39894 (Only Message, Not Call) throughout the project lifecycle.'
+      icon: MessageCircle,
+      title: 'Direct WhatsApp Desk (Chat Only)',
+      desc: 'No ticketing queues. Chat directly with the lead developer on WhatsApp at +91 94282 98134 (WhatsApp Only • No Direct Calls) throughout the project lifecycle.'
     },
-    isOfferActive ? {
-      icon: Sparkles,
-      title: '15% Early-Bird Discount',
-      desc: 'First 10 customers automatically unlock 15% extra savings on any package tier starting from ₹13,000.'
-    } : {
+    {
       icon: UserCheck,
       title: 'Direct 1-on-1 Developer Access',
       desc: 'Work directly with lead developer Rakshit Patel. Zero middleman markups, agency overheads, or delayed communication.'

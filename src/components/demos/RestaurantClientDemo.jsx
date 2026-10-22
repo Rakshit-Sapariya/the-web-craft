@@ -6,16 +6,6 @@ import {
 
 export default function RestaurantClientDemo({ onOrderDesign, isMobileView }) {
   const [activeMenuCategory, setActiveMenuCategory] = useState('Kebabs');
-  const [reserveForm, setReserveForm] = useState({
-    guests: '4 Guests',
-    date: '2026-10-15',
-    time: '08:30 PM',
-    seating: 'Open Courtyard by Fountain',
-    name: '',
-    phone: ''
-  });
-  const [reserveSuccess, setReserveSuccess] = useState(false);
-
   const menuItems = {
     'Kebabs': [
       {
@@ -89,11 +79,6 @@ export default function RestaurantClientDemo({ onOrderDesign, isMobileView }) {
     ]
   };
 
-  const handleReserve = (e) => {
-    e.preventDefault();
-    setReserveSuccess(true);
-  };
-
   return (
     <div className="bg-[#FAF9F6] text-[#222] font-sans antialiased min-h-screen">
       
@@ -135,7 +120,7 @@ export default function RestaurantClientDemo({ onOrderDesign, isMobileView }) {
       <section className="relative py-10 sm:py-20 bg-[#2E2E2E] text-white overflow-hidden px-4 sm:px-6">
         <div className="absolute inset-0 opacity-30 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1600&q=80" 
+            src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=1600&q=80" 
             alt="Courtyard Restaurant Ambient"
             className="w-full h-full object-cover" 
           />
@@ -248,133 +233,222 @@ export default function RestaurantClientDemo({ onOrderDesign, isMobileView }) {
         </div>
       </section>
 
-      {/* 5. Online Table Reservation Form */}
-      <section id="reservation" className="bg-[#F1ECE6] border-t border-[#DDD5CD] py-10 px-4 sm:px-6">
-        <div className="max-w-2xl mx-auto bg-white rounded-3xl p-5 sm:p-8 border border-[#DDD5CD] shadow-sm">
-          <div className="text-center mb-6 space-y-1">
-            <span className="text-[10px] font-bold text-[#7D4047] uppercase tracking-wider">Zero Wait Time</span>
-            <h2 className="text-lg sm:text-xl font-extrabold text-[#2E2E2E] font-heading">
-              Reserve An Evening At The Courtyard
+      {/* 5. Dining Experiences & Table Concierge */}
+      <section id="reservation" className="bg-[#F1ECE6] border-t border-[#DDD5CD] py-12 px-4 sm:px-6">
+        <div className="max-w-7xl mx-auto space-y-8">
+          <div className="text-center max-w-2xl mx-auto space-y-1">
+            <span className="text-[10px] sm:text-xs font-bold text-[#7D4047] uppercase tracking-wider">Hospitality & Ambiance</span>
+            <h2 className="text-xl sm:text-2xl font-extrabold text-[#2E2E2E] font-heading">
+              Curated Dining Spaces & Table Concierge
             </h2>
-            <p className="text-xs text-[#625f5c]">Instant table reservation confirmation pass.</p>
+            <p className="text-xs text-[#625f5c]">
+              Choose your preferred ambience. Direct telephone and WhatsApp table concierge available daily.
+            </p>
           </div>
 
-          {!reserveSuccess ? (
-            <form onSubmit={handleReserve} className="space-y-3 text-xs">
-              <div className={`grid gap-3 ${isMobileView ? 'grid-cols-1' : 'grid-cols-2'}`}>
-                <div>
-                  <label className="block font-bold text-[#2E2E2E] mb-1">Number of Guests</label>
-                  <select 
-                    value={reserveForm.guests}
-                    onChange={(e) => setReserveForm({ ...reserveForm, guests: e.target.value })}
-                    className="w-full px-3 py-2 rounded-xl border border-[#DDD5CD] bg-[#F1ECE6]/40 text-xs"
-                  >
-                    <option>2 Guests (Couple Dining)</option>
-                    <option>4 Guests (Family Table)</option>
-                    <option>6 Guests (Celebration)</option>
-                    <option>8+ Guests (Private Suite)</option>
-                  </select>
+          <div className={`grid gap-5 ${isMobileView ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-3'}`}>
+            <div className="bg-white rounded-3xl p-6 border border-[#DDD5CD] shadow-sm flex flex-col justify-between space-y-4">
+              <div className="space-y-3">
+                <div className="w-10 h-10 rounded-2xl bg-[#7D4047]/10 text-[#7D4047] flex items-center justify-center font-bold">
+                  <Sparkles className="w-5 h-5" />
                 </div>
                 <div>
-                  <label className="block font-bold text-[#2E2E2E] mb-1">Date</label>
-                  <input
-                    type="date"
-                    required
-                    value={reserveForm.date}
-                    onChange={(e) => setReserveForm({ ...reserveForm, date: e.target.value })}
-                    className="w-full px-3 py-2 rounded-xl border border-[#DDD5CD] bg-[#F1ECE6]/40 text-xs"
-                  />
+                  <span className="text-[10px] font-bold text-[#7D4047] uppercase">Al Fresco Heritage</span>
+                  <h3 className="font-heading font-extrabold text-base text-[#2E2E2E] mt-0.5">The Fountain Courtyard</h3>
                 </div>
+                <p className="text-xs text-[#625f5c] leading-relaxed">
+                  Open-air candlelight dining beside our 60-year-old carved marble fountain. Features live acoustic sitar and sarod from 8:00 PM nightly.
+                </p>
               </div>
-
-              <div className={`grid gap-3 ${isMobileView ? 'grid-cols-1' : 'grid-cols-2'}`}>
-                <div>
-                  <label className="block font-bold text-[#2E2E2E] mb-1">Time Slot</label>
-                  <select 
-                    value={reserveForm.time}
-                    onChange={(e) => setReserveForm({ ...reserveForm, time: e.target.value })}
-                    className="w-full px-3 py-2 rounded-xl border border-[#DDD5CD] bg-[#F1ECE6]/40 text-xs"
-                  >
-                    <option>07:00 PM (Early Dinner)</option>
-                    <option>08:00 PM (Prime Hour)</option>
-                    <option>08:45 PM (Live Sitar)</option>
-                    <option>09:30 PM (Late Courtyard)</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block font-bold text-[#2E2E2E] mb-1">Seating Ambience</label>
-                  <select 
-                    value={reserveForm.seating}
-                    onChange={(e) => setReserveForm({ ...reserveForm, seating: e.target.value })}
-                    className="w-full px-3 py-2 rounded-xl border border-[#DDD5CD] bg-[#F1ECE6]/40 text-xs"
-                  >
-                    <option>Open Courtyard by Fountain</option>
-                    <option>AC Royal Glass Pavillion</option>
-                    <option>Private Dining Chamber</option>
-                  </select>
-                </div>
+              <div className="pt-3 border-t border-[#DDD5CD] flex items-center justify-between text-[11px] text-[#2E2E2E]">
+                <span><strong>Seating:</strong> 2 to 6 Diners</span>
+                <span className="text-emerald-700 font-bold bg-emerald-50 px-2 py-0.5 rounded">Live Music</span>
               </div>
-
-              <div className={`grid gap-3 ${isMobileView ? 'grid-cols-1' : 'grid-cols-2'}`}>
-                <div>
-                  <label className="block font-bold text-[#2E2E2E] mb-1">Guest Name</label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="e.g. Anand Trivedi"
-                    value={reserveForm.name}
-                    onChange={(e) => setReserveForm({ ...reserveForm, name: e.target.value })}
-                    className="w-full px-3 py-2 rounded-xl border border-[#DDD5CD] bg-[#F1ECE6]/40 text-xs"
-                  />
-                </div>
-                <div>
-                  <label className="block font-bold text-[#2E2E2E] mb-1">Contact Phone Number</label>
-                  <input
-                    type="tel"
-                    required
-                    placeholder="e.g. 9825000000"
-                    value={reserveForm.phone}
-                    onChange={(e) => setReserveForm({ ...reserveForm, phone: e.target.value })}
-                    className="w-full px-3 py-2 rounded-xl border border-[#DDD5CD] bg-[#F1ECE6]/40 text-xs"
-                  />
-                </div>
-              </div>
-
-              <button
-                type="submit"
-                className="w-full py-3 rounded-xl bg-[#7D4047] hover:bg-[#67333a] text-white font-bold text-xs uppercase tracking-wider shadow-wine mt-2"
-              >
-                Confirm Table Reservation
-              </button>
-            </form>
-          ) : (
-            <div className="text-center py-4 space-y-2">
-              <CheckCircle2 className="w-10 h-10 text-emerald-600 mx-auto" />
-              <h4 className="font-heading font-extrabold text-base text-[#2E2E2E]">Table Reserved Successfully!</h4>
-              <p className="text-xs text-[#625f5c]">
-                Hosting {reserveForm.guests} at {reserveForm.time} in our {reserveForm.seating}. SMS pass dispatched.
-              </p>
-              <button
-                onClick={() => setReserveSuccess(false)}
-                className="text-[11px] font-bold text-[#7D4047] underline"
-              >
-                Make another booking
-              </button>
             </div>
-          )}
 
+            <div className="bg-white rounded-3xl p-6 border border-[#DDD5CD] shadow-sm flex flex-col justify-between space-y-4">
+              <div className="space-y-3">
+                <div className="w-10 h-10 rounded-2xl bg-[#7D4047]/10 text-[#7D4047] flex items-center justify-center font-bold">
+                  <UtensilsCrossed className="w-5 h-5" />
+                </div>
+                <div>
+                  <span className="text-[10px] font-bold text-[#7D4047] uppercase">Climate Controlled</span>
+                  <h3 className="font-heading font-extrabold text-base text-[#2E2E2E] mt-0.5">The Royal Glass Pavillion</h3>
+                </div>
+                <p className="text-xs text-[#625f5c] leading-relaxed">
+                  Grand European-Awadhi glasshouse architecture with crystal chandeliers, acoustic insulation, and full panoramic view of the courtyard gardens.
+                </p>
+              </div>
+              <div className="pt-3 border-t border-[#DDD5CD] flex items-center justify-between text-[11px] text-[#2E2E2E]">
+                <span><strong>Seating:</strong> Family & Large Groups</span>
+                <span className="text-[#7D4047] font-bold bg-[#7D4047]/10 px-2 py-0.5 rounded">AC Dining</span>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-3xl p-6 border border-[#DDD5CD] shadow-sm flex flex-col justify-between space-y-4">
+              <div className="space-y-3">
+                <div className="w-10 h-10 rounded-2xl bg-[#7D4047]/10 text-[#7D4047] flex items-center justify-center font-bold">
+                  <Star className="w-5 h-5" />
+                </div>
+                <div>
+                  <span className="text-[10px] font-bold text-[#7D4047] uppercase">VIP Exclusive</span>
+                  <h3 className="font-heading font-extrabold text-base text-[#2E2E2E] mt-0.5">The Maharaja Chamber</h3>
+                </div>
+                <p className="text-xs text-[#625f5c] leading-relaxed">
+                  Bespoke private dining suite for celebrations and corporate banquets. Includes dedicated master butler, customized 7-course degustation menu.
+                </p>
+              </div>
+              <div className="pt-3 border-t border-[#DDD5CD] flex items-center justify-between text-[11px] text-[#2E2E2E]">
+                <span><strong>Capacity:</strong> 8 to 18 Guests</span>
+                <span className="text-amber-700 font-bold bg-amber-50 px-2 py-0.5 rounded">Private Butler</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Concierge Desk Strip */}
+          <div className={`bg-white rounded-3xl p-5 sm:p-8 border border-[#DDD5CD] shadow-sm flex items-center justify-between gap-6 ${isMobileView ? 'flex-col text-center' : 'flex-col lg:flex-row text-center lg:text-left'}`}>
+            <div className={`space-y-1.5 ${isMobileView ? 'text-center' : 'text-center lg:text-left'}`}>
+              <span className="text-[10px] font-bold text-[#7D4047] uppercase tracking-wider">Direct Table Reservations</span>
+              <h3 className="text-base sm:text-lg font-extrabold text-[#2E2E2E] font-heading">
+                Reserve Your Evening via Dedicated Concierge Desk
+              </h3>
+              <p className="text-xs text-[#625f5c] max-w-xl">
+                We accept walk-ins subject to availability. For guaranteed courtyard fountain seating and weekend dinners, advance table reservation is recommended.
+              </p>
+              <div className={`flex flex-wrap items-center gap-3 pt-1 text-xs text-[#2E2E2E] ${isMobileView ? 'justify-center' : ''}`}>
+                <span className="flex items-center gap-1 font-bold">
+                  <Clock className="w-3.5 h-3.5 text-[#7D4047]" />
+                  <span>Lunch: 12:00 PM – 03:30 PM &bull; Dinner: 07:00 PM – 11:30 PM</span>
+                </span>
+                <span className="text-[#625f5c]">&bull;</span>
+                <span className="text-[#625f5c]">Valet Parking Available</span>
+              </div>
+            </div>
+
+            <div className={`flex flex-wrap items-center gap-3 shrink-0 ${isMobileView ? 'w-full flex-col' : ''}`}>
+              <a
+                href="tel:+919825000000"
+                className={`px-5 py-3 rounded-2xl bg-[#7D4047] hover:bg-[#67333a] text-white text-xs font-bold uppercase tracking-wider flex items-center gap-2 shadow-wine transition-all ${isMobileView ? 'w-full justify-center' : ''}`}
+              >
+                <Phone className="w-4 h-4" />
+                <span>Call Table Desk: +91 98250 12345</span>
+              </a>
+              <a
+                href="https://wa.me/919825012345"
+                target="_blank"
+                rel="noreferrer"
+                className={`px-4 py-3 rounded-2xl bg-[#2E2E2E] hover:bg-black text-white text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 ${isMobileView ? 'w-full justify-center' : ''}`}
+              >
+                <span>WhatsApp Desk</span>
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 
+      {/* 6. Guest Testimonials */}
+      <section className="py-12 max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="text-center max-w-xl mx-auto mb-8 space-y-1">
+          <span className="text-[10px] sm:text-xs font-bold text-[#7D4047] uppercase tracking-wider">Patron Acclaim</span>
+          <h2 className="text-xl sm:text-2xl font-extrabold text-[#2E2E2E] font-heading">
+            Celebrated by Ahmedabad Gourmands
+          </h2>
+        </div>
+
+        <div className={`grid gap-4 ${isMobileView ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-3'}`}>
+          <div className="bg-white p-5 rounded-2xl border border-[#DDD5CD] shadow-sm space-y-3">
+            <div className="flex text-amber-500">
+              {[...Array(5)].map((_, i) => <Star key={i} className="w-3.5 h-3.5 fill-current" />)}
+            </div>
+            <p className="text-xs text-[#2E2E2E] italic leading-relaxed">
+              "The Dal Saffron Bukhara simmered for 24 hours has that deep smoky richness that you rarely find outside Lucknow. Courtyard ambiance with live sitar was magical."
+            </p>
+            <div className="pt-2 border-t border-[#DDD5CD] flex items-center justify-between text-xs">
+              <span className="font-bold text-[#2E2E2E]">Radhika Merchant</span>
+              <span className="text-[#625f5c] text-[11px]">Bodakdev, Ahmedabad</span>
+            </div>
+          </div>
+
+          <div className="bg-white p-5 rounded-2xl border border-[#DDD5CD] shadow-sm space-y-3">
+            <div className="flex text-amber-500">
+              {[...Array(5)].map((_, i) => <Star key={i} className="w-3.5 h-3.5 fill-current" />)}
+            </div>
+            <p className="text-xs text-[#2E2E2E] italic leading-relaxed">
+              "Hosted my father's 60th birthday banquet in the Maharaja Chamber. The royal treatment, attentive staff, and tender Galouti kebabs left all 16 guests mesmerized."
+            </p>
+            <div className="pt-2 border-t border-[#DDD5CD] flex items-center justify-between text-xs">
+              <span className="font-bold text-[#2E2E2E]">Devendra Shah</span>
+              <span className="text-[#625f5c] text-[11px]">Ambli Road, Ahmedabad</span>
+            </div>
+          </div>
+
+          <div className="bg-white p-5 rounded-2xl border border-[#DDD5CD] shadow-sm space-y-3">
+            <div className="flex text-amber-500">
+              {[...Array(5)].map((_, i) => <Star key={i} className="w-3.5 h-3.5 fill-current" />)}
+            </div>
+            <p className="text-xs text-[#2E2E2E] italic leading-relaxed">
+              "Hands down the highest quality Mughlai and Awadhi fine dining in Gujarat. Pure ghee aromas, freshly baked sheermal, and courteous hospitality every visit."
+            </p>
+            <div className="pt-2 border-t border-[#DDD5CD] flex items-center justify-between text-xs">
+              <span className="font-bold text-[#2E2E2E]">Chef Anand Trivedi</span>
+              <span className="text-[#625f5c] text-[11px]">Food Critic & Connoisseur</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 7. Complete Restaurant Footer */}
+      <footer className="bg-[#2E2E2E] text-white pt-10 pb-6 px-4 sm:px-6 border-t border-[#DDD5CD]">
+        <div className={`max-w-7xl mx-auto grid pb-8 border-b border-neutral-700 ${isMobileView ? 'grid-cols-1 gap-6 text-center' : 'grid-cols-1 md:grid-cols-4 gap-8'}`}>
+          <div className={`space-y-3 md:col-span-1 ${isMobileView ? 'flex flex-col items-center' : ''}`}>
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 rounded-lg bg-[#7D4047] text-amber-200 flex items-center justify-center font-bold">
+                <UtensilsCrossed className="w-4 h-4" />
+              </div>
+              <span className="font-heading font-black text-sm text-white tracking-tight">THE SAFFRON COURTYARD</span>
+            </div>
+            <p className="text-xs text-neutral-400 leading-relaxed">
+              Authentic Awadhi royal gastronomy, slow dum cooking, and open-air fountain dining in the heart of Ahmedabad.
+            </p>
+          </div>
+
+          <div className="space-y-2 text-xs">
+            <h4 className="font-bold text-amber-200 uppercase tracking-wider text-[11px]">Operating Hours</h4>
+            <p className="text-neutral-300">Lunch Service: 12:00 PM – 03:30 PM</p>
+            <p className="text-neutral-300">Dinner Service: 07:00 PM – 11:30 PM</p>
+            <p className="text-neutral-400 text-[11px]">Open 7 Days a Week</p>
+          </div>
+
+          <div className="space-y-2 text-xs">
+            <h4 className="font-bold text-amber-200 uppercase tracking-wider text-[11px]">Location & Valet</h4>
+            <p className="text-neutral-300">Sindhu Bhavan Road, Bodakdev,</p>
+            <p className="text-neutral-300">Ahmedabad, Gujarat 380054</p>
+            <p className="text-neutral-400 text-[11px]">Complimentary Valet Parking</p>
+          </div>
+
+          <div className="space-y-2 text-xs">
+            <h4 className="font-bold text-amber-200 uppercase tracking-wider text-[11px]">Table Concierge</h4>
+            <p className="text-neutral-300">Reservations: +91 98250 12345</p>
+            <p className="text-neutral-300">Banquets: banquets@saffroncourtyard.in</p>
+            <p className="text-neutral-400 text-[11px]">Smart Casual Dress Code</p>
+          </div>
+        </div>
+
+        <div className={`max-w-7xl mx-auto pt-6 flex items-center justify-between text-xs text-neutral-400 gap-2 ${isMobileView ? 'flex-col text-center' : 'flex-col sm:flex-row'}`}>
+          <span>&copy; {new Date().getFullYear()} The Saffron Courtyard. All Rights Reserved.</span>
+          <span>Crafted with pure performance &bull; Powered by THE WEBCRAFT</span>
+        </div>
+      </footer>
+
       {/* 6. Demo Project Floating Banner */}
-      <div className="bg-[#2E2E2E] text-white p-3 sm:p-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs border-t border-[#DDD5CD]">
+      <div className={`bg-[#2E2E2E] text-white p-3 sm:p-4 flex items-center justify-between gap-2 text-xs border-t border-[#DDD5CD] ${isMobileView ? 'flex-col text-center' : 'flex-col sm:flex-row'}`}>
         <div className="flex items-center gap-2">
           <span className="w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse" />
           <span><strong>Client Demo:</strong> The Saffron Courtyard &bull; Built by <strong>THE WEBCRAFT</strong></span>
         </div>
         <button
           onClick={onOrderDesign}
-          className="px-3.5 py-1.5 rounded-lg bg-[#7D4047] hover:bg-[#67333a] text-white font-bold flex items-center gap-1"
+          className={`px-3.5 py-1.5 rounded-lg bg-[#7D4047] hover:bg-[#67333a] text-white font-bold flex items-center gap-1 ${isMobileView ? 'w-full justify-center' : ''}`}
         >
           <span>Order A Restaurant Site</span>
           <ArrowRight className="w-3.5 h-3.5" />

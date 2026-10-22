@@ -1,23 +1,30 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { 
   FileUp, AlertCircle, CheckCircle, ShieldAlert, ArrowRight, 
-  HelpCircle, Link as LinkIcon, DollarSign, Phone, User, Globe, 
-  FileText, X, Sparkles, Lock, IndianRupee, Edit3, ShieldCheck
+  HelpCircle, Link as LinkIcon, DollarSign, User, Globe, 
+  FileText, X, Sparkles, Lock, IndianRupee, Edit3, ShieldCheck,
+  Star, HeartHandshake, Sliders, Check
 } from 'lucide-react';
-import { WEBSITE_TYPES, COMPANY_CONFIG } from '../data/pricingData';
+import { WEBSITE_TYPES, ADDON_OPTIONS } from '../data/pricingData';
 import { useOrderOffer } from '../utils/orderTracker';
 
-export default function OrderForm({ preselectedCategory, prefilledBudget, onProceedToPayment }) {
-  const { isOfferActive, orderCount } = useOrderOffer();
+export default function OrderForm({ preselectedCategory, prefilledBudget, prefilledAddons, onProceedToPayment }) {
+  const offer = useOrderOffer();
+
   const [formData, setFormData] = useState({
     clientName: '',
     clientPhone: '',
     clientEmail: '',
     websiteType: 'landing',
+    selectedAddons: prefilledAddons || [],
     customNotes: '',
     customInstructions: '',
     cloudAssetLink: '',
-    finalBudget: 13000,
+    finalBudget: 9750,
+    clientRating: 5,
+    clientFeedback: '',
+    reviewAgreement: false,
     acceptedTerms: false,
   });
 
@@ -29,30 +36,63 @@ export default function OrderForm({ preselectedCategory, prefilledBudget, onProc
 
   // Sync when pre-selected from Demos or Estimator
   useEffect(() => {
-    if (preselectedCategory) {
-      const matched = WEBSITE_TYPES.find(t => t.id === preselectedCategory);
-      setFormData(prev => ({
-        ...prev,
-        websiteType: preselectedCategory,
-        finalBudget: matched ? (isOfferActive ? Math.round(matched.basePrice * 0.85) : matched.basePrice) : prev.finalBudget,
-      }));
-    }
-  }, [preselectedCategory, isOfferActive]);
+    const targetType = preselectedCategory || formData.websiteType || 'landing';
+    const matched = WEBSITE_TYPES.find(t => t.id === targetType);
+    const base = matched ? matched.basePrice : 19500;
+    const currentAddons = prefilledAddons || formData.selectedAddons || [];
+    const addonsTotal = currentAddons.reduce((sum, aId) => {
+      const a = ADDON_OPTIONS.find(opt => opt.id === aId);
+      return sum + (a ? a.price : 0);
+    }, 0);
+    const discountedBase = offer.isOfferActive ? offer.applyDiscount(base) : base;
 
-  useEffect(() => {
-    if (prefilledBudget) {
-      setFormData(prev => ({ ...prev, finalBudget: prefilledBudget }));
-    }
-  }, [prefilledBudget]);
+    setFormData(prev => ({
+      ...prev,
+      websiteType: targetType,
+      selectedAddons: currentAddons,
+      finalBudget: prefilledBudget || (discountedBase + addonsTotal),
+    }));
+  }, [preselectedCategory, prefilledBudget, prefilledAddons, offer.isOfferActive, offer.discountPercent]);
 
-  // When website type changes, update default budget if not explicitly set
+  // When website type changes, update price with active tier discount + active addons (no discount on addons)
   const handleTypeChange = (typeId) => {
     const selected = WEBSITE_TYPES.find(t => t.id === typeId);
+    const base = selected ? selected.basePrice : 19500;
+    const addonsTotal = (formData.selectedAddons || []).reduce((sum, aId) => {
+      const a = ADDON_OPTIONS.find(opt => opt.id === aId);
+      return sum + (a ? a.price : 0);
+    }, 0);
+    const discountedBase = offer.isOfferActive ? offer.applyDiscount(base) : base;
+
     setFormData(prev => ({
       ...prev,
       websiteType: typeId,
-      finalBudget: selected ? (isOfferActive ? Math.round(selected.basePrice * 0.85) : selected.basePrice) : prev.finalBudget,
+      finalBudget: discountedBase + addonsTotal,
     }));
+  };
+
+  // Toggle optional addon feature (added at regular flat price without discount)
+  const handleToggleAddon = (addonId) => {
+    setFormData(prev => {
+      const exists = (prev.selectedAddons || []).includes(addonId);
+      const newAddons = exists
+        ? prev.selectedAddons.filter(id => id !== addonId)
+        : [...(prev.selectedAddons || []), addonId];
+
+      const selected = WEBSITE_TYPES.find(t => t.id === prev.websiteType);
+      const base = selected ? selected.basePrice : 19500;
+      const addonsTotal = newAddons.reduce((sum, aId) => {
+        const a = ADDON_OPTIONS.find(opt => opt.id === aId);
+        return sum + (a ? a.price : 0);
+      }, 0);
+      const discountedBase = offer.isOfferActive ? offer.applyDiscount(base) : base;
+
+      return {
+        ...prev,
+        selectedAddons: newAddons,
+        finalBudget: discountedBase + addonsTotal,
+      };
+    });
   };
 
   // Handle file selection with 1 GB check
@@ -108,8 +148,18 @@ export default function OrderForm({ preselectedCategory, prefilledBudget, onProc
     if (!formData.websiteType) {
       errors.websiteType = 'Please select a website type.';
     }
-    if (!formData.finalBudget || formData.finalBudget < 10000) {
-      errors.finalBudget = 'Minimum budget should be at least ₹10,000.';
+    if (!formData.finalBudget || formData.finalBudget < 5000) {
+      errors.finalBudget = 'Minimum price should be at least ₹5,000.';
+    }
+    // Mandatory Feedback & Review Validation
+    if (!formData.clientRating) {
+      errors.clientRating = 'Mandatory: Please select your expectation rating (1 to 5 stars).';
+    }
+    if (!formData.clientFeedback.trim() || formData.clientFeedback.trim().length < 10) {
+      errors.clientFeedback = 'Mandatory Feedback: Please write your project expectations or feedback (minimum 10 characters).';
+    }
+    if (!formData.reviewAgreement) {
+      errors.reviewAgreement = 'Mandatory Review Policy: You must agree to provide verified feedback upon demo inspection.';
     }
     if (!formData.acceptedTerms) {
       errors.acceptedTerms = 'Please check the box to confirm your project specifications.';
@@ -126,6 +176,11 @@ export default function OrderForm({ preselectedCategory, prefilledBudget, onProc
         files: uploadedFiles,
         tokenAdvance: 0,
         remainingBalance: formData.finalBudget,
+        clientRating: formData.clientRating,
+        clientFeedback: formData.clientFeedback,
+        reviewAgreement: formData.reviewAgreement,
+        appliedTier: offer.tier,
+        discountPercent: offer.discountPercent,
       });
     }
   };
@@ -146,14 +201,14 @@ export default function OrderForm({ preselectedCategory, prefilledBudget, onProc
             Order Your Custom Website
           </h2>
           <p className="text-xs sm:text-base text-[#625f5c]">
-            Submit your requirements below. Zero online payment required—our engineering team will review your specifications and connect directly via phone or email!
+            Submit your requirements below. Zero online payment required—our engineering team will review your specifications and connect directly via message or email!
           </p>
         </div>
 
         {/* The Main Form Card */}
         <div className="bg-white rounded-2xl sm:rounded-3xl border border-[#DDD5CD] shadow-elevated overflow-hidden">
           
-          {/* Header Strip with 15% discount badge */}
+          {/* Header Strip */}
           <div className="bg-[#2E2E2E] text-[#F1ECE6] p-4 sm:p-6 flex flex-col sm:flex-row items-center justify-between gap-3">
             <div className="flex items-center gap-3">
               <div className="w-9 h-9 rounded-xl bg-[#7D4047] flex items-center justify-center text-white font-bold">
@@ -165,12 +220,8 @@ export default function OrderForm({ preselectedCategory, prefilledBudget, onProc
               </div>
             </div>
             <div className="inline-flex items-center gap-2 bg-[#7D4047] px-3.5 py-1.5 rounded-full text-xs font-bold text-white shadow-sm">
-              <Sparkles className="w-3.5 h-3.5 text-amber-200" />
-              <span>
-                {isOfferActive 
-                  ? `15% Discount Active (Slot #${Math.min(10, orderCount + 1)} of 10)` 
-                  : 'Direct Studio Onboarding'}
-              </span>
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-300" />
+              <span>Direct Studio Onboarding &bull; Zero Online Upfront</span>
             </div>
           </div>
 
@@ -277,6 +328,57 @@ export default function OrderForm({ preselectedCategory, prefilledBudget, onProc
                   );
                 })}
               </div>
+
+              {/* Choose Optional Features & Integrations (Second Division) */}
+              <div className="mt-6 pt-5 border-t border-[#DDD5CD]">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-3">
+                  <h4 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-[#7D4047] flex items-center gap-2">
+                    <Sliders className="w-4 h-4 text-[#7D4047]" />
+                    <span>Choose Optional Features &amp; Integrations</span>
+                  </h4>
+                  <span className="text-[10px] sm:text-xs text-[#625f5c]">
+                    Select any optional features to include in your build
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 sm:gap-3">
+                  {ADDON_OPTIONS.map((addon) => {
+                    const isChecked = (formData.selectedAddons || []).includes(addon.id);
+                    return (
+                      <label
+                        key={addon.id}
+                        className={`flex items-start gap-2.5 p-3 rounded-xl border-2 cursor-pointer transition-all duration-200 hover-glow-card ${
+                          isChecked
+                            ? 'border-[#7D4047] bg-[#7D4047]/5 shadow-sm ring-1 ring-[#7D4047]/30'
+                            : 'border-[#DDD5CD] bg-[#F1ECE6]/30 hover:border-[#7D4047]/40 hover:bg-white'
+                        }`}
+                      >
+                        <input
+                          type="checkbox"
+                          checked={isChecked}
+                          onChange={() => handleToggleAddon(addon.id)}
+                          className="mt-0.5 rounded text-[#7D4047] focus:ring-[#7D4047] accent-[#7D4047] cursor-pointer"
+                        />
+                        <div className="text-xs flex-1">
+                          <div className="flex items-center justify-between gap-1">
+                            <span className="font-bold text-[#2E2E2E] leading-snug">{addon.name}</span>
+                          </div>
+                          <div className="mt-1 flex items-baseline gap-1.5 flex-wrap">
+                            <span className="font-bold text-[#7D4047] font-mono">
+                              +₹{addon.price.toLocaleString('en-IN')}
+                            </span>
+                            {addon.popular && (
+                              <span className="text-[9px] font-bold text-amber-800 bg-amber-100 border border-amber-300 px-1.5 py-0.2 rounded-full ml-auto">
+                                Popular
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                      </label>
+                    );
+                  })}
+                </div>
+              </div>
             </div>
 
             {/* Step 3: Custom Assets Upload (1 GB Limit) */}
@@ -369,7 +471,7 @@ export default function OrderForm({ preselectedCategory, prefilledBudget, onProc
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
                   <h3 className="text-sm font-bold uppercase tracking-wider text-[#7D4047] flex items-center gap-2">
                     <Edit3 className="w-4 h-4" />
-                    <span>4. Custom Website Instructions & Specific Wishlist (તમારી મનપસંદ જરૂરિયાતો)</span>
+                    <span>4. Custom Website Instructions & Specific Wishlist</span>
                   </h3>
                   <div className="flex items-center gap-1.5 text-xs font-mono">
                     <span className={`font-bold ${formData.customInstructions.length >= 6800 ? 'text-red-600' : 'text-[#7D4047]'}`}>
@@ -380,14 +482,14 @@ export default function OrderForm({ preselectedCategory, prefilledBudget, onProc
                 </div>
 
                 <p className="text-xs text-[#625f5c] mb-3 leading-relaxed">
-                  તમારી વેબસાઇટમાં તમને જે પણ જોઈતું હોય (જેમ કે: ક્યા-ક્યા ખાસ પેજીસ જોઈએ, ક્યા કલર્સ, ફોન્ટ્સ, ઓનલાઇન બુકિંગ, ડાયરેક્ટ ઇન્ક્વાયરી ફોર્મ, સ્પેશિયલ ફીચર્સ કે તમને ગમતી કોઈ રેફરન્સ વેબસાઇટ્સની લિંક) તે બધું અહીં પોતાની રીતે વિગતવાર લખી શકો છો. <strong>(મહત્તમ 7,000 અક્ષરોની લિમિટ)</strong>
+                  Specify everything you want in your website (e.g. required custom pages, color palette, typography preferences, online booking flows, direct inquiry forms, special interactive features, or links to reference sites you admire). <strong>(Strict 7,000 character limit)</strong>
                 </p>
 
                 <div className="relative">
                   <textarea
                     rows="4"
                     maxLength={7000}
-                    placeholder="અહીં તમારી તમામ જરૂરિયાતો વિગતવાર લખો... / Write all your custom requirements here in detail (e.g. I need a responsive booking calendar, product catalog with direct inquiry form, gold & dark wine luxury theme, client review slider, and FAQ section)..."
+                    placeholder="Write all your custom requirements here in detail (e.g. I need a responsive booking calendar, product catalog with direct inquiry form, luxury minimalist theme, client review slider, and FAQ section)..."
                     value={formData.customInstructions}
                     onChange={(e) => setFormData({ ...formData, customInstructions: e.target.value })}
                     className="w-full p-3.5 sm:p-4 rounded-xl sm:rounded-2xl border border-[#DDD5CD] text-xs sm:text-sm text-[#2E2E2E] bg-[#F1ECE6]/30 focus:outline-none focus:ring-2 focus:ring-[#7D4047] transition-all leading-relaxed"
@@ -407,29 +509,55 @@ export default function OrderForm({ preselectedCategory, prefilledBudget, onProc
                 </div>
               </div>
 
-            {/* Step 5: Final Client Budget */}
+            {/* Step 5: Final Price */}
             <div className="pt-4 border-t border-[#DDD5CD]">
               <h3 className="text-sm font-bold uppercase tracking-wider text-[#7D4047] flex items-center gap-2 mb-4">
                 <IndianRupee className="w-4 h-4" />
-                <span>5. Final Client Budget</span>
+                <span>5. Final Price</span>
               </h3>
+
+              {/* Active Tier Discount Banner */}
+              {offer.isOfferActive && (
+                <div className="mb-4 p-4 rounded-2xl bg-gradient-to-r from-emerald-500/10 via-[#7D4047]/10 to-amber-500/10 border border-emerald-500/30 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                  <div className="flex items-start gap-2.5">
+                    <Sparkles className="w-5 h-5 text-emerald-600 animate-pulse shrink-0 mt-0.5" />
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs font-bold text-emerald-900">
+                          {offer.badgeText} Active!
+                        </span>
+                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300">
+                          {offer.discountPercent}% OFF
+                        </span>
+                      </div>
+                      <p className="text-xs text-[#625f5c] mt-0.5">
+                        Standard package price is slashed from ₹{currentType?.basePrice.toLocaleString('en-IN')} to <strong>₹{offer.applyDiscount(currentType?.basePrice || 19500).toLocaleString('en-IN')}</strong> (Save ₹{((currentType?.basePrice || 19500) - offer.applyDiscount(currentType?.basePrice || 19500)).toLocaleString('en-IN')})!
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              )}
 
               <div className="bg-[#F1ECE6]/50 border border-[#DDD5CD] p-5 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div className="space-y-1">
                   <label className="text-xs font-bold text-[#2E2E2E]">
-                    Your Anticipated Final Budget (INR) <span className="text-red-500">*</span>
+                    Final Price (INR) <span className="text-red-500">*</span>
                   </label>
                   <p className="text-xs text-[#625f5c]">
-                    {isOfferActive 
-                      ? 'Starting baseline is ₹13,000. 15% discount will be applied during project quote.' 
-                      : 'Starting baseline is ₹13,000. Pay only upon full demo satisfaction.'}
+                    {offer.isOfferActive ? (
+                      <span>
+                        Starting discounted baseline is <strong>₹{offer.applyDiscount(19500).toLocaleString('en-IN')}</strong> (slashed from ₹19,500). Pay on WhatsApp after you see your completed website, before it goes live on the browser.
+                      </span>
+                    ) : (
+                      <span>Starting baseline is ₹19,500. Pay on WhatsApp after you see your completed website, before it goes live on the browser.</span>
+                    )}
                   </p>
                 </div>
                 <div className="relative w-full sm:w-56">
                   <span className="absolute left-3.5 top-1/2 -translate-y-1/2 font-bold text-base text-[#7D4047]">₹</span>
                   <input
                     type="number"
-                    min="10000"
+                    min="5000"
                     step="500"
                     value={formData.finalBudget}
                     onChange={(e) => setFormData({ ...formData, finalBudget: parseInt(e.target.value) || 0 })}
@@ -442,7 +570,95 @@ export default function OrderForm({ preselectedCategory, prefilledBudget, onProc
               )}
             </div>
 
-            {/* Step 5: Direct Booking & Zero Online Payment Notice */}
+            {/* Step 6: Mandatory Feedback & Review Commitment */}
+            <div className="pt-4 border-t border-[#DDD5CD]">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
+                <h3 className="text-sm font-bold uppercase tracking-wider text-[#7D4047] flex items-center gap-2">
+                  <HeartHandshake className="w-4 h-4 text-[#7D4047]" />
+                  <span>6. Mandatory Client Feedback &amp; Review Commitment</span>
+                </h3>
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-red-100 text-red-700 border border-red-200 shrink-0">
+                  Mandatory for All Clients *
+                </span>
+              </div>
+
+              <p className="text-xs text-[#625f5c] mb-4 leading-relaxed">
+                In accordance with The Webcraft's 100% transparency policy, verified client review &amp; feedback is strictly mandatory for all orders upon live staging demo walkthrough to guarantee top craftsmanship.
+              </p>
+
+              <div className="bg-[#F1ECE6]/60 border border-[#DDD5CD] rounded-2xl p-4 sm:p-5 space-y-4">
+                {/* Expectation Rating */}
+                <div>
+                  <label className="block text-xs font-bold text-[#2E2E2E] mb-1.5">
+                    Initial Expectation &amp; Trust Rating <span className="text-red-500">*</span>
+                  </label>
+                  <div className="flex items-center gap-2">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <button
+                        type="button"
+                        key={star}
+                        onClick={() => setFormData(prev => ({ ...prev, clientRating: star }))}
+                        className="p-1 hover:scale-110 transition-transform focus:outline-none"
+                      >
+                        <Star
+                          className={`w-6 h-6 sm:w-7 sm:h-7 ${
+                            star <= formData.clientRating
+                              ? 'fill-amber-400 text-amber-400'
+                              : 'text-neutral-300'
+                          }`}
+                        />
+                      </button>
+                    ))}
+                    <span className="text-xs font-bold text-[#7D4047] ml-2">
+                      {formData.clientRating} / 5 Stars
+                    </span>
+                  </div>
+                  {formErrors.clientRating && (
+                    <p className="text-xs text-red-600 font-bold mt-1">{formErrors.clientRating}</p>
+                  )}
+                </div>
+
+                {/* Client Feedback / Expectations description */}
+                <div>
+                  <label className="block text-xs font-bold text-[#2E2E2E] mb-1">
+                    Your Expectations &amp; Project Feedback <span className="text-red-500">*</span>
+                  </label>
+                  <textarea
+                    rows="3"
+                    required
+                    minLength={10}
+                    placeholder="Tell us your expectations regarding speed, design quality, zero-advance trust, or key business goals (minimum 10 characters)..."
+                    value={formData.clientFeedback}
+                    onChange={(e) => setFormData(prev => ({ ...prev, clientFeedback: e.target.value }))}
+                    className="w-full p-3.5 rounded-xl border border-[#DDD5CD] text-xs text-[#2E2E2E] bg-white focus:outline-none focus:ring-2 focus:ring-[#7D4047]"
+                  />
+                  {formErrors.clientFeedback && (
+                    <p className="text-xs text-red-600 font-bold mt-1">{formErrors.clientFeedback}</p>
+                  )}
+                </div>
+
+                {/* Mandatory Review Agreement Checkbox */}
+                <div className="pt-2 border-t border-[#DDD5CD]/70">
+                  <label className="flex items-start gap-3 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={formData.reviewAgreement}
+                      onChange={(e) => setFormData(prev => ({ ...prev, reviewAgreement: e.target.checked }))}
+                      className="mt-0.5 h-4 w-4 rounded border-gray-300 text-[#7D4047] focus:ring-[#7D4047] accent-[#7D4047]"
+                    />
+                    <span className="text-xs font-bold text-[#2E2E2E]">
+                      I commit to providing an honest, verified public review and rating upon inspecting my live working demo. <span className="text-red-500">*</span>
+                    </span>
+                  </label>
+                  {formErrors.reviewAgreement && (
+                    <p className="text-xs text-red-600 font-bold mt-1 ml-7">{formErrors.reviewAgreement}</p>
+                  )}
+                </div>
+
+              </div>
+            </div>
+
+            {/* Step 7: Direct Booking & Zero Online Payment Notice */}
             <div className="pt-4 border-t border-[#DDD5CD]">
               <div className="bg-emerald-50/70 border-2 border-emerald-500/30 rounded-2xl p-5 sm:p-6 space-y-4">
                 
@@ -455,7 +671,7 @@ export default function OrderForm({ preselectedCategory, prefilledBudget, onProc
                       Direct Booking &bull; Zero Online Payment Required
                     </h4>
                     <p className="text-xs text-[#625f5c] mt-1 leading-relaxed">
-                      You do not need to pay anything on this website. When you submit your requirements, your custom brief and uploaded assets are saved directly into our studio database, and Lead Developer <strong>Rakshit Patel</strong> will personally reach out via phone or email to finalize milestones and schedule your live demo walkthrough.
+                      You do not need to pay anything on this website. When you submit your requirements, your custom brief and uploaded assets are saved directly into our studio database, and Lead Developer <strong>Rakshit Patel</strong> will personally reach out via message or email to finalize milestones. <strong>Payment is done on WhatsApp only after you see your website completed, and before it goes live on the browser.</strong>
                     </p>
                   </div>
                 </div>
@@ -469,7 +685,11 @@ export default function OrderForm({ preselectedCategory, prefilledBudget, onProc
                     className="mt-0.5 h-4 w-4 rounded border-gray-300 text-[#7D4047] focus:ring-[#7D4047] accent-[#7D4047]"
                   />
                   <span className="text-xs font-bold text-[#2E2E2E]">
-                    I confirm that the submitted project specifications and contact details are accurate, and I agree to discuss development milestones directly with the team. <span className="text-red-500">*</span>
+                    I confirm that the submitted project specifications are accurate, and I agree to the{' '}
+                    <Link to="/privacy-policy" target="_blank" className="text-[#7D4047] underline hover:text-[#67333a]">
+                      Privacy Policy &amp; Security Charter
+                    </Link>{' '}
+                    and direct milestone consultation. <span className="text-red-500">*</span>
                   </span>
                 </label>
                 {formErrors.acceptedTerms && (
@@ -497,7 +717,15 @@ export default function OrderForm({ preselectedCategory, prefilledBudget, onProc
                 <span>&bull;</span>
                 <span>No Upfront Credit Card or UPI Required</span>
                 <span>&bull;</span>
-                <span>Studio Line: +91 85114 39894 <span className="font-semibold text-amber-700">(Only Message, Not Call)</span></span>
+                <a
+                  href="https://wa.me/919428298134?text=Hello%20The%20Webcraft%2C%20I%20am%20submitting%20a%20project%20inquiry"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-emerald-700 font-medium inline-flex items-center gap-1"
+                  title="Chat on WhatsApp"
+                >
+                  <span>WhatsApp: <strong className="font-mono text-emerald-800">+91 94282 98134</strong> <span className="font-semibold text-emerald-700">(WhatsApp Only &bull; No Calls)</span></span>
+                </a>
               </div>
             </div>
 

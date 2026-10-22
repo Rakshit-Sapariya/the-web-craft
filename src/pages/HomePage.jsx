@@ -6,13 +6,14 @@ import {
   Cpu, Check, Smartphone, Laptop, Globe, Flame, Filter, Sliders, ChevronRight
 } from 'lucide-react';
 import { COMPANY_CONFIG } from '../data/pricingData';
-import { useOrderOffer } from '../utils/orderTracker';
 import FeaturesGrid from '../components/FeaturesGrid';
 import ProcessRoadmap from '../components/ProcessRoadmap';
 import SecurityShieldSection from '../components/SecurityShieldSection';
+import ReviewsSection from '../components/ReviewsSection';
+import { useOrderOffer } from '../utils/orderTracker';
 
 export default function HomePage() {
-  const { isOfferActive, slotsRemaining } = useOrderOffer();
+  const offer = useOrderOffer();
   const [activeCategory, setActiveCategory] = useState('all');
   const [comparisonTab, setComparisonTab] = useState('webcraft'); // 'webcraft' | 'builders'
   const [estPages, setEstPages] = useState(5);
@@ -27,7 +28,7 @@ export default function HomePage() {
       category: 'Beauty Parlour & Salon',
       tagline: 'Bridal HD airbrush packages, pre-bridal glow, and instant beautician appointment booking.',
       stats: '5.0 ★ • 1,200+ Brides',
-      image: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=600&q=80',
+      image: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=800&q=80',
       badge: 'Bridal Studio'
     },
     {
@@ -37,7 +38,7 @@ export default function HomePage() {
       category: "Men's Hair & Grooming",
       tagline: 'Precision taper skin fades, straight-razor beard sculpting, and barber chair scheduling.',
       stats: '4.9 ★ • Master Barbers',
-      image: 'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=600&q=80',
+      image: 'https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=800&q=80',
       badge: 'Barber Lounge'
     },
     {
@@ -47,7 +48,7 @@ export default function HomePage() {
       category: 'Gym & Fitness Center',
       tagline: '15,000 sq.ft facility, Rogue barbells, CrossFit boxes, and free 1-day pass claim.',
       stats: '15,000 Sq.Ft • 4.9 ★',
-      image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=600&q=80',
+      image: 'https://images.unsplash.com/photo-1540497077202-7c8a3999166f?auto=format&fit=crop&w=800&q=80',
       badge: 'CrossFit Arena'
     },
     {
@@ -57,7 +58,7 @@ export default function HomePage() {
       category: 'Restaurant & Table Booking',
       tagline: 'Royal Awadhi restaurant with live online table reservation and a la carte menu.',
       stats: 'Times Food Award 2025',
-      image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=600&q=80',
+      image: 'https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=800&q=80',
       badge: 'Fine Dining'
     },
     {
@@ -67,7 +68,7 @@ export default function HomePage() {
       category: 'D2C E-Commerce Store',
       tagline: 'High-converting apparel store with live bag drawer, size selector, and discount codes.',
       stats: '0.6s Load • 5.0 ★ Rating',
-      image: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=600&q=80',
+      image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80',
       badge: 'Bestseller'
     },
     {
@@ -77,7 +78,7 @@ export default function HomePage() {
       category: 'Real Estate & Builders',
       tagline: 'Luxury 3 & 4 BHK sky-living portal with interactive floorplans and VIP site visit scheduler.',
       stats: 'RERA Approved • 4.9 ★',
-      image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80',
+      image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80',
       badge: 'Enterprise'
     },
     {
@@ -87,7 +88,7 @@ export default function HomePage() {
       category: 'Healthcare & Clinic',
       tagline: 'NABH-certified modern clinic platform with instant patient consultation appointment booking.',
       stats: '16+ Yrs Exp • 4.9 ★',
-      image: 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=600&q=80',
+      image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800&q=80',
       badge: 'NABH Clinic'
     },
     {
@@ -97,7 +98,7 @@ export default function HomePage() {
       category: 'Custom Build Website & Portal',
       tagline: 'Handwritten React + Node architecture, live operational dashboard, API webhooks, and custom business workflows.',
       stats: '100% Bespoke • 0.4s Speed',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80',
+      image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80',
       badge: '100% Bespoke'
     }
   ];
@@ -106,12 +107,12 @@ export default function HomePage() {
   const tickerItems = [
     { icon: Zap, label: '0.4s Fast Core Web Vitals' },
     { icon: Code2, label: '100% Handwritten React 19 & Tailwind' },
-    { icon: ShieldCheck, label: 'Zero Online Payment • Pay Only on Demo Approval' },
+    { icon: ShieldCheck, label: 'Zero Online Payment • Pay on WhatsApp After Completed Demo' },
     { icon: Layers, label: 'Real SQLite Database Integration' },
     { icon: Eye, label: '8 Live Interactive Client Demos' },
     { icon: Cpu, label: 'Up to 1 GB Design Asset Portal' },
     { icon: Phone, label: 'Direct Lead Developer Studio Line' },
-    { icon: Sparkles, label: 'First 10 Customers 15% OFF Promo' },
+    { icon: ShieldCheck, label: '100% Demo Satisfaction Guarantee' },
   ];
 
   // Category filter tabs
@@ -127,10 +128,10 @@ export default function HomePage() {
     ? teaserProjects
     : teaserProjects.filter(p => p.categoryGroup === activeCategory);
 
-  // Dynamic quick estimate calculator
-  const baseBudget = estPages <= 5 ? 13000 : 13000 + (estPages - 5) * 2000;
-  const finalDiscountedBudget = isOfferActive ? Math.round(baseBudget * 0.85) : baseBudget;
-  const savings = baseBudget - finalDiscountedBudget;
+  // Dynamic quick estimate calculator with 300 customers tiered discount
+  const baseEstimate = estPages <= 5 ? 19500 : 19500 + (estPages - 5) * 3000;
+  const estimatedBudget = offer.isOfferActive ? offer.applyDiscount(baseEstimate) : baseEstimate;
+  const startingPrice = offer.isOfferActive ? offer.applyDiscount(19500) : 19500;
 
   return (
     <div className="space-y-8 sm:space-y-20 pb-12 sm:pb-20 overflow-x-hidden">
@@ -171,23 +172,21 @@ export default function HomePage() {
 
           <div className="text-center max-w-3xl mx-auto space-y-4 sm:space-y-6">
             
-            {/* Offer Pill with Pulse Indicator */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#DDD5CD]/70 border border-[#DDD5CD] text-[#7D4047] text-[11px] sm:text-xs font-bold tracking-wide uppercase shadow-sm hover:border-[#7D4047]/40 transition-colors">
-              <span className="relative flex h-2 w-2 shrink-0">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#7D4047] opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#7D4047]"></span>
-              </span>
-              <span>
-                {isOfferActive ? (
-                  <>
-                    <span className="sm:hidden">Early Bird: 15% OFF ({slotsRemaining} slots left)</span>
-                    <span className="hidden sm:inline">Limited Early Bird: 15% OFF For First 10 Clients ({slotsRemaining} slots left)</span>
-                  </>
-                ) : (
-                  'Bespoke Web Studio • Direct Developer Booking'
-                )}
-              </span>
-            </div>
+            {/* Studio Badge with Pulse Indicator */}
+            {offer.isOfferActive ? (
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-emerald-100 via-amber-100 to-rose-100 border border-emerald-300 text-emerald-900 text-[11px] sm:text-xs font-bold tracking-wide uppercase shadow-sm">
+                <Sparkles className="w-3.5 h-3.5 text-emerald-700 animate-pulse" />
+                <span>{offer.badgeText}</span>
+              </div>
+            ) : (
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#DDD5CD]/70 border border-[#DDD5CD] text-[#7D4047] text-[11px] sm:text-xs font-bold tracking-wide uppercase shadow-sm hover:border-[#7D4047]/40 transition-colors">
+                <span className="relative flex h-2 w-2 shrink-0">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-600"></span>
+                </span>
+                <span>Bespoke Web Studio &bull; Direct Developer Booking</span>
+              </div>
+            )}
 
             {/* Headline with Shimmer Animation */}
             <h1 className="text-[17px] xs:text-xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#2E2E2E] tracking-tight leading-[1.3] px-1">
@@ -199,45 +198,115 @@ export default function HomePage() {
 
             {/* Subtext */}
             <p className="text-xs sm:text-lg text-[#625f5c] leading-relaxed max-w-2xl mx-auto font-normal">
-              Your on-demand bespoke web development studio. Starting from just <strong>₹13,000</strong>, we engineer blazing-fast, custom websites tailored to turn visitors into paying clients.
+              {offer.isOfferActive ? (
+                <span>
+                  Your on-demand bespoke web development studio. Starting from just <span className="line-through text-neutral-400">₹19,500</span> <strong className="text-emerald-700 font-mono text-xl">₹{startingPrice.toLocaleString('en-IN')}</strong> ({offer.discountPercent}% flat discount active), we engineer blazing-fast, custom websites tailored to turn visitors into paying clients.
+                </span>
+              ) : (
+                <span>
+                  Your on-demand bespoke web development studio. Starting from just <strong>₹19,500</strong>, we engineer blazing-fast, custom websites tailored to turn visitors into paying clients.
+                </span>
+              )}
             </p>
 
             {/* Value Highlights Grid with Hover-Glow (Compact on Mobile) */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 pt-1 sm:pt-2 text-left">
-              <div className="bg-white/70 backdrop-blur-sm border border-[#DDD5CD] rounded-xl sm:rounded-2xl p-2.5 sm:p-4 hover-glow-card transition-all group">
-                <span className="text-[10px] sm:text-xs text-[#625f5c] block font-medium">Starting Package</span>
-                <span className="text-sm sm:text-lg font-extrabold text-[#2E2E2E] group-hover:text-[#7D4047] transition-colors">₹13,000</span>
-                <span className="text-[9px] sm:text-[11px] text-[#7D4047] font-semibold block mt-0.5">
-                  {isOfferActive ? '-15% First 10 Promo' : 'Direct Rate'}
-                </span>
+              
+              {/* Card 1: Starting Package */}
+              <div className="flex flex-col justify-between h-full bg-white/70 backdrop-blur-sm border border-[#DDD5CD] rounded-xl sm:rounded-2xl p-2.5 sm:p-4 hover-glow-card transition-all group">
+                <div className="h-5 sm:h-6 flex items-center">
+                  <span className="text-[10px] sm:text-xs text-[#625f5c] font-medium leading-none">Starting Package</span>
+                </div>
+                <div className="h-7 sm:h-8 flex items-baseline gap-1.5 mt-1 sm:mt-1.5">
+                  {offer.isOfferActive ? (
+                    <>
+                      <span className="text-sm sm:text-lg font-extrabold text-emerald-800 font-mono leading-none">
+                        ₹{startingPrice.toLocaleString('en-IN')}
+                      </span>
+                      <span className="text-[10px] sm:text-xs line-through text-[#625f5c] font-mono leading-none">
+                        ₹19,500
+                      </span>
+                    </>
+                  ) : (
+                    <span className="text-sm sm:text-lg font-extrabold text-[#2E2E2E] leading-none group-hover:text-[#7D4047] transition-colors">
+                      ₹19,500
+                    </span>
+                  )}
+                </div>
+                <div className="h-5 flex items-center mt-1 sm:mt-1.5">
+                  <span className="text-[9px] sm:text-[11px] text-[#7D4047] font-semibold truncate leading-none">
+                    {offer.isOfferActive ? `${offer.discountPercent}% Tier Discount` : 'Direct Developer Rate'}
+                  </span>
+                </div>
               </div>
 
-              <div className="bg-white/70 backdrop-blur-sm border border-[#DDD5CD] rounded-xl sm:rounded-2xl p-2.5 sm:p-4 hover-glow-card transition-all group">
-                <span className="text-[10px] sm:text-xs text-[#625f5c] block font-medium">Direct Booking</span>
-                <span className="text-sm sm:text-lg font-extrabold text-[#2E2E2E] group-hover:text-[#7D4047] transition-colors">Zero Online Pay</span>
-                <span className="text-[9px] sm:text-[11px] text-[#625f5c] block mt-0.5">Direct Phone / Email</span>
+              {/* Card 2: Direct Booking */}
+              <div className="flex flex-col justify-between h-full bg-white/70 backdrop-blur-sm border border-[#DDD5CD] rounded-xl sm:rounded-2xl p-2.5 sm:p-4 hover-glow-card transition-all group">
+                <div className="h-5 sm:h-6 flex items-center">
+                  <span className="text-[10px] sm:text-xs text-[#625f5c] font-medium leading-none">Direct Booking</span>
+                </div>
+                <div className="h-7 sm:h-8 flex items-baseline mt-1 sm:mt-1.5">
+                  <span className="text-sm sm:text-lg font-extrabold text-[#2E2E2E] leading-none group-hover:text-[#7D4047] transition-colors">
+                    Zero Online Pay
+                  </span>
+                </div>
+                <div className="h-5 flex items-center mt-1 sm:mt-1.5">
+                  <span className="text-[9px] sm:text-[11px] text-[#625f5c] font-semibold truncate leading-none">
+                    Direct Message / Email
+                  </span>
+                </div>
               </div>
 
-              <div className="bg-white/70 backdrop-blur-sm border border-[#DDD5CD] rounded-xl sm:rounded-2xl p-2.5 sm:p-4 hover-glow-card transition-all group">
-                <span className="text-[10px] sm:text-xs text-[#625f5c] block font-medium">Asset Uploads</span>
-                <span className="text-sm sm:text-lg font-extrabold text-[#2E2E2E] group-hover:text-[#7D4047] transition-colors">Up to 1 GB</span>
-                <span className="text-[9px] sm:text-[11px] text-[#625f5c] block mt-0.5">Figma, PDF, ZIP</span>
+              {/* Card 3: Asset Uploads */}
+              <div className="flex flex-col justify-between h-full bg-white/70 backdrop-blur-sm border border-[#DDD5CD] rounded-xl sm:rounded-2xl p-2.5 sm:p-4 hover-glow-card transition-all group">
+                <div className="h-5 sm:h-6 flex items-center">
+                  <span className="text-[10px] sm:text-xs text-[#625f5c] font-medium leading-none">Asset Uploads</span>
+                </div>
+                <div className="h-7 sm:h-8 flex items-baseline mt-1 sm:mt-1.5">
+                  <span className="text-sm sm:text-lg font-extrabold text-[#2E2E2E] leading-none group-hover:text-[#7D4047] transition-colors">
+                    Up to 1 GB
+                  </span>
+                </div>
+                <div className="h-5 flex items-center mt-1 sm:mt-1.5">
+                  <span className="text-[9px] sm:text-[11px] text-[#625f5c] font-semibold truncate leading-none">
+                    Figma, PDF, ZIP
+                  </span>
+                </div>
               </div>
 
-              <div className="bg-white/70 backdrop-blur-sm border border-[#DDD5CD] rounded-xl sm:rounded-2xl p-2.5 sm:p-4 hover-glow-card transition-all group">
-                <span className="text-[10px] sm:text-xs text-[#625f5c] block font-medium">Direct Developer</span>
-                <span className="text-sm sm:text-lg font-extrabold text-[#2E2E2E] group-hover:text-[#7D4047] transition-colors">Studio Line</span>
-                <span className="text-[9px] sm:text-[11px] text-[#7D4047] font-semibold block mt-0.5 whitespace-nowrap">
-                  +91 85114 39894 <span className="font-normal text-[8px] sm:text-[10px] text-[#7D4047] block sm:inline">(Only Message)</span>
-                </span>
-              </div>
+              {/* Card 4: WhatsApp Inquiries */}
+              <a 
+                href="https://wa.me/919428298134?text=Hello%20The%20Webcraft%2C%20I%20am%20interested%20in%20building%20a%20website"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex flex-col justify-between h-full bg-white/70 hover:bg-emerald-50/70 backdrop-blur-sm border border-[#DDD5CD] hover:border-emerald-500/50 rounded-xl sm:rounded-2xl p-2.5 sm:p-4 hover-glow-card transition-all group block text-left"
+                title="Chat on WhatsApp (No Direct Calls)"
+              >
+                <div className="h-5 sm:h-6 flex items-center justify-between gap-1">
+                  <span className="text-[10px] sm:text-xs text-[#625f5c] font-medium leading-none whitespace-nowrap">Direct Inquiries</span>
+                  <span className="text-[9px] sm:text-[10px] font-bold text-emerald-800 bg-emerald-100 border border-emerald-300 px-1.5 py-0.5 rounded-full shrink-0 leading-none">
+                    WhatsApp
+                  </span>
+                </div>
+                <div className="h-7 sm:h-8 flex items-baseline mt-1 sm:mt-1.5">
+                  <span className="text-sm sm:text-lg font-extrabold text-[#2E2E2E] leading-none group-hover:text-emerald-700 transition-colors tracking-tight">
+                    +91 94282 98134
+                  </span>
+                </div>
+                <div className="h-5 flex items-center mt-1 sm:mt-1.5">
+                  <span className="text-[9px] sm:text-[11px] text-emerald-800 font-semibold truncate leading-none">
+                    WhatsApp Chat &bull; <span className="text-red-600 font-normal">No Calls</span>
+                  </span>
+                </div>
+              </a>
+
             </div>
 
             {/* Hero CTAs with Animations */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-4 pt-2 sm:pt-4">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-3 sm:pt-5">
               <Link
                 to="/order"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 sm:py-4 rounded-xl text-sm sm:text-base font-bold text-white bg-[#7D4047] hover:bg-[#67333a] shadow-wine hover:shadow-2xl hover:-translate-y-0.5 transition-all active:scale-95 group"
+                className="w-full sm:w-auto min-h-[48px] sm:min-h-[54px] inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 rounded-xl sm:rounded-2xl text-sm sm:text-base font-bold text-white bg-[#7D4047] hover:bg-[#67333a] border border-transparent shadow-wine hover:shadow-2xl hover:-translate-y-0.5 transition-all active:scale-95 group"
               >
                 <span>Book Your Custom Website Now</span>
                 <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
@@ -245,7 +314,7 @@ export default function HomePage() {
 
               <Link
                 to="/demos"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3 sm:py-4 rounded-xl text-sm sm:text-base font-bold text-[#2E2E2E] bg-white hover:bg-white border border-[#DDD5CD] hover:border-[#7D4047]/50 shadow-soft hover:shadow-md hover:-translate-y-0.5 transition-all group"
+                className="w-full sm:w-auto min-h-[48px] sm:min-h-[54px] inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3 rounded-xl sm:rounded-2xl text-sm sm:text-base font-bold text-[#2E2E2E] bg-white hover:bg-[#F9F6F2] border border-[#DDD5CD] hover:border-[#7D4047]/50 shadow-soft hover:shadow-md hover:-translate-y-0.5 transition-all group"
               >
                 <Eye className="w-4 h-4 sm:w-5 sm:h-5 text-[#7D4047] group-hover:scale-110 transition-transform" />
                 <span>Explore Live Demos ({teaserProjects.length} Projects)</span>
@@ -254,7 +323,7 @@ export default function HomePage() {
 
             <div className="inline-flex items-center gap-2 text-[10px] sm:text-xs text-[#625f5c] pt-1">
               <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#7D4047] shrink-0" />
-              <span>Direct collaboration with developer. Pay only after reviewing your live website demo.</span>
+              <span>Direct collaboration with developer. Pay on WhatsApp only after you see your website completed, and before it goes live on the browser.</span>
             </div>
 
           </div>
@@ -617,29 +686,27 @@ export default function StudioProject({ clientRequirement }) {
             {/* Right calculated card (5 cols) */}
             <div className="lg:col-span-5 bg-[#2E2E2E] text-white p-4 sm:p-7 rounded-xl sm:rounded-2xl space-y-3 sm:space-y-4 shadow-elevated">
               <div className="flex items-center justify-between pb-2 sm:pb-3 border-b border-white/10">
-                <span className="text-[11px] sm:text-xs font-bold text-[#DDD5CD] uppercase">Estimated Budget</span>
-                {isOfferActive && (
-                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
-                    15% Promo Applied
-                  </span>
-                )}
+                <span className="text-[11px] sm:text-xs font-bold text-[#DDD5CD] uppercase">Final Estimated Price</span>
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-white/10 text-emerald-400 border border-white/15">
+                  Direct Rate
+                </span>
               </div>
 
               <div className="space-y-0.5 sm:space-y-1">
-                <div className="flex items-baseline gap-2 sm:gap-3">
+                <div className="flex items-baseline gap-2 sm:gap-3 flex-wrap">
                   <span className="text-2xl sm:text-4xl font-black font-mono text-white">
-                    ₹{finalDiscountedBudget.toLocaleString('en-IN')}
+                    ₹{estimatedBudget.toLocaleString('en-IN')}
                   </span>
-                  {isOfferActive && (
-                    <span className="text-xs sm:text-sm font-mono text-[#DDD5CD]/50 line-through">
-                      ₹{baseBudget.toLocaleString('en-IN')}
+                  {offer.isOfferActive && (
+                    <span className="text-sm line-through text-[#DDD5CD]/70 font-mono">
+                      ₹{baseEstimate.toLocaleString('en-IN')}
                     </span>
                   )}
                 </div>
-                {isOfferActive && (
-                  <p className="text-[11px] sm:text-xs text-emerald-400 font-semibold">
-                    You save ₹{savings.toLocaleString('en-IN')} with Early Bird!
-                  </p>
+                {offer.isOfferActive && (
+                  <span className="text-[11px] font-bold text-emerald-400 block">
+                    {offer.discountPercent}% OFF Applied
+                  </span>
                 )}
               </div>
 
@@ -651,13 +718,13 @@ export default function StudioProject({ clientRequirement }) {
                 <div className="flex justify-between">
                   <span className="text-[#DDD5CD] text-[11px] sm:text-xs">Settlement:</span>
                   <span className="font-bold text-white font-mono text-[11px] sm:text-xs">
-                    Pay only upon Demo Approval
+                    Pay on WhatsApp before Live Launch
                   </span>
                 </div>
               </div>
 
               <Link
-                to={`/order?pages=${estPages}&budget=${finalDiscountedBudget}`}
+                to={`/order?pages=${estPages}&budget=${estimatedBudget}`}
                 className="w-full py-2.5 sm:py-3.5 px-4 rounded-xl bg-[#7D4047] hover:bg-[#67333a] text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-wine transition-all"
               >
                 <span>Book This Configuration</span>
@@ -675,7 +742,10 @@ export default function StudioProject({ clientRequirement }) {
       {/* 8. Unbreakable Cybersecurity & 100% Ad-Free Guarantee */}
       <SecurityShieldSection />
 
-      {/* 9. Bottom Conversion Callout (Compact on Mobile) */}
+      {/* 9. Client Feedback & Verified Reviews (Mandatory Feedback Policy) */}
+      <ReviewsSection />
+
+      {/* 10. Bottom Conversion Callout (Compact on Mobile) */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-[#2E2E2E] text-[#F1ECE6] rounded-2xl sm:rounded-3xl p-5 sm:p-12 shadow-elevated grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-8 items-center relative overflow-hidden">
           
@@ -684,19 +754,13 @@ export default function StudioProject({ clientRequirement }) {
           <div className="lg:col-span-8 space-y-2 sm:space-y-3 relative z-10">
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#7D4047] text-white text-[11px] sm:text-xs font-bold uppercase">
               <Sparkles className="w-3.5 h-3.5 text-amber-300" />
-              <span>
-                {isOfferActive 
-                  ? `Only ${slotsRemaining} Discount ${slotsRemaining === 1 ? 'Slot Left' : 'Slots Left'}` 
-                  : 'Bespoke Production Slots Open'}
-              </span>
+              <span>Bespoke Production Slots Open</span>
             </div>
             <h2 className="text-xl sm:text-3xl font-extrabold text-white leading-snug">
               Ready to Build Your Custom Website?
             </h2>
             <p className="text-xs sm:text-sm text-[#DDD5CD]/80 leading-relaxed max-w-xl">
-              {isOfferActive 
-                ? 'Lock in your 15% discount today with zero online payment. Pay only after inspecting your finished website demo.' 
-                : 'Book your bespoke website development today with zero online payment. Pay only after inspecting your finished website demo.'}
+              Book your bespoke website development today with zero online payment. Pay on WhatsApp only after you see your website completed, and before it goes live on the browser.
             </p>
           </div>
           <div className="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-2.5 sm:gap-3 relative z-10">

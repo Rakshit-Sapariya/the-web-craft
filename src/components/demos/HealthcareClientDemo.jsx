@@ -5,15 +5,6 @@ import {
 } from 'lucide-react';
 
 export default function HealthcareClientDemo({ onOrderDesign, isMobileView }) {
-  const [appointmentForm, setAppointmentForm] = useState({
-    branch: 'Satellite Main Center',
-    service: 'Invisible Clear Aligners',
-    date: '2026-10-18',
-    time: '11:00 AM',
-    patientName: '',
-    phone: ''
-  });
-  const [appointmentBooked, setAppointmentBooked] = useState(false);
 
   const services = [
     {
@@ -41,11 +32,6 @@ export default function HealthcareClientDemo({ onOrderDesign, isMobileView }) {
       badge: 'Instant Results'
     }
   ];
-
-  const handleBookAppointment = (e) => {
-    e.preventDefault();
-    setAppointmentBooked(true);
-  };
 
   return (
     <div className="bg-[#FAF9F6] text-[#222] font-sans antialiased min-h-screen">
@@ -178,125 +164,222 @@ export default function HealthcareClientDemo({ onOrderDesign, isMobileView }) {
         </div>
       </section>
 
-      {/* 5. Online Appointment Form */}
-      <section id="appointment" className="bg-[#F1ECE6] border-t border-[#DDD5CD] py-10 px-4 sm:px-6">
-        <div className="max-w-2xl mx-auto bg-white rounded-3xl p-5 sm:p-8 border border-[#DDD5CD] shadow-sm">
-          <div className="text-center mb-6 space-y-1">
-            <span className="text-[10px] font-bold text-[#1e3a5f] uppercase tracking-wider">Quick Consultation</span>
-            <h2 className="text-lg sm:text-xl font-extrabold text-[#2E2E2E] font-heading">
-              Book An In-Clinic Consultation
+      {/* 5. Clinical Rigor & Patient Concierge Desk */}
+      <section id="appointment" className="bg-[#F1ECE6] border-t border-[#DDD5CD] py-12 px-4 sm:px-6">
+        <div className="max-w-7xl mx-auto space-y-8">
+          <div className="text-center max-w-2xl mx-auto space-y-1">
+            <span className="text-[10px] sm:text-xs font-bold text-[#1e3a5f] uppercase tracking-wider">Uncompromising Medicine</span>
+            <h2 className="text-xl sm:text-2xl font-extrabold text-[#2E2E2E] font-heading">
+              NABH Clinical Rigor & Dental Diagnostics
             </h2>
-            <p className="text-xs text-[#625f5c]">Zero waiting time. Select your nearest clinic slot.</p>
+            <p className="text-xs text-[#625f5c]">
+              Equipped with German 3D imaging, pain-free wand anesthesia, and strict sterile protocols.
+            </p>
           </div>
 
-          {!appointmentBooked ? (
-            <form onSubmit={handleBookAppointment} className="space-y-3 text-xs">
-              <div className={`grid gap-3 ${isMobileView ? 'grid-cols-1' : 'grid-cols-2'}`}>
-                <div>
-                  <label className="block font-bold text-[#2E2E2E] mb-1">Clinic Branch</label>
-                  <select 
-                    value={appointmentForm.branch}
-                    onChange={(e) => setAppointmentForm({ ...appointmentForm, branch: e.target.value })}
-                    className="w-full px-3 py-2 rounded-xl border border-[#DDD5CD] bg-[#F1ECE6]/40 text-xs"
-                  >
-                    <option>Satellite Main Center (Near Star Bazaar)</option>
-                    <option>Navrangpura Center (Near St. Xavier's)</option>
-                  </select>
+          <div className={`grid gap-5 ${isMobileView ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-3'}`}>
+            <div className="bg-white rounded-3xl p-6 border border-[#DDD5CD] shadow-sm flex flex-col justify-between space-y-4">
+              <div className="space-y-3">
+                <div className="w-10 h-10 rounded-2xl bg-[#1e3a5f]/10 text-[#1e3a5f] flex items-center justify-center font-bold">
+                  <ShieldCheck className="w-5 h-5" />
                 </div>
                 <div>
-                  <label className="block font-bold text-[#2E2E2E] mb-1">Treatment / Concern</label>
-                  <select 
-                    value={appointmentForm.service}
-                    onChange={(e) => setAppointmentForm({ ...appointmentForm, service: e.target.value })}
-                    className="w-full px-3 py-2 rounded-xl border border-[#DDD5CD] bg-[#F1ECE6]/40 text-xs"
-                  >
-                    <option>Invisible Clear Aligners</option>
-                    <option>Dental Implants Consultation</option>
-                    <option>Emergency Root Canal</option>
-                    <option>Teeth Whitening</option>
-                  </select>
+                  <span className="text-[10px] font-bold text-[#1e3a5f] uppercase">Zero Cross-Infection</span>
+                  <h3 className="font-heading font-extrabold text-base text-[#2E2E2E] mt-0.5">Class-B Vacuum Autoclave</h3>
                 </div>
+                <p className="text-xs text-[#625f5c] leading-relaxed">
+                  Every handpiece and surgical instrument goes through fractional vacuum steam sterilization. Individual sterile pouches opened right in front of the patient.
+                </p>
               </div>
-
-              <div className={`grid gap-3 ${isMobileView ? 'grid-cols-1' : 'grid-cols-2'}`}>
-                <div>
-                  <label className="block font-bold text-[#2E2E2E] mb-1">Preferred Date</label>
-                  <input
-                    type="date"
-                    required
-                    value={appointmentForm.date}
-                    onChange={(e) => setAppointmentForm({ ...appointmentForm, date: e.target.value })}
-                    className="w-full px-3 py-2 rounded-xl border border-[#DDD5CD] bg-[#F1ECE6]/40 text-xs"
-                  />
-                </div>
-                <div>
-                  <label className="block font-bold text-[#2E2E2E] mb-1">Preferred Time</label>
-                  <select 
-                    value={appointmentForm.time}
-                    onChange={(e) => setAppointmentForm({ ...appointmentForm, time: e.target.value })}
-                    className="w-full px-3 py-2 rounded-xl border border-[#DDD5CD] bg-[#F1ECE6]/40 text-xs"
-                  >
-                    <option>10:00 AM &ndash; 11:30 AM</option>
-                    <option>11:30 AM &ndash; 01:00 PM</option>
-                    <option>04:30 PM &ndash; 06:30 PM</option>
-                    <option>06:30 PM &ndash; 08:30 PM</option>
-                  </select>
-                </div>
+              <div className="pt-3 border-t border-[#DDD5CD] flex items-center justify-between text-[11px] text-[#2E2E2E]">
+                <span><strong>Standards:</strong> NABH Protocol</span>
+                <span className="text-emerald-700 font-bold bg-emerald-50 px-2 py-0.5 rounded">100% Sterile</span>
               </div>
-
-              <div className={`grid gap-3 ${isMobileView ? 'grid-cols-1' : 'grid-cols-2'}`}>
-                <div>
-                  <label className="block font-bold text-[#2E2E2E] mb-1">Patient Name</label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="e.g. Bhavik Patel"
-                    value={appointmentForm.patientName}
-                    onChange={(e) => setAppointmentForm({ ...appointmentForm, patientName: e.target.value })}
-                    className="w-full px-3 py-2 rounded-xl border border-[#DDD5CD] bg-[#F1ECE6]/40 text-xs"
-                  />
-                </div>
-                <div>
-                  <label className="block font-bold text-[#2E2E2E] mb-1">Phone Number</label>
-                  <input
-                    type="tel"
-                    required
-                    placeholder="e.g. 9825000000"
-                    value={appointmentForm.phone}
-                    onChange={(e) => setAppointmentForm({ ...appointmentForm, phone: e.target.value })}
-                    className="w-full px-3 py-2 rounded-xl border border-[#DDD5CD] bg-[#F1ECE6]/40 text-xs"
-                  />
-                </div>
-              </div>
-
-              <button
-                type="submit"
-                className="w-full py-3 rounded-xl bg-[#1e3a5f] hover:bg-[#152841] text-white font-bold text-xs uppercase tracking-wider shadow-md mt-2"
-              >
-                Confirm Doctor Appointment
-              </button>
-            </form>
-          ) : (
-            <div className="text-center py-4 space-y-2">
-              <CheckCircle2 className="w-10 h-10 text-emerald-600 mx-auto" />
-              <h4 className="font-heading font-extrabold text-base text-[#2E2E2E]">Appointment Booked!</h4>
-              <p className="text-xs text-[#625f5c]">
-                Thank you, {appointmentForm.patientName}. Your appointment is confirmed at {appointmentForm.branch}.
-              </p>
             </div>
-          )}
+
+            <div className="bg-white rounded-3xl p-6 border border-[#DDD5CD] shadow-sm flex flex-col justify-between space-y-4">
+              <div className="space-y-3">
+                <div className="w-10 h-10 rounded-2xl bg-[#1e3a5f]/10 text-[#1e3a5f] flex items-center justify-center font-bold">
+                  <Sparkles className="w-5 h-5" />
+                </div>
+                <div>
+                  <span className="text-[10px] font-bold text-[#1e3a5f] uppercase">German 3D Scan</span>
+                  <h3 className="font-heading font-extrabold text-base text-[#2E2E2E] mt-0.5">Sirona CBCT Digital Imaging</h3>
+                </div>
+                <p className="text-xs text-[#625f5c] leading-relaxed">
+                  Ultra-low radiation cone beam CT scanning providing sub-millimeter 3D bone density maps for exact guided implant placement without guesswork.
+                </p>
+              </div>
+              <div className="pt-3 border-t border-[#DDD5CD] flex items-center justify-between text-[11px] text-[#2E2E2E]">
+                <span><strong>Accuracy:</strong> Sub-Millimeter</span>
+                <span className="text-cyan-800 font-bold bg-cyan-50 px-2 py-0.5 rounded">3D Precision</span>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-3xl p-6 border border-[#DDD5CD] shadow-sm flex flex-col justify-between space-y-4">
+              <div className="space-y-3">
+                <div className="w-10 h-10 rounded-2xl bg-[#1e3a5f]/10 text-[#1e3a5f] flex items-center justify-center font-bold">
+                  <HeartPulse className="w-5 h-5" />
+                </div>
+                <div>
+                  <span className="text-[10px] font-bold text-[#1e3a5f] uppercase">Needle-Phobic Friendly</span>
+                  <h3 className="font-heading font-extrabold text-base text-[#2E2E2E] mt-0.5">Painless Computerized Wand</h3>
+                </div>
+                <p className="text-xs text-[#625f5c] leading-relaxed">
+                  Microprocessor-guided anesthetic delivery at flow rates below the patient pain threshold. Truly painless root canals, fillings, and tooth extraction.
+                </p>
+              </div>
+              <div className="pt-3 border-t border-[#DDD5CD] flex items-center justify-between text-[11px] text-[#2E2E2E]">
+                <span><strong>Comfort:</strong> 100% Painless</span>
+                <span className="text-amber-700 font-bold bg-amber-50 px-2 py-0.5 rounded">No Syringe</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Doctor Reception Desk Strip */}
+          <div className={`bg-white rounded-3xl p-5 sm:p-8 border border-[#DDD5CD] shadow-sm flex items-center justify-between gap-6 ${isMobileView ? 'flex-col text-center' : 'flex-col lg:flex-row text-center lg:text-left'}`}>
+            <div className={`space-y-1.5 ${isMobileView ? 'text-center' : 'text-center lg:text-left'}`}>
+              <span className="text-[10px] font-bold text-[#1e3a5f] uppercase tracking-wider">Patient Reception & Emergency Line</span>
+              <h3 className="text-base sm:text-lg font-extrabold text-[#2E2E2E] font-heading">
+                Schedule Consultations with Senior Implantologists
+              </h3>
+              <p className="text-xs text-[#625f5c] max-w-xl">
+                Direct phone consultation with our front clinic coordinator. Emergency tooth pain cases accommodated within 30 minutes without waiting queue.
+              </p>
+              <div className={`flex flex-wrap items-center gap-3 pt-1 text-xs text-[#2E2E2E] ${isMobileView ? 'justify-center' : ''}`}>
+                <span className="flex items-center gap-1 font-bold">
+                  <Clock className="w-3.5 h-3.5 text-[#1e3a5f]" />
+                  <span>Mon &ndash; Sat: 09:30 AM &ndash; 01:30 PM & 04:30 PM &ndash; 08:30 PM</span>
+                </span>
+                <span className="text-[#625f5c]">&bull;</span>
+                <span className="text-[#625f5c]">Satellite Main Branch & Navrangpura Branch</span>
+              </div>
+            </div>
+
+            <div className={`flex flex-wrap items-center gap-3 shrink-0 ${isMobileView ? 'w-full flex-col' : ''}`}>
+              <a
+                href="tel:+919825056789"
+                className={`px-5 py-3 rounded-2xl bg-[#1e3a5f] hover:bg-[#152841] text-white text-xs font-bold uppercase tracking-wider flex items-center gap-2 shadow-md transition-all ${isMobileView ? 'w-full justify-center' : ''}`}
+              >
+                <Phone className="w-4 h-4" />
+                <span>Call Clinic Desk: +91 98250 56789</span>
+              </a>
+              <a
+                href="https://wa.me/919825056789"
+                target="_blank"
+                rel="noreferrer"
+                className={`px-4 py-3 rounded-2xl bg-[#2E2E2E] hover:bg-black text-white text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 ${isMobileView ? 'w-full justify-center' : ''}`}
+              >
+                <span>WhatsApp Doctor Desk</span>
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 
+      {/* 6. Patient Testimonials */}
+      <section className="py-12 max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="text-center max-w-xl mx-auto mb-8 space-y-1">
+          <span className="text-[10px] sm:text-xs font-bold text-[#1e3a5f] uppercase tracking-wider">Patient Care Stories</span>
+          <h2 className="text-xl sm:text-2xl font-extrabold text-[#2E2E2E] font-heading">
+            Trusted by 8,000+ Ahmedabad Patients
+          </h2>
+        </div>
+
+        <div className={`grid gap-4 ${isMobileView ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-3'}`}>
+          <div className="bg-white p-5 rounded-2xl border border-[#DDD5CD] shadow-sm space-y-3">
+            <div className="flex text-amber-500">
+              {[...Array(5)].map((_, i) => <Star key={i} className="w-3.5 h-3.5 fill-current" />)}
+            </div>
+            <p className="text-xs text-[#2E2E2E] italic leading-relaxed">
+              "Had severe anxiety regarding root canals. Dr. Mehta used the computerized wand anesthesia—I genuinely felt zero pain throughout the single 40-minute sitting."
+            </p>
+            <div className="pt-2 border-t border-[#DDD5CD] flex items-center justify-between text-xs">
+              <span className="font-bold text-[#2E2E2E]">Bhavik Patel</span>
+              <span className="text-[#625f5c] text-[11px]">Satellite, Ahmedabad</span>
+            </div>
+          </div>
+
+          <div className="bg-white p-5 rounded-2xl border border-[#DDD5CD] shadow-sm space-y-3">
+            <div className="flex text-amber-500">
+              {[...Array(5)].map((_, i) => <Star key={i} className="w-3.5 h-3.5 fill-current" />)}
+            </div>
+            <p className="text-xs text-[#2E2E2E] italic leading-relaxed">
+              "Completed my invisible clear aligners course in just 7 months. The 3D scan visualization of how teeth move before starting treatment gave me 100% confidence."
+            </p>
+            <div className="pt-2 border-t border-[#DDD5CD] flex items-center justify-between text-xs">
+              <span className="font-bold text-[#2E2E2E]">Dr. Sheetal Rao</span>
+              <span className="text-[#625f5c] text-[11px]">Professor, Navrangpura</span>
+            </div>
+          </div>
+
+          <div className="bg-white p-5 rounded-2xl border border-[#DDD5CD] shadow-sm space-y-3">
+            <div className="flex text-amber-500">
+              {[...Array(5)].map((_, i) => <Star key={i} className="w-3.5 h-3.5 fill-current" />)}
+            </div>
+            <p className="text-xs text-[#2E2E2E] italic leading-relaxed">
+              "My mother received two German Straumann implants. She was able to eat solid Gujarati food within 48 hours without discomfort. Exceptional hygiene standards."
+            </p>
+            <div className="pt-2 border-t border-[#DDD5CD] flex items-center justify-between text-xs">
+              <span className="font-bold text-[#2E2E2E]">Meena Shah</span>
+              <span className="text-[#625f5c] text-[11px]">Prahlad Nagar, Ahmedabad</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 7. Complete Healthcare Footer */}
+      <footer className="bg-[#1e3a5f] text-white pt-10 pb-6 px-4 sm:px-6 border-t border-[#DDD5CD]">
+        <div className={`max-w-7xl mx-auto grid pb-8 border-b border-cyan-800/60 ${isMobileView ? 'grid-cols-1 gap-6 text-center' : 'grid-cols-1 md:grid-cols-4 gap-8'}`}>
+          <div className={`space-y-3 md:col-span-1 ${isMobileView ? 'flex flex-col items-center' : ''}`}>
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 rounded-lg bg-white text-[#1e3a5f] flex items-center justify-center font-bold">
+                <HeartPulse className="w-4 h-4" />
+              </div>
+              <span className="font-heading font-black text-sm text-white tracking-tight">DR. MEHTA DENTAL</span>
+            </div>
+            <p className="text-xs text-cyan-100/80 leading-relaxed">
+              Advanced implantology, clear aligners & painless laser dentistry accredited by NABH.
+            </p>
+          </div>
+
+          <div className="space-y-2 text-xs">
+            <h4 className="font-bold text-cyan-300 uppercase tracking-wider text-[11px]">Consultation Timings</h4>
+            <p className="text-cyan-100">Morning: 09:30 AM &ndash; 01:30 PM</p>
+            <p className="text-cyan-100">Evening: 04:30 PM &ndash; 08:30 PM</p>
+            <p className="text-cyan-300 text-[11px]">Sundays Emergency Dental on Call</p>
+          </div>
+
+          <div className="space-y-2 text-xs">
+            <h4 className="font-bold text-cyan-300 uppercase tracking-wider text-[11px]">Clinic Centers</h4>
+            <p className="text-cyan-100">Main: Opp. Star Bazaar, Satellite Road</p>
+            <p className="text-cyan-100">Branch: Near St. Xavier's, Navrangpura</p>
+            <p className="text-cyan-300 text-[11px]">Ahmedabad, Gujarat 380015</p>
+          </div>
+
+          <div className="space-y-2 text-xs">
+            <h4 className="font-bold text-cyan-300 uppercase tracking-wider text-[11px]">Direct Patient Desk</h4>
+            <p className="text-cyan-100">Helpline: +91 98250 56789</p>
+            <p className="text-cyan-100">Emergency Desk: +91 98250 56780</p>
+            <p className="text-cyan-300 text-[11px]">Zero-Wait Appointment Slots</p>
+          </div>
+        </div>
+
+        <div className={`max-w-7xl mx-auto pt-6 flex items-center justify-between text-xs text-cyan-200/70 gap-2 ${isMobileView ? 'flex-col text-center' : 'flex-col sm:flex-row'}`}>
+          <span>&copy; {new Date().getFullYear()} Dr. Mehta Dental Clinic & Implant Center. All Rights Reserved.</span>
+          <span>Crafted with pure performance &bull; Powered by THE WEBCRAFT</span>
+        </div>
+      </footer>
+
       {/* 6. Demo Project Banner */}
-      <div className="bg-[#2E2E2E] text-white p-3 sm:p-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs border-t border-[#DDD5CD]">
+      <div className={`bg-[#2E2E2E] text-white p-3 sm:p-4 flex items-center justify-between gap-2 text-xs border-t border-[#DDD5CD] ${isMobileView ? 'flex-col text-center' : 'flex-col sm:flex-row'}`}>
         <div className="flex items-center gap-2">
           <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse" />
           <span><strong>Client Demo:</strong> Dr. Mehta Dental Clinic &bull; Built by <strong>THE WEBCRAFT</strong></span>
         </div>
         <button
           onClick={onOrderDesign}
-          className="px-3.5 py-1.5 rounded-lg bg-[#7D4047] hover:bg-[#67333a] text-white font-bold flex items-center gap-1"
+          className={`px-3.5 py-1.5 rounded-lg bg-[#7D4047] hover:bg-[#67333a] text-white font-bold flex items-center gap-1 ${isMobileView ? 'w-full justify-center' : ''}`}
         >
           <span>Order A Clinic Site</span>
           <ArrowRight className="w-3.5 h-3.5" />

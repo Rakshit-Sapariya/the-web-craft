@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { Calculator, Check, ArrowRight, Sparkles, Clock, ShieldAlert, Tag } from 'lucide-react';
+import { Calculator, Check, ArrowRight, Sparkles, Clock, ShieldAlert, Flame } from 'lucide-react';
 import { WEBSITE_TYPES, ADDON_OPTIONS, COMPANY_CONFIG } from '../data/pricingData';
 import { useOrderOffer } from '../utils/orderTracker';
 
 export default function PriceEstimator({ onApplyEstimate }) {
-  const { isOfferActive } = useOrderOffer();
+  const offer = useOrderOffer();
   const [selectedType, setSelectedType] = useState('corporate');
   const [pageCount, setPageCount] = useState(6);
   const [selectedAddons, setSelectedAddons] = useState(['payment', 'crm']);
@@ -20,23 +20,23 @@ export default function PriceEstimator({ onApplyEstimate }) {
   // Calculations
   const basePrice = currentTypeObj.basePrice;
   const extraPages = Math.max(0, pageCount - currentTypeObj.includedPages);
-  const extraPagesPrice = extraPages * 1200; // ₹1,200 per additional page
+  const extraPagesPrice = extraPages * 1800; // ₹1,800 per additional page
   const addonsTotal = selectedAddons.reduce((sum, addonId) => {
     const addon = ADDON_OPTIONS.find(a => a.id === addonId);
     return sum + (addon ? addon.price : 0);
   }, 0);
 
-  const rawTotal = basePrice + extraPagesPrice + addonsTotal;
-  const discountAmount = isOfferActive ? Math.round(rawTotal * 0.15) : 0;
-  const finalDiscountedTotal = rawTotal - discountAmount;
+  const grossTotal = basePrice + extraPagesPrice + addonsTotal;
+  const discountAmount = offer.isOfferActive ? Math.round(grossTotal * (offer.discountPercent / 100)) : 0;
+  const finalTotal = grossTotal - discountAmount;
   const tokenAdvance = COMPANY_CONFIG.tokenAdvance;
-  const remainingBalance = Math.max(0, finalDiscountedTotal - tokenAdvance);
+  const remainingBalance = Math.max(0, finalTotal - tokenAdvance);
 
   const handleApply = () => {
     onApplyEstimate({
       typeId: selectedType,
       pages: pageCount,
-      estimatedBudget: finalDiscountedTotal,
+      estimatedBudget: finalTotal,
       addons: selectedAddons,
     });
     const formElement = document.querySelector('#order-form');
@@ -59,9 +59,7 @@ export default function PriceEstimator({ onApplyEstimate }) {
             Estimate Your Project Cost &amp; Timeline
           </h2>
           <p className="text-xs sm:text-base text-[#625f5c]">
-            {isOfferActive 
-              ? 'Get 100% upfront pricing transparency. Customize your website requirements below to see real-time costs and your early-bird 15% discount.'
-              : 'Get 100% upfront pricing transparency. Customize your website requirements below to see real-time itemized costs and delivery milestones.'}
+            Get 100% upfront pricing transparency. Customize your website requirements below to see real-time itemized costs and delivery milestones.
           </p>
         </div>
 
@@ -212,30 +210,28 @@ export default function PriceEstimator({ onApplyEstimate }) {
                 </div>
               )}
 
-              {isOfferActive && (
-                <>
-                  <div className="flex justify-between text-[#DDD5CD]/60 pt-2 border-t border-white/10">
-                    <span>Gross Value:</span>
-                    <span className="font-mono line-through">₹{rawTotal.toLocaleString('en-IN')}</span>
-                  </div>
-
-                  {/* 15% Discount Badge */}
-                  <div className="flex justify-between items-center bg-[#7D4047]/30 border border-[#7D4047] p-2.5 rounded-lg text-emerald-400 shimmer-badge">
-                    <span className="flex items-center gap-1.5 font-bold">
-                      <Tag className="w-3.5 h-3.5 animate-pulse" />
-                      First 10 Clients Discount (15% OFF):
-                    </span>
-                    <span className="font-mono font-extrabold">-₹{discountAmount.toLocaleString('en-IN')}</span>
-                  </div>
-                </>
+              {offer.isOfferActive && discountAmount > 0 && (
+                <div className="flex justify-between text-emerald-300 font-medium pt-1 border-t border-white/10">
+                  <span className="flex items-center gap-1">
+                    <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+                    <span>{offer.tierName} (-{offer.discountPercent}%):</span>
+                  </span>
+                  <span className="font-mono font-bold text-emerald-400">-₹{discountAmount.toLocaleString('en-IN')}</span>
+                </div>
               )}
+
             </div>
 
             {/* Final Total */}
             <div className="pt-4 border-t border-white/20 relative z-10">
-              <div className="flex justify-between items-baseline">
+              <div className="flex justify-between items-baseline flex-wrap gap-1">
                 <span className="text-sm font-semibold text-[#DDD5CD]">Final Project Estimate:</span>
-                <span className="text-3xl font-black text-white font-mono tracking-tight">₹{finalDiscountedTotal.toLocaleString('en-IN')}</span>
+                <div className="flex items-baseline gap-2">
+                  <span className="text-3xl font-black text-white font-mono tracking-tight">₹{finalTotal.toLocaleString('en-IN')}</span>
+                  {offer.isOfferActive && (
+                    <span className="text-sm line-through text-[#DDD5CD]/70 font-mono">₹{grossTotal.toLocaleString('en-IN')}</span>
+                  )}
+                </div>
               </div>
             </div>
 

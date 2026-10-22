@@ -2,38 +2,36 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   X, CheckCircle2, Mail, Copy, 
-  Check, FileText, ChevronDown, ChevronUp, Send, 
-  Database, ArrowRight, ShieldCheck, Sparkles, Loader2
+  Check, FileText, ChevronDown, ChevronUp, 
+  ArrowRight, ShieldCheck, Sparkles 
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
-import { COMPANY_CONFIG } from '../data/pricingData';
 import { generateWebsiteProductionPlan } from '../utils/planGenerator';
-import { incrementOrderCount } from '../utils/orderTracker';
 import { api } from '../services/api';
 
 export default function PaymentModal({ orderDetails, onClose }) {
   const [orderId] = useState(() => 'TWC-' + Math.floor(100000 + Math.random() * 900000));
+  const [trackingToken, setTrackingToken] = useState(() => 'TK-' + Math.floor(100000 + Math.random() * 900000));
+  const [copiedToken, setCopiedToken] = useState(false);
   const [copiedPlan, setCopiedPlan] = useState(false);
   const [showPlanDetails, setShowPlanDetails] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(true);
-  const [dbSaved, setDbSaved] = useState(false);
 
-  if (!orderDetails) return null;
-
-  // Generate automated website production plan
-  const planData = generateWebsiteProductionPlan({
+  // Generate automated website production plan safely
+  const planData = orderDetails ? generateWebsiteProductionPlan({
     ...orderDetails,
     orderId,
-  });
+  }) : null;
 
   // Automatically save to database upon mount (Zero payment needed!)
   useEffect(() => {
+    if (!orderDetails || !planData) return;
     let isMounted = true;
 
     async function registerOrder() {
       try {
-        await api.createOrder({
+        const res = await api.createOrder({
           orderId,
+          trackingToken,
           clientName: planData.clientName,
           clientPhone: planData.clientPhone,
           clientEmail: orderDetails.clientEmail || null,
@@ -44,15 +42,18 @@ export default function PaymentModal({ orderDetails, onClose }) {
           cloudAssetLink: planData.cloudLink || '',
           customNotes: planData.notes || '',
           blueprint: planData.plainText,
+          clientRating: orderDetails.clientRating || 5,
+          clientFeedback: orderDetails.clientFeedback || '',
+          reviewAgreement: orderDetails.reviewAgreement ? 1 : 0,
           paymentStatus: 'zero_online_payment',
           orderStatus: 'order_placed',
         }, orderDetails.files || []);
 
-        if (isMounted) {
-          setDbSaved(true);
-          setIsSubmitting(false);
-          incrementOrderCount();
+        if (res && res.trackingToken) {
+          setTrackingToken(res.trackingToken);
+        }
 
+        if (isMounted) {
           confetti({
             particleCount: 120,
             spread: 80,
@@ -62,10 +63,6 @@ export default function PaymentModal({ orderDetails, onClose }) {
         }
       } catch (err) {
         console.warn('Backend DB registration notice:', err);
-        if (isMounted) {
-          setIsSubmitting(false);
-          setDbSaved(true);
-        }
       }
 
       // Automated background email dispatch attempt to thewebcraft404@gmail.com
@@ -98,6 +95,8 @@ export default function PaymentModal({ orderDetails, onClose }) {
       isMounted = false;
     };
   }, []);
+
+  if (!orderDetails || !planData) return null;
 
   const handleCopyPlan = () => {
     navigator.clipboard.writeText(planData.plainText);
@@ -157,19 +156,72 @@ export default function PaymentModal({ orderDetails, onClose }) {
             </div>
           </div>
 
+          {/* Owner Tracking Token Card */}
+          <div className="bg-gradient-to-br from-[#2A2326] via-[#1E1E1E] to-[#2A2326] text-white p-5 rounded-2xl border border-[#7D4047]/60 shadow-lg space-y-3">
+            <div className="flex items-center justify-between">
+              <span className="text-[10px] uppercase font-bold tracking-wider px-2.5 py-0.5 rounded-full bg-amber-400/20 text-amber-300 border border-amber-400/30 font-mono flex items-center gap-1.5">
+                <Sparkles className="w-3 h-3 text-amber-400" />
+                Your Unique Tracking Token Generated
+              </span>
+              <span className="text-[10px] text-gray-400 font-mono">100% Unique ID</span>
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 bg-black/40 p-3.5 rounded-xl border border-white/10">
+              <div>
+                <span className="text-[10px] text-gray-400 block font-semibold">Owner Tracking Token:</span>
+                <span className="text-2xl font-black text-amber-300 font-mono tracking-wider">{trackingToken}</span>
+                <span className="text-[10px] text-gray-400 block font-mono mt-0.5">Order ID: <strong className="text-white">{orderId}</strong></span>
+              </div>
+              <div className="flex items-center gap-2 w-full sm:w-auto">
+                <button
+                  type="button"
+                  onClick={() => {
+                    navigator.clipboard.writeText(trackingToken);
+                    setCopiedToken(true);
+                    setTimeout(() => setCopiedToken(false), 2500);
+                  }}
+                  className="flex-1 sm:flex-none px-3 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold transition-all flex items-center justify-center gap-1.5 active:scale-95"
+                >
+                  {copiedToken ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+                  <span>{copiedToken ? 'Token Copied!' : 'Copy Token'}</span>
+                </button>
+
+                <Link
+                  to={`/track?id=${trackingToken}`}
+                  onClick={onClose}
+                  className="flex-1 sm:flex-none px-4 py-2 rounded-xl bg-[#7D4047] hover:bg-[#67333a] text-white text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-wine active:scale-95"
+                >
+                  <span>Track Project ↗</span>
+                </Link>
+              </div>
+            </div>
+
+            <p className="text-[11px] text-gray-300 leading-relaxed">
+              Use either your <strong className="font-mono text-amber-300">{trackingToken}</strong> or <strong className="font-mono text-white">{orderId}</strong> on the Tracking Page anytime to inspect your 5-stage website milestones.
+            </p>
+          </div>
+
           {/* Consultation Notice */}
           <div className="bg-[#F1ECE6]/60 border border-[#DDD5CD] rounded-2xl p-4 space-y-2 text-xs text-[#2E2E2E]">
             <span className="font-bold text-[#7D4047] uppercase tracking-wider block text-[11px]">
               Next Steps &amp; Milestone Schedule
             </span>
             <p className="leading-relaxed text-[#625f5c]">
-              No online payment is charged on this website. Our Lead Developer <strong>Rakshit Patel</strong> will personally review your specifications and reach out via phone or email within <strong>2 hours</strong> to confirm wireframes and live demo walkthrough.
+              No online payment is charged on this website. Our Lead Developer <strong>Rakshit Patel</strong> will personally review your specifications and reach out via message or email within <strong>2 hours</strong> to confirm wireframes. <strong>Payment is done on WhatsApp only after you see your website completed and approved, right before it goes live on the browser.</strong>
             </p>
             <div className="flex flex-wrap items-center gap-2 pt-1 font-semibold text-[11px] text-[#2E2E2E]">
-              <span>Direct Line:</span>
-              <span className="font-mono text-[#7D4047] font-bold">+91 85114 39894</span>
-              <span className="text-[10px] bg-[#7D4047]/15 text-[#7D4047] px-1.5 py-0.5 rounded font-bold">
-                Only Message, Not Call
+              <span>Direct WhatsApp:</span>
+              <a 
+                href={`https://wa.me/919428298134?text=${encodeURIComponent(`Hello Rakshit, I have submitted my website order.\n\nOrder ID: ${orderId}\nTracking Token: ${trackingToken}\nClient: ${planData.clientName}\nPackage: ${planData.websiteType}\nBudget: Rs. ${planData.finalBudget.toLocaleString('en-IN')}\n\nPlease confirm my milestone schedule!`)}`}
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="font-mono text-emerald-800 font-bold hover:underline"
+                title="Chat on WhatsApp"
+              >
+                +91 94282 98134
+              </a>
+              <span className="text-[10px] bg-emerald-100 text-emerald-800 border border-emerald-300 px-2 py-0.5 rounded-full font-bold">
+                WhatsApp Chat Only &bull; No Calls
               </span>
             </div>
           </div>

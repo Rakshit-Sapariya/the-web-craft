@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { 
   Laptop, Smartphone, ShoppingBag, Building2, UtensilsCrossed, 
   HeartPulse, ArrowRight, Star, ExternalLink, Sparkles, CheckCircle2, 
@@ -14,9 +14,43 @@ import GymFitnessDemo from './demos/GymFitnessDemo';
 import CustomBuildDemo from './demos/CustomBuildDemo';
 
 export default function DemoShowcase({ onSelectCategoryForOrder }) {
-  const [activeProject, setActiveProject] = useState('beautyparlour');
-  const [viewMode, setViewMode] = useState('desktop'); // 'desktop' | 'mobile'
+  const [activeProject, setActiveProject] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const p = new URLSearchParams(window.location.search).get('project');
+      if (p) return p;
+    }
+    return 'beautyparlour';
+  });
+  const [viewMode, setViewMode] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const m = new URLSearchParams(window.location.search).get('mode');
+      if (m === 'mobile') return 'mobile';
+    }
+    return 'desktop';
+  }); // 'desktop' | 'mobile'
   const [isFullScreen, setIsFullScreen] = useState(false);
+  const demoScrollRef = useRef(null);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const s = new URLSearchParams(window.location.search).get('scroll');
+      if (s && demoScrollRef.current) {
+        demoScrollRef.current.scrollTop = parseInt(s, 10);
+      }
+    }
+    if (typeof window !== 'undefined' && window.location.hash) {
+      const el = document.querySelector(window.location.hash);
+      if (el) {
+        el.scrollIntoView();
+      } else {
+        const timer = setTimeout(() => {
+          const e = document.querySelector(window.location.hash);
+          if (e) e.scrollIntoView();
+        }, 100);
+        return () => clearTimeout(timer);
+      }
+    }
+  }, [activeProject, viewMode]);
 
   const clientProjects = [
     {
@@ -25,8 +59,8 @@ export default function DemoShowcase({ onSelectCategoryForOrder }) {
       client: 'Glamour & Glow Studio',
       location: 'Drive-In, Ahmedabad',
       category: 'Beauty Parlour & Bridal Studio',
-      tagline: 'Luxury bridal airbrush packages, pre-bridal skincare, hair spa, and instant appointment booking.',
-      stats: { rating: '5.0 ★ (1.2k Reviews)', artists: 'Certified Artists', booking: 'Instant Booking' },
+      tagline: 'Luxury bridal airbrush packages, pre-bridal skincare, private suite experience, and bride testimonials.',
+      stats: { rating: '5.0 ★ (1.2k Reviews)', artists: 'Certified Artists', booking: 'Concierge Desk' },
       icon: Sparkles,
       accentColor: '#7D4047',
     },
@@ -36,7 +70,7 @@ export default function DemoShowcase({ onSelectCategoryForOrder }) {
       client: 'The Urban Gentleman Co.',
       location: 'Vastrapur, Ahmedabad',
       category: 'Men Hair Parlour & Barber Lounge',
-      tagline: 'Precision taper fades, straight razor beard sculpting, charcoal facials, and barber chair scheduling.',
+      tagline: 'Precision taper fades, straight razor beard sculpting, cold brew lounge, and master barber roster.',
       stats: { rating: '4.9 ★ (850 Reviews)', chairs: 'Master Barbers', vibe: 'Executive Lounge' },
       icon: Scissors,
       accentColor: '#2E2E2E',
@@ -47,8 +81,8 @@ export default function DemoShowcase({ onSelectCategoryForOrder }) {
       client: 'Saffron Hospitality Group',
       location: 'Sindhu Bhavan, Ahmedabad',
       category: 'Restaurant & Table Booking',
-      tagline: 'Royal Awadhi restaurant with live online table reservation engine, a la carte menu, and customer accolades.',
-      stats: { rating: '4.9 ★ (3.4k Reviews)', tables: 'Zero Wait', award: 'Times Food 2025' },
+      tagline: 'Royal Awadhi dining with curated dining spaces, interactive a la carte menu, and table concierge.',
+      stats: { rating: '4.9 ★ (3.4k Reviews)', tables: 'Fine Dining', award: 'Times Food 2025' },
       icon: UtensilsCrossed,
       accentColor: '#7D4047',
     },
@@ -58,8 +92,8 @@ export default function DemoShowcase({ onSelectCategoryForOrder }) {
       client: 'IronCore Arena Pvt Ltd',
       location: 'Prahladnagar, Ahmedabad',
       category: 'Gym & Fitness Center',
-      tagline: '15,000 sq.ft arena with Rogue equipment, CrossFit conditioning, membership tiers, and free trial pass claim.',
-      stats: { rating: '4.9 ★', trainers: 'ACE Certified', facility: '15,000 Sq.Ft' },
+      tagline: '12,000 sq.ft strength arena with Eleiko lifting zones, Finnish sauna, cold plunge, and athlete testimonials.',
+      stats: { rating: '4.9 ★', trainers: 'ACE Certified', facility: '12,000 Sq.Ft' },
       icon: Dumbbell,
       accentColor: '#7D4047',
     },
@@ -80,7 +114,7 @@ export default function DemoShowcase({ onSelectCategoryForOrder }) {
       client: 'Shikhar Infra Group',
       location: 'SG Highway, Ahmedabad',
       category: 'Real Estate & Infrastructure',
-      tagline: 'Luxury 3 & 4 BHK sky-living portal with interactive floorplans, RERA badges, and VIP site visit scheduler.',
+      tagline: 'Luxury 3 & 4 BHK sky-living portal with interactive floorplans, RERA badges, and architectural specifications.',
       stats: { rera: 'RERA Approved', rating: '4.9 ★', type: '3 & 4 BHK' },
       icon: Building2,
       accentColor: '#1C1C1C',
@@ -91,7 +125,7 @@ export default function DemoShowcase({ onSelectCategoryForOrder }) {
       client: 'Dr. Harshil Mehta (MDS)',
       location: 'Satellite & Navrangpura',
       category: 'Healthcare & Clinic',
-      tagline: 'NABH-accredited modern clinic platform with instant patient consultation appointment booking and credentials.',
+      tagline: 'NABH-accredited modern clinic platform with German 3D CBCT imaging, painless wand anesthesia, and clinical standards.',
       stats: { rating: '4.9 ★ (1.8k Reviews)', exp: '16+ Years', patients: '15,000+ Treated' },
       icon: HeartPulse,
       accentColor: '#1e3a5f',
@@ -319,7 +353,10 @@ export default function DemoShowcase({ onSelectCategoryForOrder }) {
             )}
 
             {/* Scrollable Website Body */}
-            <div className={`overflow-y-auto ${viewMode === 'mobile' ? 'max-h-[660px] rounded-[28px] bg-white' : 'max-h-[720px]'}`}>
+            <div 
+              ref={demoScrollRef}
+              className={`overflow-y-auto ${viewMode === 'mobile' ? 'max-h-[660px] rounded-[28px] bg-white' : 'max-h-[720px]'}`}
+            >
               {renderActiveDemoContent()}
             </div>
           </div>

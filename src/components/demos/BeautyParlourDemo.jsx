@@ -6,14 +6,6 @@ import {
 
 export default function BeautyParlourDemo({ onOrderDesign, isMobileView }) {
   const [selectedCategory, setSelectedCategory] = useState('Bridal');
-  const [bookingForm, setBookingForm] = useState({
-    service: 'Signature HD Bridal Makeup',
-    date: '2026-10-22',
-    time: '11:00 AM',
-    clientName: '',
-    phone: '',
-  });
-  const [bookingSuccess, setBookingSuccess] = useState(false);
 
   const services = {
     'Bridal': [
@@ -71,11 +63,6 @@ export default function BeautyParlourDemo({ onOrderDesign, isMobileView }) {
         rating: 5.0,
       },
     ],
-  };
-
-  const handleBook = (e) => {
-    e.preventDefault();
-    setBookingSuccess(true);
   };
 
   return (
@@ -148,8 +135,8 @@ export default function BeautyParlourDemo({ onOrderDesign, isMobileView }) {
           <div className={`${isMobileView ? 'pt-2' : 'lg:col-span-5'}`}>
             <div className="rounded-2xl overflow-hidden shadow-xl border-4 border-white aspect-[4/3] bg-neutral-100">
               <img 
-                src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=800&q=80" 
-                alt="Bridal Makeup"
+                src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=800&q=80" 
+                alt="Luxury Beauty Salon"
                 className="w-full h-full object-cover" 
               />
             </div>
@@ -213,117 +200,222 @@ export default function BeautyParlourDemo({ onOrderDesign, isMobileView }) {
         </div>
       </section>
 
-      {/* 5. Online Appointment Booking Form */}
-      <section id="book" className="bg-[#FAF6F3] border-t border-[#DDD5CD] py-10 px-4 sm:px-6">
-        <div className="max-w-2xl mx-auto bg-white p-6 rounded-3xl border border-[#DDD5CD] shadow-md">
-          <div className="text-center mb-6 space-y-1">
-            <span className="text-[10px] font-bold text-[#7D4047] uppercase tracking-wider">Hassle-Free Booking</span>
-            <h3 className="text-lg sm:text-xl font-extrabold text-[#2E2E2E]">Schedule Your Salon Visit</h3>
-            <p className="text-xs text-[#625f5c]">Instant booking confirmation sent to your number.</p>
+      {/* 5. Studio Bridal Experience & Concierge Desk */}
+      <section id="book" className={`bg-[#FAF6F3] border-t border-[#DDD5CD] ${isMobileView ? 'py-6 px-3' : 'py-12 px-4 sm:px-6'}`}>
+        <div className="max-w-7xl mx-auto space-y-6 sm:space-y-8">
+          <div className="text-center max-w-2xl mx-auto space-y-1">
+            <span className="text-[10px] sm:text-xs font-bold text-[#7D4047] uppercase tracking-wider">Uncompromising Luxury</span>
+            <h2 className="text-lg sm:text-2xl font-extrabold text-[#2E2E2E] font-heading">
+              The Bridal Suite & Salon Experience
+            </h2>
+            <p className="text-xs text-[#625f5c]">
+              Designed for brides who demand perfection on their milestone day.
+            </p>
           </div>
 
-          {!bookingSuccess ? (
-            <form onSubmit={handleBook} className="space-y-3 text-xs">
-              <div>
-                <label className="block font-bold text-[#2E2E2E] mb-1">Select Service</label>
-                <select
-                  value={bookingForm.service}
-                  onChange={(e) => setBookingForm({ ...bookingForm, service: e.target.value })}
-                  className="w-full px-3 py-2 rounded-xl border border-[#DDD5CD] bg-[#F1ECE6]/30 text-xs"
-                >
-                  <option>Signature HD Airbrush Bridal Makeup (₹14,999)</option>
-                  <option>Pre-Bridal Luxury Radiance Package (₹8,499)</option>
-                  <option>Sangeet & Engagement Glam Look (₹5,999)</option>
-                  <option>Brazilian Nanoplastia Keratin (₹4,999)</option>
-                  <option>Korean Glass Skin Facial (₹3,499)</option>
-                </select>
+          <div className={`grid gap-4 ${isMobileView ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-3'}`}>
+            <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-[#DDD5CD] shadow-sm flex flex-col justify-between space-y-3 sm:space-y-4">
+              <div className="space-y-2 sm:space-y-3">
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-[#7D4047]/10 text-[#7D4047] flex items-center justify-center font-bold">
+                  <Sparkles className="w-4 h-4 sm:w-5 sm:h-5" />
+                </div>
+                <div>
+                  <span className="text-[9px] sm:text-[10px] font-bold text-[#7D4047] uppercase">VIP Dressing Lounge</span>
+                  <h3 className="font-heading font-extrabold text-sm sm:text-base text-[#2E2E2E] mt-0.5">Private Bridal Suite</h3>
+                </div>
+                <p className="text-xs text-[#625f5c] leading-relaxed">
+                  Dedicated high-mirror private vanity suite with studio-grade color-calibrated lighting, refreshment bar, and private changing pavilion for bridal entourage.
+                </p>
               </div>
-
-              <div className={`grid gap-3 ${isMobileView ? 'grid-cols-1' : 'grid-cols-2'}`}>
-                <div>
-                  <label className="block font-bold text-[#2E2E2E] mb-1">Preferred Date</label>
-                  <input
-                    type="date"
-                    required
-                    value={bookingForm.date}
-                    onChange={(e) => setBookingForm({ ...bookingForm, date: e.target.value })}
-                    className="w-full px-3 py-2 rounded-xl border border-[#DDD5CD] bg-[#F1ECE6]/30 text-xs"
-                  />
-                </div>
-                <div>
-                  <label className="block font-bold text-[#2E2E2E] mb-1">Preferred Time Slot</label>
-                  <select
-                    value={bookingForm.time}
-                    onChange={(e) => setBookingForm({ ...bookingForm, time: e.target.value })}
-                    className="w-full px-3 py-2 rounded-xl border border-[#DDD5CD] bg-[#F1ECE6]/30 text-xs"
-                  >
-                    <option>10:00 AM &ndash; Morning Slot</option>
-                    <option>12:30 PM &ndash; Afternoon Slot</option>
-                    <option>04:00 PM &ndash; Evening Slot</option>
-                    <option>06:30 PM &ndash; Prime Slot</option>
-                  </select>
-                </div>
+              <div className="pt-2.5 sm:pt-3 border-t border-[#DDD5CD] flex items-center justify-between text-[11px] text-[#2E2E2E]">
+                <span><strong>Access:</strong> 1 Bride per Suite</span>
+                <span className="text-pink-700 font-bold bg-pink-50 px-2 py-0.5 rounded text-[10px]">100% Privacy</span>
               </div>
-
-              <div className={`grid gap-3 ${isMobileView ? 'grid-cols-1' : 'grid-cols-2'}`}>
-                <div>
-                  <label className="block font-bold text-[#2E2E2E] mb-1">Your Full Name</label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="e.g. Khushi Trivedi"
-                    value={bookingForm.clientName}
-                    onChange={(e) => setBookingForm({ ...bookingForm, clientName: e.target.value })}
-                    className="w-full px-3 py-2 rounded-xl border border-[#DDD5CD] bg-[#F1ECE6]/30 text-xs"
-                  />
-                </div>
-                <div>
-                  <label className="block font-bold text-[#2E2E2E] mb-1">Contact Phone Number</label>
-                  <input
-                    type="tel"
-                    required
-                    placeholder="e.g. 9825000000"
-                    value={bookingForm.phone}
-                    onChange={(e) => setBookingForm({ ...bookingForm, phone: e.target.value })}
-                    className="w-full px-3 py-2 rounded-xl border border-[#DDD5CD] bg-[#F1ECE6]/30 text-xs"
-                  />
-                </div>
-              </div>
-
-              <button
-                type="submit"
-                className="w-full py-3 rounded-xl bg-[#7D4047] hover:bg-[#67333a] text-white font-bold text-xs uppercase tracking-wider shadow-wine mt-2"
-              >
-                Confirm Salon Slot
-              </button>
-            </form>
-          ) : (
-            <div className="text-center py-4 space-y-2">
-              <CheckCircle2 className="w-10 h-10 text-emerald-600 mx-auto" />
-              <h4 className="font-heading font-extrabold text-base text-[#2E2E2E]">Appointment Reserved!</h4>
-              <p className="text-xs text-[#625f5c]">
-                Thank you, {bookingForm.clientName}! Your slot for {bookingForm.service} on {bookingForm.date} at {bookingForm.time} is reserved. We will confirm your appointment via phone/SMS.
-              </p>
-              <button
-                onClick={() => setBookingSuccess(false)}
-                className="text-[11px] text-[#7D4047] font-bold underline"
-              >
-                Book another appointment
-              </button>
             </div>
-          )}
+
+            <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-[#DDD5CD] shadow-sm flex flex-col justify-between space-y-3 sm:space-y-4">
+              <div className="space-y-2 sm:space-y-3">
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-[#7D4047]/10 text-[#7D4047] flex items-center justify-center font-bold">
+                  <Heart className="w-4 h-4 sm:w-5 sm:h-5" />
+                </div>
+                <div>
+                  <span className="text-[9px] sm:text-[10px] font-bold text-[#7D4047] uppercase">Cosmetics Standard</span>
+                  <h3 className="font-heading font-extrabold text-sm sm:text-base text-[#2E2E2E] mt-0.5">Global Luxury Formulations</h3>
+                </div>
+                <p className="text-xs text-[#625f5c] leading-relaxed">
+                  Only Charlotte Tilbury, MAC Pro, Huda Beauty, and Dior Backstage cosmetics. Applied with sterilized airbrush guns and Dyson Supersonic styling tools.
+                </p>
+              </div>
+              <div className="pt-2.5 sm:pt-3 border-t border-[#DDD5CD] flex items-center justify-between text-[11px] text-[#2E2E2E]">
+                <span><strong>Longevity:</strong> 18-Hour Waterproof</span>
+                <span className="text-emerald-700 font-bold bg-emerald-50 px-2 py-0.5 rounded text-[10px]">Zero Crease</span>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-[#DDD5CD] shadow-sm flex flex-col justify-between space-y-3 sm:space-y-4">
+              <div className="space-y-2 sm:space-y-3">
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-[#7D4047]/10 text-[#7D4047] flex items-center justify-center font-bold">
+                  <UserCheck className="w-4 h-4 sm:w-5 sm:h-5" />
+                </div>
+                <div>
+                  <span className="text-[9px] sm:text-[10px] font-bold text-[#7D4047] uppercase">Consultation Routine</span>
+                  <h3 className="font-heading font-extrabold text-sm sm:text-base text-[#2E2E2E] mt-0.5">Pre-Wedding Skin Roadmap</h3>
+                </div>
+                <p className="text-xs text-[#625f5c] leading-relaxed">
+                  Complimentary 48-hour cosmetic patch test and skin texture analysis by senior dermatological estheticians to ensure flawless glass-skin radiance.
+                </p>
+              </div>
+              <div className="pt-2.5 sm:pt-3 border-t border-[#DDD5CD] flex items-center justify-between text-[11px] text-[#2E2E2E]">
+                <span><strong>Included:</strong> Patch Testing</span>
+                <span className="text-amber-700 font-bold bg-amber-50 px-2 py-0.5 rounded text-[10px]">Custom Tone</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Direct Concierge Desk Strip */}
+          <div className={`bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-8 border border-[#DDD5CD] shadow-sm flex items-center justify-between gap-4 sm:gap-6 ${isMobileView ? 'flex-col text-center' : 'flex-col lg:flex-row text-center lg:text-left'}`}>
+            <div className="space-y-1 sm:space-y-1.5">
+              <span className="text-[10px] font-bold text-[#7D4047] uppercase tracking-wider">Direct Studio Concierge</span>
+              <h3 className="text-base sm:text-lg font-extrabold text-[#2E2E2E] font-heading">
+                Book Consultations & Appointments Directly
+              </h3>
+              <p className="text-xs text-[#625f5c] max-w-xl">
+                Call our front desk coordinator or reach out on WhatsApp to verify bridal date availability, check package customizations, and reserve your date.
+              </p>
+              <div className={`flex flex-wrap items-center gap-2 sm:gap-3 pt-1 text-xs text-[#2E2E2E] ${isMobileView ? 'justify-center' : ''}`}>
+                <span className="flex items-center gap-1 font-bold">
+                  <Clock className="w-3.5 h-3.5 text-[#7D4047]" />
+                  <span>Tue &ndash; Sun: 10:00 AM &ndash; 08:30 PM (Mon Closed)</span>
+                </span>
+                <span>&bull;</span>
+                <span className="text-[#625f5c]">Drive-In Road, Bodakdev, Ahmedabad</span>
+              </div>
+            </div>
+
+            <div className={`flex flex-wrap items-center gap-2 sm:gap-3 shrink-0 ${isMobileView ? 'w-full flex-col' : ''}`}>
+              <a
+                href="tel:+919825023456"
+                className={`px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl bg-[#7D4047] hover:bg-[#67333a] text-white text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 shadow-wine transition-all ${isMobileView ? 'w-full' : ''}`}
+              >
+                <Phone className="w-4 h-4" />
+                <span>Call Studio: +91 98250 23456</span>
+              </a>
+              <a
+                href="https://wa.me/919825023456"
+                target="_blank"
+                rel="noreferrer"
+                className={`px-4 py-2.5 sm:py-3 rounded-xl sm:rounded-2xl bg-[#2E2E2E] hover:bg-black text-white text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 ${isMobileView ? 'w-full' : ''}`}
+              >
+                <span>WhatsApp Studio</span>
+              </a>
+            </div>
+          </div>
         </div>
       </section>
 
+      {/* 6. Real Brides Testimonials */}
+      <section className={`max-w-7xl mx-auto ${isMobileView ? 'py-6 px-3' : 'py-12 px-4 sm:px-6'}`}>
+        <div className="text-center max-w-xl mx-auto mb-6 sm:mb-8 space-y-1">
+          <span className="text-[10px] sm:text-xs font-bold text-[#7D4047] uppercase tracking-wider">Bride Stories</span>
+          <h2 className="text-lg sm:text-2xl font-extrabold text-[#2E2E2E] font-heading">
+            Trusted by Over 1,200 Gujarat Brides
+          </h2>
+        </div>
+
+        <div className={`grid gap-4 ${isMobileView ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-3'}`}>
+          <div className="bg-white p-4 sm:p-5 rounded-2xl border border-[#DDD5CD] shadow-sm space-y-2.5 sm:space-y-3">
+            <div className="flex text-amber-500">
+              {[...Array(5)].map((_, i) => <Star key={i} className="w-3.5 h-3.5 fill-current" />)}
+            </div>
+            <p className="text-xs text-[#2E2E2E] italic leading-relaxed">
+              "Khushi did my HD Airbrush Bridal look for my wedding at YMCA Club Ahmedabad. It stayed flawless through 8 hours of tears, humidity, and stage lights without a single smudge!"
+            </p>
+            <div className="pt-2 border-t border-[#DDD5CD] flex items-center justify-between text-xs">
+              <span className="font-bold text-[#2E2E2E]">Aashna Shah</span>
+              <span className="text-[#625f5c] text-[11px]">Sindhu Bhavan Bride</span>
+            </div>
+          </div>
+
+          <div className="bg-white p-4 sm:p-5 rounded-2xl border border-[#DDD5CD] shadow-sm space-y-2.5 sm:space-y-3">
+            <div className="flex text-amber-500">
+              {[...Array(5)].map((_, i) => <Star key={i} className="w-3.5 h-3.5 fill-current" />)}
+            </div>
+            <p className="text-xs text-[#2E2E2E] italic leading-relaxed">
+              "The pre-bridal radiance routine completely transformed my skin texture. The team is warm, hygienic, and makes you feel like royalty in their private bridal suite."
+            </p>
+            <div className="pt-2 border-t border-[#DDD5CD] flex items-center justify-between text-xs">
+              <span className="font-bold text-[#2E2E2E]">Nidhi Trivedi</span>
+              <span className="text-[#625f5c] text-[11px]">Navrangpura, Ahmedabad</span>
+            </div>
+          </div>
+
+          <div className="bg-white p-4 sm:p-5 rounded-2xl border border-[#DDD5CD] shadow-sm space-y-2.5 sm:space-y-3">
+            <div className="flex text-amber-500">
+              {[...Array(5)].map((_, i) => <Star key={i} className="w-3.5 h-3.5 fill-current" />)}
+            </div>
+            <p className="text-xs text-[#2E2E2E] italic leading-relaxed">
+              "Had my Nanoplastia hair treatment done here. My coarse frizzy hair became so soft and glossy. Best beauty salon experience in Ahmedabad hands down."
+            </p>
+            <div className="pt-2 border-t border-[#DDD5CD] flex items-center justify-between text-xs">
+              <span className="font-bold text-[#2E2E2E]">Priyanka Joshi</span>
+              <span className="text-[#625f5c] text-[11px]">Prahlad Nagar, Ahmedabad</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 7. Complete Salon Footer */}
+      <footer className={`bg-[#2E2E2E] text-white border-t border-[#DDD5CD] ${isMobileView ? 'pt-8 pb-5 px-3' : 'pt-10 pb-6 px-4 sm:px-6'}`}>
+        <div className={`max-w-7xl mx-auto grid pb-6 sm:pb-8 border-b border-neutral-700 ${isMobileView ? 'grid-cols-1 gap-6 text-center' : 'grid-cols-1 md:grid-cols-4 gap-8'}`}>
+          <div className={`space-y-2 sm:space-y-3 md:col-span-1 ${isMobileView ? 'flex flex-col items-center' : ''}`}>
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 rounded-full bg-[#7D4047] text-white flex items-center justify-center font-bold">
+                <Sparkles className="w-4 h-4" />
+              </div>
+              <span className="font-heading font-black text-sm text-white tracking-tight">GLAMOUR & GLOW</span>
+            </div>
+            <p className="text-xs text-neutral-400 leading-relaxed">
+              Premier luxury bridal salon, keratin studio & dermatological aesthetics center in Ahmedabad.
+            </p>
+          </div>
+
+          <div className="space-y-1.5 sm:space-y-2 text-xs">
+            <h4 className="font-bold text-pink-300 uppercase tracking-wider text-[11px]">Studio Timings</h4>
+            <p className="text-neutral-300">Tue &ndash; Sat: 10:00 AM &ndash; 08:30 PM</p>
+            <p className="text-neutral-300">Sun: 10:00 AM &ndash; 07:00 PM</p>
+            <p className="text-neutral-400 text-[11px]">Mondays Sanitization Rest</p>
+          </div>
+
+          <div className="space-y-1.5 sm:space-y-2 text-xs">
+            <h4 className="font-bold text-pink-300 uppercase tracking-wider text-[11px]">Location & Parking</h4>
+            <p className="text-neutral-300">Drive-In Road, Opp. Himalaya Mall,</p>
+            <p className="text-neutral-300">Bodakdev, Ahmedabad 380054</p>
+            <p className="text-neutral-400 text-[11px]">Reserved Basement Parking</p>
+          </div>
+
+          <div className="space-y-1.5 sm:space-y-2 text-xs">
+            <h4 className="font-bold text-pink-300 uppercase tracking-wider text-[11px]">Appointments Desk</h4>
+            <p className="text-neutral-300">Bridal Desk: +91 98250 23456</p>
+            <p className="text-neutral-300">WhatsApp: +91 98250 23456</p>
+            <p className="text-neutral-400 text-[11px]">Advance Booking Recommended</p>
+          </div>
+        </div>
+
+        <div className={`max-w-7xl mx-auto pt-4 sm:pt-6 flex items-center justify-between text-[11px] text-neutral-400 gap-2 ${isMobileView ? 'flex-col text-center' : 'flex-col sm:flex-row'}`}>
+          <span>&copy; {new Date().getFullYear()} Glamour & Glow Studio. All Rights Reserved.</span>
+          <span>Crafted with pure performance &bull; Powered by THE WEBCRAFT</span>
+        </div>
+      </footer>
+
       {/* 6. Demo Project Floating Banner */}
-      <div className="bg-[#2E2E2E] text-white p-3 sm:p-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs border-t border-[#DDD5CD]">
+      <div className={`bg-[#2E2E2E] text-white p-3 sm:p-4 flex items-center justify-between gap-2 text-xs border-t border-[#DDD5CD] ${isMobileView ? 'flex-col text-center' : 'flex-col sm:flex-row'}`}>
         <div className="flex items-center gap-2">
           <span className="w-2.5 h-2.5 rounded-full bg-pink-400 animate-pulse" />
           <span><strong>Client Demo:</strong> Glamour & Glow Salon &bull; Built by <strong>THE WEBCRAFT</strong></span>
         </div>
         <button
           onClick={onOrderDesign}
-          className="px-3.5 py-1.5 rounded-lg bg-[#7D4047] hover:bg-[#67333a] text-white font-bold flex items-center gap-1.5"
+          className={`px-3.5 py-1.5 rounded-lg bg-[#7D4047] hover:bg-[#67333a] text-white font-bold flex items-center gap-1.5 ${isMobileView ? 'w-full justify-center' : ''}`}
         >
           <span>Get A Salon Website (₹5k Adv)</span>
           <ArrowRight className="w-3.5 h-3.5" />

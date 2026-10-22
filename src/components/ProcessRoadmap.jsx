@@ -4,10 +4,8 @@ import {
   HelpCircle, ShieldCheck, RefreshCw, FileText, ArrowRight 
 } from 'lucide-react';
 import { PROCESS_STAGES, COMPANY_CONFIG } from '../data/pricingData';
-import { useOrderOffer } from '../utils/orderTracker';
 
 export default function ProcessRoadmap() {
-  const { isOfferActive, slotsRemaining } = useOrderOffer();
   return (
     <section id="process" className="py-8 sm:py-20 bg-[#F1ECE6] border-t border-[#DDD5CD]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -77,7 +75,7 @@ export default function ProcessRoadmap() {
         <div className="mt-6 sm:mt-14 bg-white rounded-xl sm:rounded-2xl border-2 border-[#DDD5CD] p-4 sm:p-8 shadow-soft">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-8 items-center">
             
-            <div className={`${isOfferActive ? 'lg:col-span-8' : 'lg:col-span-12'} space-y-3 sm:space-y-4`}>
+            <div className="lg:col-span-12 space-y-3 sm:space-y-4">
               <div className="flex items-center gap-2 text-xs font-bold text-[#7D4047] uppercase tracking-wider">
                 <FileText className="w-4 h-4" />
                 <span>Fair Scope &amp; Transparent Revisions Policy</span>
@@ -99,33 +97,10 @@ export default function ProcessRoadmap() {
                 </div>
                 <div className="flex items-start gap-2">
                   <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                  <span><strong>Zero Upfront Risk:</strong> No online payment required on website. Review your full working demo before final handover.</span>
+                  <span><strong>Zero Upfront Risk:</strong> No online payment required on website. Pay on WhatsApp only after you see your website completed, and before it goes live on the browser.</span>
                 </div>
               </div>
             </div>
-
-            {/* Automatically deleted/removed after 10 orders */}
-            {isOfferActive && (
-              <div className="lg:col-span-4 bg-[#2E2E2E] text-white p-6 rounded-xl space-y-4 animate-in fade-in duration-300">
-                <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#7D4047] text-white text-[10px] font-bold">
-                  <Sparkles className="w-3 h-3" />
-                  Special Privilege
-                </div>
-                <h4 className="font-heading font-bold text-lg text-white">
-                  First 10 Customers Discount
-                </h4>
-                <p className="text-xs text-[#DDD5CD] leading-relaxed">
-                  Save 15% on any website tier! Only {slotsRemaining} promo {slotsRemaining === 1 ? 'spot remains' : 'spots remain'} at this promotional rate.
-                </p>
-                <a
-                  href="#order-form"
-                  className="w-full py-2.5 rounded-xl bg-[#7D4047] hover:bg-[#67333a] text-white text-xs font-bold flex items-center justify-center gap-2 transition-all shadow-wine"
-                >
-                  <span>Claim Your 15% Off Slot</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </a>
-              </div>
-            )}
 
           </div>
         </div>

@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { 
   Code2, Cpu, Database, Zap, ShieldCheck, CheckCircle2, 
   ArrowRight, Layers, LayoutDashboard, Terminal, Activity, 
-  Settings, Check, Sparkles, Server, Lock, ExternalLink
+  Settings, Check, Sparkles, Server, Lock, ExternalLink,
+  Phone, Clock, MapPin
 } from 'lucide-react';
 
 export default function CustomBuildDemo({ onOrderDesign, isMobileView }) {
@@ -138,7 +139,7 @@ export default function CustomBuildDemo({ onOrderDesign, isMobileView }) {
             </div>
 
             {/* Metric KPI Cards */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className={`grid gap-4 ${isMobileView ? 'grid-cols-1' : 'grid-cols-2 lg:grid-cols-4'}`}>
               <div className="bg-[#161920] border border-neutral-800 rounded-xl p-4 space-y-1">
                 <span className="text-[11px] text-neutral-400 font-mono">Today's Transactions</span>
                 <p className="text-xl sm:text-2xl font-black text-white font-mono">₹1,84,500</p>
@@ -228,7 +229,7 @@ export default function CustomBuildDemo({ onOrderDesign, isMobileView }) {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className={`grid gap-4 ${isMobileView ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-2'}`}>
               {availableModules.map((module) => {
                 const isSelected = selectedModules.includes(module.id);
                 return (
@@ -267,8 +268,8 @@ export default function CustomBuildDemo({ onOrderDesign, isMobileView }) {
         )}
 
         {/* 4. Real Client Verified Case Study */}
-        <div className="mt-10 bg-[#161920] border border-neutral-800 rounded-3xl p-6 sm:p-8 grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-          <div className="lg:col-span-8 space-y-3">
+        <div className={`mt-10 bg-[#161920] border border-neutral-800 rounded-3xl p-5 sm:p-8 grid gap-6 items-center ${isMobileView ? 'grid-cols-1' : 'grid-cols-1 lg:grid-cols-12'}`}>
+          <div className={`space-y-3 ${isMobileView ? '' : 'lg:col-span-8'}`}>
             <div className="flex items-center gap-1.5 text-amber-400 text-xs font-bold">
               <span>★ ★ ★ ★ ★</span>
               <span className="text-neutral-400 font-normal ml-1">Ahmedabad Enterprise Case Study</span>
@@ -289,7 +290,7 @@ export default function CustomBuildDemo({ onOrderDesign, isMobileView }) {
             </div>
           </div>
 
-          <div className="lg:col-span-4 bg-[#0f1115] border border-neutral-800 p-5 rounded-2xl space-y-3 text-center">
+          <div className={`bg-[#0f1115] border border-neutral-800 p-5 rounded-2xl space-y-3 text-center ${isMobileView ? '' : 'lg:col-span-4'}`}>
             <span className="text-[11px] text-neutral-400 font-mono uppercase tracking-wider block">Custom Build Baseline</span>
             <div className="text-3xl font-black text-white font-mono">₹18,500</div>
             <p className="text-[11px] text-neutral-400">
@@ -303,7 +304,86 @@ export default function CustomBuildDemo({ onOrderDesign, isMobileView }) {
             </button>
           </div>
         </div>
+
+        {/* 5. Direct Engineering Consultation Strip */}
+        <div className={`mt-8 bg-[#161920] border border-neutral-800 rounded-3xl p-5 sm:p-8 flex items-center justify-between gap-6 ${isMobileView ? 'flex-col text-center' : 'flex-col lg:flex-row text-center lg:text-left'}`}>
+          <div className={`space-y-1.5 ${isMobileView ? 'text-center' : 'text-center lg:text-left'}`}>
+            <span className="text-[10px] font-mono text-emerald-400 uppercase tracking-widest">Engineering Discovery Call</span>
+            <h3 className="text-base sm:text-lg font-extrabold text-white font-heading">
+              Speak Directly with Our Lead Systems Architect
+            </h3>
+            <p className="text-xs text-neutral-400 max-w-xl">
+              Discuss database schema, API webhook payloads, third-party ERP integrations, or custom high-concurrency architecture. Zero sales reps, direct developer conversation.
+            </p>
+            <div className={`flex flex-wrap items-center gap-3 pt-1 text-xs text-neutral-400 ${isMobileView ? 'justify-center' : ''}`}>
+              <span className="text-emerald-400 font-mono font-bold">Latency SLA: &lt; 50ms</span>
+              <span>&bull;</span>
+              <span>Zero WordPress &bull; Pure React 19 & Node.js</span>
+            </div>
+          </div>
+
+          <div className={`flex flex-wrap items-center gap-3 shrink-0 ${isMobileView ? 'w-full flex-col' : ''}`}>
+            <a
+              href="tel:+919825000000"
+              className={`px-5 py-3 rounded-2xl bg-[#7D4047] hover:bg-[#67333a] text-white text-xs font-bold uppercase tracking-wider flex items-center gap-2 shadow-wine transition-all ${isMobileView ? 'w-full justify-center' : ''}`}
+            >
+              <Phone className="w-4 h-4" />
+              <span>Dev Desk: +91 98250 12345</span>
+            </a>
+            <a
+              href="https://wa.me/919825012345"
+              target="_blank"
+              rel="noreferrer"
+              className={`px-4 py-3 rounded-2xl bg-neutral-800 hover:bg-neutral-700 text-white text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 ${isMobileView ? 'w-full justify-center' : ''}`}
+            >
+              <span>WhatsApp Engineering</span>
+            </a>
+          </div>
+        </div>
       </main>
+
+      {/* Complete Engineering Footer */}
+      <footer className="bg-black text-white pt-10 pb-6 px-4 sm:px-6 border-t border-neutral-800 mt-12">
+        <div className={`max-w-7xl mx-auto grid pb-8 border-b border-neutral-800 ${isMobileView ? 'grid-cols-1 gap-6 text-center' : 'grid-cols-1 md:grid-cols-4 gap-8'}`}>
+          <div className={`space-y-3 md:col-span-1 ${isMobileView ? 'flex flex-col items-center' : ''}`}>
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 rounded-lg bg-[#7D4047] text-white flex items-center justify-center font-bold">
+                <Code2 className="w-4 h-4" />
+              </div>
+              <span className="font-heading font-black text-sm text-white tracking-widest uppercase">THE WEBCRAFT LABS</span>
+            </div>
+            <p className="text-xs text-neutral-400 leading-relaxed">
+              Bespoke full-stack web engineering, custom ERP portals & high-frequency webhook engines crafted in Ahmedabad.
+            </p>
+          </div>
+
+          <div className="space-y-2 text-xs">
+            <h4 className="font-bold text-amber-400 uppercase tracking-widest text-[11px]">Core Capabilities</h4>
+            <p className="text-neutral-300">Custom B2B Quotation Calculators</p>
+            <p className="text-neutral-300">Automated Dispatch & Fleet Portals</p>
+            <p className="text-neutral-300">Fast Banking UPI Reconciliation</p>
+          </div>
+
+          <div className="space-y-2 text-xs">
+            <h4 className="font-bold text-amber-400 uppercase tracking-widest text-[11px]">Engineering SLAs</h4>
+            <p className="text-neutral-300">99.99% Server Uptime Guarantee</p>
+            <p className="text-neutral-300">Sub-0.5s Global Core Web Vitals</p>
+            <p className="text-neutral-500 text-[11px]">Zero Plugin Dependency Bloat</p>
+          </div>
+
+          <div className="space-y-2 text-xs">
+            <h4 className="font-bold text-amber-400 uppercase tracking-widest text-[11px]">Direct Architecture Desk</h4>
+            <p className="text-neutral-300">Hotline: +91 98250 12345</p>
+            <p className="text-neutral-300">SG Highway, Ahmedabad, Gujarat</p>
+            <p className="text-neutral-500 text-[11px]">Only ₹5,000 Advance to Start</p>
+          </div>
+        </div>
+
+        <div className={`max-w-7xl mx-auto pt-6 flex items-center justify-between text-xs text-neutral-500 gap-2 ${isMobileView ? 'flex-col text-center' : 'flex-col sm:flex-row'}`}>
+          <span>&copy; {new Date().getFullYear()} THE WEBCRAFT Engineering Labs. All Rights Reserved.</span>
+          <span>Crafted with pure code &bull; Zero templates</span>
+        </div>
+      </footer>
 
     </div>
   );

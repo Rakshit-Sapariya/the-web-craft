@@ -10,7 +10,8 @@ export default function OrderPage({ selectedCategory, prefilledBudget, onProceed
   const [activeOrderData, setActiveOrderData] = useState(null);
 
   const queryCategory = searchParams.get('category') || selectedCategory || 'landing';
-  const queryBudget = parseInt(searchParams.get('budget')) || prefilledBudget || 13000;
+  const queryBudget = searchParams.get('budget') ? parseInt(searchParams.get('budget'), 10) : (prefilledBudget || null);
+  const queryAddons = searchParams.get('addons') ? searchParams.get('addons').split(',').filter(Boolean) : [];
 
   const handlePaymentInitiate = (payload) => {
     setActiveOrderData(payload);
@@ -45,6 +46,7 @@ export default function OrderPage({ selectedCategory, prefilledBudget, onProceed
       <OrderForm
         preselectedCategory={queryCategory}
         prefilledBudget={queryBudget}
+        prefilledAddons={queryAddons}
         onProceedToPayment={handlePaymentInitiate}
       />
 

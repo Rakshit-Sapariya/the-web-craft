@@ -8,6 +8,10 @@ import PricingPage from './pages/PricingPage';
 import OrderPage from './pages/OrderPage';
 import TrackingPage from './pages/TrackingPage';
 import AdminPage from './pages/AdminPage';
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
+import ClientPreviewPage from './pages/ClientPreviewPage';
+import DiscountPopupModal from './components/DiscountPopupModal';
+import ErrorBoundary from './components/ErrorBoundary';
 
 // Scroll to top helper on route change
 function ScrollToTop() {
@@ -20,9 +24,12 @@ function ScrollToTop() {
   return null;
 }
 
-export default function App() {
+function MainLayout() {
+  const { pathname } = useLocation();
   const [selectedCategory, setSelectedCategory] = useState('landing');
-  const [prefilledBudget, setPrefilledBudget] = useState(13000);
+  const [prefilledBudget, setPrefilledBudget] = useState(null);
+
+  const isPreview = pathname.startsWith('/preview');
 
   const handleSelectCategory = (catId) => {
     setSelectedCategory(catId);
@@ -39,14 +46,14 @@ export default function App() {
   };
 
   return (
-    <BrowserRouter>
-      <ScrollToTop />
-      <div className="min-h-screen bg-[#F1ECE6] text-[#2E2E2E] flex flex-col selection:bg-[#7D4047] selection:text-white overflow-x-hidden w-full max-w-[100vw]">
-        {/* Navigation */}
-        <Navbar />
+    <div className={`min-h-screen ${isPreview ? 'bg-gray-900' : 'bg-[#F1ECE6] text-[#2E2E2E] flex flex-col selection:bg-[#7D4047] selection:text-white'} overflow-x-hidden w-full max-w-[100vw]`}>
+      {!isPreview && <Navbar />}
 
-        {/* Dedicated Routed Pages */}
-        <main className="flex-1">
+      {/* Early-Bird Discount Popup Announcement */}
+      {!isPreview && <DiscountPopupModal />}
+
+      <main className="flex-1">
+        <ErrorBoundary>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route 
@@ -73,12 +80,22 @@ export default function App() {
             />
             <Route path="/track" element={<TrackingPage />} />
             <Route path="/admin" element={<AdminPage />} />
+            <Route path="/preview/:token" element={<ClientPreviewPage />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
           </Routes>
-        </main>
+        </ErrorBoundary>
+      </main>
 
-        {/* Persistent Footer */}
-        <Footer />
-      </div>
+      {!isPreview && <Footer />}
+    </div>
+  );
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <ScrollToTop />
+      <MainLayout />
     </BrowserRouter>
   );
 }
