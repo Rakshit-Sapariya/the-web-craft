@@ -1226,7 +1226,26 @@ app.post('/api/ai/mind/refresh-now', requireAdminAuth, async (req, res) => {
   }
 });
 
-// 9. Serve Production Built Frontend Assets & Single-Page Application (SPA)
+// 9. Search Engine Crawlers: Explicit robots.txt & sitemap.xml endpoints
+app.get('/robots.txt', (req, res) => {
+  const robotsPath = path.join(__dirname, '..', 'public', 'robots.txt');
+  if (fs.existsSync(robotsPath)) {
+    res.type('text/plain').sendFile(robotsPath);
+  } else {
+    res.type('text/plain').send("User-agent: *\nAllow: /\nDisallow: /admin\nDisallow: /api/\nSitemap: https://the-web-craft.onrender.com/sitemap.xml\n");
+  }
+});
+
+app.get('/sitemap.xml', (req, res) => {
+  const sitemapPath = path.join(__dirname, '..', 'public', 'sitemap.xml');
+  if (fs.existsSync(sitemapPath)) {
+    res.type('application/xml').sendFile(sitemapPath);
+  } else {
+    res.status(404).send('Sitemap not found');
+  }
+});
+
+// 10. Serve Production Built Frontend Assets & Single-Page Application (SPA)
 const distPath = path.join(__dirname, '..', 'dist');
 if (fs.existsSync(distPath)) {
   app.use(express.static(distPath, { dotfiles: 'allow' }));

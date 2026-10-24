@@ -1,0 +1,24 @@
+# The WebCraft - Global Robots Configuration
+# https://the-web-craft.onrender.com/
+
+User-agent: *
+Allow: /
+Allow: /track
+Allow: /preview/
+Disallow: /admin
+Disallow: /api/
+Disallow: /client-demos/
+Disallow: /uploads/
+
+# Googlebot Optimized Directives
+User-agent: Googlebot
+Allow: /
+Allow: /track
+Allow: /preview/
+Disallow: /admin
+Disallow: /api/
+Disallow: /client-demos/
+Disallow: /uploads/
+
+# Google Search Console XML Sitemap
+Sitemap: https://the-web-craft.onrender.com/sitemap.xml
