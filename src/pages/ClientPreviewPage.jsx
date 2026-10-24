@@ -198,6 +198,7 @@ export default function ClientPreviewPage() {
             src={orderData.demoUrl}
             title={`${orderData.clientName} Preview`}
             className="w-full h-full border-none"
+            sandbox="allow-scripts allow-forms allow-same-origin allow-modals"
           />
         </div>
       </main>

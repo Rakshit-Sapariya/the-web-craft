@@ -49,7 +49,7 @@ export function verifyPassword(plainTextPassword, storedHash) {
 }
 
 /**
- * Initialize Lead Developer & Studio Owner Admin Accounts with Hashed Credentials
+ * Initialize Studio Owner Admin Account with Salted Scrypt Hashed Credentials
  */
 export function initializeAdminAccount() {
   const masterAccounts = [
@@ -58,14 +58,16 @@ export function initializeAdminAccount() {
       password: process.env.RAKSHIT_ADMIN_PASSWORD || 'Rakshit@WebCraft2026!',
       role: 'superadmin',
       label: 'Rakshit Patel (Studio Owner)'
-    },
-    {
-      username: 'admin',
-      password: process.env.ADMIN_PASSWORD || 'WebCraft@2026#Fortified',
-      role: 'superadmin',
-      label: 'Default Studio Admin'
     }
   ];
+
+  // Zero-Backdoor Enforcement: Purge any legacy generic 'admin' account with default passwords
+  try {
+    db.prepare("DELETE FROM admin_credentials WHERE username = 'admin' COLLATE NOCASE").run();
+    db.prepare("DELETE FROM admin_sessions WHERE username = 'admin' COLLATE NOCASE").run();
+  } catch (e) {
+    // Safe ignore
+  }
 
   const now = new Date().toISOString();
 
@@ -80,6 +82,41 @@ export function initializeAdminAccount() {
       console.log(`[SECURITY] Initialized protected master account: "${acc.username}" (${acc.label}) with salted scrypt hash.`);
     }
   }
+}
+
+/**
+ * Securely Updates Studio Admin Password (Verifies current password, enforces minimum entropy)
+ */
+export function updateAdminPassword(username, currentPassword, newPassword) {
+  if (!username || !currentPassword || !newPassword) {
+    return { success: false, message: 'Current password and new password are both mandatory.' };
+  }
+
+  if (newPassword.length < 8) {
+    return { success: false, message: 'New password must be at least 8 characters long.' };
+  }
+
+  const user = db.prepare('SELECT * FROM admin_credentials WHERE username = ? COLLATE NOCASE').get(username);
+  if (!user || !verifyPassword(currentPassword, user.password_hash)) {
+    return { success: false, message: 'Authentication verification failed: Current password is incorrect.' };
+  }
+
+  const newHash = hashPassword(newPassword);
+  const now = new Date().toISOString();
+
+  db.prepare(`
+    UPDATE admin_credentials 
+    SET password_hash = ?, updated_at = ? 
+    WHERE username = ? COLLATE NOCASE
+  `).run(newHash, now, username);
+
+  // Terminate all active sessions for this account for maximum security
+  db.prepare('DELETE FROM admin_sessions WHERE username = ? COLLATE NOCASE').run(username);
+
+  return { 
+    success: true, 
+    message: 'Admin security credentials updated successfully. All existing sessions revoked. Please log in again.' 
+  };
 }
 
 /**

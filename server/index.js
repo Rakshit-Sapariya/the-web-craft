@@ -3,6 +3,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import multer from 'multer';
+import crypto from 'node:crypto';
 import path from 'node:path';
 import fs from 'node:fs';
 import { fileURLToPath } from 'node:url';
@@ -21,7 +22,8 @@ import {
   revokeAdminSession,
   checkLoginRateLimit,
   recordFailedLogin,
-  recordSuccessfulLogin
+  recordSuccessfulLogin,
+  updateAdminPassword
 } from './auth.js';
 
 // Enforce production mode for security & zero-debug leakage
@@ -36,8 +38,12 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Admin authentication secret for managing studio records
-const ADMIN_SECRET = process.env.ADMIN_SECRET_KEY || 'twc_lead_dev_secure_key_2026';
+// Enable Trust Proxy for GoDaddy, reverse proxies, and Cloudflare to prevent IP spoofing
+app.set('trust proxy', 1);
+app.disable('x-powered-by');
+
+// Admin authentication secret for managing studio records (Strict: Never use public default in production)
+const ADMIN_SECRET = process.env.ADMIN_SECRET_KEY;
 
 // ============================================================================
 // 🛡️ CYBERSECURITY CONFIGURATION & HARDENING (ANTI-HACKER & ZERO-AD POLICY)
@@ -256,6 +262,23 @@ const ALLOWED_EXTENSIONS = new Set([
   '.png', '.jpg', '.jpeg', '.webp', '.pdf', '.zip', '.rar', '.7z', '.doc', '.docx', '.fig'
 ]);
 
+// Explicit blacklist of dangerous/executable MIME types (blocks script injection & SVG-based stored XSS)
+const BLOCKED_MIME_TYPES = new Set([
+  'text/html',
+  'application/xhtml+xml',
+  'application/javascript',
+  'text/javascript',
+  'application/x-javascript',
+  'application/x-php',
+  'application/x-httpd-php',
+  'application/x-sh',
+  'application/x-csh',
+  'application/x-bat',
+  'application/x-powershell',
+  'application/x-msdownload',
+  'image/svg+xml',
+]);
+
 // Setup file uploads directory
 const uploadsDir = path.join(__dirname, '..', 'uploads');
 if (!fs.existsSync(uploadsDir)) {
@@ -292,6 +315,12 @@ const upload = multer({
     if (!ALLOWED_EXTENSIONS.has(ext)) {
       return cb(new Error(`Security Alert: The file type "${ext}" is blocked. Executable or web-executable files are strictly forbidden.`));
     }
+
+    const mime = (file.mimetype || '').toLowerCase();
+    if (BLOCKED_MIME_TYPES.has(mime)) {
+      return cb(new Error(`Security Alert: The MIME type "${mime}" is prohibited due to security policy.`));
+    }
+
     cb(null, true);
   },
 });
@@ -311,7 +340,12 @@ app.get('/uploads/:filename', (req, res) => {
   }
 
   const filePath = path.join(uploadsDir, safeName);
-  if (!fs.existsSync(filePath)) {
+  const resolvedPath = path.resolve(filePath);
+  if (!resolvedPath.startsWith(path.resolve(uploadsDir))) {
+    return res.status(400).json({ success: false, message: 'Security Alert: Path traversal attempt neutralized.' });
+  }
+
+  if (!fs.existsSync(resolvedPath)) {
     return res.status(404).json({ success: false, message: 'File not found.' });
   }
 
@@ -319,7 +353,7 @@ app.get('/uploads/:filename', (req, res) => {
   res.setHeader('Content-Security-Policy', "default-src 'none'");
   res.setHeader('X-Content-Type-Options', 'nosniff');
   res.setHeader('Content-Disposition', `attachment; filename="${safeName}"`);
-  res.sendFile(filePath);
+  res.sendFile(resolvedPath);
 });
 
 // Serve generated client websites with Strict Traversal Protection
@@ -332,9 +366,17 @@ app.use('/client-demos', (req, res, next) => {
   res.removeHeader('Content-Security-Policy');
   res.removeHeader('Content-Security-Policy-Report-Only');
   const cleanPath = decodeURIComponent(req.path);
+  
+  // Anti-traversal check & strict normalized sub-path confinement
   if (cleanPath.includes('..') || cleanPath.includes('\\') || cleanPath.includes('//') || cleanPath.includes('%00')) {
     return res.status(400).json({ success: false, message: 'Security Alert: Path traversal attempt neutralized.' });
   }
+
+  const resolvedTarget = path.resolve(clientBuildsDir, cleanPath.replace(/^\/+/, ''));
+  if (!resolvedTarget.startsWith(path.resolve(clientBuildsDir))) {
+    return res.status(400).json({ success: false, message: 'Security Alert: Path traversal attempt neutralized.' });
+  }
+
   next();
 }, express.static(clientBuildsDir, {
   dotfiles: 'ignore',
@@ -343,6 +385,7 @@ app.use('/client-demos', (req, res, next) => {
   setHeaders: (res) => {
     res.removeHeader('Content-Security-Policy');
     res.removeHeader('Content-Security-Policy-Report-Only');
+    res.setHeader('X-Content-Type-Options', 'nosniff');
   }
 }));
 
@@ -364,17 +407,23 @@ function requireAdminAuth(req, res, next) {
       req.adminUser = session.username;
       return next();
     }
-    // Also allow server secret key if explicitly matched with ADMIN_SECRET
-    if (token === ADMIN_SECRET) {
+  }
+
+  // 2. Direct Admin Secret Key Check (ONLY if custom ADMIN_SECRET_KEY is explicitly defined in .env and not the public dummy default)
+  const envSecret = process.env.ADMIN_SECRET_KEY;
+  if (envSecret && envSecret !== 'twc_lead_dev_secure_key_2026' && envSecret.length >= 16) {
+    const tokenCandidate = (typeof authHeader === 'string' && authHeader.startsWith('Bearer '))
+      ? authHeader.slice(7).trim()
+      : authHeader;
+
+    if (
+      typeof tokenCandidate === 'string' &&
+      tokenCandidate.length === envSecret.length &&
+      crypto.timingSafeEqual(Buffer.from(tokenCandidate), Buffer.from(envSecret))
+    ) {
       req.adminUser = 'server_admin';
       return next();
     }
-  }
-
-  // 2. Direct Admin Secret Key Check (for server/CLI scripts)
-  if (authHeader === ADMIN_SECRET) {
-    req.adminUser = 'server_admin';
-    return next();
   }
 
   return res.status(401).json({
@@ -458,6 +507,37 @@ app.get('/api/admin/verify', (req, res) => {
     return res.status(401).json({ authenticated: false });
   }
   res.json({ authenticated: true, username: session.username });
+});
+
+// Admin Password Update (Enforces Current-Password Verification & Revokes Old Sessions)
+app.post('/api/admin/change-password', requireAdminAuth, (req, res) => {
+  try {
+    const { currentPassword, newPassword } = req.body;
+    if (!currentPassword || !newPassword) {
+      return res.status(400).json({ 
+        success: false, 
+        message: 'Current password and new password are required.' 
+      });
+    }
+
+    const adminUsername = req.adminUser;
+    if (!adminUsername || adminUsername === 'server_admin') {
+      return res.status(400).json({ 
+        success: false, 
+        message: 'Password modification requires interactive session authentication.' 
+      });
+    }
+
+    const result = updateAdminPassword(adminUsername, currentPassword, newPassword);
+    if (!result.success) {
+      return res.status(400).json(result);
+    }
+
+    res.json(result);
+  } catch (error) {
+    console.error('Password change error:', error);
+    res.status(500).json({ success: false, message: 'Internal security error processing password change.' });
+  }
 });
 
 // 1. Health check & Live Security Audit Status
@@ -849,7 +929,8 @@ app.get('/api/offer-status', (req, res) => {
   });
 });
 
-app.post('/api/offer-status', (req, res) => {
+// Protected: Only authorized Studio Owner can update promotion progress counter
+app.post('/api/offer-status', requireAdminAuth, (req, res) => {
   const count = parseInt(req.body.count, 10);
   if (!isNaN(count)) {
     orderQueries.setOrderCount(Math.max(0, count));

@@ -46,6 +46,65 @@ export default function AdminPage() {
   const [mindRefreshing, setMindRefreshing] = useState(false);
   const [mindSubTab, setMindSubTab] = useState('thoughts'); // 'thoughts' | 'trends' | 'playbooks'
 
+  // Change Password Modal State
+  const [showPasswordModal, setShowPasswordModal] = useState(false);
+  const [currentPasswordInput, setCurrentPasswordInput] = useState('');
+  const [newPasswordInput, setNewPasswordInput] = useState('');
+  const [confirmPasswordInput, setConfirmPasswordInput] = useState('');
+  const [passwordChangeSubmitting, setPasswordChangeSubmitting] = useState(false);
+  const [passwordChangeError, setPasswordChangeError] = useState('');
+  const [passwordChangeMessage, setPasswordChangeMessage] = useState('');
+
+  const handleChangePassword = async (e) => {
+    e.preventDefault();
+    setPasswordChangeError('');
+    setPasswordChangeMessage('');
+
+    if (newPasswordInput !== confirmPasswordInput) {
+      setPasswordChangeError('New passwords do not match.');
+      return;
+    }
+    if (newPasswordInput.length < 8) {
+      setPasswordChangeError('New password must be at least 8 characters long.');
+      return;
+    }
+
+    setPasswordChangeSubmitting(true);
+    try {
+      const token = localStorage.getItem('twc_admin_token');
+      const res = await fetch('/api/admin/change-password', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          currentPassword: currentPasswordInput,
+          newPassword: newPasswordInput
+        })
+      });
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        throw new Error(data.message || 'Failed to update password');
+      }
+
+      setPasswordChangeMessage('Password successfully updated! Logging out for security...');
+      setTimeout(() => {
+        localStorage.removeItem('twc_admin_token');
+        setIsAuthenticated(false);
+        setShowPasswordModal(false);
+        setCurrentPasswordInput('');
+        setNewPasswordInput('');
+        setConfirmPasswordInput('');
+        setPasswordChangeMessage('');
+      }, 2000);
+    } catch (err) {
+      setPasswordChangeError(err.message || 'Error updating password');
+    } finally {
+      setPasswordChangeSubmitting(false);
+    }
+  };
+
   const loadMindStatus = async () => {
     try {
       const res = await api.getAgentMindStatus();
@@ -366,6 +425,19 @@ export default function AdminPage() {
           </div>
 
           <div className="flex items-center gap-3 relative z-10">
+            <button
+              onClick={() => {
+                setShowPasswordModal(true);
+                setPasswordChangeError('');
+                setPasswordChangeMessage('');
+              }}
+              className="px-4 py-2.5 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 text-xs font-bold flex items-center gap-2 transition-all border border-amber-500/30 active:scale-95"
+              title="Update Admin Security Credentials"
+            >
+              <Key className="w-3.5 h-3.5" />
+              <span>Change Password</span>
+            </button>
+
             <button
               onClick={loadData}
               disabled={loading}
@@ -1195,6 +1267,7 @@ export default function AdminPage() {
                       src={`/client-demos/${tourOrder.id}/index.html`}
                       title={`${tourOrder.client_name} Walkthrough`}
                       className="w-full h-full border-none"
+                      sandbox="allow-scripts allow-forms allow-same-origin allow-modals"
                     />
                   </div>
                 </div>
@@ -1281,6 +1354,127 @@ export default function AdminPage() {
                   Close
                 </button>
               </div>
+
+            </div>
+          </div>
+        )}
+
+        {/* Change Master Password Modal */}
+        {showPasswordModal && (
+          <div className="fixed inset-0 z-50 overflow-y-auto bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
+            <div className="bg-[#2E2E2E] text-white rounded-3xl max-w-md w-full p-6 sm:p-8 space-y-6 shadow-2xl border border-white/20">
+              
+              <div className="flex items-center justify-between pb-3 border-b border-white/10">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center border border-amber-500/30">
+                    <Key className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h3 className="font-heading font-extrabold text-base text-white">
+                      Update Studio Credentials
+                    </h3>
+                    <p className="text-[11px] text-gray-400">
+                      Salted Scrypt Hashing &bull; Instant Session Revocation
+                    </p>
+                  </div>
+                </div>
+                <button
+                  onClick={() => setShowPasswordModal(false)}
+                  className="text-gray-400 hover:text-white p-1 rounded-lg"
+                >
+                  <span className="text-xl font-bold">&times;</span>
+                </button>
+              </div>
+
+              {passwordChangeError && (
+                <div className="p-3 rounded-xl bg-rose-500/20 border border-rose-500/40 text-rose-300 text-xs font-medium text-center flex items-center justify-center gap-2">
+                  <AlertCircle className="w-4 h-4 shrink-0" />
+                  <span>{passwordChangeError}</span>
+                </div>
+              )}
+
+              {passwordChangeMessage && (
+                <div className="p-3 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-xs font-medium text-center flex items-center justify-center gap-2">
+                  <CheckCircle2 className="w-4 h-4 shrink-0" />
+                  <span>{passwordChangeMessage}</span>
+                </div>
+              )}
+
+              <form onSubmit={handleChangePassword} className="space-y-4">
+                <div className="space-y-1">
+                  <label className="text-[11px] font-bold uppercase tracking-wider text-gray-300">
+                    Current Password
+                  </label>
+                  <input
+                    type="password"
+                    value={currentPasswordInput}
+                    onChange={(e) => setCurrentPasswordInput(e.target.value)}
+                    placeholder="Enter current password"
+                    required
+                    className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 text-xs focus:outline-none focus:border-amber-400"
+                  />
+                </div>
+
+                <div className="space-y-1">
+                  <label className="text-[11px] font-bold uppercase tracking-wider text-gray-300">
+                    New Master Password
+                  </label>
+                  <input
+                    type="password"
+                    value={newPasswordInput}
+                    onChange={(e) => setNewPasswordInput(e.target.value)}
+                    placeholder="Min 8 characters (letters, numbers, symbols)"
+                    required
+                    minLength={8}
+                    className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 text-xs focus:outline-none focus:border-amber-400"
+                  />
+                  <p className="text-[10px] text-gray-400">
+                    Minimum 8 characters. Mix upper/lower case and numbers for maximum strength.
+                  </p>
+                </div>
+
+                <div className="space-y-1">
+                  <label className="text-[11px] font-bold uppercase tracking-wider text-gray-300">
+                    Confirm New Password
+                  </label>
+                  <input
+                    type="password"
+                    value={confirmPasswordInput}
+                    onChange={(e) => setConfirmPasswordInput(e.target.value)}
+                    placeholder="Re-type new master password"
+                    required
+                    minLength={8}
+                    className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 text-xs focus:outline-none focus:border-amber-400"
+                  />
+                </div>
+
+                <div className="pt-2 flex items-center justify-end gap-3">
+                  <button
+                    type="button"
+                    onClick={() => setShowPasswordModal(false)}
+                    className="px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-gray-300 text-xs font-semibold"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    disabled={passwordChangeSubmitting}
+                    className="px-5 py-2 rounded-xl bg-gradient-to-r from-amber-600 to-[#7D4047] hover:opacity-95 text-white text-xs font-bold shadow-lg transition-all active:scale-95 disabled:opacity-50 flex items-center gap-2"
+                  >
+                    {passwordChangeSubmitting ? (
+                      <>
+                        <RefreshCw className="w-3.5 h-3.5 animate-spin" />
+                        <span>Updating Security Hash...</span>
+                      </>
+                    ) : (
+                      <>
+                        <ShieldCheck className="w-3.5 h-3.5" />
+                        <span>Save &amp; Fortify Credentials</span>
+                      </>
+                    )}
+                  </button>
+                </div>
+              </form>
 
             </div>
           </div>
