@@ -9,7 +9,6 @@ import OrderPage from './pages/OrderPage';
 import TrackingPage from './pages/TrackingPage';
 import AdminPage from './pages/AdminPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
-import TermsOfServicePage from './pages/TermsOfServicePage';
 import ClientPreviewPage from './pages/ClientPreviewPage';
 import DiscountPopupModal from './components/DiscountPopupModal';
 import ErrorBoundary from './components/ErrorBoundary';
@@ -47,7 +46,7 @@ function MainLayout() {
   };
 
   return (
-    <div className={`min-h-screen ${isPreview ? 'bg-gray-900' : 'bg-[#FFF7E8] text-[#000000] flex flex-col selection:bg-[#355CDE] selection:text-white'} overflow-x-hidden w-full max-w-[100vw]`}>
+    <div className={`min-h-screen ${isPreview ? 'bg-gray-900' : 'bg-[#F1ECE6] text-[#2E2E2E] flex flex-col selection:bg-[#7D4047] selection:text-white'} overflow-x-hidden w-full max-w-[100vw]`}>
       {!isPreview && <Navbar />}
 
       {/* Early-Bird Discount Popup Announcement */}
@@ -83,8 +82,6 @@ function MainLayout() {
             <Route path="/admin" element={<AdminPage />} />
             <Route path="/preview/:token" element={<ClientPreviewPage />} />
             <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
-            <Route path="/terms" element={<TermsOfServicePage />} />
-            <Route path="/terms-of-service" element={<TermsOfServicePage />} />
           </Routes>
         </ErrorBoundary>
       </main>

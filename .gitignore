@@ -37,10 +37,7 @@ client-builds/
 uploads/*
 !uploads/.gitkeep
 
-# Prototypes
-prototype-3d.html
-prototype*.html
-
+# Editor directories and files
 .vscode/*
 !.vscode/extensions.json
 .idea

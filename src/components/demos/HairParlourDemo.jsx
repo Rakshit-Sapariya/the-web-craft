@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { 
   Scissors, Calendar, Clock, Star, Phone, MapPin, 
-  CheckCircle2, ArrowRight, ShieldCheck, User 
+  CheckCircle2, ArrowRight, ShieldCheck, Sparkles, User 
 } from 'lucide-react';
 
 export default function HairParlourDemo({ onOrderDesign, isMobileView }) {
@@ -39,13 +39,13 @@ export default function HairParlourDemo({ onOrderDesign, isMobileView }) {
   ];
 
   return (
-    <div className="bg-[#181818] text-[#FFF7E8] font-sans antialiased min-h-screen">
+    <div className="bg-[#181818] text-[#F1ECE6] font-sans antialiased min-h-screen">
       
       {/* 1. Header Bar */}
       <header className="bg-[#121212] border-b border-neutral-800 sticky top-0 z-20 px-4 py-3">
         <div className={`mx-auto flex items-center justify-between ${isMobileView ? 'flex-col gap-2' : 'max-w-7xl h-16'}`}>
           <div className="flex items-center gap-2.5">
-            <div className="w-9 h-9 rounded-xl bg-[#355CDE] text-white flex items-center justify-center font-bold shadow-sm">
+            <div className="w-9 h-9 rounded-xl bg-[#7D4047] text-white flex items-center justify-center font-bold shadow-sm">
               <Scissors className="w-5 h-5" />
             </div>
             <div>
@@ -58,7 +58,7 @@ export default function HairParlourDemo({ onOrderDesign, isMobileView }) {
             <span className="text-xs text-neutral-400 hidden sm:inline">Vastrapur Lake, Ahmedabad</span>
             <a
               href="#book"
-              className="px-4 py-1.5 rounded-xl bg-[#355CDE] hover:bg-[#2447B8] text-white text-xs font-bold uppercase tracking-wider"
+              className="px-4 py-1.5 rounded-xl bg-[#7D4047] hover:bg-[#67333a] text-white text-xs font-bold uppercase tracking-wider"
             >
               Book Chair
             </a>
@@ -82,7 +82,7 @@ export default function HairParlourDemo({ onOrderDesign, isMobileView }) {
             <div className="pt-2 flex flex-wrap gap-2.5">
               <a
                 href="#book"
-                className="px-5 py-2.5 rounded-xl bg-[#355CDE] hover:bg-[#2447B8] text-white text-xs font-bold uppercase tracking-wider shadow-wine"
+                className="px-5 py-2.5 rounded-xl bg-[#7D4047] hover:bg-[#67333a] text-white text-xs font-bold uppercase tracking-wider shadow-wine"
               >
                 Reserve Stylist Chair
               </a>
@@ -133,7 +133,7 @@ export default function HairParlourDemo({ onOrderDesign, isMobileView }) {
                 </div>
                 <a
                   href="#book"
-                  className="px-3 py-1.5 rounded-lg bg-[#355CDE] hover:bg-[#2447B8] text-white text-[11px] font-bold"
+                  className="px-3 py-1.5 rounded-lg bg-[#7D4047] hover:bg-[#67333a] text-white text-[11px] font-bold"
                 >
                   Select
                 </a>
@@ -179,7 +179,7 @@ export default function HairParlourDemo({ onOrderDesign, isMobileView }) {
             <div className="bg-[#1e1e1e] rounded-3xl p-6 border border-neutral-800 shadow-xl flex flex-col justify-between space-y-4">
               <div className="space-y-3">
                 <div className="w-10 h-10 rounded-2xl bg-amber-400/10 text-amber-400 flex items-center justify-center font-bold">
-                  <Star className="w-5 h-5 fill-current" />
+                  <Sparkles className="w-5 h-5" />
                 </div>
                 <div>
                   <span className="text-[10px] font-bold text-amber-400 uppercase">Bespoke Hospitality</span>
@@ -238,7 +238,7 @@ export default function HairParlourDemo({ onOrderDesign, isMobileView }) {
             <div className={`flex flex-wrap items-center gap-3 shrink-0 ${isMobileView ? 'w-full flex-col' : ''}`}>
               <a
                 href="tel:+919825034567"
-                className={`px-5 py-3 rounded-2xl bg-[#355CDE] hover:bg-[#2447B8] text-white text-xs font-bold uppercase tracking-wider flex items-center gap-2 shadow-wine transition-all ${isMobileView ? 'w-full justify-center' : ''}`}
+                className={`px-5 py-3 rounded-2xl bg-[#7D4047] hover:bg-[#67333a] text-white text-xs font-bold uppercase tracking-wider flex items-center gap-2 shadow-wine transition-all ${isMobileView ? 'w-full justify-center' : ''}`}
               >
                 <Phone className="w-4 h-4" />
                 <span>Call Chair Desk: +91 98250 34567</span>
@@ -312,7 +312,7 @@ export default function HairParlourDemo({ onOrderDesign, isMobileView }) {
         <div className={`max-w-7xl mx-auto grid pb-8 border-b border-neutral-800 ${isMobileView ? 'grid-cols-1 gap-6 text-center' : 'grid-cols-1 md:grid-cols-4 gap-8'}`}>
           <div className={`space-y-3 md:col-span-1 ${isMobileView ? 'flex flex-col items-center' : ''}`}>
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-[#355CDE] text-white flex items-center justify-center font-bold">
+              <div className="w-8 h-8 rounded-lg bg-[#7D4047] text-white flex items-center justify-center font-bold">
                 <Scissors className="w-4 h-4" />
               </div>
               <span className="font-heading font-black text-sm text-white tracking-widest uppercase">THE URBAN GENTLEMAN</span>
@@ -358,7 +358,7 @@ export default function HairParlourDemo({ onOrderDesign, isMobileView }) {
         </div>
         <button
           onClick={onOrderDesign}
-          className={`px-3.5 py-1.5 rounded-lg bg-[#355CDE] hover:bg-[#2447B8] text-white font-bold flex items-center gap-1.5 ${isMobileView ? 'w-full justify-center' : ''}`}
+          className={`px-3.5 py-1.5 rounded-lg bg-[#7D4047] hover:bg-[#67333a] text-white font-bold flex items-center gap-1.5 ${isMobileView ? 'w-full justify-center' : ''}`}
         >
           <span>Order A Barbershop Website (Zero Pay)</span>
           <ArrowRight className="w-3.5 h-3.5" />

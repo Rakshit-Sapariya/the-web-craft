@@ -20,31 +20,31 @@ export function generateAdminTour(order, buildResult, healResult, thoughtStream 
     tourSteps: [
       {
         step: 1,
-        title: 'Header & Brand Identity',
+        title: '🌟 Header & Brand Identity',
         description: `Custom branded navigation bar featuring "${client_name}" monogram, category tag, responsive desktop links, and instant WhatsApp inquiry badge.`,
         icon: 'Sparkles'
       },
       {
         step: 2,
-        title: 'High-Impact Hero Section',
+        title: '🎯 High-Impact Hero Section',
         description: 'Conversion-focused bold typography, value proposition tailored to client requirements, and dual primary CTAs (Explore Packages & Call Direct).',
         icon: 'Layout'
       },
       {
         step: 3,
-        title: 'Signature Services & Offerings',
+        title: '💼 Signature Services & Offerings',
         description: 'Interactive 3-column feature grid with hover-lift elevation cards highlighting consultation, quality execution, and direct support.',
         icon: 'Briefcase'
       },
       {
         step: 4,
-        title: 'Transparent Pricing Packages',
+        title: '💳 Transparent Pricing Packages',
         description: `Tailored pricing tiers matching the ₹${(final_budget || 0).toLocaleString('en-IN')} budget, highlighting standard and VIP all-inclusive options with direct booking.`,
         icon: 'DollarSign'
       },
       {
         step: 5,
-        title: 'Mobile-First Responsive & WhatsApp Action',
+        title: '📱 Mobile-First Responsive & WhatsApp Action',
         description: `100% mobile responsive layout with direct click-to-WhatsApp link mapped directly to client contact (${order.client_phone}).`,
         icon: 'Smartphone'
       }

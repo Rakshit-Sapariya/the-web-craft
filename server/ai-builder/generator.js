@@ -139,8 +139,7 @@ function synthesizeStudioWebsite(order, promptData) {
   <section class="relative overflow-hidden py-16 sm:py-24 bg-gradient-to-b from-white to-gray-50/50">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 text-center space-y-6">
       <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brandPrimary/10 text-brandPrimary text-xs font-bold uppercase tracking-wider">
-        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-        Official Business Portal &bull; Verified Build
+        ✨ Official Business Portal &bull; Verified Build
       </div>
       <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 tracking-tight leading-tight">
         ${escapeHtml(categoryInfo.defaultTagline)}
@@ -229,9 +228,9 @@ function synthesizeStudioWebsite(order, promptData) {
             <h3 class="text-2xl font-bold text-gray-900">Starter Package</h3>
             <div class="text-3xl font-black text-gray-900">₹${Math.round(budget * 0.6).toLocaleString('en-IN')}</div>
             <ul class="space-y-2 text-sm text-gray-600">
-              <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> Essential Service Suite</li>
-              <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> Standard Turnaround</li>
-              <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> WhatsApp Support</li>
+              <li class="flex items-center gap-2">✓ Essential Service Suite</li>
+              <li class="flex items-center gap-2">✓ Standard Turnaround</li>
+              <li class="flex items-center gap-2">✓ WhatsApp Support</li>
             </ul>
           </div>
           <a 
@@ -253,10 +252,10 @@ function synthesizeStudioWebsite(order, promptData) {
             <h3 class="text-2xl font-bold text-gray-900">All-Inclusive Master</h3>
             <div class="text-3xl font-black text-brandPrimary">₹${budget.toLocaleString('en-IN')}</div>
             <ul class="space-y-2 text-sm text-gray-600">
-              <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> VIP Priority Booking</li>
-              <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> Full Feature Deliverables</li>
-              <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> Dedicated Manager Support</li>
-              <li class="flex items-center gap-2"><svg class="w-4 h-4 text-emerald-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> Free Lifetime Consultation</li>
+              <li class="flex items-center gap-2">✓ VIP Priority Booking</li>
+              <li class="flex items-center gap-2">✓ Full Feature Deliverables</li>
+              <li class="flex items-center gap-2">✓ Dedicated Manager Support</li>
+              <li class="flex items-center gap-2">✓ Free Lifetime Consultation</li>
             </ul>
           </div>
           <a 

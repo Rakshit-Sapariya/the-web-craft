@@ -76,22 +76,22 @@ export default function ClientPreviewPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#FFF7E8] flex flex-col items-center justify-center space-y-4">
-        <RefreshCw className="w-8 h-8 text-[#355CDE] animate-spin" />
-        <p className="text-sm font-semibold text-[#000000]">Loading Client Staging Preview...</p>
+      <div className="min-h-screen bg-[#F1ECE6] flex flex-col items-center justify-center space-y-4">
+        <RefreshCw className="w-8 h-8 text-[#7D4047] animate-spin" />
+        <p className="text-sm font-semibold text-gray-700">Loading Client Staging Preview...</p>
       </div>
     );
   }
 
   if (error || !orderData) {
     return (
-      <div className="min-h-screen bg-[#FFF7E8] flex flex-col items-center justify-center p-6 text-center space-y-4">
+      <div className="min-h-screen bg-[#F1ECE6] flex flex-col items-center justify-center p-6 text-center space-y-4">
         <AlertCircle className="w-12 h-12 text-rose-600" />
-        <h2 className="text-2xl font-bold text-[#000000]">Preview Link Expired or Not Found</h2>
-        <p className="text-sm text-[#3D362E] max-w-md">
+        <h2 className="text-2xl font-bold text-gray-900">Preview Link Expired or Not Found</h2>
+        <p className="text-sm text-gray-600 max-w-md">
           {error || 'The preview for this order could not be retrieved. Please verify the URL or contact The WebCraft.'}
         </p>
-        <Link to="/" className="px-5 py-2.5 rounded-full bg-[#000000] hover:bg-[#355CDE] text-white text-xs font-bold transition-all active:scale-[0.98]">
+        <Link to="/" className="px-5 py-2.5 rounded-xl bg-[#7D4047] text-white text-xs font-bold">
           Return to Studio Home
         </Link>
       </div>
@@ -102,7 +102,7 @@ export default function ClientPreviewPage() {
     <div className="min-h-screen flex flex-col bg-gray-900 text-white overflow-hidden">
       
       {/* TOP FLOATING CLIENT ACTION HEADER */}
-      <header className="h-16 bg-[#000000] border-b border-white/10 px-4 sm:px-6 flex items-center justify-between shrink-0 shadow-lg z-30">
+      <header className="h-16 bg-[#2E2E2E] border-b border-white/10 px-4 sm:px-6 flex items-center justify-between shrink-0 shadow-lg z-30">
         <div className="flex items-center gap-3">
           <Link to="/" className="text-xs text-gray-400 hover:text-white flex items-center gap-1">
             <ArrowLeft className="w-3.5 h-3.5" />
@@ -115,7 +115,7 @@ export default function ClientPreviewPage() {
                 {orderData.clientName}
               </span>
               <span className="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-mono uppercase tracking-wider">
-                {orderData.ai_status === 'final_ready' ? 'Approved' : 'Draft Preview'}
+                {orderData.ai_status === 'final_ready' ? '✅ Approved' : 'Draft Preview'}
               </span>
             </div>
             <span className="text-[10px] text-gray-400 hidden sm:block">
@@ -125,11 +125,11 @@ export default function ClientPreviewPage() {
         </div>
 
         {/* Center: Device Viewport Switcher */}
-        <div className="hidden md:flex items-center gap-1 bg-white/5 p-1 rounded-full border border-white/10">
+        <div className="hidden md:flex items-center gap-1 bg-white/5 p-1 rounded-xl border border-white/10">
           <button
             onClick={() => setViewMode('desktop')}
-            className={`px-3.5 py-1 rounded-full text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer ${
-              viewMode === 'desktop' ? 'bg-[#355CDE] text-white shadow-xs' : 'text-gray-400 hover:text-white'
+            className={`px-3 py-1 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all ${
+              viewMode === 'desktop' ? 'bg-[#7D4047] text-white shadow-sm' : 'text-gray-400 hover:text-white'
             }`}
           >
             <Monitor className="w-3.5 h-3.5" />
@@ -137,8 +137,8 @@ export default function ClientPreviewPage() {
           </button>
           <button
             onClick={() => setViewMode('mobile')}
-            className={`px-3.5 py-1 rounded-full text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer ${
-              viewMode === 'mobile' ? 'bg-[#355CDE] text-white shadow-xs' : 'text-gray-400 hover:text-white'
+            className={`px-3 py-1 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all ${
+              viewMode === 'mobile' ? 'bg-[#7D4047] text-white shadow-sm' : 'text-gray-400 hover:text-white'
             }`}
           >
             <Smartphone className="w-3.5 h-3.5" />
@@ -205,8 +205,8 @@ export default function ClientPreviewPage() {
 
       {/* REQUEST CHANGES MODAL */}
       {showReviseModal && (
-        <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4">
-          <div className="bg-[#0B0C0E] border border-white/10 rounded-2xl p-6 sm:p-8 max-w-lg w-full space-y-6 shadow-xl">
+        <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-[#2E2E2E] border border-white/20 rounded-3xl p-6 sm:p-8 max-w-lg w-full space-y-6 shadow-2xl">
             <div className="space-y-1">
               <h3 className="text-xl font-bold text-white flex items-center gap-2">
                 <Edit3 className="w-5 h-5 text-amber-400" />

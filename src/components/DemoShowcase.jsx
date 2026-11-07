@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { 
   Laptop, Smartphone, ShoppingBag, Building2, UtensilsCrossed, 
-  HeartPulse, ArrowRight, Star, ExternalLink, CheckCircle2, 
-  Maximize2, X, Eye, ShieldCheck, Check, Scissors, Dumbbell, Cpu 
+  HeartPulse, ArrowRight, Star, ExternalLink, Sparkles, CheckCircle2, 
+  Maximize2, X, Eye, ShieldCheck, Check, Scissors, Dumbbell, Sparkle, Cpu 
 } from 'lucide-react';
 import EcommerceClientDemo from './demos/EcommerceClientDemo';
 import RealEstateClientDemo from './demos/RealEstateClientDemo';
@@ -21,7 +21,6 @@ export default function DemoShowcase({ onSelectCategoryForOrder }) {
     }
     return 'beautyparlour';
   });
-  const [isLoadingDemo, setIsLoadingDemo] = useState(false);
   const [viewMode, setViewMode] = useState(() => {
     if (typeof window !== 'undefined') {
       const m = new URLSearchParams(window.location.search).get('mode');
@@ -31,15 +30,6 @@ export default function DemoShowcase({ onSelectCategoryForOrder }) {
   }); // 'desktop' | 'mobile'
   const [isFullScreen, setIsFullScreen] = useState(false);
   const demoScrollRef = useRef(null);
-
-  const handleSwitchProject = (id) => {
-    if (id === activeProject) return;
-    setIsLoadingDemo(true);
-    setActiveProject(id);
-    setTimeout(() => {
-      setIsLoadingDemo(false);
-    }, 200);
-  };
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -70,9 +60,9 @@ export default function DemoShowcase({ onSelectCategoryForOrder }) {
       location: 'Drive-In, Ahmedabad',
       category: 'Beauty Parlour & Bridal Studio',
       tagline: 'Luxury bridal airbrush packages, pre-bridal skincare, private suite experience, and bride testimonials.',
-      stats: { rating: '5.0 (1.2k Reviews)', artists: 'Certified Artists', booking: 'Concierge Desk' },
-      icon: Star,
-      accentColor: '#355CDE',
+      stats: { rating: '5.0 ★ (1.2k Reviews)', artists: 'Certified Artists', booking: 'Concierge Desk' },
+      icon: Sparkles,
+      accentColor: '#7D4047',
     },
     {
       id: 'hairparlour',
@@ -81,9 +71,9 @@ export default function DemoShowcase({ onSelectCategoryForOrder }) {
       location: 'Vastrapur, Ahmedabad',
       category: 'Men Hair Parlour & Barber Lounge',
       tagline: 'Precision taper fades, straight razor beard sculpting, cold brew lounge, and master barber roster.',
-      stats: { rating: '4.9 (850 Reviews)', chairs: 'Master Barbers', vibe: 'Executive Lounge' },
+      stats: { rating: '4.9 ★ (850 Reviews)', chairs: 'Master Barbers', vibe: 'Executive Lounge' },
       icon: Scissors,
-      accentColor: '#000000',
+      accentColor: '#2E2E2E',
     },
     {
       id: 'restaurant',
@@ -92,9 +82,9 @@ export default function DemoShowcase({ onSelectCategoryForOrder }) {
       location: 'Sindhu Bhavan, Ahmedabad',
       category: 'Restaurant & Table Booking',
       tagline: 'Royal Awadhi dining with curated dining spaces, interactive a la carte menu, and table concierge.',
-      stats: { rating: '4.9 (3.4k Reviews)', tables: 'Fine Dining', award: 'Times Food 2025' },
+      stats: { rating: '4.9 ★ (3.4k Reviews)', tables: 'Fine Dining', award: 'Times Food 2025' },
       icon: UtensilsCrossed,
-      accentColor: '#000000',
+      accentColor: '#7D4047',
     },
     {
       id: 'gym',
@@ -103,9 +93,9 @@ export default function DemoShowcase({ onSelectCategoryForOrder }) {
       location: 'Prahladnagar, Ahmedabad',
       category: 'Gym & Fitness Center',
       tagline: '12,000 sq.ft strength arena with Eleiko lifting zones, Finnish sauna, cold plunge, and athlete testimonials.',
-      stats: { rating: '4.9 Rating', trainers: 'ACE Certified', facility: '12,000 Sq.Ft' },
+      stats: { rating: '4.9 ★', trainers: 'ACE Certified', facility: '12,000 Sq.Ft' },
       icon: Dumbbell,
-      accentColor: '#000000',
+      accentColor: '#7D4047',
     },
     {
       id: 'ecommerce',
@@ -114,9 +104,9 @@ export default function DemoShowcase({ onSelectCategoryForOrder }) {
       location: 'Ahmedabad & Mumbai',
       category: 'D2C E-Commerce Store',
       tagline: 'High-converting apparel store with live bag drawer, size selector, coupon codes, and customer reviews.',
-      stats: { speed: '0.6s Load', sales: '+54% Orders', rating: '5.0 Rating' },
+      stats: { speed: '0.6s Load', sales: '+54% Orders', rating: '5.0 ★' },
       icon: ShoppingBag,
-      accentColor: '#355CDE',
+      accentColor: '#7D4047',
     },
     {
       id: 'realestate',
@@ -125,7 +115,7 @@ export default function DemoShowcase({ onSelectCategoryForOrder }) {
       location: 'SG Highway, Ahmedabad',
       category: 'Real Estate & Infrastructure',
       tagline: 'Luxury 3 & 4 BHK sky-living portal with interactive floorplans, RERA badges, and architectural specifications.',
-      stats: { rera: 'RERA Approved', rating: '4.9 Rating', type: '3 & 4 BHK' },
+      stats: { rera: 'RERA Approved', rating: '4.9 ★', type: '3 & 4 BHK' },
       icon: Building2,
       accentColor: '#1C1C1C',
     },
@@ -136,7 +126,7 @@ export default function DemoShowcase({ onSelectCategoryForOrder }) {
       location: 'Satellite & Navrangpura',
       category: 'Healthcare & Clinic',
       tagline: 'NABH-accredited modern clinic platform with German 3D CBCT imaging, painless wand anesthesia, and clinical standards.',
-      stats: { rating: '4.9 (1.8k Reviews)', exp: '16+ Years', patients: '15,000+ Treated' },
+      stats: { rating: '4.9 ★ (1.8k Reviews)', exp: '16+ Years', patients: '15,000+ Treated' },
       icon: HeartPulse,
       accentColor: '#1e3a5f',
     },
@@ -147,9 +137,9 @@ export default function DemoShowcase({ onSelectCategoryForOrder }) {
       location: 'SG Highway & Prahladnagar, Ahmedabad',
       category: 'Custom Build Website & Bespoke Architecture',
       tagline: 'Handwritten React + Node architecture, live telemetry dashboard, automated API webhooks, and custom business workflows.',
-      stats: { speed: '0.4s Response', code: 'Handcrafted Clean Code', rating: '5.0 Rating' },
+      stats: { speed: '0.4s Response', code: 'Handcrafted Clean Code', rating: '5.0 ★' },
       icon: Cpu,
-      accentColor: '#000000',
+      accentColor: '#2E2E2E',
     },
   ];
 
@@ -199,79 +189,74 @@ export default function DemoShowcase({ onSelectCategoryForOrder }) {
   };
 
   return (
-    <section id="demos" className="py-12 sm:py-20 bg-[#FFF7E8] border-t border-[#E2D7C3]">
+    <section id="demos" className="py-12 sm:py-20 bg-[#F1ECE6] border-t border-[#DDD5CD]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-10 space-y-3">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-[#F1E8D8] border border-[#E2D7C3] text-[#355CDE] text-xs font-bold uppercase tracking-wider max-w-full">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#355CDE]" />
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#DDD5CD]/60 border border-[#DDD5CD] text-[#7D4047] text-xs font-bold uppercase tracking-wider max-w-full">
+            <Sparkles className="w-3.5 h-3.5 shrink-0" />
             <span className="truncate">Interactive Production Frontends ({clientProjects.length} Live Projects)</span>
           </div>
-          <h2 className="text-xl sm:text-3xl lg:text-4xl font-extrabold text-[#000000] tracking-tight px-2 leading-snug">
+          <h2 className="text-xl sm:text-3xl lg:text-4xl font-extrabold text-[#2E2E2E] tracking-tight px-2 leading-snug">
             Industry Website Demos Built by THE WEBCRAFT
           </h2>
-          <p className="text-xs sm:text-sm text-[#3D362E]">
+          <p className="text-xs sm:text-sm text-[#625f5c]">
             Real, commercial-grade websites for <strong>Beauty Parlours, Hair Salons, Restaurants, Gyms, E-Commerce, Real Estate, Healthcare, and Custom Portals ({clientProjects.length} Total)</strong>. Test their desktop and mobile view below.
           </p>
         </div>
 
-        {/* Project Selector Chips - Alternating Architectural Notch Geometry */}
+        {/* Project Selector Chips / Cards */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2.5 sm:gap-3.5 mb-6">
-          {clientProjects.map((proj, idx) => {
+          {clientProjects.map((proj) => {
             const isSelected = activeProject === proj.id;
             const Icon = proj.icon;
-            const shapeClass = isSelected
-              ? 'rounded-2xl rounded-tr-md'
-              : idx % 2 === 0
-              ? 'rounded-xl rounded-tr-[24px]'
-              : 'rounded-xl rounded-tl-[24px]';
 
             return (
               <div
                 key={proj.id}
-                onClick={() => handleSwitchProject(proj.id)}
-                className={`p-3.5 sm:p-4 ${shapeClass} border cursor-pointer transition-all duration-200 flex flex-col justify-between relative overflow-hidden group shadow-xs hover:shadow-md ${
+                onClick={() => setActiveProject(proj.id)}
+                className={`p-3.5 sm:p-4 rounded-2xl border-2 cursor-pointer transition-all duration-300 flex flex-col justify-between hover-glow-card relative overflow-hidden group ${
                   isSelected
-                    ? 'border-[#355CDE] bg-[#F1E8D8] ring-2 ring-[#355CDE]/30'
-                    : 'border-[#E2D7C3] bg-[#F1E8D8]/60 hover:bg-[#F1E8D8] hover:border-[#355CDE]/60'
+                    ? 'border-[#7D4047] bg-white shadow-elevated scale-[1.02] ring-2 ring-[#7D4047]/20'
+                    : 'border-[#DDD5CD] bg-white/75 hover:bg-white hover:border-[#7D4047]/40 shadow-soft'
                 }`}
               >
                 {/* Active indicator bar */}
                 {isSelected && (
-                  <div className="absolute top-0 left-0 right-0 h-1 bg-[#355CDE]" />
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-[#7D4047]" />
                 )}
 
                 <div>
                   <div className="flex items-center justify-between mb-2">
-                    <div className={`w-8 h-8 rounded-lg flex items-center justify-center font-bold ${
-                      isSelected ? 'bg-[#355CDE] text-white' : 'bg-[#355CDE]/10 text-[#355CDE]'
+                    <div className={`w-8 h-8 rounded-xl flex items-center justify-center font-bold transition-transform group-hover:scale-110 duration-200 ${
+                      isSelected ? 'bg-[#7D4047] text-white shadow-wine' : 'bg-[#7D4047]/10 text-[#7D4047]'
                     }`}>
                       <Icon className="w-4 h-4" />
                     </div>
                     {isSelected ? (
-                      <span className="text-[10px] font-bold text-white bg-[#355CDE] px-2.5 py-0.5 rounded-full flex items-center gap-1 shadow-xs">
+                      <span className="text-[10px] font-bold text-white bg-[#7D4047] px-2 py-0.5 rounded-full flex items-center gap-1 shadow-sm">
                         <Check className="w-2.5 h-2.5" />
                         <span>Previewing</span>
                       </span>
                     ) : (
-                      <span className="text-[10px] text-[#3D362E] font-semibold bg-[#E2D7C3]/50 px-2.5 py-0.5 rounded-full">
+                      <span className="text-[10px] text-[#625f5c] font-semibold bg-[#DDD5CD]/40 px-2 py-0.5 rounded-md">
                         {proj.location.split(',')[0]}
                       </span>
                     )}
                   </div>
 
-                  <span className="text-[10px] font-bold text-[#355CDE] uppercase tracking-wider block truncate">
+                  <span className="text-[10px] font-bold text-[#7D4047] uppercase tracking-wider block truncate">
                     {proj.category}
                   </span>
-                  <h3 className="font-heading font-extrabold text-xs sm:text-sm text-[#000000] mt-0.5 line-clamp-1 group-hover:text-[#355CDE] transition-colors">
+                  <h3 className="font-heading font-extrabold text-xs sm:text-sm text-[#2E2E2E] mt-0.5 line-clamp-1 group-hover:text-[#7D4047] transition-colors">
                     {proj.name}
                   </h3>
                 </div>
 
-                <div className="pt-2.5 border-t border-[#E2D7C3]/80 mt-2.5 flex items-center justify-between text-[11px]">
-                  <span className="text-[#3D362E] font-semibold">{Object.values(proj.stats)[0]}</span>
-                  <span className="text-[#355CDE] font-bold inline-flex items-center gap-0.5">
+                <div className="pt-2.5 border-t border-[#DDD5CD]/60 mt-2.5 flex items-center justify-between text-[11px]">
+                  <span className="text-[#625f5c] font-semibold">{Object.values(proj.stats)[0]}</span>
+                  <span className="text-[#7D4047] font-bold inline-flex items-center gap-0.5 group-hover:translate-x-1 transition-transform">
                     <span>Inspect</span>
                     <ArrowRight className="w-3 h-3" />
                   </span>
@@ -281,22 +266,22 @@ export default function DemoShowcase({ onSelectCategoryForOrder }) {
           })}
         </div>
 
-        {/* Control Bar: Viewport Switcher & Fullscreen Button - Stadium Capsule */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 mb-4 bg-[#F1E8D8] p-3 sm:px-5 sm:py-3 rounded-2xl sm:rounded-full border border-[#E2D7C3] shadow-xs">
+        {/* Control Bar: Viewport Switcher & Fullscreen Button */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 mb-4 bg-white p-3 rounded-2xl border border-[#DDD5CD] shadow-soft">
           <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-emerald-500" />
-            <span className="text-xs font-bold text-[#000000]">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="text-xs font-bold text-[#2E2E2E]">
               Selected: <strong>{currentProject.name}</strong> ({currentProject.category})
             </span>
           </div>
 
           <div className="flex flex-wrap items-center gap-2">
             {/* Viewport switch */}
-            <div className="flex items-center bg-[#FFF7E8] p-1 rounded-full border border-[#E2D7C3]">
+            <div className="flex items-center bg-[#F1ECE6] p-1 rounded-xl border border-[#DDD5CD]">
               <button
                 onClick={() => setViewMode('desktop')}
-                className={`inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-bold transition-all ${
-                  viewMode === 'desktop' ? 'bg-[#000000] text-white shadow-xs' : 'text-[#3D362E] hover:text-[#000000]'
+                className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-bold transition-all ${
+                  viewMode === 'desktop' ? 'bg-[#2E2E2E] text-white shadow-sm' : 'text-[#625f5c] hover:text-[#2E2E2E]'
                 }`}
               >
                 <Laptop className="w-3.5 h-3.5" />
@@ -304,8 +289,8 @@ export default function DemoShowcase({ onSelectCategoryForOrder }) {
               </button>
               <button
                 onClick={() => setViewMode('mobile')}
-                className={`inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-bold transition-all ${
-                  viewMode === 'mobile' ? 'bg-[#000000] text-white shadow-xs' : 'text-[#3D362E] hover:text-[#000000]'
+                className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-bold transition-all ${
+                  viewMode === 'mobile' ? 'bg-[#2E2E2E] text-white shadow-sm' : 'text-[#625f5c] hover:text-[#2E2E2E]'
                 }`}
               >
                 <Smartphone className="w-3.5 h-3.5" />
@@ -316,7 +301,7 @@ export default function DemoShowcase({ onSelectCategoryForOrder }) {
             {/* Fullscreen Button */}
             <button
               onClick={() => setIsFullScreen(true)}
-              className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#000000] hover:bg-neutral-800 text-white text-xs font-bold transition-all shadow-xs"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-[#2E2E2E] hover:bg-[#111] text-white text-xs font-bold shadow-sm"
               title="Open full immersive view"
             >
               <Maximize2 className="w-3.5 h-3.5" />
@@ -326,10 +311,10 @@ export default function DemoShowcase({ onSelectCategoryForOrder }) {
             {/* Direct Order Button */}
             <button
               onClick={() => handleOrderThisDesign(activeProject)}
-              className="inline-flex items-center gap-1 px-4 py-1.5 rounded-full bg-[#355CDE] hover:bg-[#2447B8] active:scale-[0.98] text-white text-xs font-bold transition-all shadow-xs"
+              className="inline-flex items-center gap-1 px-3.5 py-1.5 rounded-xl bg-[#7D4047] hover:bg-[#67333a] text-white text-xs font-bold shadow-wine"
             >
               <span>Order This Design</span>
-              <ArrowRight className="w-3.5 h-3.5 text-white" />
+              <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </div>
         </div>
@@ -339,54 +324,40 @@ export default function DemoShowcase({ onSelectCategoryForOrder }) {
           <div 
             className={`transition-all duration-300 w-full ${
               viewMode === 'mobile'
-                ? 'max-w-[400px] rounded-[36px] border-[8px] border-[#000000] p-2 bg-[#000000]'
-                : 'max-w-full rounded-xl border border-[#E2D7C3] bg-white overflow-hidden'
+                ? 'max-w-[400px] rounded-[44px] border-[10px] border-[#2E2E2E] shadow-2xl p-2 bg-[#2E2E2E]'
+                : 'max-w-full rounded-2xl border-2 border-[#DDD5CD] shadow-elevated bg-white overflow-hidden'
             }`}
           >
-            {/* Desktop Browser Bar (Clean semantic URL bar without fake Mac dots) */}
+            {/* Desktop Browser Bar */}
             {viewMode === 'desktop' && (
-              <div className="bg-[#000000] text-white px-4 py-2 flex items-center justify-between text-xs border-b border-neutral-800">
-                <div className="flex items-center gap-2 flex-1 max-w-md">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400" />
-                  <div className="bg-white/10 px-3 py-1 rounded text-[11px] font-mono text-neutral-300 w-full truncate">
-                    https://thewebcraft.com/demos/{activeProject}
-                  </div>
+              <div className="bg-[#2E2E2E] text-white px-4 py-2.5 flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <div className="w-2.5 h-2.5 rounded-full bg-red-400" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-amber-400" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
+                  <span className="text-[11px] font-mono text-neutral-400 ml-2">
+                    https://{activeProject}.thewebcraft.com
+                  </span>
                 </div>
-                <span className="text-[11px] font-bold text-[#355CDE] pl-2">
-                  Interactive Live Client Demo
+                <span className="text-[11px] font-bold text-amber-300">
+                  Fully Interactive Client Website
                 </span>
               </div>
             )}
 
             {/* Mobile Speaker Notch */}
             {viewMode === 'mobile' && (
-              <div className="w-20 h-2.5 bg-[#111] mx-auto rounded-b-md mb-1.5 flex items-center justify-center">
-                <div className="w-6 h-1 bg-[#333] rounded-full" />
+              <div className="w-24 h-3 bg-[#111] mx-auto rounded-b-xl mb-1.5 flex items-center justify-center">
+                <div className="w-8 h-1 bg-[#333] rounded-full" />
               </div>
             )}
 
-            {/* Scrollable Website Body with Skeleton Loader State */}
+            {/* Scrollable Website Body */}
             <div 
               ref={demoScrollRef}
-              className={`overflow-y-auto ${viewMode === 'mobile' ? 'max-h-[660px] rounded-[24px] bg-white' : 'max-h-[720px]'}`}
+              className={`overflow-y-auto ${viewMode === 'mobile' ? 'max-h-[660px] rounded-[28px] bg-white' : 'max-h-[720px]'}`}
             >
-              {isLoadingDemo ? (
-                <div className="p-6 space-y-4 animate-pulse bg-white min-h-[400px]">
-                  <div className="h-44 bg-[#E2D7C3]/30 rounded-lg w-full flex items-center justify-center text-xs text-[#3D362E] font-mono">
-                    Loading {currentProject.name} demo architecture...
-                  </div>
-                  <div className="space-y-2 pt-2">
-                    <div className="h-6 bg-[#E2D7C3]/50 rounded w-1/3" />
-                    <div className="h-4 bg-[#E2D7C3]/30 rounded w-2/3" />
-                  </div>
-                  <div className="grid grid-cols-2 gap-4 pt-4">
-                    <div className="h-32 bg-[#E2D7C3]/30 rounded-lg" />
-                    <div className="h-32 bg-[#E2D7C3]/30 rounded-lg" />
-                  </div>
-                </div>
-              ) : (
-                renderActiveDemoContent()
-              )}
+              {renderActiveDemoContent()}
             </div>
           </div>
         </div>
@@ -395,9 +366,9 @@ export default function DemoShowcase({ onSelectCategoryForOrder }) {
 
       {/* FULLSCREEN IMMERSIVE DEMO MODAL */}
       {isFullScreen && (
-        <div className="fixed inset-0 z-50 bg-[#000000] text-white flex flex-col overflow-hidden animate-in fade-in duration-200">
+        <div className="fixed inset-0 z-50 bg-[#2E2E2E] text-white flex flex-col overflow-hidden animate-in fade-in duration-200">
           {/* Top Control Bar */}
-          <div className="bg-[#000000] border-b border-neutral-800 px-4 sm:px-6 py-2.5 flex items-center justify-between gap-4 shrink-0">
+          <div className="bg-[#1C1C1C] border-b border-neutral-700 px-4 sm:px-6 py-2.5 flex items-center justify-between gap-4 shrink-0">
             <div className="flex items-center gap-2.5">
               <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
               <div>
@@ -413,7 +384,7 @@ export default function DemoShowcase({ onSelectCategoryForOrder }) {
             <div className="flex items-center gap-2.5">
               <button
                 onClick={() => handleOrderThisDesign(activeProject)}
-                className="px-4 py-2 rounded-xl bg-[#355CDE] hover:bg-[#2447B8] active:scale-[0.98] text-white text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 transition-all"
+                className="px-4 py-2 rounded-xl bg-[#7D4047] hover:bg-[#67333a] text-white text-xs font-bold uppercase tracking-wider shadow-wine flex items-center gap-1.5"
               >
                 <span>Order This Design</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -430,7 +401,7 @@ export default function DemoShowcase({ onSelectCategoryForOrder }) {
           </div>
 
           {/* Fullscreen Content */}
-          <div className="flex-1 overflow-y-auto bg-white text-[#000000]">
+          <div className="flex-1 overflow-y-auto bg-white text-[#2E2E2E]">
             {renderActiveDemoContent()}
           </div>
         </div>

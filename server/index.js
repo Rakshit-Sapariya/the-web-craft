@@ -46,7 +46,7 @@ app.disable('x-powered-by');
 const ADMIN_SECRET = process.env.ADMIN_SECRET_KEY;
 
 // ============================================================================
-// CYBERSECURITY CONFIGURATION & HARDENING (ANTI-HACKER & ZERO-AD POLICY)
+// 🛡️ CYBERSECURITY CONFIGURATION & HARDENING (ANTI-HACKER & ZERO-AD POLICY)
 // ============================================================================
 
 // 1. Helmet: Secure HTTP Headers, Strict CSP, Anti-Clickjacking & Anti-MIME sniffing
@@ -159,7 +159,7 @@ const globalLimiter = rateLimit({
   legacyHeaders: false,
   message: {
     success: false,
-    message: 'Rate limit reached. Automated request rate throttling active. Please try again shortly.',
+    message: '🛡️ Rate limit reached. Anti-bot protection active. Please try again in a few minutes.',
   },
 });
 app.use(globalLimiter);
@@ -172,7 +172,7 @@ const submitLimiter = rateLimit({
   legacyHeaders: false,
   message: {
     success: false,
-    message: 'Too many submissions from this IP. Please wait a few minutes before submitting again.',
+    message: '🛡️ Too many submissions from this IP. Please wait a few minutes to submit again.',
   },
 });
 
@@ -395,7 +395,7 @@ function requireAdminAuth(req, res, next) {
   if (!authHeader) {
     return res.status(401).json({
       success: false,
-      message: 'Unauthorized: Administrative security clearance required to access studio records.',
+      message: '🛡️ Unauthorized: Administrative security clearance required to access studio records.',
     });
   }
 
@@ -428,12 +428,12 @@ function requireAdminAuth(req, res, next) {
 
   return res.status(401).json({
     success: false,
-    message: 'Unauthorized: Invalid or expired administrative session.',
+    message: '🛡️ Unauthorized: Invalid or expired administrative session.',
   });
 }
 
 // ============================================================================
-// REST API ENDPOINTS
+// 📡 REST API ENDPOINTS
 // ============================================================================
 
 // 0. Dedicated Rate Limiters
@@ -444,12 +444,12 @@ const lookupLimiter = rateLimit({
   legacyHeaders: false,
   message: {
     success: false,
-    message: 'Too many project lookups from this IP. Please wait a few minutes.',
+    message: '🛡️ Too many project lookups from this IP. Please wait a few minutes.',
   },
 });
 
 // ============================================================================
-// FORTIFIED ADMIN AUTHENTICATION (SALTED SCRYPT HASH + CRYPTOGRAPHIC SESSIONS)
+// 🔐 FORTIFIED ADMIN AUTHENTICATION (SALTED SCRYPT HASH + CRYPTOGRAPHIC SESSIONS)
 // ============================================================================
 
 // Admin Login (Anti-Brute-Force Protected)
@@ -574,8 +574,8 @@ export function calculateOfferTier(count) {
       discountPercent: 50,
       tierSlotsRemaining: 100 - num,
       totalSlotsRemaining: 300 - num,
-      badgeText: 'Tier 1: 50% Flat Discount',
-      announcement: 'Tier 1 Exclusive: First 100 Clients Receive 50% Flat Discount'
+      badgeText: 'Tier 1: 50% FLAT DISCOUNT',
+      announcement: '⚡ Tier 1 Exclusive: First 100 Clients Get 50% OFF!'
     };
   } else if (num < 200) {
     return {
@@ -586,8 +586,8 @@ export function calculateOfferTier(count) {
       discountPercent: 25,
       tierSlotsRemaining: 200 - num,
       totalSlotsRemaining: 300 - num,
-      badgeText: 'Tier 2: 25% Flat Discount',
-      announcement: 'Tier 2 Special: Next 100 Clients Receive 25% Flat Discount'
+      badgeText: 'Tier 2: 25% FLAT DISCOUNT',
+      announcement: '⚡ Tier 2 Special: Next 100 Clients Get 25% OFF!'
     };
   } else if (num < 300) {
     return {
@@ -598,8 +598,8 @@ export function calculateOfferTier(count) {
       discountPercent: 15,
       tierSlotsRemaining: 300 - num,
       totalSlotsRemaining: 300 - num,
-      badgeText: 'Tier 3: 15% Flat Discount',
-      announcement: 'Tier 3 Final Wave: Final 100 Clients Receive 15% Flat Discount'
+      badgeText: 'Tier 3: 15% FLAT DISCOUNT',
+      announcement: '⚡ Tier 3 Final Wave: Final 100 Clients Get 15% OFF!'
     };
   } else {
     return {
@@ -1269,7 +1269,7 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`[THE WEBCRAFT] Secure Production Server & SQLite DB running on http://localhost:${PORT}`);
+  console.log(`[THE WEBCRAFT] 🛡️ 200% Fortified Server & SQLite DB running on http://localhost:${PORT}`);
   console.log(`[SECURITY] Helmet CSP active | Anti-DDoS rate-limiters active | Zero-Ad Policy enforced | Admin Auth active.`);
   
   // Start the 3-Hour Autonomous Mind Internet Scheduler

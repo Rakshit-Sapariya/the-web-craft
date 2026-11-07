@@ -8,6 +8,7 @@ import {
   ArrowUp, 
   ArrowUpRight, 
   ExternalLink,
+  Sparkles,
   Lock,
   Compass,
   CheckCircle2,
@@ -30,10 +31,10 @@ export default function Footer() {
     { num: '02', label: 'Live Frontend Demos', path: '/demos', badge: '8 Demos' },
     { num: '03', label: 'Pricing & Cost Calculator', path: '/pricing', badge: 'Estimator' },
     { num: '04', label: 'Book Custom Website', path: '/order', badge: 'Start' },
-    { num: '05', label: 'Client Reviews & Feedback', path: '/#reviews', badge: '4.98 Rating', isReview: true },
-    { num: '06', label: 'Privacy Policy', path: '/privacy-policy', badge: 'Charter', isPrivacy: true },
-    { num: '07', label: 'Terms of Service', path: '/terms', badge: 'TOS' },
-    { num: '08', label: 'Track Project Status', path: '/track', badge: 'Live', isTrack: true },
+    { num: '05', label: 'Client Reviews & Feedback', path: '/#reviews', badge: '★ 4.98', isReview: true },
+    { num: '06', label: 'Privacy & Security Charter', path: '/privacy-policy', badge: 'Encrypted', isPrivacy: true },
+    { num: '07', label: 'Track Project Status', path: '/track', badge: 'Live', isTrack: true },
+    { num: '08', label: 'Studio Admin Portal', path: '/admin', badge: 'Auth', isAdmin: true },
   ];
 
   const studioPolicies = [
@@ -64,32 +65,35 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="relative bg-[#000000] text-[#FFF7E8] border-t border-[#E2D7C3]/20 pt-16 pb-12 overflow-hidden selection:bg-[#355CDE] selection:text-white">
-      {/* Signature WebCraft Watermark Emblem in Dark Footer Background */}
+    <footer className="relative bg-[#1A1A1A] text-[#F1ECE6] border-t border-white/10 pt-16 pb-12 overflow-hidden selection:bg-[#7D4047] selection:text-white">
+      {/* Ambient background glow accents */}
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#7D4047]/10 rounded-full blur-3xl pointer-events-none -z-10" />
+      <div className="absolute bottom-0 right-10 w-80 h-80 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none -z-10" />
+
+      {/* Signature WebCraft Watermark Emblem in Dark Footer Background (from Photo 2) */}
       <div className="absolute right-0 bottom-0 translate-x-1/6 translate-y-1/6 w-[450px] lg:w-[580px] aspect-square pointer-events-none select-none opacity-[0.08] sm:opacity-[0.11] -z-10 flex items-center justify-center">
         <WebCraftWatermark className="w-full h-full" variant="original" opacity="opacity-100" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Main 3-Column Editorial Grid */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">        {/* Main 3-Column Editorial Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 items-start">
           
           {/* Column 1: Brand Typography & Direct Desk (5 cols) */}
           <div className="lg:col-span-5 space-y-6">
             
-            {/* Typographic Brand Lockup */}
+            {/* Typographic Brand Lockup (Visiting Card Logo & Style Adapted for Dark Theme) */}
             <div className="space-y-3">
               <WebCraftBrandLogo isDark={true} />
 
               {/* Styled Mission Statement with Typographic Highlights */}
-              <p className="text-xs sm:text-[13px] text-[#FFF7E8]/80 leading-relaxed max-w-md pt-1">
-                We engineer bespoke, high-performance web platforms for ambitious businesses. <span className="text-white font-medium">Zero generic template bloat</span>, <span className="text-white font-medium">zero third-party trackers</span>. Every pixel and query is handcrafted for conversion and sub-second speed.
+              <p className="text-xs sm:text-[13px] text-[#DDD5CD]/80 leading-relaxed max-w-md pt-1">
+                We engineer bespoke, high-performance web platforms for ambitious businesses. <span className="text-white font-medium">Zero generic template bloat</span>, <span className="text-white font-medium">zero third-party trackers</span> — every pixel and query is handcrafted for conversion and sub-second speed.
               </p>
             </div>
 
             {/* Direct Communication Channels (Interactive Micro-Cards) */}
             <div className="space-y-2.5 pt-1">
-              <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#355CDE] block font-bold">
+              <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#DDD5CD]/50 block">
                 // DIRECT STUDIO CHANNELS
               </span>
 
@@ -119,7 +123,7 @@ export default function Footer() {
                     </span>
                   </div>
                 </div>
-                <ArrowUpRight className="w-4 h-4 text-white/40 group-hover:text-emerald-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all shrink-0 ml-2" />
+                <ArrowUpRight className="w-4 h-4 text-[#DDD5CD]/40 group-hover:text-emerald-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all shrink-0 ml-2" />
               </a>
 
               {/* Email Card */}
@@ -129,11 +133,11 @@ export default function Footer() {
                 title="Send Direct Email"
               >
                 <div className="flex items-center gap-3 min-w-0">
-                  <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-white/80 group-hover:scale-110 transition-transform shrink-0">
+                  <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-[#DDD5CD] group-hover:scale-110 transition-transform shrink-0">
                     <Mail className="w-4 h-4" />
                   </div>
                   <div className="min-w-0">
-                    <span className="text-xs font-medium text-[#FFF7E8]/70 block">
+                    <span className="text-xs font-medium text-[#DDD5CD]/70 block">
                       Inquiries &amp; Specifications
                     </span>
                     <span className="font-mono text-xs text-white font-semibold block mt-0.5 truncate">
@@ -141,7 +145,7 @@ export default function Footer() {
                     </span>
                   </div>
                 </div>
-                <ArrowUpRight className="w-4 h-4 text-white/40 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all shrink-0 ml-2" />
+                <ArrowUpRight className="w-4 h-4 text-[#DDD5CD]/40 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all shrink-0 ml-2" />
               </a>
             </div>
 
@@ -152,7 +156,7 @@ export default function Footer() {
             
             {/* Section Title with Monospace Prefix */}
             <div className="space-y-1">
-              <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#355CDE] font-bold block">
+              <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#7D4047] font-bold block">
                 // 01. NAVIGATION INDEX
               </span>
               <h4 className="font-heading font-black text-sm text-white tracking-wider uppercase">
@@ -169,7 +173,7 @@ export default function Footer() {
                     className="group flex items-center justify-between py-2 px-2.5 rounded-lg hover:bg-white/5 transition-all duration-150"
                   >
                     <div className="flex items-center gap-2.5 min-w-0">
-                      <span className="font-mono text-[10px] text-white/40 group-hover:text-[#355CDE] transition-colors">
+                      <span className="font-mono text-[10px] text-[#DDD5CD]/40 group-hover:text-amber-400 transition-colors">
                         [{item.num}]
                       </span>
                       <span className={`transition-all duration-150 group-hover:translate-x-1 ${
@@ -180,8 +184,8 @@ export default function Footer() {
                             : item.isTrack 
                               ? 'text-emerald-400 font-semibold' 
                               : item.isAdmin 
-                                ? 'text-white/60 hover:text-white' 
-                                : 'text-[#FFF7E8]/90 group-hover:text-[#355CDE] font-medium'
+                                ? 'text-[#DDD5CD]/60 hover:text-[#DDD5CD]' 
+                                : 'text-[#DDD5CD]/90 group-hover:text-white font-medium'
                       }`}>
                         {item.label}
                       </span>
@@ -195,7 +199,7 @@ export default function Footer() {
                           ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30 flex items-center gap-1 font-bold'
                           : item.isPrivacy
                             ? 'bg-emerald-500/10 text-emerald-300 border-emerald-500/20'
-                            : 'bg-white/5 text-white/50 border-white/10 group-hover:text-white group-hover:border-white/20'
+                            : 'bg-white/5 text-[#DDD5CD]/50 border-white/10 group-hover:text-[#DDD5CD] group-hover:border-white/20'
                     }`}>
                       {item.isTrack && <span className="w-1 h-1 rounded-full bg-emerald-400 animate-ping inline-block" />}
                       {item.badge}
@@ -212,7 +216,7 @@ export default function Footer() {
             
             {/* Section Title with Monospace Prefix */}
             <div className="space-y-1">
-              <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#355CDE] font-bold block">
+              <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#7D4047] font-bold block">
                 // 02. TRUST & INTEGRITY
               </span>
               <h4 className="font-heading font-black text-sm text-white tracking-wider uppercase flex items-center gap-2">
@@ -222,39 +226,39 @@ export default function Footer() {
             </div>
 
             {/* Spec Sheet Style Policy Cards */}
-            <div className="bg-[#111111] border border-white/10 rounded-xl p-3.5 space-y-2.5">
+            <div className="bg-white/[0.03] border border-white/10 rounded-2xl p-3.5 space-y-2.5 backdrop-blur-sm">
               {studioPolicies.map((p, idx) => (
                 <div 
                   key={idx}
-                  className="p-2.5 rounded-lg bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 transition-colors group"
+                  className="p-2.5 rounded-xl bg-white/[0.02] hover:bg-white/[0.05] border border-white/5 hover:border-white/15 transition-all group"
                 >
                   <div className="flex items-center justify-between gap-2 mb-1">
-                    <span className="text-xs font-bold text-white group-hover:text-[#355CDE] transition-colors">
+                    <span className="text-xs font-bold text-white group-hover:text-emerald-300 transition-colors">
                       {p.title}
                     </span>
                     <span className={`text-[9px] font-mono font-bold px-1.5 py-0.5 rounded border uppercase shrink-0 ${p.accent}`}>
                       {p.code}
                     </span>
                   </div>
-                  <p className="text-[11px] text-[#FFF7E8]/70 leading-relaxed">
+                  <p className="text-[11px] text-[#DDD5CD]/70 leading-relaxed">
                     {p.desc}
                   </p>
                 </div>
               ))}
 
               {/* Read Full Policy Callout */}
-              <div className="pt-2 border-t border-white/10 flex items-center justify-between gap-2">
+              <div className="pt-2 border-t border-white/10">
                 <Link 
                   to="/privacy-policy" 
-                  className="py-1.5 px-2.5 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-white/80 hover:text-white transition-colors text-xs font-medium"
+                  className="group flex items-center justify-between py-2 px-3 rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 hover:text-white transition-all text-xs font-semibold"
                 >
-                  Privacy Policy
-                </Link>
-                <Link 
-                  to="/terms" 
-                  className="py-1.5 px-2.5 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-[#355CDE] hover:text-white transition-colors text-xs font-semibold"
-                >
-                  Terms of Service &rarr;
+                  <div className="flex items-center gap-2">
+                    <Lock className="w-3.5 h-3.5 text-emerald-400" />
+                    <span>Read Complete Studio Charter</span>
+                  </div>
+                  <span className="font-mono text-xs group-hover:translate-x-1 transition-transform">
+                    &rarr;
+                  </span>
                 </Link>
               </div>
             </div>
@@ -264,40 +268,33 @@ export default function Footer() {
         </div>
 
         {/* Bottom Strip: Legal & Back To Top */}
-        <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between text-xs text-white/60 gap-4">
+        <div className="pt-4 flex flex-col sm:flex-row items-center justify-between text-xs text-[#DDD5CD]/60 gap-4">
           <div className="flex flex-wrap items-center gap-3">
-            <span className="font-mono text-[11px] text-[#FFF7E8]/80">
+            <span className="font-mono text-[11px] text-[#DDD5CD]/80">
               &copy; {CURRENT_YEAR} THE WEBCRAFT. All rights reserved.
             </span>
             <span className="hidden sm:inline text-white/20">&bull;</span>
             <span className="font-mono text-[10px] text-emerald-400 flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-              <span>100% Ad-Free &bull; Prepared SQL Security</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span>100% Ad-Free &bull; Bank-Grade Prepared SQL</span>
             </span>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             <Link 
               to="/privacy-policy" 
-              className="hover:text-white transition-colors text-white/80 text-xs font-medium"
+              className="hover:text-white transition-colors underline decoration-emerald-500/40 text-emerald-400/90 text-xs font-medium"
             >
               Privacy Policy
             </Link>
             <span className="text-white/20">&bull;</span>
-            <Link 
-              to="/terms" 
-              className="hover:text-white transition-colors text-white/80 text-xs font-medium"
-            >
-              Terms of Service
-            </Link>
-            <span className="text-white/20">&bull;</span>
             <button
               onClick={scrollToTop}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/10 hover:bg-[#355CDE] hover:text-white text-white text-xs font-semibold transition-colors shadow-xs group cursor-pointer"
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/10 hover:bg-[#7D4047] text-white text-xs font-medium transition-all duration-200 hover:-translate-y-0.5 active:scale-95 shadow-sm group"
               title="Return to top of page"
             >
               <span>Back to Top</span>
-              <ArrowUp className="w-3.5 h-3.5" />
+              <ArrowUp className="w-3.5 h-3.5 group-hover:animate-bounce-gentle" />
             </button>
           </div>
         </div>

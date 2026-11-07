@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { 
   Code2, Cpu, Database, Zap, ShieldCheck, CheckCircle2, 
   ArrowRight, Layers, LayoutDashboard, Terminal, Activity, 
-  Settings, Check, Server, Lock, ExternalLink,
-  Phone, Clock, MapPin, Star
+  Settings, Check, Sparkles, Server, Lock, ExternalLink,
+  Phone, Clock, MapPin
 } from 'lucide-react';
 
 export default function CustomBuildDemo({ onOrderDesign, isMobileView }) {
@@ -31,13 +31,13 @@ export default function CustomBuildDemo({ onOrderDesign, isMobileView }) {
   };
 
   return (
-    <div className="bg-[#0f1115] text-[#FFF7E8] font-sans antialiased min-h-screen">
+    <div className="bg-[#0f1115] text-[#F1ECE6] font-sans antialiased min-h-screen">
       
       {/* 1. Custom Build Platform Header */}
       <header className="bg-[#161920] border-b border-neutral-800 sticky top-0 z-20 px-4 py-3">
         <div className={`mx-auto flex items-center justify-between ${isMobileView ? 'flex-col gap-2' : 'max-w-7xl h-16'}`}>
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-[#000000] text-white flex items-center justify-center font-bold shadow-sm">
+            <div className="w-9 h-9 rounded-xl bg-[#7D4047] text-white flex items-center justify-center font-bold shadow-sm">
               <Cpu className="w-5 h-5 text-amber-200" />
             </div>
             <div>
@@ -53,7 +53,7 @@ export default function CustomBuildDemo({ onOrderDesign, isMobileView }) {
             <button
               onClick={() => setActiveTab('modules')}
               className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
-                activeTab === 'modules' ? 'bg-[#000000] text-white' : 'text-neutral-300 hover:text-white'
+                activeTab === 'modules' ? 'bg-[#7D4047] text-white' : 'text-neutral-300 hover:text-white'
               }`}
             >
               Custom Modules
@@ -61,14 +61,14 @@ export default function CustomBuildDemo({ onOrderDesign, isMobileView }) {
             <button
               onClick={() => setActiveTab('dashboard')}
               className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
-                activeTab === 'dashboard' ? 'bg-[#000000] text-white' : 'text-neutral-300 hover:text-white'
+                activeTab === 'dashboard' ? 'bg-[#7D4047] text-white' : 'text-neutral-300 hover:text-white'
               }`}
             >
               Live Portal Demo
             </button>
             <button
               onClick={onOrderDesign}
-              className="px-4 py-2 rounded-xl bg-[#000000] hover:bg-black text-white text-xs font-bold transition-all shadow-navy flex items-center gap-1.5"
+              className="px-4 py-2 rounded-xl bg-[#7D4047] hover:bg-[#67333a] text-white text-xs font-bold transition-all shadow-wine flex items-center gap-1.5"
             >
               <span>Order Custom Build</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -166,7 +166,7 @@ export default function CustomBuildDemo({ onOrderDesign, isMobileView }) {
             <div className="bg-[#161920] border border-neutral-800 rounded-2xl overflow-hidden shadow-elevated">
               <div className="p-4 border-b border-neutral-800 flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <Activity className="w-4 h-4 text-[#355CDE]" />
+                  <Activity className="w-4 h-4 text-[#7D4047]" />
                   <h4 className="text-xs font-bold text-white uppercase tracking-wider">Live Pipeline Queue</h4>
                 </div>
                 <span className="text-[11px] text-neutral-400 font-mono">Auto-refreshed</span>
@@ -238,7 +238,7 @@ export default function CustomBuildDemo({ onOrderDesign, isMobileView }) {
                     onClick={() => toggleModule(module.id)}
                     className={`p-5 rounded-2xl border-2 cursor-pointer transition-all ${
                       isSelected 
-                        ? 'border-[#355CDE] bg-[#355CDE]/15' 
+                        ? 'border-[#7D4047] bg-[#7D4047]/10' 
                         : 'border-neutral-800 bg-[#161920] hover:border-neutral-700'
                     }`}
                   >
@@ -246,12 +246,12 @@ export default function CustomBuildDemo({ onOrderDesign, isMobileView }) {
                       <div className="space-y-1">
                         <span className="font-bold text-sm text-white flex items-center gap-2">
                           <span>{module.name}</span>
-                          {isSelected && <span className="text-[10px] font-mono px-2 py-0.5 bg-[#000000] text-white rounded">Included</span>}
+                          {isSelected && <span className="text-[10px] font-mono px-2 py-0.5 bg-[#7D4047] text-white rounded">Included</span>}
                         </span>
                         <p className="text-xs text-neutral-400">{module.desc}</p>
                       </div>
                       <div className={`w-5 h-5 rounded-md flex items-center justify-center border ${
-                        isSelected ? 'bg-[#000000] border-[#355CDE] text-white' : 'border-neutral-700 bg-neutral-800'
+                        isSelected ? 'bg-[#7D4047] border-[#7D4047] text-white' : 'border-neutral-700 bg-neutral-800'
                       }`}>
                         {isSelected && <Check className="w-3.5 h-3.5" />}
                       </div>
@@ -270,13 +270,9 @@ export default function CustomBuildDemo({ onOrderDesign, isMobileView }) {
         {/* 4. Real Client Verified Case Study */}
         <div className={`mt-10 bg-[#161920] border border-neutral-800 rounded-3xl p-5 sm:p-8 grid gap-6 items-center ${isMobileView ? 'grid-cols-1' : 'grid-cols-1 lg:grid-cols-12'}`}>
           <div className={`space-y-3 ${isMobileView ? '' : 'lg:col-span-8'}`}>
-            <div className="flex items-center gap-2 text-xs font-semibold">
-              <div className="flex items-center gap-0.5 text-amber-400">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
-                ))}
-              </div>
-              <span className="text-neutral-400 font-normal">Ahmedabad Enterprise Case Study</span>
+            <div className="flex items-center gap-1.5 text-amber-400 text-xs font-bold">
+              <span>★ ★ ★ ★ ★</span>
+              <span className="text-neutral-400 font-normal ml-1">Ahmedabad Enterprise Case Study</span>
             </div>
             <p className="text-xs sm:text-sm text-neutral-200 italic leading-relaxed">
               "We needed a custom booking and transport dispatch system without paying ₹12,000 every single month for bloated SaaS tools. 
@@ -284,7 +280,7 @@ export default function CustomBuildDemo({ onOrderDesign, isMobileView }) {
               Page load dropped from 4.2 seconds to 0.4 seconds, and our customer conversions went up by 42%!"
             </p>
             <div className="flex items-center gap-3 pt-1">
-              <div className="w-8 h-8 rounded-full bg-[#000000] text-white flex items-center justify-center font-bold text-xs">
+              <div className="w-8 h-8 rounded-full bg-[#7D4047] text-white flex items-center justify-center font-bold text-xs">
                 KS
               </div>
               <div>
@@ -302,7 +298,7 @@ export default function CustomBuildDemo({ onOrderDesign, isMobileView }) {
             </p>
             <button
               onClick={onOrderDesign}
-              className="w-full py-2.5 rounded-xl bg-[#000000] hover:bg-black text-white text-xs font-bold transition-all shadow-navy"
+              className="w-full py-2.5 rounded-xl bg-[#7D4047] hover:bg-[#67333a] text-white text-xs font-bold transition-all shadow-wine"
             >
               Order This Custom Build
             </button>
@@ -329,7 +325,7 @@ export default function CustomBuildDemo({ onOrderDesign, isMobileView }) {
           <div className={`flex flex-wrap items-center gap-3 shrink-0 ${isMobileView ? 'w-full flex-col' : ''}`}>
             <a
               href="tel:+919825000000"
-              className={`px-5 py-3 rounded-2xl bg-[#000000] hover:bg-black text-white text-xs font-bold uppercase tracking-wider flex items-center gap-2 shadow-navy transition-all ${isMobileView ? 'w-full justify-center' : ''}`}
+              className={`px-5 py-3 rounded-2xl bg-[#7D4047] hover:bg-[#67333a] text-white text-xs font-bold uppercase tracking-wider flex items-center gap-2 shadow-wine transition-all ${isMobileView ? 'w-full justify-center' : ''}`}
             >
               <Phone className="w-4 h-4" />
               <span>Dev Desk: +91 98250 12345</span>
@@ -351,7 +347,7 @@ export default function CustomBuildDemo({ onOrderDesign, isMobileView }) {
         <div className={`max-w-7xl mx-auto grid pb-8 border-b border-neutral-800 ${isMobileView ? 'grid-cols-1 gap-6 text-center' : 'grid-cols-1 md:grid-cols-4 gap-8'}`}>
           <div className={`space-y-3 md:col-span-1 ${isMobileView ? 'flex flex-col items-center' : ''}`}>
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-[#000000] text-white flex items-center justify-center font-bold">
+              <div className="w-8 h-8 rounded-lg bg-[#7D4047] text-white flex items-center justify-center font-bold">
                 <Code2 className="w-4 h-4" />
               </div>
               <span className="font-heading font-black text-sm text-white tracking-widest uppercase">THE WEBCRAFT LABS</span>

@@ -4,7 +4,7 @@ import './index.css';
 import App from './App.jsx';
 
 // ============================================================================
-// ZERO-AD & ANTI-INJECTION DOM INTEGRITY DEFENDER
+// 🛡️ ZERO-AD & ANTI-INJECTION DOM INTEGRITY DEFENDER
 // ============================================================================
 if (typeof window !== 'undefined') {
   // Known ad networks and tracking script signatures
@@ -42,7 +42,7 @@ if (typeof window !== 'undefined') {
           if (isAd || (tag === 'ins' && className.includes('adsbygoogle'))) {
             try {
               node.remove();
-              console.warn('[THE WEBCRAFT SHIELD] Unauthorized ad element intercepted and neutralized.');
+              console.warn('🛡️ [THE WEBCRAFT SHIELD] Unauthorized ad element intercepted and neutralized.');
             } catch (_) {}
           }
         }
