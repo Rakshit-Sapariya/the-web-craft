@@ -11,7 +11,7 @@ export const getAdminAuthHeader = () => {
 
 export const api = {
   // ==========================================
-  // 🔐 ADMIN AUTHENTICATION
+  // ADMIN AUTHENTICATION
   // ==========================================
   loginAdmin: async (username, password) => {
     const response = await fetch(`${API_BASE}/admin/login`, {
@@ -62,7 +62,7 @@ export const api = {
   },
 
   // ==========================================
-  // 📦 ORDERS & BOOKINGS (PUBLIC / CLIENT)
+  // ORDERS & BOOKINGS (PUBLIC / CLIENT)
   // ==========================================
   createOrder: async (orderData, files = []) => {
     try {
@@ -225,7 +225,7 @@ export const api = {
   },
 
   // ==========================================
-  // 🤖 AI WEBCRAFT AUTONOMOUS AGENT API (PROTECTED)
+  // AI WEBCRAFT AUTONOMOUS AGENT API (PROTECTED)
   // ==========================================
   triggerAiBuild: async (orderId) => {
     const response = await fetch(`${API_BASE}/ai/generate/${orderId}`, {
@@ -299,7 +299,7 @@ export const api = {
   },
 
   // ==========================================
-  // 🧠 AGENT MIND & LIVE INTERNET KNOWLEDGE
+  // AGENT MIND & LIVE INTERNET KNOWLEDGE
   // ==========================================
   getAgentMindStatus: async () => {
     const response = await fetch(`${API_BASE}/ai/mind/status`);

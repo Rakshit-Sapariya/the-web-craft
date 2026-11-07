@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom';
 import { 
   FileUp, AlertCircle, CheckCircle, ShieldAlert, ArrowRight, 
   HelpCircle, Link as LinkIcon, DollarSign, User, Globe, 
-  FileText, X, Sparkles, Lock, IndianRupee, Edit3, ShieldCheck,
+  FileText, X, Lock, IndianRupee, Edit3, ShieldCheck,
   Star, HeartHandshake, Sliders, Check
 } from 'lucide-react';
 import { WEBSITE_TYPES, ADDON_OPTIONS } from '../data/pricingData';
 import { useOrderOffer } from '../utils/orderTracker';
 
-export default function OrderForm({ preselectedCategory, prefilledBudget, prefilledAddons, onProceedToPayment }) {
+export default function OrderForm({ preselectedCategory, prefilledBudget, prefilledAddons, onProceedToPayment, hideHeader = false }) {
   const offer = useOrderOffer();
 
   const [formData, setFormData] = useState({
@@ -188,39 +188,41 @@ export default function OrderForm({ preselectedCategory, prefilledBudget, prefil
   const currentType = WEBSITE_TYPES.find(t => t.id === formData.websiteType);
 
   return (
-    <section id="order-form" className="py-8 sm:py-20 bg-[#F1ECE6] border-t border-[#DDD5CD]">
+    <section id="order-form" className={`bg-[#FFF7E8] ${hideHeader ? 'py-4 sm:py-8' : 'py-8 sm:py-20 border-t border-[#E2D7C3]'}`}>
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-12 space-y-2 sm:space-y-4">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#DDD5CD]/60 border border-[#DDD5CD] text-[#7D4047] text-xs font-bold uppercase tracking-wider">
-            <Lock className="w-3.5 h-3.5" />
-            <span>Secure Order & Booking</span>
+        {!hideHeader && (
+          <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-12 space-y-2 sm:space-y-4">
+            <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#F1E8D8] border border-[#E2D7C3] text-[#355CDE] text-xs font-bold uppercase tracking-wider">
+              <Lock className="w-3.5 h-3.5 text-[#355CDE]" />
+              <span>Secure Order &amp; Booking</span>
+            </div>
+            <h2 className="text-xl sm:text-3xl lg:text-4xl font-extrabold text-[#000000] tracking-tight px-2 leading-snug">
+              Order Your Custom Website
+            </h2>
+            <p className="text-xs sm:text-base text-[#3D362E]">
+              Submit your requirements below. Zero online payment required: our engineering team will review your specifications and connect directly via message or email!
+            </p>
           </div>
-          <h2 className="text-xl sm:text-3xl lg:text-4xl font-extrabold text-[#2E2E2E] tracking-tight px-2 leading-snug">
-            Order Your Custom Website
-          </h2>
-          <p className="text-xs sm:text-base text-[#625f5c]">
-            Submit your requirements below. Zero online payment required—our engineering team will review your specifications and connect directly via message or email!
-          </p>
-        </div>
+        )}
 
-        {/* The Main Form Card */}
-        <div className="bg-white rounded-2xl sm:rounded-3xl border border-[#DDD5CD] shadow-elevated overflow-hidden">
+        {/* The Main Form Card - Architectural Silhouette */}
+        <div className="bg-[#F1E8D8] rounded-3xl rounded-tl-sm border border-[#E2D7C3] overflow-hidden shadow-soft">
           
           {/* Header Strip */}
-          <div className="bg-[#2E2E2E] text-[#F1ECE6] p-4 sm:p-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div className="bg-[#000000] text-[#FFF7E8] p-4 sm:p-6 flex flex-col sm:flex-row items-center justify-between gap-3">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-[#7D4047] flex items-center justify-center text-white font-bold">
-                <Sparkles className="w-5 h-5" />
+              <div className="w-9 h-9 rounded-md bg-white/10 border border-white/20 flex items-center justify-center text-[#355CDE] font-bold">
+                <FileText className="w-5 h-5" />
               </div>
               <div>
                 <h4 className="font-heading font-bold text-white text-base">Client Onboarding Portal</h4>
-                <p className="text-xs text-[#DDD5CD]">THE WEBCRAFT &bull; Direct Developer Desk</p>
+                <p className="text-xs text-neutral-400">THE WEBCRAFT &bull; Direct Developer Desk</p>
               </div>
             </div>
-            <div className="inline-flex items-center gap-2 bg-[#7D4047] px-3.5 py-1.5 rounded-full text-xs font-bold text-white shadow-sm">
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-300" />
+            <div className="inline-flex items-center gap-2 bg-white/10 px-3.5 py-1.5 rounded-full text-xs font-bold text-white shadow-sm border border-white/10">
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
               <span>Direct Studio Onboarding &bull; Zero Online Upfront</span>
             </div>
           </div>
@@ -229,14 +231,14 @@ export default function OrderForm({ preselectedCategory, prefilledBudget, prefil
             
             {/* Step 1: Client Personal Details */}
             <div>
-              <h3 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-[#7D4047] flex items-center gap-2 mb-3 sm:mb-4">
+              <h3 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-[#355CDE] flex items-center gap-2 mb-3 sm:mb-4">
                 <User className="w-4 h-4" />
                 <span>1. Client Contact Details</span>
               </h3>
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                 <div>
-                  <label className="block text-xs font-bold text-[#2E2E2E] mb-1.5">
+                  <label className="block text-xs font-bold text-[#000000] mb-1.5">
                     Full Name <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -245,8 +247,8 @@ export default function OrderForm({ preselectedCategory, prefilledBudget, prefil
                     placeholder="e.g. Rahul Patel"
                     value={formData.clientName}
                     onChange={(e) => setFormData({ ...formData, clientName: e.target.value })}
-                    className={`w-full px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-xl border text-xs sm:text-sm text-[#2E2E2E] bg-[#F1ECE6]/30 focus:outline-none focus:ring-2 focus:ring-[#7D4047] transition-all ${
-                      formErrors.clientName ? 'border-red-500 ring-1 ring-red-500' : 'border-[#DDD5CD]'
+                    className={`w-full px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-xl border text-xs sm:text-sm text-[#000000] bg-white focus:outline-none focus:ring-2 focus:ring-[#355CDE] transition-all ${
+                      formErrors.clientName ? 'border-red-500 ring-1 ring-red-500' : 'border-[#E2D7C3]'
                     }`}
                   />
                   {formErrors.clientName && (
@@ -255,7 +257,7 @@ export default function OrderForm({ preselectedCategory, prefilledBudget, prefil
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-[#2E2E2E] mb-1.5">
+                  <label className="block text-xs font-bold text-[#000000] mb-1.5">
                     Phone / Mobile Number <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -264,8 +266,8 @@ export default function OrderForm({ preselectedCategory, prefilledBudget, prefil
                     placeholder="e.g. 9876543210"
                     value={formData.clientPhone}
                     onChange={(e) => setFormData({ ...formData, clientPhone: e.target.value })}
-                    className={`w-full px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-xl border text-xs sm:text-sm text-[#2E2E2E] bg-[#F1ECE6]/30 focus:outline-none focus:ring-2 focus:ring-[#7D4047] transition-all ${
-                      formErrors.clientPhone ? 'border-red-500 ring-1 ring-red-500' : 'border-[#DDD5CD]'
+                    className={`w-full px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-xl border text-xs sm:text-sm text-[#000000] bg-white focus:outline-none focus:ring-2 focus:ring-[#355CDE] transition-all ${
+                      formErrors.clientPhone ? 'border-red-500 ring-1 ring-red-500' : 'border-[#E2D7C3]'
                     }`}
                   />
                   {formErrors.clientPhone && (
@@ -275,7 +277,7 @@ export default function OrderForm({ preselectedCategory, prefilledBudget, prefil
               </div>
 
               <div className="mt-3 sm:mt-4">
-                <label className="block text-xs font-bold text-[#2E2E2E] mb-1.5">
+                <label className="block text-xs font-bold text-[#000000] mb-1.5">
                   Email Address (Optional)
                 </label>
                 <input
@@ -283,14 +285,14 @@ export default function OrderForm({ preselectedCategory, prefilledBudget, prefil
                   placeholder="e.g. rahul@business.com"
                   value={formData.clientEmail}
                   onChange={(e) => setFormData({ ...formData, clientEmail: e.target.value })}
-                  className="w-full px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-xl border border-[#DDD5CD] text-xs sm:text-sm text-[#2E2E2E] bg-[#F1ECE6]/30 focus:outline-none focus:ring-2 focus:ring-[#7D4047]"
+                  className="w-full px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-xl border border-[#E2D7C3] text-xs sm:text-sm text-[#000000] bg-white focus:outline-none focus:ring-2 focus:ring-[#355CDE]"
                 />
               </div>
             </div>
 
             {/* Step 2: Website Type Selection */}
-            <div className="pt-4 border-t border-[#DDD5CD]">
-              <h3 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-[#7D4047] flex items-center gap-2 mb-3 sm:mb-4">
+            <div className="pt-4 border-t border-[#E2D7C3]">
+              <h3 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-[#355CDE] flex items-center gap-2 mb-3 sm:mb-4">
                 <Globe className="w-4 h-4" />
                 <span>2. Select Type of Website</span>
               </h3>
@@ -302,26 +304,26 @@ export default function OrderForm({ preselectedCategory, prefilledBudget, prefil
                     <label
                       key={type.id}
                       onClick={() => handleTypeChange(type.id)}
-                      className={`p-2.5 sm:p-4 rounded-xl border-2 cursor-pointer transition-all duration-300 flex flex-col justify-between hover-glow-card relative group ${
+                      className={`p-3 sm:p-4 rounded-2xl rounded-tr-sm border-2 cursor-pointer transition-all flex flex-col justify-between relative group ${
                         isChecked
-                          ? 'border-[#7D4047] bg-[#7D4047]/5 shadow-elevated scale-[1.02] ring-2 ring-[#7D4047]/20'
-                          : 'border-[#DDD5CD] bg-[#F1ECE6]/30 hover:bg-white hover:border-[#7D4047]/40'
+                          ? 'border-[#355CDE] bg-[#FFF7E8] ring-2 ring-[#355CDE]/30 shadow-xs'
+                          : 'border-[#E2D7C3] bg-[#FFF7E8]/70 hover:bg-[#FFF7E8] hover:border-[#355CDE]/60'
                       }`}
                     >
                       <div>
                         <div className="flex items-center justify-between">
-                          <span className="font-bold text-xs sm:text-sm text-[#2E2E2E] line-clamp-1">{type.name}</span>
+                          <span className="font-bold text-xs sm:text-sm text-[#000000] line-clamp-1">{type.name}</span>
                           <input
                             type="radio"
                             name="websiteType"
                             checked={isChecked}
                             onChange={() => handleTypeChange(type.id)}
-                            className="accent-[#7D4047] shrink-0 ml-1"
+                            className="accent-[#355CDE] shrink-0 ml-1"
                           />
                         </div>
-                        <p className="text-[10px] sm:text-xs text-[#625f5c] mt-1 line-clamp-2">{type.idealFor}</p>
+                        <p className="text-[10px] sm:text-xs text-[#3D362E] mt-1 line-clamp-2">{type.idealFor}</p>
                       </div>
-                      <div className="mt-2 pt-1.5 sm:mt-3 sm:pt-2 border-t border-[#DDD5CD]/60 text-[11px] sm:text-xs font-bold text-[#7D4047]">
+                      <div className="mt-2 pt-1.5 sm:mt-3 sm:pt-2 border-t border-[#E2D7C3] text-[11px] sm:text-xs font-bold text-[#355CDE]">
                         Base: ₹{type.basePrice.toLocaleString('en-IN')}
                       </div>
                     </label>
@@ -330,13 +332,13 @@ export default function OrderForm({ preselectedCategory, prefilledBudget, prefil
               </div>
 
               {/* Choose Optional Features & Integrations (Second Division) */}
-              <div className="mt-6 pt-5 border-t border-[#DDD5CD]">
+              <div className="mt-6 pt-5 border-t border-[#E2D7C3]">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-3">
-                  <h4 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-[#7D4047] flex items-center gap-2">
-                    <Sliders className="w-4 h-4 text-[#7D4047]" />
+                  <h4 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-[#355CDE] flex items-center gap-2">
+                    <Sliders className="w-4 h-4 text-[#355CDE]" />
                     <span>Choose Optional Features &amp; Integrations</span>
                   </h4>
-                  <span className="text-[10px] sm:text-xs text-[#625f5c]">
+                  <span className="text-[10px] sm:text-xs text-[#3D362E]">
                     Select any optional features to include in your build
                   </span>
                 </div>
@@ -347,28 +349,28 @@ export default function OrderForm({ preselectedCategory, prefilledBudget, prefil
                     return (
                       <label
                         key={addon.id}
-                        className={`flex items-start gap-2.5 p-3 rounded-xl border-2 cursor-pointer transition-all duration-200 hover-glow-card ${
+                        className={`flex items-start gap-2.5 p-3 rounded-xl rounded-bl-sm border-2 cursor-pointer transition-all ${
                           isChecked
-                            ? 'border-[#7D4047] bg-[#7D4047]/5 shadow-sm ring-1 ring-[#7D4047]/30'
-                            : 'border-[#DDD5CD] bg-[#F1ECE6]/30 hover:border-[#7D4047]/40 hover:bg-white'
+                            ? 'border-[#355CDE] bg-[#FFF7E8] ring-1 ring-[#355CDE]/30 shadow-xs'
+                            : 'border-[#E2D7C3] bg-[#FFF7E8]/70 hover:border-[#355CDE]/60 hover:bg-[#FFF7E8]'
                         }`}
                       >
                         <input
                           type="checkbox"
                           checked={isChecked}
                           onChange={() => handleToggleAddon(addon.id)}
-                          className="mt-0.5 rounded text-[#7D4047] focus:ring-[#7D4047] accent-[#7D4047] cursor-pointer"
+                          className="mt-0.5 rounded text-[#355CDE] focus:ring-[#355CDE] accent-[#355CDE] cursor-pointer"
                         />
                         <div className="text-xs flex-1">
                           <div className="flex items-center justify-between gap-1">
-                            <span className="font-bold text-[#2E2E2E] leading-snug">{addon.name}</span>
+                            <span className="font-bold text-[#000000] leading-snug">{addon.name}</span>
                           </div>
                           <div className="mt-1 flex items-baseline gap-1.5 flex-wrap">
-                            <span className="font-bold text-[#7D4047] font-mono">
+                            <span className="font-bold text-[#355CDE] font-mono">
                               +₹{addon.price.toLocaleString('en-IN')}
                             </span>
                             {addon.popular && (
-                              <span className="text-[9px] font-bold text-amber-800 bg-amber-100 border border-amber-300 px-1.5 py-0.2 rounded-full ml-auto">
+                              <span className="text-[9px] font-bold text-amber-800 bg-amber-100 border border-amber-300 px-2 py-0.5 rounded-full ml-auto">
                                 Popular
                               </span>
                             )}
@@ -382,26 +384,26 @@ export default function OrderForm({ preselectedCategory, prefilledBudget, prefil
             </div>
 
             {/* Step 3: Custom Assets Upload (1 GB Limit) */}
-            <div className="pt-4 border-t border-[#DDD5CD]">
+            <div className="pt-4 border-t border-[#E2D7C3]">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-4">
-                <h3 className="text-sm font-bold uppercase tracking-wider text-[#7D4047] flex items-center gap-2">
+                <h3 className="text-sm font-bold uppercase tracking-wider text-[#355CDE] flex items-center gap-2">
                   <FileUp className="w-4 h-4" />
                   <span>3. Custom Assets & Reference Materials</span>
                 </h3>
-                <span className="text-xs font-bold text-[#2E2E2E] bg-[#DDD5CD]/60 px-2.5 py-0.5 rounded-full">
+                <span className="text-xs font-bold text-[#000000] bg-[#E2D7C3]/60 px-2.5 py-0.5 rounded-full">
                   Max Limit: 1 GB (Any format)
                 </span>
               </div>
 
-              <p className="text-xs text-[#625f5c] mb-3">
+              <p className="text-xs text-[#3D362E] mb-3">
                 Upload your brand logo, content drafts, images, UI wireframes, PDFs, or design ZIP files. We accept any format up to <strong>1 GB</strong>.
               </p>
 
-              {/* Upload Drop Zone */}
-              <div className="border-2 border-dashed border-[#DDD5CD] hover:border-[#7D4047] rounded-2xl p-6 text-center bg-[#F1ECE6]/30 transition-all">
-                <FileUp className="w-10 h-10 text-[#7D4047] mx-auto mb-2 opacity-80" />
+              {/* Upload Drop Zone - Architectural Cut Silhouette */}
+              <div className="border-2 border-dashed border-[#E2D7C3] hover:border-[#355CDE] rounded-[28px] rounded-tr-none p-6 sm:p-8 text-center bg-[#FFF7E8] transition-all duration-200 shadow-xs">
+                <FileUp className="w-10 h-10 text-[#355CDE] mx-auto mb-2 opacity-80" />
                 <label className="cursor-pointer">
-                  <span className="px-4 py-2 rounded-xl bg-[#2E2E2E] text-white text-xs font-bold hover:bg-[#7D4047] transition-all inline-block shadow-sm">
+                  <span className="px-5 py-2.5 rounded-full bg-[#355CDE] hover:bg-[#2447B8] active:scale-[0.98] text-white text-xs font-bold transition-all inline-block shadow-sm hover:shadow-md">
                     Select Files from Device
                   </span>
                   <input
@@ -411,7 +413,7 @@ export default function OrderForm({ preselectedCategory, prefilledBudget, prefil
                     className="hidden"
                   />
                 </label>
-                <p className="text-[11px] text-[#625f5c] mt-2">
+                <p className="text-[11px] text-[#3D362E] mt-2">
                   Supports ZIP, RAR, PDF, DOCX, PNG, JPG, SVG, Figma exports (Max 1 GB)
                 </p>
               </div>
@@ -427,19 +429,19 @@ export default function OrderForm({ preselectedCategory, prefilledBudget, prefil
               {/* Uploaded Files List */}
               {uploadedFiles.length > 0 && (
                 <div className="mt-4 space-y-2">
-                  <p className="text-xs font-bold text-[#2E2E2E]">Selected Files ({uploadedFiles.length}):</p>
-                  <div className="divide-y divide-[#DDD5CD] border border-[#DDD5CD] rounded-xl overflow-hidden bg-white">
+                  <p className="text-xs font-bold text-[#000000]">Selected Files ({uploadedFiles.length}):</p>
+                  <div className="divide-y divide-[#E2D7C3] border border-[#E2D7C3] rounded-xl overflow-hidden bg-white">
                     {uploadedFiles.map((file, idx) => (
                       <div key={idx} className="p-3 flex items-center justify-between text-xs">
                         <div className="flex items-center gap-2 overflow-hidden">
-                          <FileText className="w-4 h-4 text-[#7D4047] shrink-0" />
-                          <span className="font-semibold text-[#2E2E2E] truncate max-w-xs">{file.name}</span>
-                          <span className="text-[#625f5c] font-mono text-[11px]">({file.sizeFormatted})</span>
+                          <FileText className="w-4 h-4 text-[#355CDE] shrink-0" />
+                          <span className="font-semibold text-[#000000] truncate max-w-xs">{file.name}</span>
+                          <span className="text-[#3D362E] font-mono text-[11px]">({file.sizeFormatted})</span>
                         </div>
                         <button
                           type="button"
                           onClick={() => removeFile(idx)}
-                          className="p-1 hover:bg-[#DDD5CD]/40 rounded text-red-600"
+                          className="p-1 hover:bg-[#E2D7C3]/50 rounded text-red-600"
                           title="Remove file"
                         >
                           <X className="w-4 h-4" />
@@ -452,8 +454,8 @@ export default function OrderForm({ preselectedCategory, prefilledBudget, prefil
 
               {/* Cloud Link Alternative */}
               <div className="mt-4">
-                <label className="block text-xs font-bold text-[#2E2E2E] mb-1.5 flex items-center gap-1.5">
-                  <LinkIcon className="w-3.5 h-3.5 text-[#7D4047]" />
+                <label className="block text-xs font-bold text-[#000000] mb-1.5 flex items-center gap-1.5">
+                  <LinkIcon className="w-3.5 h-3.5 text-[#355CDE]" />
                   <span>Or Share Cloud Folder Link (Google Drive / WeTransfer / Dropbox)</span>
                 </label>
                 <input
@@ -461,27 +463,27 @@ export default function OrderForm({ preselectedCategory, prefilledBudget, prefil
                   placeholder="https://drive.google.com/drive/folders/..."
                   value={formData.cloudAssetLink}
                   onChange={(e) => setFormData({ ...formData, cloudAssetLink: e.target.value })}
-                  className="w-full px-4 py-2.5 rounded-xl border border-[#DDD5CD] text-xs text-[#2E2E2E] bg-[#F1ECE6]/30 focus:outline-none focus:ring-2 focus:ring-[#7D4047]"
+                  className="w-full px-4 py-2.5 rounded-xl border border-[#E2D7C3] text-xs text-[#000000] bg-white focus:outline-none focus:ring-2 focus:ring-[#355CDE]"
                 />
               </div>
             </div>
 
             {/* Step 4: Custom Website Instructions Slot (Max 7,000 Characters Limit) */}
-            <div className="pt-4 border-t border-[#DDD5CD]">
+            <div className="pt-4 border-t border-[#E2D7C3]">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
-                  <h3 className="text-sm font-bold uppercase tracking-wider text-[#7D4047] flex items-center gap-2">
+                  <h3 className="text-sm font-bold uppercase tracking-wider text-[#355CDE] flex items-center gap-2">
                     <Edit3 className="w-4 h-4" />
                     <span>4. Custom Website Instructions & Specific Wishlist</span>
                   </h3>
                   <div className="flex items-center gap-1.5 text-xs font-mono">
-                    <span className={`font-bold ${formData.customInstructions.length >= 6800 ? 'text-red-600' : 'text-[#7D4047]'}`}>
+                    <span className={`font-bold ${formData.customInstructions.length >= 6800 ? 'text-red-600' : 'text-[#355CDE]'}`}>
                       {formData.customInstructions.length.toLocaleString('en-IN')}
                     </span>
-                    <span className="text-[#625f5c]">/ 7,000 Characters</span>
+                    <span className="text-[#3D362E]">/ 7,000 Characters</span>
                   </div>
                 </div>
 
-                <p className="text-xs text-[#625f5c] mb-3 leading-relaxed">
+                <p className="text-xs text-[#3D362E] mb-3 leading-relaxed">
                   Specify everything you want in your website (e.g. required custom pages, color palette, typography preferences, online booking flows, direct inquiry forms, special interactive features, or links to reference sites you admire). <strong>(Strict 7,000 character limit)</strong>
                 </p>
 
@@ -492,11 +494,11 @@ export default function OrderForm({ preselectedCategory, prefilledBudget, prefil
                     placeholder="Write all your custom requirements here in detail (e.g. I need a responsive booking calendar, product catalog with direct inquiry form, luxury minimalist theme, client review slider, and FAQ section)..."
                     value={formData.customInstructions}
                     onChange={(e) => setFormData({ ...formData, customInstructions: e.target.value })}
-                    className="w-full p-3.5 sm:p-4 rounded-xl sm:rounded-2xl border border-[#DDD5CD] text-xs sm:text-sm text-[#2E2E2E] bg-[#F1ECE6]/30 focus:outline-none focus:ring-2 focus:ring-[#7D4047] transition-all leading-relaxed"
+                    className="w-full p-4 rounded-2xl rounded-bl-sm border border-[#E2D7C3] text-xs sm:text-sm text-[#000000] bg-white focus:outline-none focus:ring-2 focus:ring-[#355CDE] transition-all leading-relaxed shadow-xs"
                   ></textarea>
 
                   {/* Live Character counter & advice */}
-                  <div className="mt-1.5 flex items-center justify-between text-[11px] text-[#625f5c]">
+                  <div className="mt-1.5 flex items-center justify-between text-[11px] text-[#3D362E]">
                     <span>
                       {formData.customInstructions.length >= 7000 ? (
                         <span className="text-red-600 font-bold">Maximum limit of 7,000 characters reached!</span>
@@ -504,33 +506,33 @@ export default function OrderForm({ preselectedCategory, prefilledBudget, prefil
                         <span>{(7000 - formData.customInstructions.length).toLocaleString('en-IN')} characters remaining</span>
                       )}
                     </span>
-                    <span className="text-[10px] text-[#7D4047] font-semibold">Strict 7,000 Character Cap</span>
+                    <span className="text-[10px] text-[#355CDE] font-semibold">Strict 7,000 Character Cap</span>
                   </div>
                 </div>
               </div>
 
             {/* Step 5: Final Price */}
-            <div className="pt-4 border-t border-[#DDD5CD]">
-              <h3 className="text-sm font-bold uppercase tracking-wider text-[#7D4047] flex items-center gap-2 mb-4">
+            <div className="pt-4 border-t border-[#E2D7C3]">
+              <h3 className="text-sm font-bold uppercase tracking-wider text-[#355CDE] flex items-center gap-2 mb-4">
                 <IndianRupee className="w-4 h-4" />
                 <span>5. Final Price</span>
               </h3>
 
               {/* Active Tier Discount Banner */}
               {offer.isOfferActive && (
-                <div className="mb-4 p-4 rounded-2xl bg-gradient-to-r from-emerald-500/10 via-[#7D4047]/10 to-amber-500/10 border border-emerald-500/30 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div className="mb-4 p-4 rounded-lg bg-[#FFF7E8] border border-[#355CDE]/40 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                   <div className="flex items-start gap-2.5">
-                    <Sparkles className="w-5 h-5 text-emerald-600 animate-pulse shrink-0 mt-0.5" />
+                    <span className="w-2 h-2 rounded-full bg-[#355CDE] shrink-0 mt-1.5" />
                     <div>
                       <div className="flex items-center gap-2">
-                        <span className="text-xs font-bold text-emerald-900">
+                        <span className="text-xs font-bold text-[#000000]">
                           {offer.badgeText} Active!
                         </span>
-                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300">
+                        <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-[#355CDE] text-white">
                           {offer.discountPercent}% OFF
                         </span>
                       </div>
-                      <p className="text-xs text-[#625f5c] mt-0.5">
+                      <p className="text-xs text-[#3D362E] mt-0.5">
                         Standard package price is slashed from ₹{currentType?.basePrice.toLocaleString('en-IN')} to <strong>₹{offer.applyDiscount(currentType?.basePrice || 19500).toLocaleString('en-IN')}</strong> (Save ₹{((currentType?.basePrice || 19500) - offer.applyDiscount(currentType?.basePrice || 19500)).toLocaleString('en-IN')})!
                       </p>
                     </div>
@@ -538,12 +540,12 @@ export default function OrderForm({ preselectedCategory, prefilledBudget, prefil
                 </div>
               )}
 
-              <div className="bg-[#F1ECE6]/50 border border-[#DDD5CD] p-5 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div className="bg-[#FFF7E8] border border-[#E2D7C3] p-5 sm:p-6 rounded-2xl rounded-tl-sm flex flex-col sm:flex-row items-center justify-between gap-4 shadow-xs">
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-[#2E2E2E]">
+                  <label className="text-xs font-bold text-[#000000]">
                     Final Price (INR) <span className="text-red-500">*</span>
                   </label>
-                  <p className="text-xs text-[#625f5c]">
+                  <p className="text-xs text-[#3D362E]">
                     {offer.isOfferActive ? (
                       <span>
                         Starting discounted baseline is <strong>₹{offer.applyDiscount(19500).toLocaleString('en-IN')}</strong> (slashed from ₹19,500). Pay on WhatsApp after you see your completed website, before it goes live on the browser.
@@ -554,14 +556,14 @@ export default function OrderForm({ preselectedCategory, prefilledBudget, prefil
                   </p>
                 </div>
                 <div className="relative w-full sm:w-56">
-                  <span className="absolute left-3.5 top-1/2 -translate-y-1/2 font-bold text-base text-[#7D4047]">₹</span>
+                  <span className="absolute left-3.5 top-1/2 -translate-y-1/2 font-bold text-base text-[#355CDE]">₹</span>
                   <input
                     type="number"
                     min="5000"
                     step="500"
                     value={formData.finalBudget}
                     onChange={(e) => setFormData({ ...formData, finalBudget: parseInt(e.target.value) || 0 })}
-                    className="w-full pl-8 pr-4 py-3 rounded-xl border border-[#DDD5CD] font-mono font-bold text-base text-[#2E2E2E] focus:outline-none focus:ring-2 focus:ring-[#7D4047]"
+                    className="w-full pl-8 pr-4 py-3 rounded-xl border border-[#E2D7C3] font-mono font-bold text-base text-[#000000] bg-white focus:outline-none focus:ring-2 focus:ring-[#355CDE]"
                   />
                 </div>
               </div>
@@ -571,10 +573,10 @@ export default function OrderForm({ preselectedCategory, prefilledBudget, prefil
             </div>
 
             {/* Step 6: Mandatory Feedback & Review Commitment */}
-            <div className="pt-4 border-t border-[#DDD5CD]">
+            <div className="pt-4 border-t border-[#E2D7C3]">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
-                <h3 className="text-sm font-bold uppercase tracking-wider text-[#7D4047] flex items-center gap-2">
-                  <HeartHandshake className="w-4 h-4 text-[#7D4047]" />
+                <h3 className="text-sm font-bold uppercase tracking-wider text-[#355CDE] flex items-center gap-2">
+                  <HeartHandshake className="w-4 h-4 text-[#355CDE]" />
                   <span>6. Mandatory Client Feedback &amp; Review Commitment</span>
                 </h3>
                 <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-red-100 text-red-700 border border-red-200 shrink-0">
@@ -582,14 +584,14 @@ export default function OrderForm({ preselectedCategory, prefilledBudget, prefil
                 </span>
               </div>
 
-              <p className="text-xs text-[#625f5c] mb-4 leading-relaxed">
+              <p className="text-xs text-[#3D362E] mb-4 leading-relaxed">
                 In accordance with The Webcraft's 100% transparency policy, verified client review &amp; feedback is strictly mandatory for all orders upon live staging demo walkthrough to guarantee top craftsmanship.
               </p>
 
-              <div className="bg-[#F1ECE6]/60 border border-[#DDD5CD] rounded-2xl p-4 sm:p-5 space-y-4">
+              <div className="bg-[#FFF7E8] border border-[#E2D7C3] rounded-2xl p-4 sm:p-5 space-y-4">
                 {/* Expectation Rating */}
                 <div>
-                  <label className="block text-xs font-bold text-[#2E2E2E] mb-1.5">
+                  <label className="block text-xs font-bold text-[#000000] mb-1.5">
                     Initial Expectation &amp; Trust Rating <span className="text-red-500">*</span>
                   </label>
                   <div className="flex items-center gap-2">
@@ -609,7 +611,7 @@ export default function OrderForm({ preselectedCategory, prefilledBudget, prefil
                         />
                       </button>
                     ))}
-                    <span className="text-xs font-bold text-[#7D4047] ml-2">
+                    <span className="text-xs font-bold text-[#355CDE] ml-2">
                       {formData.clientRating} / 5 Stars
                     </span>
                   </div>
@@ -620,7 +622,7 @@ export default function OrderForm({ preselectedCategory, prefilledBudget, prefil
 
                 {/* Client Feedback / Expectations description */}
                 <div>
-                  <label className="block text-xs font-bold text-[#2E2E2E] mb-1">
+                  <label className="block text-xs font-bold text-[#000000] mb-1">
                     Your Expectations &amp; Project Feedback <span className="text-red-500">*</span>
                   </label>
                   <textarea
@@ -630,7 +632,7 @@ export default function OrderForm({ preselectedCategory, prefilledBudget, prefil
                     placeholder="Tell us your expectations regarding speed, design quality, zero-advance trust, or key business goals (minimum 10 characters)..."
                     value={formData.clientFeedback}
                     onChange={(e) => setFormData(prev => ({ ...prev, clientFeedback: e.target.value }))}
-                    className="w-full p-3.5 rounded-xl border border-[#DDD5CD] text-xs text-[#2E2E2E] bg-white focus:outline-none focus:ring-2 focus:ring-[#7D4047]"
+                    className="w-full p-3.5 rounded-xl border border-[#E2D7C3] text-xs text-[#000000] bg-white focus:outline-none focus:ring-2 focus:ring-[#355CDE]"
                   />
                   {formErrors.clientFeedback && (
                     <p className="text-xs text-red-600 font-bold mt-1">{formErrors.clientFeedback}</p>
@@ -638,15 +640,15 @@ export default function OrderForm({ preselectedCategory, prefilledBudget, prefil
                 </div>
 
                 {/* Mandatory Review Agreement Checkbox */}
-                <div className="pt-2 border-t border-[#DDD5CD]/70">
+                <div className="pt-2 border-t border-[#E2D7C3]/70">
                   <label className="flex items-start gap-3 cursor-pointer">
                     <input
                       type="checkbox"
                       checked={formData.reviewAgreement}
                       onChange={(e) => setFormData(prev => ({ ...prev, reviewAgreement: e.target.checked }))}
-                      className="mt-0.5 h-4 w-4 rounded border-gray-300 text-[#7D4047] focus:ring-[#7D4047] accent-[#7D4047]"
+                      className="mt-0.5 h-4 w-4 rounded border-gray-300 text-[#355CDE] focus:ring-[#355CDE] accent-[#355CDE]"
                     />
-                    <span className="text-xs font-bold text-[#2E2E2E]">
+                    <span className="text-xs font-bold text-[#000000]">
                       I commit to providing an honest, verified public review and rating upon inspecting my live working demo. <span className="text-red-500">*</span>
                     </span>
                   </label>
@@ -658,19 +660,19 @@ export default function OrderForm({ preselectedCategory, prefilledBudget, prefil
               </div>
             </div>
 
-            {/* Step 7: Direct Booking & Zero Online Payment Notice */}
-            <div className="pt-4 border-t border-[#DDD5CD]">
-              <div className="bg-emerald-50/70 border-2 border-emerald-500/30 rounded-2xl p-5 sm:p-6 space-y-4">
+            {/* Step 7: Direct Booking & Zero Online Payment Notice - Architectural Silhouette */}
+            <div className="pt-4 border-t border-[#E2D7C3]">
+              <div className="bg-emerald-50/70 border-2 border-emerald-500/30 rounded-3xl rounded-br-sm p-5 sm:p-7 space-y-4 shadow-xs">
                 
                 <div className="flex items-start gap-3">
                   <div className="w-8 h-8 rounded-lg bg-emerald-600 text-white flex items-center justify-center shrink-0 mt-0.5">
                     <ShieldCheck className="w-5 h-5" />
                   </div>
                   <div>
-                    <h4 className="font-heading font-bold text-base text-[#2E2E2E]">
+                    <h4 className="font-heading font-bold text-base text-[#000000]">
                       Direct Booking &bull; Zero Online Payment Required
                     </h4>
-                    <p className="text-xs text-[#625f5c] mt-1 leading-relaxed">
+                    <p className="text-xs text-[#3D362E] mt-1 leading-relaxed">
                       You do not need to pay anything on this website. When you submit your requirements, your custom brief and uploaded assets are saved directly into our studio database, and Lead Developer <strong>Rakshit Patel</strong> will personally reach out via message or email to finalize milestones. <strong>Payment is done on WhatsApp only after you see your website completed, and before it goes live on the browser.</strong>
                     </p>
                   </div>
@@ -682,11 +684,11 @@ export default function OrderForm({ preselectedCategory, prefilledBudget, prefil
                     type="checkbox"
                     checked={formData.acceptedTerms}
                     onChange={(e) => setFormData({ ...formData, acceptedTerms: e.target.checked })}
-                    className="mt-0.5 h-4 w-4 rounded border-gray-300 text-[#7D4047] focus:ring-[#7D4047] accent-[#7D4047]"
+                    className="mt-0.5 h-4 w-4 rounded border-gray-300 text-[#355CDE] focus:ring-[#355CDE] accent-[#355CDE]"
                   />
-                  <span className="text-xs font-bold text-[#2E2E2E]">
+                  <span className="text-xs font-bold text-[#000000]">
                     I confirm that the submitted project specifications are accurate, and I agree to the{' '}
-                    <Link to="/privacy-policy" target="_blank" className="text-[#7D4047] underline hover:text-[#67333a]">
+                    <Link to="/privacy-policy" target="_blank" className="text-[#355CDE] underline hover:text-[#2447B8]">
                       Privacy Policy &amp; Security Charter
                     </Link>{' '}
                     and direct milestone consultation. <span className="text-red-500">*</span>
@@ -699,17 +701,17 @@ export default function OrderForm({ preselectedCategory, prefilledBudget, prefil
               </div>
             </div>
 
-            {/* Submission CTA */}
+            {/* Submission CTA - Stadium Pill */}
             <div className="pt-2">
               <button
                 type="submit"
-                className="w-full py-4 px-6 rounded-2xl bg-[#7D4047] hover:bg-[#67333a] text-white font-bold text-base shadow-wine hover:shadow-2xl hover:-translate-y-0.5 transition-all flex items-center justify-center gap-3 active:scale-[0.99] group"
+                className="w-full py-4 px-8 rounded-full bg-[#355CDE] hover:bg-[#2447B8] active:scale-[0.98] text-white font-bold text-base shadow-sm hover:shadow-lg transition-all flex items-center justify-center gap-3 group cursor-pointer"
               >
                 <span>Submit Website Request (Zero Online Payment)</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1.5 transition-transform" />
               </button>
 
-              <div className="flex flex-wrap items-center justify-center gap-4 text-xs text-[#625f5c] mt-3">
+              <div className="flex flex-wrap items-center justify-center gap-4 text-xs text-[#3D362E] mt-3">
                 <span className="flex items-center gap-1">
                   <Lock className="w-3.5 h-3.5 text-emerald-600" />
                   Direct SQLite Database Registration
@@ -721,10 +723,10 @@ export default function OrderForm({ preselectedCategory, prefilledBudget, prefil
                   href="https://wa.me/919428298134?text=Hello%20The%20Webcraft%2C%20I%20am%20submitting%20a%20project%20inquiry"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-emerald-700 font-medium inline-flex items-center gap-1"
+                  className="hover:text-[#355CDE] font-medium inline-flex items-center gap-1"
                   title="Chat on WhatsApp"
                 >
-                  <span>WhatsApp: <strong className="font-mono text-emerald-800">+91 94282 98134</strong> <span className="font-semibold text-emerald-700">(WhatsApp Only &bull; No Calls)</span></span>
+                  <span>WhatsApp: <strong className="font-mono text-[#355CDE]">+91 94282 98134</strong> <span className="font-semibold text-emerald-700">(WhatsApp Only &bull; No Calls)</span></span>
                 </a>
               </div>
             </div>

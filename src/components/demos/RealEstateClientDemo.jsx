@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { 
   Building2, MapPin, Phone, Calendar, Download, Check, 
-  ShieldCheck, ArrowRight, Compass, Sparkles, CheckCircle2 
+  ShieldCheck, ArrowRight, Compass, CheckCircle2 
 } from 'lucide-react';
 
 export default function RealEstateClientDemo({ onOrderDesign, isMobileView }) {
@@ -40,7 +40,7 @@ export default function RealEstateClientDemo({ onOrderDesign, isMobileView }) {
   const activePlanData = floorPlans[selectedPlan];
 
   return (
-    <div className="bg-[#FAF9F6] text-[#222] font-sans antialiased min-h-screen">
+    <div className="bg-[#FFF7E8] text-[#222] font-sans antialiased min-h-screen">
       
       {/* 1. RERA & Contact Top Bar */}
       <div className="bg-[#1C1C1C] text-white text-[10px] sm:text-[11px] py-1.5 px-3 flex flex-col sm:flex-row items-center justify-between gap-1 border-b border-neutral-800">
@@ -56,21 +56,21 @@ export default function RealEstateClientDemo({ onOrderDesign, isMobileView }) {
       </div>
 
       {/* 2. Real Estate Nav */}
-      <header className="bg-white/95 backdrop-blur-md border-b border-[#DDD5CD] sticky top-0 z-20 px-3 sm:px-6 py-2.5">
+      <header className="bg-white border-b border-[#E2D7C3] sticky top-0 z-20 px-3 sm:px-6 py-2.5">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <div className="w-9 h-9 rounded-xl bg-[#2E2E2E] text-amber-400 flex items-center justify-center font-bold">
+            <div className="w-9 h-9 rounded-xl bg-[#000000] text-amber-400 flex items-center justify-center font-bold">
               <Building2 className="w-5 h-5" />
             </div>
             <div>
-              <span className="font-heading font-black text-lg sm:text-xl text-[#2E2E2E] tracking-tight">SHIKHAR SKYLINE</span>
-              <p className="text-[9px] text-[#625f5c] tracking-widest uppercase font-semibold">Riverfront Living &bull; Ahmedabad</p>
+              <span className="font-heading font-black text-lg sm:text-xl text-[#000000] tracking-tight">SHIKHAR SKYLINE</span>
+              <p className="text-[9px] text-[#646A73] tracking-widest uppercase font-semibold">Riverfront Living &bull; Ahmedabad</p>
             </div>
           </div>
 
           <a
             href="#visit"
-            className="px-3.5 py-1.5 rounded-xl bg-[#7D4047] text-white text-xs font-bold uppercase tracking-wider"
+            className="px-3.5 py-1.5 rounded-xl bg-[#000000] text-white text-xs font-bold uppercase tracking-wider"
           >
             VIP Visit
           </a>
@@ -78,7 +78,7 @@ export default function RealEstateClientDemo({ onOrderDesign, isMobileView }) {
       </header>
 
       {/* 3. Luxury Real Estate Hero */}
-      <section id="overview" className="relative bg-[#2E2E2E] text-white overflow-hidden py-10 sm:py-16 px-4 sm:px-6">
+      <section id="overview" className="relative bg-[#000000] text-white overflow-hidden py-10 sm:py-16 px-4 sm:px-6">
         <div className="absolute inset-0 z-0 opacity-40">
           <img 
             src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1600&q=80" 
@@ -91,7 +91,7 @@ export default function RealEstateClientDemo({ onOrderDesign, isMobileView }) {
         <div className={`mx-auto relative z-20 ${isMobileView ? 'space-y-4' : 'max-w-7xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-center'}`}>
           <div className={`${isMobileView ? 'space-y-3' : 'lg:col-span-7 space-y-4'}`}>
             <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 text-amber-300 text-[10px] sm:text-xs font-bold uppercase tracking-widest border border-white/20">
-              <Sparkles className="w-3 h-3" />
+              <Building2 className="w-3 h-3" />
               <span>Ultra-Luxury 3 & 4 BHK Sky Homes</span>
             </div>
             <h1 className={`font-extrabold font-heading leading-tight ${isMobileView ? 'text-2xl' : 'text-3xl sm:text-5xl'}`}>
@@ -101,13 +101,13 @@ export default function RealEstateClientDemo({ onOrderDesign, isMobileView }) {
               32-Storey architectural landmark with 78% open green landscaped grounds, German acoustic soundproofing, and panoramic riverfront balconies.
             </p>
             <div className="pt-2 flex flex-wrap gap-2.5 items-center">
-              <div className="bg-white/10 backdrop-blur-md px-3.5 py-1.5 rounded-xl border border-white/20">
+              <div className="bg-black/60 px-3.5 py-1.5 rounded-lg border border-white/20">
                 <span className="text-[9px] text-amber-300 font-bold uppercase block">Starting Price</span>
                 <span className="text-base sm:text-xl font-extrabold font-mono">₹1.42 Cr* Onwards</span>
               </div>
               <button
                 onClick={onOrderDesign}
-                className="px-4 py-2.5 rounded-xl bg-[#7D4047] hover:bg-[#67333a] text-white font-bold text-xs uppercase tracking-wider shadow-wine flex items-center gap-1.5"
+                className="px-4 py-2.5 rounded-xl bg-[#000000] hover:bg-black text-white font-bold text-xs uppercase tracking-wider shadow-navy flex items-center gap-1.5"
               >
                 <span>Order Real Estate Site (₹5k Adv)</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -116,11 +116,11 @@ export default function RealEstateClientDemo({ onOrderDesign, isMobileView }) {
           </div>
 
           {/* Quick Brochure Card */}
-          <div className={`${isMobileView ? 'pt-2' : 'lg:col-span-5'} bg-white/95 backdrop-blur-xl text-[#2E2E2E] p-5 rounded-3xl shadow-2xl border border-white/40 space-y-3`}>
+          <div className={`${isMobileView ? 'pt-2' : 'lg:col-span-5'} bg-white text-[#000000] p-5 rounded-xl border border-[#E2D7C3] space-y-3`}>
             <div>
-              <span className="text-[10px] font-bold text-[#7D4047] uppercase tracking-wider">Fast Enquiry</span>
+              <span className="text-[10px] font-bold text-[#355CDE] uppercase tracking-wider">Fast Enquiry</span>
               <h3 className="font-heading font-extrabold text-base sm:text-lg">Download Official E-Brochure</h3>
-              <p className="text-[11px] text-[#625f5c]">Instant delivery via Email/SMS with floor plans & pricing.</p>
+              <p className="text-[11px] text-[#646A73]">Instant delivery via Email/SMS with floor plans & pricing.</p>
             </div>
 
             <form onSubmit={handleBooking} className="space-y-2.5">
@@ -128,17 +128,17 @@ export default function RealEstateClientDemo({ onOrderDesign, isMobileView }) {
                 type="text"
                 required
                 placeholder="Your Full Name"
-                className="w-full px-3 py-2 rounded-xl border border-[#DDD5CD] text-xs bg-[#F1ECE6]/40"
+                className="w-full px-3 py-2 rounded-xl border border-[#E2D7C3] text-xs bg-[#FFF7E8]/40"
               />
               <input
                 type="tel"
                 required
                 placeholder="Mobile Phone Number"
-                className="w-full px-3 py-2 rounded-xl border border-[#DDD5CD] text-xs bg-[#F1ECE6]/40"
+                className="w-full px-3 py-2 rounded-xl border border-[#E2D7C3] text-xs bg-[#FFF7E8]/40"
               />
               <button
                 type="submit"
-                className="w-full py-2.5 rounded-xl bg-[#2E2E2E] hover:bg-[#7D4047] text-white font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-1.5"
+                className="w-full py-2.5 rounded-xl bg-[#000000] hover:bg-[#355CDE] hover:text-[#000000] text-white font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-1.5"
               >
                 <Download className="w-3.5 h-3.5" />
                 <span>Get Instant PDF Brochure</span>
@@ -151,8 +151,8 @@ export default function RealEstateClientDemo({ onOrderDesign, isMobileView }) {
       {/* 4. Interactive Floor Plans Switcher */}
       <section id="plans" className="py-10 max-w-7xl mx-auto px-4 sm:px-6">
         <div className="text-center max-w-xl mx-auto mb-6 space-y-1">
-          <span className="text-[10px] sm:text-xs font-bold text-[#7D4047] uppercase tracking-wider">Master Architecture</span>
-          <h2 className="text-xl sm:text-2xl font-extrabold text-[#2E2E2E] font-heading">
+          <span className="text-[10px] sm:text-xs font-bold text-[#355CDE] uppercase tracking-wider">Master Architecture</span>
+          <h2 className="text-xl sm:text-2xl font-extrabold text-[#000000] font-heading">
             Thoughtfully Crafted Floor Plans
           </h2>
         </div>
@@ -169,8 +169,8 @@ export default function RealEstateClientDemo({ onOrderDesign, isMobileView }) {
               onClick={() => setSelectedPlan(tab.id)}
               className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all whitespace-nowrap ${
                 selectedPlan === tab.id
-                  ? 'bg-[#7D4047] text-white shadow-wine'
-                  : 'bg-white border border-[#DDD5CD] text-[#2E2E2E]'
+                  ? 'bg-[#000000] text-white shadow-navy'
+                  : 'bg-white border border-[#E2D7C3] text-[#000000]'
               }`}
             >
               {tab.label}
@@ -179,30 +179,30 @@ export default function RealEstateClientDemo({ onOrderDesign, isMobileView }) {
         </div>
 
         {/* Plan Details Card */}
-        <div className={`bg-white rounded-3xl border border-[#DDD5CD] p-5 shadow-soft ${isMobileView ? 'space-y-4' : 'grid grid-cols-1 lg:grid-cols-12 gap-8 items-center'}`}>
+        <div className={`bg-white rounded-3xl border border-[#E2D7C3] p-5 shadow-soft ${isMobileView ? 'space-y-4' : 'grid grid-cols-1 lg:grid-cols-12 gap-8 items-center'}`}>
           <div className={`${isMobileView ? 'space-y-3' : 'lg:col-span-6 space-y-4'}`}>
-            <span className="text-[10px] font-bold text-[#7D4047] uppercase tracking-wider">Specifications</span>
-            <h3 className="font-heading font-extrabold text-xl text-[#2E2E2E]">{activePlanData.title}</h3>
+            <span className="text-[10px] font-bold text-[#355CDE] uppercase tracking-wider">Specifications</span>
+            <h3 className="font-heading font-extrabold text-xl text-[#000000]">{activePlanData.title}</h3>
             
             <div className="grid grid-cols-2 gap-2 text-xs">
-              <div className="p-2.5 bg-[#F1ECE6]/60 rounded-xl border border-[#DDD5CD]">
-                <span className="text-[#625f5c] text-[10px] block">Built-up Area:</span>
-                <strong className="text-xs sm:text-sm font-extrabold text-[#2E2E2E]">{activePlanData.superArea}</strong>
+              <div className="p-2.5 bg-[#FFF7E8]/60 rounded-xl border border-[#E2D7C3]">
+                <span className="text-[#646A73] text-[10px] block">Built-up Area:</span>
+                <strong className="text-xs sm:text-sm font-extrabold text-[#000000]">{activePlanData.superArea}</strong>
               </div>
-              <div className="p-2.5 bg-[#F1ECE6]/60 rounded-xl border border-[#DDD5CD]">
-                <span className="text-[#625f5c] text-[10px] block">RERA Carpet:</span>
-                <strong className="text-xs sm:text-sm font-extrabold text-[#2E2E2E]">{activePlanData.carpetArea}</strong>
+              <div className="p-2.5 bg-[#FFF7E8]/60 rounded-xl border border-[#E2D7C3]">
+                <span className="text-[#646A73] text-[10px] block">RERA Carpet:</span>
+                <strong className="text-xs sm:text-sm font-extrabold text-[#000000]">{activePlanData.carpetArea}</strong>
               </div>
             </div>
 
-            <div className="pt-2 flex items-center justify-between border-t border-[#DDD5CD]">
+            <div className="pt-2 flex items-center justify-between border-t border-[#E2D7C3]">
               <div>
-                <span className="text-[10px] text-[#625f5c]">Indicative Price:</span>
-                <div className="text-base sm:text-lg font-black text-[#7D4047] font-mono">{activePlanData.price}</div>
+                <span className="text-[10px] text-[#646A73]">Indicative Price:</span>
+                <div className="text-base sm:text-lg font-black text-[#355CDE] font-mono">{activePlanData.price}</div>
               </div>
               <a
                 href="#visit"
-                className="px-3 py-1.5 rounded-xl bg-[#2E2E2E] text-white hover:bg-[#7D4047] text-xs font-bold"
+                className="px-3 py-1.5 rounded-xl bg-[#000000] text-white hover:bg-[#355CDE] hover:text-[#000000] text-xs font-bold"
               >
                 Cost Breakdown
               </a>
@@ -210,7 +210,7 @@ export default function RealEstateClientDemo({ onOrderDesign, isMobileView }) {
           </div>
 
           <div className={`${isMobileView ? '' : 'lg:col-span-6'}`}>
-            <div className="rounded-2xl overflow-hidden border border-[#DDD5CD] shadow aspect-[4/3]">
+            <div className="rounded-2xl overflow-hidden border border-[#E2D7C3] shadow aspect-[4/3]">
               <img 
                 src={activePlanData.image} 
                 alt={activePlanData.title}
@@ -222,71 +222,71 @@ export default function RealEstateClientDemo({ onOrderDesign, isMobileView }) {
       </section>
 
       {/* 5. Architectural Specifications & Sales Lounge */}
-      <section id="visit" className="bg-[#F1ECE6] border-t border-[#DDD5CD] py-12 px-4 sm:px-6">
+      <section id="visit" className="bg-[#FFF7E8] border-t border-[#E2D7C3] py-12 px-4 sm:px-6">
         <div className="max-w-7xl mx-auto space-y-8">
           <div className="text-center max-w-2xl mx-auto space-y-1">
-            <span className="text-[10px] sm:text-xs font-bold text-[#7D4047] uppercase tracking-wider">Uncompromising Engineering</span>
-            <h2 className="text-xl sm:text-2xl font-extrabold text-[#2E2E2E] font-heading">
+            <span className="text-[10px] sm:text-xs font-bold text-[#355CDE] uppercase tracking-wider">Uncompromising Engineering</span>
+            <h2 className="text-xl sm:text-2xl font-extrabold text-[#000000] font-heading">
               Ultra-Luxury Specifications & Master Blueprint
             </h2>
-            <p className="text-xs text-[#625f5c]">
+            <p className="text-xs text-[#646A73]">
               Designed for Ahmedabad's discerning elite. Every residence crafted with imported materials and IGBC Platinum green standards.
             </p>
           </div>
 
           <div className={`grid gap-5 ${isMobileView ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-3'}`}>
-            <div className="bg-white rounded-3xl p-6 border border-[#DDD5CD] shadow-sm flex flex-col justify-between space-y-4">
+            <div className="bg-white rounded-3xl p-6 border border-[#E2D7C3] shadow-sm flex flex-col justify-between space-y-4">
               <div className="space-y-3">
-                <div className="w-10 h-10 rounded-2xl bg-[#7D4047]/10 text-[#7D4047] flex items-center justify-center font-bold">
+                <div className="w-10 h-10 rounded-2xl bg-[#355CDE]/15 text-[#355CDE] flex items-center justify-center font-bold">
                   <Building2 className="w-5 h-5" />
                 </div>
                 <div>
-                  <span className="text-[10px] font-bold text-[#7D4047] uppercase">Grand Volume</span>
-                  <h3 className="font-heading font-extrabold text-base text-[#2E2E2E] mt-0.5">Italian Marble & 11-Ft Ceilings</h3>
+                  <span className="text-[10px] font-bold text-[#355CDE] uppercase">Grand Volume</span>
+                  <h3 className="font-heading font-extrabold text-base text-[#000000] mt-0.5">Italian Marble & 11-Ft Ceilings</h3>
                 </div>
-                <p className="text-xs text-[#625f5c] leading-relaxed">
+                <p className="text-xs text-[#646A73] leading-relaxed">
                   Imported Botticino & Statuario marble flooring across expansive living chambers. High clear slab height with acoustic soundproofing glass windows.
                 </p>
               </div>
-              <div className="pt-3 border-t border-[#DDD5CD] flex items-center justify-between text-[11px] text-[#2E2E2E]">
+              <div className="pt-3 border-t border-[#E2D7C3] flex items-center justify-between text-[11px] text-[#000000]">
                 <span><strong>Flooring:</strong> Italian Botticino</span>
                 <span className="text-amber-700 font-bold bg-amber-50 px-2 py-0.5 rounded">11-Ft Slab</span>
               </div>
             </div>
 
-            <div className="bg-white rounded-3xl p-6 border border-[#DDD5CD] shadow-sm flex flex-col justify-between space-y-4">
+            <div className="bg-white rounded-3xl p-6 border border-[#E2D7C3] shadow-sm flex flex-col justify-between space-y-4">
               <div className="space-y-3">
-                <div className="w-10 h-10 rounded-2xl bg-[#7D4047]/10 text-[#7D4047] flex items-center justify-center font-bold">
+                <div className="w-10 h-10 rounded-2xl bg-[#355CDE]/15 text-[#355CDE] flex items-center justify-center font-bold">
                   <ShieldCheck className="w-5 h-5" />
                 </div>
                 <div>
-                  <span className="text-[10px] font-bold text-[#7D4047] uppercase">Biometric Security</span>
-                  <h3 className="font-heading font-extrabold text-base text-[#2E2E2E] mt-0.5">Private Elevator Foyer</h3>
+                  <span className="text-[10px] font-bold text-[#355CDE] uppercase">Biometric Security</span>
+                  <h3 className="font-heading font-extrabold text-base text-[#000000] mt-0.5">Private Elevator Foyer</h3>
                 </div>
-                <p className="text-xs text-[#625f5c] leading-relaxed">
+                <p className="text-xs text-[#646A73] leading-relaxed">
                   High-speed Mitsubishi passenger elevators opening straight into your private personal apartment vestibule with encrypted biometric fingerprint and RFID keycards.
                 </p>
               </div>
-              <div className="pt-3 border-t border-[#DDD5CD] flex items-center justify-between text-[11px] text-[#2E2E2E]">
+              <div className="pt-3 border-t border-[#E2D7C3] flex items-center justify-between text-[11px] text-[#000000]">
                 <span><strong>Speed:</strong> 2.5 m/s Lift</span>
                 <span className="text-emerald-700 font-bold bg-emerald-50 px-2 py-0.5 rounded">Private Entry</span>
               </div>
             </div>
 
-            <div className="bg-white rounded-3xl p-6 border border-[#DDD5CD] shadow-sm flex flex-col justify-between space-y-4">
+            <div className="bg-white rounded-3xl p-6 border border-[#E2D7C3] shadow-sm flex flex-col justify-between space-y-4">
               <div className="space-y-3">
-                <div className="w-10 h-10 rounded-2xl bg-[#7D4047]/10 text-[#7D4047] flex items-center justify-center font-bold">
+                <div className="w-10 h-10 rounded-2xl bg-[#355CDE]/15 text-[#355CDE] flex items-center justify-center font-bold">
                   <Compass className="w-5 h-5" />
                 </div>
                 <div>
-                  <span className="text-[10px] font-bold text-[#7D4047] uppercase">Sustainable Luxury</span>
-                  <h3 className="font-heading font-extrabold text-base text-[#2E2E2E] mt-0.5">IGBC Platinum Green Horizon</h3>
+                  <span className="text-[10px] font-bold text-[#355CDE] uppercase">Sustainable Luxury</span>
+                  <h3 className="font-heading font-extrabold text-base text-[#000000] mt-0.5">IGBC Platinum Green Horizon</h3>
                 </div>
-                <p className="text-xs text-[#625f5c] leading-relaxed">
+                <p className="text-xs text-[#646A73] leading-relaxed">
                   85% lush manicured botanical gardens, solar-paneled common power grids, rainwater harvesting reservoir, and dual fast EV charging points per parking slot.
                 </p>
               </div>
-              <div className="pt-3 border-t border-[#DDD5CD] flex items-center justify-between text-[11px] text-[#2E2E2E]">
+              <div className="pt-3 border-t border-[#E2D7C3] flex items-center justify-between text-[11px] text-[#000000]">
                 <span><strong>Open Greens:</strong> 85% Ground</span>
                 <span className="text-cyan-800 font-bold bg-cyan-50 px-2 py-0.5 rounded">IGBC Platinum</span>
               </div>
@@ -294,29 +294,29 @@ export default function RealEstateClientDemo({ onOrderDesign, isMobileView }) {
           </div>
 
           {/* Sales Pavilion & Chauffeur Request Strip */}
-          <div className={`bg-white rounded-3xl p-5 sm:p-8 border border-[#DDD5CD] shadow-sm flex items-center justify-between gap-6 ${isMobileView ? 'flex-col text-center' : 'flex-col lg:flex-row text-center lg:text-left'}`}>
+          <div className={`bg-white rounded-3xl p-5 sm:p-8 border border-[#E2D7C3] shadow-sm flex items-center justify-between gap-6 ${isMobileView ? 'flex-col text-center' : 'flex-col lg:flex-row text-center lg:text-left'}`}>
             <div className={`space-y-1.5 ${isMobileView ? 'text-center' : 'text-center lg:text-left'}`}>
-              <span className="text-[10px] font-bold text-[#7D4047] uppercase tracking-wider">Experience Sales Pavilion</span>
-              <h3 className="text-base sm:text-lg font-extrabold text-[#2E2E2E] font-heading">
+              <span className="text-[10px] font-bold text-[#355CDE] uppercase tracking-wider">Experience Sales Pavilion</span>
+              <h3 className="text-base sm:text-lg font-extrabold text-[#000000] font-heading">
                 Visit the On-Site Sample Penthouse & Sales Gallery
               </h3>
-              <p className="text-xs text-[#625f5c] max-w-xl">
+              <p className="text-xs text-[#646A73] max-w-xl">
                 Experience the 4 BHK show home in person. Complimentary chauffeur pickup available from anywhere in Ahmedabad for pre-registered high-net-worth buyers.
               </p>
-              <div className={`flex flex-wrap items-center gap-3 pt-1 text-xs text-[#2E2E2E] ${isMobileView ? 'justify-center' : ''}`}>
+              <div className={`flex flex-wrap items-center gap-3 pt-1 text-xs text-[#000000] ${isMobileView ? 'justify-center' : ''}`}>
                 <span className="flex items-center gap-1 font-bold">
-                  <Calendar className="w-3.5 h-3.5 text-[#7D4047]" />
+                  <Calendar className="w-3.5 h-3.5 text-[#355CDE]" />
                   <span>Sales Lounge Open 7 Days: 10:00 AM &ndash; 07:00 PM</span>
                 </span>
-                <span className="text-[#625f5c]">&bull;</span>
-                <span className="text-[#625f5c]">Science City Road, Sola, Ahmedabad</span>
+                <span className="text-[#646A73]">&bull;</span>
+                <span className="text-[#646A73]">Science City Road, Sola, Ahmedabad</span>
               </div>
             </div>
 
             <div className={`flex flex-wrap items-center gap-3 shrink-0 ${isMobileView ? 'w-full flex-col' : ''}`}>
               <a
                 href="tel:+919825067890"
-                className={`px-5 py-3 rounded-2xl bg-[#7D4047] hover:bg-[#67333a] text-white text-xs font-bold uppercase tracking-wider flex items-center gap-2 shadow-wine transition-all ${isMobileView ? 'w-full justify-center' : ''}`}
+                className={`px-5 py-3 rounded-2xl bg-[#000000] hover:bg-black text-white text-xs font-bold uppercase tracking-wider flex items-center gap-2 shadow-navy transition-all ${isMobileView ? 'w-full justify-center' : ''}`}
               >
                 <Phone className="w-4 h-4" />
                 <span>VIP Sales Desk: +91 98250 67890</span>
@@ -325,7 +325,7 @@ export default function RealEstateClientDemo({ onOrderDesign, isMobileView }) {
                 href="https://wa.me/919825067890"
                 target="_blank"
                 rel="noreferrer"
-                className={`px-4 py-3 rounded-2xl bg-[#2E2E2E] hover:bg-black text-white text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 ${isMobileView ? 'w-full justify-center' : ''}`}
+                className={`px-4 py-3 rounded-2xl bg-[#000000] hover:bg-black text-white text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 ${isMobileView ? 'w-full justify-center' : ''}`}
               >
                 <span>WhatsApp Sales Desk</span>
               </a>
@@ -337,60 +337,60 @@ export default function RealEstateClientDemo({ onOrderDesign, isMobileView }) {
       {/* 6. Homeowner Testimonials */}
       <section className="py-12 max-w-7xl mx-auto px-4 sm:px-6">
         <div className="text-center max-w-xl mx-auto mb-8 space-y-1">
-          <span className="text-[10px] sm:text-xs font-bold text-[#7D4047] uppercase tracking-wider">Buyer Testimonials</span>
-          <h2 className="text-xl sm:text-2xl font-extrabold text-[#2E2E2E] font-heading">
+          <span className="text-[10px] sm:text-xs font-bold text-[#355CDE] uppercase tracking-wider">Buyer Testimonials</span>
+          <h2 className="text-xl sm:text-2xl font-extrabold text-[#000000] font-heading">
             Chosen by Ahmedabad's Industrial Leaders
           </h2>
         </div>
 
         <div className={`grid gap-4 ${isMobileView ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-3'}`}>
-          <div className="bg-white p-5 rounded-2xl border border-[#DDD5CD] shadow-sm space-y-3">
+          <div className="bg-white p-5 rounded-2xl border border-[#E2D7C3] shadow-sm space-y-3">
             <div className="flex text-amber-500">
               {[...Array(5)].map((_, i) => <Star key={i} className="w-3.5 h-3.5 fill-current" />)}
             </div>
-            <p className="text-xs text-[#2E2E2E] italic leading-relaxed">
+            <p className="text-xs text-[#000000] italic leading-relaxed">
               "The private elevator foyer opening right into our living hall gives villa-like privacy in a 32-storey high-rise. Construction quality and slab finishes are outstanding."
             </p>
-            <div className="pt-2 border-t border-[#DDD5CD] flex items-center justify-between text-xs">
-              <span className="font-bold text-[#2E2E2E]">Hardik Shah</span>
-              <span className="text-[#625f5c] text-[11px]">Chemical Manufacturer & Resident</span>
+            <div className="pt-2 border-t border-[#E2D7C3] flex items-center justify-between text-xs">
+              <span className="font-bold text-[#000000]">Hardik Shah</span>
+              <span className="text-[#646A73] text-[11px]">Chemical Manufacturer & Resident</span>
             </div>
           </div>
 
-          <div className="bg-white p-5 rounded-2xl border border-[#DDD5CD] shadow-sm space-y-3">
+          <div className="bg-white p-5 rounded-2xl border border-[#E2D7C3] shadow-sm space-y-3">
             <div className="flex text-amber-500">
               {[...Array(5)].map((_, i) => <Star key={i} className="w-3.5 h-3.5 fill-current" />)}
             </div>
-            <p className="text-xs text-[#2E2E2E] italic leading-relaxed">
+            <p className="text-xs text-[#000000] italic leading-relaxed">
               "We booked the 4 BHK Presidential suite. The unobstructed sunset views and the 42,000 sq.ft clubhouse with heated infinity pool make this western Ahmedabad's best project."
             </p>
-            <div className="pt-2 border-t border-[#DDD5CD] flex items-center justify-between text-xs">
-              <span className="font-bold text-[#2E2E2E]">Niharika Trivedi</span>
-              <span className="text-[#625f5c] text-[11px]">Senior Advocate, High Court</span>
+            <div className="pt-2 border-t border-[#E2D7C3] flex items-center justify-between text-xs">
+              <span className="font-bold text-[#000000]">Niharika Trivedi</span>
+              <span className="text-[#646A73] text-[11px]">Senior Advocate, High Court</span>
             </div>
           </div>
 
-          <div className="bg-white p-5 rounded-2xl border border-[#DDD5CD] shadow-sm space-y-3">
+          <div className="bg-white p-5 rounded-2xl border border-[#E2D7C3] shadow-sm space-y-3">
             <div className="flex text-amber-500">
               {[...Array(5)].map((_, i) => <Star key={i} className="w-3.5 h-3.5 fill-current" />)}
             </div>
-            <p className="text-xs text-[#2E2E2E] italic leading-relaxed">
+            <p className="text-xs text-[#000000] italic leading-relaxed">
               "Zero delays in milestone construction updates and full RERA compliance. Clear carpet areas without misleading super built-up inflation. Truly a landmark address."
             </p>
-            <div className="pt-2 border-t border-[#DDD5CD] flex items-center justify-between text-xs">
-              <span className="font-bold text-[#2E2E2E]">Rajesh Agrawal</span>
-              <span className="text-[#625f5c] text-[11px]">Managing Director, Agrawal Textiles</span>
+            <div className="pt-2 border-t border-[#E2D7C3] flex items-center justify-between text-xs">
+              <span className="font-bold text-[#000000]">Rajesh Agrawal</span>
+              <span className="text-[#646A73] text-[11px]">Managing Director, Agrawal Textiles</span>
             </div>
           </div>
         </div>
       </section>
 
       {/* 7. Complete Real Estate Footer */}
-      <footer className="bg-[#2E2E2E] text-white pt-10 pb-6 px-4 sm:px-6 border-t border-[#DDD5CD]">
+      <footer className="bg-[#000000] text-white pt-10 pb-6 px-4 sm:px-6 border-t border-[#E2D7C3]">
         <div className={`max-w-7xl mx-auto grid pb-8 border-b border-neutral-700 ${isMobileView ? 'grid-cols-1 gap-6 text-center' : 'grid-cols-1 md:grid-cols-4 gap-8'}`}>
           <div className={`space-y-3 md:col-span-1 ${isMobileView ? 'flex flex-col items-center' : ''}`}>
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-[#7D4047] text-amber-200 flex items-center justify-center font-bold">
+              <div className="w-8 h-8 rounded-lg bg-[#000000] text-amber-200 flex items-center justify-center font-bold">
                 <Building2 className="w-4 h-4" />
               </div>
               <span className="font-heading font-black text-sm text-white tracking-tight">SHIKHAR SKYLINE</span>
@@ -429,14 +429,14 @@ export default function RealEstateClientDemo({ onOrderDesign, isMobileView }) {
       </footer>
 
       {/* 6. Demo Project Banner */}
-      <div className={`bg-[#2E2E2E] text-white p-3 sm:p-4 flex items-center justify-between gap-2 text-xs border-t border-[#DDD5CD] ${isMobileView ? 'flex-col text-center' : 'flex-col sm:flex-row'}`}>
+      <div className={`bg-[#000000] text-white p-3 sm:p-4 flex items-center justify-between gap-2 text-xs border-t border-[#E2D7C3] ${isMobileView ? 'flex-col text-center' : 'flex-col sm:flex-row'}`}>
         <div className="flex items-center gap-2">
           <span className="w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse" />
           <span><strong>Client Demo:</strong> Shikhar Skyline &bull; Built by <strong>THE WEBCRAFT</strong></span>
         </div>
         <button
           onClick={onOrderDesign}
-          className={`px-3.5 py-1.5 rounded-lg bg-[#7D4047] hover:bg-[#67333a] text-white font-bold flex items-center gap-1 ${isMobileView ? 'w-full justify-center' : ''}`}
+          className={`px-3.5 py-1.5 rounded-lg bg-[#000000] hover:bg-black text-white font-bold flex items-center gap-1 ${isMobileView ? 'w-full justify-center' : ''}`}
         >
           <span>Order A Real Estate Site</span>
           <ArrowRight className="w-3.5 h-3.5" />

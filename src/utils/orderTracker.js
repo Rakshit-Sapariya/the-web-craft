@@ -26,8 +26,8 @@ export function calculateTier(count) {
       discountPercent: 50,
       tierSlotsLeft,
       totalSlotsLeft,
-      badgeText: 'Tier 1: 50% FLAT DISCOUNT',
-      announcement: '⚡ Tier 1 Exclusive: First 100 Clients Get 50% OFF!',
+      badgeText: 'Tier 1: 50% Flat Discount',
+      announcement: 'Tier 1 Exclusive: First 100 Clients Receive 50% Flat Discount',
       headlineHighlight: 'First 100 Clients Get 50% Flat Discount'
     };
   } else if (num < 200) {
@@ -41,8 +41,8 @@ export function calculateTier(count) {
       discountPercent: 25,
       tierSlotsLeft,
       totalSlotsLeft,
-      badgeText: 'Tier 2: 25% FLAT DISCOUNT',
-      announcement: '⚡ Tier 2 Special: Next 100 Clients Get 25% OFF!',
+      badgeText: 'Tier 2: 25% Flat Discount',
+      announcement: 'Tier 2 Special: Next 100 Clients Receive 25% Flat Discount',
       headlineHighlight: 'Next 100 Clients Get 25% Flat Discount'
     };
   } else if (num < 300) {
@@ -56,8 +56,8 @@ export function calculateTier(count) {
       discountPercent: 15,
       tierSlotsLeft,
       totalSlotsLeft,
-      badgeText: 'Tier 3: 15% FLAT DISCOUNT',
-      announcement: '⚡ Tier 3 Final Wave: Final 100 Clients Get 15% OFF!',
+      badgeText: 'Tier 3: 15% Flat Discount',
+      announcement: 'Tier 3 Final Wave: Final 100 Clients Receive 15% Flat Discount',
       headlineHighlight: 'Final 100 Clients Get 15% Flat Discount'
     };
   } else {

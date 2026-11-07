@@ -40,7 +40,7 @@ export function generateWebsiteProductionPlan(order) {
       '3. Grooming Menu (Fade Haircuts, Royal Beard Sculpting, Charcoal Detox, Hair Spa)',
       '4. Master Stylist Profiles (Senior Barbers & Experience)',
       '5. Barber Chair Booking Widget (Stylist Selection, Slot, Booking Confirmation)',
-      '6. Customer Grooming Reviews & Google 4.9★ Badge',
+      '6. Customer Grooming Reviews & Google 4.9 Rating Badge',
       '7. Footer (Location, Valet Parking, Operating Hours)',
     ],
     gym: [
@@ -58,7 +58,7 @@ export function generateWebsiteProductionPlan(order) {
       '3. A La Carte Menu (Clay Oven Kebabs, Dal Bukhara, Biryanis, Shahi Desserts)',
       '4. Interactive Table Reservation Engine (Guests, Date, Slot, Seating Ambiance)',
       '5. Chef Signature Story & Authentic Spices Heritage',
-      '6. Zomato 4.9★ & Google Diner Reviews',
+      '6. Zomato 4.9 Rating & Google Diner Reviews',
       '7. Footer (Map, 12pm-11:30pm Timings, Private Dining Inquiries)',
     ],
     ecommerce: [
@@ -154,7 +154,7 @@ ${selectedSitemap.join('\n')}
 3. TECHNICAL STACK & ARCHITECTURE
 -----------------------------------------------------
 - Framework: React 18+ / Next.js Fast Static-Site Architecture
-- Styling: Tailwind CSS custom tokens (#F1ECE6, #DDD5CD, #7D4047, #2E2E2E)
+- Styling: Tailwind CSS custom tokens (#FFF7E8, #DDD5CD, #355CDE, #2E2E2E)
 - Icons: Lucide React (feather lightweight vectors)
 - Forms & Webhooks: Direct SQLite DB integration & Form validation
 - Performance Target: 95+ PageSpeed Mobile, < 1.0s First Contentful Paint

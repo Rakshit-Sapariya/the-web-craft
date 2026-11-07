@@ -41,7 +41,7 @@ export default function GymFitnessDemo({ onOrderDesign, isMobileView }) {
       <header className="bg-black/90 border-b border-neutral-800 sticky top-0 z-20 px-4 py-3">
         <div className={`mx-auto flex items-center justify-between ${isMobileView ? 'flex-col gap-2' : 'max-w-7xl h-16'}`}>
           <div className="flex items-center gap-2.5">
-            <div className="w-9 h-9 rounded-xl bg-[#7D4047] text-white flex items-center justify-center font-bold shadow-sm">
+            <div className="w-9 h-9 rounded-xl bg-[#355CDE] text-white flex items-center justify-center font-bold shadow-sm">
               <Dumbbell className="w-5 h-5" />
             </div>
             <div>
@@ -54,7 +54,7 @@ export default function GymFitnessDemo({ onOrderDesign, isMobileView }) {
             <span className="text-xs text-neutral-400 hidden sm:inline">Prahladnagar &bull; Ahmedabad</span>
             <a
               href="#trial"
-              className="px-4 py-1.5 rounded-xl bg-[#7D4047] hover:bg-[#67333a] text-white text-xs font-bold uppercase tracking-wider shadow-wine"
+              className="px-4 py-1.5 rounded-xl bg-[#355CDE] hover:bg-[#2447B8] text-white text-xs font-bold uppercase tracking-wider shadow-wine"
             >
               Get Free Pass
             </a>
@@ -79,7 +79,7 @@ export default function GymFitnessDemo({ onOrderDesign, isMobileView }) {
             <div className="pt-2 flex flex-wrap gap-2.5">
               <a
                 href="#trial"
-                className="px-5 py-2.5 rounded-xl bg-[#7D4047] hover:bg-[#67333a] text-white text-xs font-bold uppercase tracking-wider shadow-wine"
+                className="px-5 py-2.5 rounded-xl bg-[#355CDE] hover:bg-[#2447B8] text-white text-xs font-bold uppercase tracking-wider shadow-wine"
               >
                 Claim 1-Day Free Trial
               </a>
@@ -121,14 +121,14 @@ export default function GymFitnessDemo({ onOrderDesign, isMobileView }) {
                 onClick={() => setSelectedPlan(p.id)}
                 className={`p-5 rounded-2xl border-2 transition-all flex flex-col justify-between cursor-pointer ${
                   isSelected 
-                    ? 'border-[#7D4047] bg-[#1a1a1a] shadow-xl' 
+                    ? 'border-[#355CDE] bg-[#1a1a1a] shadow-xl' 
                     : 'border-neutral-800 bg-[#161616] hover:border-neutral-700'
                 }`}
               >
                 <div>
                   <div className="flex justify-between items-center mb-2">
                     <span className="text-xs font-bold uppercase tracking-wider text-amber-400">{p.badge}</span>
-                    {isSelected && <span className="w-2.5 h-2.5 rounded-full bg-[#7D4047]" />}
+                    {isSelected && <span className="w-2.5 h-2.5 rounded-full bg-[#355CDE]" />}
                   </div>
                   <h3 className="font-heading font-extrabold text-lg text-white">{p.name}</h3>
                   <div className="py-3 border-y border-neutral-800 my-3">
@@ -139,7 +139,7 @@ export default function GymFitnessDemo({ onOrderDesign, isMobileView }) {
                   <ul className="space-y-2 text-xs text-neutral-300">
                     {p.features.map((f, i) => (
                       <li key={i} className="flex items-center gap-2">
-                        <Check className="w-4 h-4 text-[#7D4047] shrink-0" />
+                        <Check className="w-4 h-4 text-[#355CDE] shrink-0" />
                         <span>{f}</span>
                       </li>
                     ))}
@@ -151,7 +151,7 @@ export default function GymFitnessDemo({ onOrderDesign, isMobileView }) {
                     href="#trial"
                     className={`w-full py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider flex items-center justify-center transition-all ${
                       isSelected
-                        ? 'bg-[#7D4047] text-white hover:bg-[#67333a]'
+                        ? 'bg-[#355CDE] text-white hover:bg-[#2447B8]'
                         : 'bg-neutral-800 text-neutral-300 hover:text-white'
                     }`}
                   >
@@ -259,7 +259,7 @@ export default function GymFitnessDemo({ onOrderDesign, isMobileView }) {
             <div className={`flex flex-wrap items-center gap-3 shrink-0 ${isMobileView ? 'w-full flex-col' : ''}`}>
               <a
                 href="tel:+919825045678"
-                className={`px-5 py-3 rounded-2xl bg-[#7D4047] hover:bg-[#67333a] text-white text-xs font-bold uppercase tracking-wider flex items-center gap-2 shadow-wine transition-all ${isMobileView ? 'w-full justify-center' : ''}`}
+                className={`px-5 py-3 rounded-2xl bg-[#355CDE] hover:bg-[#2447B8] text-white text-xs font-bold uppercase tracking-wider flex items-center gap-2 shadow-wine transition-all ${isMobileView ? 'w-full justify-center' : ''}`}
               >
                 <Phone className="w-4 h-4" />
                 <span>Call Front Desk: +91 98250 45678</span>
@@ -333,7 +333,7 @@ export default function GymFitnessDemo({ onOrderDesign, isMobileView }) {
         <div className={`max-w-7xl mx-auto grid pb-8 border-b border-neutral-800 ${isMobileView ? 'grid-cols-1 gap-6 text-center' : 'grid-cols-1 md:grid-cols-4 gap-8'}`}>
           <div className={`space-y-3 md:col-span-1 ${isMobileView ? 'flex flex-col items-center' : ''}`}>
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-[#7D4047] text-white flex items-center justify-center font-bold">
+              <div className="w-8 h-8 rounded-lg bg-[#355CDE] text-white flex items-center justify-center font-bold">
                 <Dumbbell className="w-4 h-4" />
               </div>
               <span className="font-heading font-black text-sm text-white tracking-widest uppercase">IRONCORE ELITE</span>
@@ -379,7 +379,7 @@ export default function GymFitnessDemo({ onOrderDesign, isMobileView }) {
         </div>
         <button
           onClick={onOrderDesign}
-          className={`px-3.5 py-1.5 rounded-lg bg-[#7D4047] hover:bg-[#67333a] text-white font-bold flex items-center gap-1.5 ${isMobileView ? 'w-full justify-center' : ''}`}
+          className={`px-3.5 py-1.5 rounded-lg bg-[#355CDE] hover:bg-[#2447B8] text-white font-bold flex items-center gap-1.5 ${isMobileView ? 'w-full justify-center' : ''}`}
         >
           <span>Order A Gym Website (₹5k Adv)</span>
           <ArrowRight className="w-3.5 h-3.5" />

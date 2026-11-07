@@ -4,13 +4,18 @@
 
 @layer base {
   body {
-    background-color: #F1ECE6;
-    color: #2E2E2E;
+    background-color: #FFF7E8;
+    color: #0F0E0C;
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Outfit', sans-serif;
+  }
+
+  ::selection {
+    background-color: #355CDE;
+    color: #FFFFFF;
   }
 }
 
@@ -20,25 +25,25 @@
   height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #F1ECE6;
+  background: #FFF7E8;
 }
 ::-webkit-scrollbar-thumb {
-  background: #DDD5CD;
+  background: #E2D7C3;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #7D4047;
+  background: #355CDE;
 }
 
 /* Custom utilities */
 .glass-card {
-  background: rgba(241, 236, 230, 0.85);
+  background: rgba(241, 232, 216, 0.85);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(221, 213, 205, 0.8);
+  border: 1px solid #E2D7C3;
 }
 
-.wine-gradient {
-  background: linear-gradient(135deg, #7D4047 0%, #5e2e34 100%);
+.royal-gradient {
+  background: linear-gradient(135deg, #355CDE 0%, #2447B8 100%);
 }
 
 /* Animations & Keyframes */
@@ -125,7 +130,7 @@
 }
 
 .shimmer-text {
-  background: linear-gradient(90deg, #7D4047 0%, #c0636f 50%, #7D4047 100%);
+  background: linear-gradient(90deg, #355CDE 0%, #2447B8 50%, #355CDE 100%);
   background-size: 200% auto;
   color: transparent;
   -webkit-background-clip: text;
@@ -139,22 +144,22 @@
 
 .hover-glow-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 16px 36px -8px rgba(125, 64, 71, 0.18), 0 4px 12px rgba(46, 46, 46, 0.06);
-  border-color: #7D4047;
+  box-shadow: 0 16px 36px -8px rgba(53, 92, 222, 0.18), 0 4px 12px rgba(0, 0, 0, 0.06);
+  border-color: #355CDE;
 }
 
 @keyframes pulse-ring {
   0% {
     transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(125, 64, 71, 0.4);
+    box-shadow: 0 0 0 0 rgba(53, 92, 222, 0.4);
   }
   70% {
     transform: scale(1);
-    box-shadow: 0 0 0 10px rgba(125, 64, 71, 0);
+    box-shadow: 0 0 0 10px rgba(53, 92, 222, 0);
   }
   100% {
     transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(125, 64, 71, 0);
+    box-shadow: 0 0 0 0 rgba(53, 92, 222, 0);
   }
 }
 

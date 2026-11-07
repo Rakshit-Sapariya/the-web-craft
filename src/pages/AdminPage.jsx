@@ -3,7 +3,7 @@ import {
   Layers, CheckCircle2, Clock, Search, RefreshCw, Eye, 
   Phone, Mail, FileText, Database, ShieldCheck, AlertCircle, 
   ExternalLink, User, DollarSign, Filter, ArrowUpRight,
-  Bot, Sparkles, Smartphone, Monitor, Edit3, Send, Share2, Copy, Check,
+  Bot, Smartphone, Monitor, Edit3, Send, Share2, Copy, Check,
   Lock, LogOut, Key, Globe, Zap, Terminal, Activity, Compass
 } from 'lucide-react';
 import { api } from '../services/api';
@@ -280,7 +280,7 @@ export default function AdminPage() {
   const handleAdminApprove = async (orderId) => {
     try {
       const res = await api.approveAdminBuild(orderId);
-      alert('✅ Approved! Client preview is now ready. Link: ' + res.previewUrl);
+      alert('Approved! Client preview is now ready. Link: ' + res.previewUrl);
       await loadData();
       if (tourOrder && tourOrder.id === orderId) {
         setTourOrder(prev => ({ ...prev, ai_status: 'client_preview' }));
@@ -310,8 +310,8 @@ export default function AdminPage() {
   // 1. LOADING SCREEN WHILE VERIFYING CREDENTIALS
   if (checkingAuth) {
     return (
-      <div className="min-h-screen bg-[#F1ECE6] flex flex-col items-center justify-center space-y-4">
-        <RefreshCw className="w-8 h-8 text-[#7D4047] animate-spin" />
+      <div className="min-h-screen bg-[#FFF7E8] flex flex-col items-center justify-center space-y-4">
+        <RefreshCw className="w-8 h-8 text-[#355CDE] animate-spin" />
         <p className="text-xs font-bold text-gray-700 tracking-wider uppercase font-mono">
           Verifying Security Clearance...
         </p>
@@ -322,12 +322,11 @@ export default function AdminPage() {
   // 2. FORTIFIED ADMIN LOGIN GATE (ZERO LEAKAGE)
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-[#F1ECE6] flex items-center justify-center p-4">
-        <div className="bg-[#222222] text-white rounded-3xl max-w-md w-full p-8 space-y-6 shadow-2xl border border-white/10 relative overflow-hidden">
-          <div className="absolute -top-16 -right-16 w-48 h-48 bg-[#7D4047]/30 rounded-full blur-3xl pointer-events-none" />
+      <div className="min-h-screen bg-[#FFF7E8] flex items-center justify-center p-4">
+        <div className="bg-[#222222] text-white rounded-xl max-w-md w-full p-8 space-y-6 shadow-xl border border-white/10 relative overflow-hidden">
           
           <div className="text-center space-y-2">
-            <div className="w-14 h-14 mx-auto rounded-2xl bg-gradient-to-br from-[#7D4047] to-amber-500 text-white flex items-center justify-center shadow-lg">
+            <div className="w-14 h-14 mx-auto rounded-2xl bg-gradient-to-br from-[#355CDE] to-amber-500 text-white flex items-center justify-center shadow-lg">
               <ShieldCheck className="w-7 h-7" />
             </div>
             <h2 className="text-xl font-extrabold text-white font-heading">
@@ -376,7 +375,7 @@ export default function AdminPage() {
             <button
               type="submit"
               disabled={loginSubmitting}
-              className="w-full py-3 rounded-xl bg-gradient-to-r from-[#7D4047] to-amber-600 hover:opacity-95 text-white text-xs font-bold shadow-lg transition-all active:scale-95 disabled:opacity-50 flex items-center justify-center gap-2"
+              className="w-full py-3 rounded-xl bg-gradient-to-r from-[#355CDE] to-amber-600 hover:opacity-95 text-white text-xs font-bold shadow-lg transition-all active:scale-95 disabled:opacity-50 flex items-center justify-center gap-2"
             >
               {loginSubmitting ? (
                 <>
@@ -402,24 +401,23 @@ export default function AdminPage() {
 
   // 3. FULL AUTHENTICATED CONTROL DESK
   return (
-    <div className="py-10 sm:py-16 bg-[#F1ECE6] min-h-screen">
+    <div className="py-10 sm:py-16 bg-[#FFF7E8] min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         
         {/* Header Strip */}
-        <div className="relative overflow-hidden flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-[#2E2E2E] text-white p-6 sm:p-8 rounded-3xl shadow-elevated border border-white/10 hover-glow-card">
-          <div className="absolute -top-12 -right-12 w-48 h-48 bg-[#7D4047]/30 rounded-full blur-3xl pointer-events-none animate-pulse-glow" />
+        <div className="relative overflow-hidden flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-[#000000] text-white p-6 sm:p-8 rounded-xl border border-white/10">
           
           <div className="space-y-1 relative z-10">
             <div className="flex items-center gap-2">
               <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
-              <span className="text-xs font-mono uppercase tracking-wider text-[#DDD5CD]">
+              <span className="text-xs font-mono uppercase tracking-wider text-[#E2D7C3]">
                 THE WEBCRAFT &bull; Studio Control Desk &bull; Active Admin ({adminUsername})
               </span>
             </div>
             <h1 className="text-2xl sm:text-3xl font-extrabold text-white font-heading">
               Client Orders &amp; AI Studio Pipeline
             </h1>
-            <p className="text-xs text-[#DDD5CD]/80">
+            <p className="text-xs text-[#E2D7C3]/80">
               Fortified Session Active &bull; Salted Scrypt Passwords &bull; 0 Secrets Hardcoded &bull; Role-Guarded
             </p>
           </div>
@@ -459,9 +457,9 @@ export default function AdminPage() {
         </div>
 
         {/* AI Agent Capability Banner */}
-        <div className="p-6 rounded-3xl bg-gradient-to-r from-[#2E2E2E] via-[#3a282b] to-[#2E2E2E] text-white border border-[#7D4047]/40 shadow-soft flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        <div className="p-6 rounded-3xl bg-gradient-to-r from-[#000000] via-[#111111] to-[#000000] text-white border border-[#355CDE]/60 shadow-soft flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#7D4047] to-amber-500 text-white flex items-center justify-center shadow-lg shrink-0">
+            <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#355CDE] to-amber-500 text-white flex items-center justify-center shadow-lg shrink-0">
               <Bot className="w-6 h-6" />
             </div>
             <div className="space-y-0.5">
@@ -471,7 +469,7 @@ export default function AdminPage() {
                   Online &amp; Fortified
                 </span>
               </h2>
-              <p className="text-xs text-[#DDD5CD]/80 leading-relaxed">
+              <p className="text-xs text-[#E2D7C3]/80 leading-relaxed">
                 Click <strong>"Build with AI"</strong> on any client order. The agent formulates the prompt, builds the website, self-heals errors to 0 defects, gives you a guided tour, and prepares client staging.
               </p>
             </div>
@@ -481,29 +479,29 @@ export default function AdminPage() {
         {/* Stats KPI Cards */}
         {stats && (
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-            <div className="bg-white p-5 rounded-2xl border border-[#DDD5CD] shadow-soft space-y-1 hover-glow-card transition-all duration-300 hover:-translate-y-1 group">
-              <span className="text-xs text-[#625f5c] font-medium block">Registered Orders</span>
-              <p className="text-2xl sm:text-3xl font-black text-[#2E2E2E] font-mono group-hover:text-[#7D4047] transition-colors">{stats.totalOrders}</p>
+            <div className="bg-white p-5 rounded-2xl border border-[#E2D7C3] shadow-soft space-y-1 hover-glow-card transition-all duration-300 hover:-translate-y-1 group">
+              <span className="text-xs text-[#646A73] font-medium block">Registered Orders</span>
+              <p className="text-2xl sm:text-3xl font-black text-[#000000] font-mono group-hover:text-[#355CDE] transition-colors">{stats.totalOrders}</p>
               <div className="flex items-center gap-1.5 pt-0.5">
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                 <span className="text-[11px] text-emerald-600 font-semibold">Persisted in SQLite</span>
               </div>
             </div>
 
-            <div className="bg-white p-5 rounded-2xl border border-[#DDD5CD] shadow-soft space-y-1 hover-glow-card transition-all duration-300 hover:-translate-y-1 group">
-              <span className="text-xs text-[#625f5c] font-medium block">Active Production</span>
-              <p className="text-2xl sm:text-3xl font-black text-[#7D4047] font-mono group-hover:scale-105 origin-left transition-transform">{stats.activeProjects}</p>
-              <span className="text-[11px] text-[#625f5c] block">In Development / Demo</span>
+            <div className="bg-white p-5 rounded-2xl border border-[#E2D7C3] shadow-soft space-y-1 hover-glow-card transition-all duration-300 hover:-translate-y-1 group">
+              <span className="text-xs text-[#646A73] font-medium block">Active Production</span>
+              <p className="text-2xl sm:text-3xl font-black text-[#355CDE] font-mono group-hover:scale-105 origin-left transition-transform">{stats.activeProjects}</p>
+              <span className="text-[11px] text-[#646A73] block">In Development / Demo</span>
             </div>
 
-            <div className="bg-white p-5 rounded-2xl border border-[#DDD5CD] shadow-soft space-y-1 hover-glow-card transition-all duration-300 hover:-translate-y-1 group">
-              <span className="text-xs text-[#625f5c] font-medium block">Pipeline Value</span>
-              <p className="text-2xl sm:text-3xl font-black text-[#2E2E2E] font-mono group-hover:text-[#7D4047] transition-colors">₹{stats.totalPipelineValue.toLocaleString('en-IN')}</p>
-              <span className="text-[11px] text-[#625f5c] block">Agreed client prices</span>
+            <div className="bg-white p-5 rounded-2xl border border-[#E2D7C3] shadow-soft space-y-1 hover-glow-card transition-all duration-300 hover:-translate-y-1 group">
+              <span className="text-xs text-[#646A73] font-medium block">Pipeline Value</span>
+              <p className="text-2xl sm:text-3xl font-black text-[#000000] font-mono group-hover:text-[#355CDE] transition-colors">₹{stats.totalPipelineValue.toLocaleString('en-IN')}</p>
+              <span className="text-[11px] text-[#646A73] block">Agreed client prices</span>
             </div>
 
-            <div className="bg-white p-5 rounded-2xl border border-[#DDD5CD] shadow-soft space-y-1 hover-glow-card transition-all duration-300 hover:-translate-y-1 group">
-              <span className="text-xs text-[#625f5c] font-medium block">Completed Launches</span>
+            <div className="bg-white p-5 rounded-2xl border border-[#E2D7C3] shadow-soft space-y-1 hover-glow-card transition-all duration-300 hover:-translate-y-1 group">
+              <span className="text-xs text-[#646A73] font-medium block">Completed Launches</span>
               <p className="text-2xl sm:text-3xl font-black text-emerald-600 font-mono">
                 {stats.completedProjects || 0}
               </p>
@@ -513,8 +511,8 @@ export default function AdminPage() {
         )}
 
         {/* Studio Tabs & Search Filter Strip */}
-        <div className="bg-white rounded-3xl border border-[#DDD5CD] shadow-soft overflow-hidden">
-          <div className="p-4 sm:p-6 border-b border-[#DDD5CD] flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 bg-[#FAF9F6]">
+        <div className="bg-white rounded-3xl border border-[#E2D7C3] shadow-soft overflow-hidden">
+          <div className="p-4 sm:p-6 border-b border-[#E2D7C3] flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 bg-[#FFF7E8]">
             
             {/* Tabs */}
             <div className="flex items-center gap-2">
@@ -522,8 +520,8 @@ export default function AdminPage() {
                 onClick={() => setActiveTab('orders')}
                 className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
                   activeTab === 'orders'
-                    ? 'bg-[#2E2E2E] text-white shadow-sm'
-                    : 'bg-white hover:bg-[#F1ECE6] text-[#625f5c]'
+                    ? 'bg-[#000000] text-white shadow-sm'
+                    : 'bg-white hover:bg-[#FFF7E8] text-[#646A73]'
                 }`}
               >
                 Client Orders ({orders.length})
@@ -532,8 +530,8 @@ export default function AdminPage() {
                 onClick={() => setActiveTab('messages')}
                 className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${
                   activeTab === 'messages'
-                    ? 'bg-[#2E2E2E] text-white shadow-sm'
-                    : 'bg-white hover:bg-[#F1ECE6] text-[#625f5c]'
+                    ? 'bg-[#000000] text-white shadow-sm'
+                    : 'bg-white hover:bg-[#FFF7E8] text-[#646A73]'
                 }`}
               >
                 Contact Messages ({messages.length})
@@ -542,11 +540,11 @@ export default function AdminPage() {
                 onClick={() => setActiveTab('mind')}
                 className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 ${
                   activeTab === 'mind'
-                    ? 'bg-[#7D4047] text-white shadow-wine'
-                    : 'bg-white hover:bg-[#F1ECE6] text-[#625f5c]'
+                    ? 'bg-[#000000] text-white shadow-navy'
+                    : 'bg-white hover:bg-[#FFF7E8] text-[#646A73]'
                 }`}
               >
-                <Sparkles className="w-3.5 h-3.5" />
+                <Bot className="w-3.5 h-3.5" />
                 <span>Agent Mind</span>
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
               </button>
@@ -556,20 +554,20 @@ export default function AdminPage() {
             {activeTab === 'orders' && (
               <div className="flex flex-col sm:flex-row items-center gap-3">
                 <div className="relative w-full sm:w-64">
-                  <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-[#625f5c]" />
+                  <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-[#646A73]" />
                   <input
                     type="text"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Search client, phone, ID..."
-                    className="w-full pl-9 pr-3 py-1.5 rounded-xl border border-[#DDD5CD] text-xs text-[#2E2E2E] bg-white focus:outline-none focus:border-[#7D4047]"
+                    className="w-full pl-9 pr-3 py-1.5 rounded-xl border border-[#E2D7C3] text-xs text-[#000000] bg-white focus:outline-none focus:border-[#355CDE]"
                   />
                 </div>
 
                 <select
                   value={filterStatus}
                   onChange={(e) => setFilterStatus(e.target.value)}
-                  className="w-full sm:w-auto px-3 py-1.5 rounded-xl border border-[#DDD5CD] text-xs font-semibold text-[#2E2E2E] bg-white cursor-pointer"
+                  className="w-full sm:w-auto px-3 py-1.5 rounded-xl border border-[#E2D7C3] text-xs font-semibold text-[#000000] bg-white cursor-pointer"
                 >
                   <option value="all">All Statuses</option>
                   <option value="order_placed">01. Order Placed</option>
@@ -586,7 +584,7 @@ export default function AdminPage() {
           {activeTab === 'orders' && (
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs">
-                <thead className="bg-[#F1ECE6]/60 text-[#625f5c] uppercase text-[10px] font-bold border-b border-[#DDD5CD]">
+                <thead className="bg-[#FFF7E8]/60 text-[#646A73] uppercase text-[10px] font-bold border-b border-[#E2D7C3]">
                   <tr>
                     <th className="py-3.5 px-4">Order ID</th>
                     <th className="py-3.5 px-4">Client Details</th>
@@ -597,10 +595,10 @@ export default function AdminPage() {
                     <th className="py-3.5 px-4 text-right">Autonomous Actions</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-[#DDD5CD]/60 text-[#2E2E2E]">
+                <tbody className="divide-y divide-[#E2D7C3]/60 text-[#000000]">
                   {filteredOrders.length === 0 ? (
                     <tr>
-                      <td colSpan={7} className="py-8 text-center text-xs text-[#625f5c]">
+                      <td colSpan={7} className="py-8 text-center text-xs text-[#646A73]">
                         No client orders found.
                       </td>
                     </tr>
@@ -610,16 +608,16 @@ export default function AdminPage() {
                       const isBuilding = aiBuildingOrderId === ord.id;
 
                       return (
-                        <tr key={ord.id} className="hover:bg-[#FAF9F6] transition-colors group">
-                          <td className="py-3.5 px-4 font-mono font-bold text-[#7D4047]">
+                        <tr key={ord.id} className="hover:bg-[#FFF7E8] transition-colors group">
+                          <td className="py-3.5 px-4 font-mono font-bold text-[#355CDE]">
                             {ord.id}
                           </td>
                           <td className="py-3.5 px-4">
-                            <strong className="block text-[#2E2E2E]">{ord.client_name}</strong>
-                            <span className="text-[11px] text-[#625f5c]">+91 {ord.client_phone}</span>
+                            <strong className="block text-[#000000]">{ord.client_name}</strong>
+                            <span className="text-[11px] text-[#646A73]">+91 {ord.client_phone}</span>
                           </td>
                           <td className="py-3.5 px-4">
-                            <span className="capitalize font-medium text-[#2E2E2E]">
+                            <span className="capitalize font-medium text-[#000000]">
                               {ord.website_type}
                             </span>
                           </td>
@@ -636,7 +634,7 @@ export default function AdminPage() {
                               </span>
                             ) : ord.ai_status === 'tour_ready' ? (
                               <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-indigo-100 text-indigo-800 text-[10px] font-bold">
-                                <Sparkles className="w-3 h-3 text-indigo-600" />
+                                <Activity className="w-3 h-3 text-indigo-600" />
                                 <span>Tour Ready</span>
                               </span>
                             ) : ord.ai_status === 'client_preview' ? (
@@ -660,7 +658,7 @@ export default function AdminPage() {
                             <select
                               value={ord.order_status}
                               onChange={(e) => handleUpdateStatus(ord.id, e.target.value, ord.payment_status)}
-                              className="text-xs px-2.5 py-1 rounded-lg border border-[#DDD5CD] font-medium bg-white focus:outline-none focus:ring-1 focus:ring-[#7D4047] cursor-pointer"
+                              className="text-xs px-2.5 py-1 rounded-lg border border-[#E2D7C3] font-medium bg-white focus:outline-none focus:ring-1 focus:ring-[#355CDE] cursor-pointer"
                             >
                               <option value="order_placed">01. Order Placed</option>
                               <option value="wireframe_ready">02. Wireframe Ready</option>
@@ -681,7 +679,7 @@ export default function AdminPage() {
                                 className={`px-2.5 py-1.5 rounded-lg text-white font-bold text-[11px] flex items-center gap-1 transition-all active:scale-95 shadow-sm ${
                                   isAiBuilt
                                     ? 'bg-gray-800 hover:bg-gray-900'
-                                    : 'bg-gradient-to-r from-[#7D4047] to-amber-600 hover:opacity-95'
+                                    : 'bg-gradient-to-r from-[#355CDE] to-amber-600 hover:opacity-95'
                                 }`}
                                 title="Autonomous AI Builder"
                               >
@@ -697,7 +695,7 @@ export default function AdminPage() {
                                   className="px-2.5 py-1.5 rounded-lg bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-bold text-[11px] flex items-center gap-1 border border-indigo-200 transition-all active:scale-95 shadow-sm"
                                   title="Admin Walkthrough Tour & Modifications"
                                 >
-                                  <Sparkles className="w-3 h-3 text-indigo-600" />
+                                  <Eye className="w-3 h-3 text-indigo-600" />
                                   <span>Take Tour</span>
                                 </button>
                               )}
@@ -707,13 +705,13 @@ export default function AdminPage() {
                                 <button
                                   type="button"
                                   onClick={() => handleCopyClientLink(ord)}
-                                  className="p-1.5 rounded-lg bg-white hover:bg-[#F1ECE6] text-[#2E2E2E] border border-[#DDD5CD] transition-colors"
+                                  className="p-1.5 rounded-lg bg-white hover:bg-[#FFF7E8] text-[#000000] border border-[#E2D7C3] transition-colors"
                                   title="Copy Client Preview URL"
                                 >
                                   {copiedOrderId === ord.id ? (
                                     <Check className="w-3.5 h-3.5 text-emerald-600" />
                                   ) : (
-                                    <Copy className="w-3.5 h-3.5 text-[#625f5c]" />
+                                    <Copy className="w-3.5 h-3.5 text-[#646A73]" />
                                   )}
                                 </button>
                               )}
@@ -722,7 +720,7 @@ export default function AdminPage() {
                               <button
                                 type="button"
                                 onClick={() => setSelectedOrder(ord)}
-                                className="p-1.5 rounded-lg hover:bg-[#F1ECE6] text-[#625f5c] hover:text-[#7D4047] transition-colors"
+                                className="p-1.5 rounded-lg hover:bg-[#FFF7E8] text-[#646A73] hover:text-[#355CDE] transition-colors"
                                 title="View Raw Order Brief"
                               >
                                 <Eye className="w-3.5 h-3.5" />
@@ -742,7 +740,7 @@ export default function AdminPage() {
           {activeTab === 'messages' && (
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs">
-                <thead className="bg-[#F1ECE6]/60 text-[#625f5c] uppercase text-[10px] font-bold border-b border-[#DDD5CD]">
+                <thead className="bg-[#FFF7E8]/60 text-[#646A73] uppercase text-[10px] font-bold border-b border-[#E2D7C3]">
                   <tr>
                     <th className="py-3.5 px-4">Date</th>
                     <th className="py-3.5 px-4">Sender</th>
@@ -751,23 +749,23 @@ export default function AdminPage() {
                     <th className="py-3.5 px-4">Message</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-[#DDD5CD]/60 text-[#2E2E2E]">
+                <tbody className="divide-y divide-[#E2D7C3]/60 text-[#000000]">
                   {messages.length === 0 ? (
                     <tr>
-                      <td colSpan={5} className="py-8 text-center text-xs text-[#625f5c]">
+                      <td colSpan={5} className="py-8 text-center text-xs text-[#646A73]">
                         No contact inquiries received yet.
                       </td>
                     </tr>
                   ) : (
                     messages.map((m) => (
-                      <tr key={m.id} className="hover:bg-[#FAF9F6] transition-colors">
-                        <td className="py-3.5 px-4 text-[#625f5c] whitespace-nowrap">
+                      <tr key={m.id} className="hover:bg-[#FFF7E8] transition-colors">
+                        <td className="py-3.5 px-4 text-[#646A73] whitespace-nowrap">
                           {new Date(m.created_at).toLocaleDateString('en-IN')}
                         </td>
                         <td className="py-3.5 px-4 font-bold">{m.name}</td>
                         <td className="py-3.5 px-4 font-mono text-[11px]">+91 {m.phone}</td>
-                        <td className="py-3.5 px-4 font-semibold text-[#7D4047]">{m.subject}</td>
-                        <td className="py-3.5 px-4 max-w-sm text-xs text-[#625f5c] leading-relaxed">
+                        <td className="py-3.5 px-4 font-semibold text-[#355CDE]">{m.subject}</td>
+                        <td className="py-3.5 px-4 max-w-sm text-xs text-[#646A73] leading-relaxed">
                           {m.message}
                         </td>
                       </tr>
@@ -783,9 +781,7 @@ export default function AdminPage() {
             <div className="p-4 sm:p-6 space-y-6">
               
               {/* Mind Status Hero Banner */}
-              <div className="rounded-2xl bg-gradient-to-br from-[#1E1E1E] via-[#2A2326] to-[#1E1E1E] border border-white/10 p-5 sm:p-6 text-white shadow-lg relative overflow-hidden">
-                <div className="absolute right-0 top-0 w-96 h-96 bg-[#7D4047]/10 rounded-full blur-3xl pointer-events-none" />
-                
+              <div className="rounded-xl bg-[#1E1E1E] border border-white/10 p-5 sm:p-6 text-white shadow-lg relative overflow-hidden">
                 <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-5">
                   <div className="space-y-2">
                     <div className="flex flex-wrap items-center gap-2">
@@ -830,7 +826,7 @@ export default function AdminPage() {
                     <button
                       onClick={handleForceMindRefresh}
                       disabled={mindRefreshing}
-                      className="w-full px-4 py-2.5 rounded-xl bg-gradient-to-r from-[#7D4047] to-[#A0525C] hover:from-[#67333a] hover:to-[#8c464e] text-white text-xs font-bold flex items-center justify-center gap-2 shadow-wine transition-all active:scale-95 disabled:opacity-50 cursor-pointer min-h-[44px]"
+                      className="w-full px-4 py-2.5 rounded-xl bg-gradient-to-r from-[#355CDE] to-[#2447B8] hover:from-[#2447B8] hover:to-[#2447B8] text-white text-xs font-bold flex items-center justify-center gap-2 shadow-navy transition-all active:scale-95 disabled:opacity-50 cursor-pointer min-h-[44px]"
                       aria-label="Force Internet Knowledge Sync"
                     >
                       <RefreshCw className={`w-4 h-4 ${mindRefreshing ? 'animate-spin' : ''}`} />
@@ -845,33 +841,33 @@ export default function AdminPage() {
 
               {/* 4 Bento Grid Metric Cards */}
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                <div className="p-4 rounded-2xl bg-[#FAF9F6] border border-[#DDD5CD] space-y-1">
-                  <span className="text-[11px] font-semibold text-[#625f5c] block">Live Web Connectivity</span>
-                  <p className="text-base sm:text-lg font-black text-[#2E2E2E] flex items-center gap-1.5">
+                <div className="p-4 rounded-2xl bg-[#FFF7E8] border border-[#E2D7C3] space-y-1">
+                  <span className="text-[11px] font-semibold text-[#646A73] block">Live Web Connectivity</span>
+                  <p className="text-base sm:text-lg font-black text-[#000000] flex items-center gap-1.5">
                     <Globe className="w-4 h-4 text-emerald-600" />
                     <span>ONLINE_LIVE</span>
                   </p>
                   <span className="text-[10px] text-gray-500 block">GitHub &amp; Dev.to APIs Active</span>
                 </div>
 
-                <div className="p-4 rounded-2xl bg-[#FAF9F6] border border-[#DDD5CD] space-y-1">
-                  <span className="text-[11px] font-semibold text-[#625f5c] block">3-Hour Refresh Countdown</span>
-                  <p className="text-base sm:text-lg font-black text-[#7D4047] font-mono">
+                <div className="p-4 rounded-2xl bg-[#FFF7E8] border border-[#E2D7C3] space-y-1">
+                  <span className="text-[11px] font-semibold text-[#646A73] block">3-Hour Refresh Countdown</span>
+                  <p className="text-base sm:text-lg font-black text-[#355CDE] font-mono">
                     {mindStatus?.status?.remainingFormatted || '3h 0m'}
                   </p>
                   <span className="text-[10px] text-gray-500 block">Automatic Background Job</span>
                 </div>
 
-                <div className="p-4 rounded-2xl bg-[#FAF9F6] border border-[#DDD5CD] space-y-1">
-                  <span className="text-[11px] font-semibold text-[#625f5c] block">Knowledge Base Size</span>
-                  <p className="text-base sm:text-lg font-black text-[#2E2E2E] font-mono">
+                <div className="p-4 rounded-2xl bg-[#FFF7E8] border border-[#E2D7C3] space-y-1">
+                  <span className="text-[11px] font-semibold text-[#646A73] block">Knowledge Base Size</span>
+                  <p className="text-base sm:text-lg font-black text-[#000000] font-mono">
                     {mindStatus?.status?.totalTrendsLearned || 17} Trends
                   </p>
                   <span className="text-[10px] text-gray-500 block">Modern 2026 UI/UX Rules</span>
                 </div>
 
-                <div className="p-4 rounded-2xl bg-[#FAF9F6] border border-[#DDD5CD] space-y-1">
-                  <span className="text-[11px] font-semibold text-[#625f5c] block">Autonomous Engine</span>
+                <div className="p-4 rounded-2xl bg-[#FFF7E8] border border-[#E2D7C3] space-y-1">
+                  <span className="text-[11px] font-semibold text-[#646A73] block">Autonomous Engine</span>
                   <p className="text-base sm:text-lg font-black text-indigo-700 flex items-center gap-1.5">
                     <Zap className="w-4 h-4 text-indigo-600" />
                     <span>5-Stage CoT</span>
@@ -881,13 +877,13 @@ export default function AdminPage() {
               </div>
 
               {/* Sub-Tab Navigation Strip */}
-              <div className="flex items-center gap-2 border-b border-[#DDD5CD] pb-2">
+              <div className="flex items-center gap-2 border-b border-[#E2D7C3] pb-2">
                 <button
                   onClick={() => setMindSubTab('thoughts')}
                   className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
                     mindSubTab === 'thoughts'
-                      ? 'bg-[#2E2E2E] text-white shadow-sm'
-                      : 'text-[#625f5c] hover:bg-[#F1ECE6]'
+                      ? 'bg-[#000000] text-white shadow-sm'
+                      : 'text-[#646A73] hover:bg-[#FFF7E8]'
                   }`}
                 >
                   <Terminal className="w-3.5 h-3.5" />
@@ -897,8 +893,8 @@ export default function AdminPage() {
                   onClick={() => setMindSubTab('trends')}
                   className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
                     mindSubTab === 'trends'
-                      ? 'bg-[#2E2E2E] text-white shadow-sm'
-                      : 'text-[#625f5c] hover:bg-[#F1ECE6]'
+                      ? 'bg-[#000000] text-white shadow-sm'
+                      : 'text-[#646A73] hover:bg-[#FFF7E8]'
                   }`}
                 >
                   <Globe className="w-3.5 h-3.5" />
@@ -908,8 +904,8 @@ export default function AdminPage() {
                   onClick={() => setMindSubTab('playbooks')}
                   className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
                     mindSubTab === 'playbooks'
-                      ? 'bg-[#2E2E2E] text-white shadow-sm'
-                      : 'text-[#625f5c] hover:bg-[#F1ECE6]'
+                      ? 'bg-[#000000] text-white shadow-sm'
+                      : 'text-[#646A73] hover:bg-[#FFF7E8]'
                   }`}
                 >
                   <Compass className="w-3.5 h-3.5" />
@@ -921,26 +917,26 @@ export default function AdminPage() {
               {mindSubTab === 'thoughts' && (
                 <div className="space-y-4">
                   {(!mindStatus?.status?.recentThinkingLogs || mindStatus.status.recentThinkingLogs.length === 0) ? (
-                    <div className="p-8 text-center rounded-2xl bg-[#FAF9F6] border border-[#DDD5CD] space-y-2">
-                      <Bot className="w-8 h-8 text-[#7D4047] mx-auto opacity-70" />
-                      <h4 className="text-sm font-bold text-[#2E2E2E]">Ready for Autonomous Thinking</h4>
-                      <p className="text-xs text-[#625f5c] max-w-md mx-auto">
+                    <div className="p-8 text-center rounded-2xl bg-[#FFF7E8] border border-[#E2D7C3] space-y-2">
+                      <Bot className="w-8 h-8 text-[#355CDE] mx-auto opacity-70" />
+                      <h4 className="text-sm font-bold text-[#000000]">Ready for Autonomous Thinking</h4>
+                      <p className="text-xs text-[#646A73] max-w-md mx-auto">
                         Trigger any website build from the "Client Orders" tab to see the Agent Mind generate its 5-stage chain of thoughts in real time.
                       </p>
                     </div>
                   ) : (
                     mindStatus.status.recentThinkingLogs.map((log, idx) => (
-                      <div key={idx} className="p-4 sm:p-5 rounded-2xl bg-[#FAF9F6] border border-[#DDD5CD] space-y-3 shadow-sm">
-                        <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#DDD5CD]/60 pb-2.5">
+                      <div key={idx} className="p-4 sm:p-5 rounded-2xl bg-[#FFF7E8] border border-[#E2D7C3] space-y-3 shadow-sm">
+                        <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#E2D7C3]/60 pb-2.5">
                           <div className="flex items-center gap-2">
                             <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
-                            <span className="text-xs font-bold text-[#2E2E2E] font-mono">{log.orderId}</span>
-                            <span className="text-xs font-semibold text-[#7D4047]">&bull; {log.clientName}</span>
-                            <span className="text-[10px] uppercase font-bold px-2 py-0.5 rounded bg-[#E8E1D9] text-[#2E2E2E]">
+                            <span className="text-xs font-bold text-[#000000] font-mono">{log.orderId}</span>
+                            <span className="text-xs font-semibold text-[#355CDE]">&bull; {log.clientName}</span>
+                            <span className="text-[10px] uppercase font-bold px-2 py-0.5 rounded bg-[#E8E1D9] text-[#000000]">
                               {log.websiteType}
                             </span>
                           </div>
-                          <div className="flex items-center gap-3 text-[11px] text-[#625f5c] font-mono">
+                          <div className="flex items-center gap-3 text-[11px] text-[#646A73] font-mono">
                             <span>Duration: {log.durationMs}ms</span>
                             <span>&bull;</span>
                             <span>{new Date(log.timestamp).toLocaleTimeString()}</span>
@@ -978,20 +974,20 @@ export default function AdminPage() {
               {/* Sub-Tab 2: Live Internet Knowledge Store */}
               {mindSubTab === 'trends' && (
                 <div className="space-y-4">
-                  <div className="p-4 rounded-2xl bg-[#FAF9F6] border border-[#DDD5CD] space-y-3">
+                  <div className="p-4 rounded-2xl bg-[#FFF7E8] border border-[#E2D7C3] space-y-3">
                     <div className="flex items-center justify-between">
-                      <h4 className="text-xs font-bold text-[#2E2E2E] flex items-center gap-2">
-                        <Sparkles className="w-4 h-4 text-[#7D4047]" />
+                      <h4 className="text-xs font-bold text-[#000000] flex items-center gap-2">
+                        <Zap className="w-4 h-4 text-[#355CDE]" />
                         Active 2026 Design Directives Learned from Web
                       </h4>
-                      <span className="text-[10px] font-mono text-[#625f5c]">
+                      <span className="text-[10px] font-mono text-[#646A73]">
                         Total: {mindStatus?.status?.totalTrendsLearned || 0}
                       </span>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5">
                       {(mindStatus?.status?.activeTrends || []).map((trend, tIdx) => (
-                        <div key={tIdx} className="p-3 rounded-xl bg-white border border-[#DDD5CD] text-xs font-medium text-[#2E2E2E] flex items-start gap-2 shadow-xs hover:border-[#7D4047]/40 transition-colors">
+                        <div key={tIdx} className="p-3 rounded-xl bg-white border border-[#E2D7C3] text-xs font-medium text-[#000000] flex items-start gap-2 shadow-xs hover:border-[#355CDE]/60 transition-colors">
                           <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
                           <span>{trend}</span>
                         </div>
@@ -1001,12 +997,12 @@ export default function AdminPage() {
 
                   {/* Sync History Table */}
                   {mindStatus?.status?.syncHistory && mindStatus.status.syncHistory.length > 0 && (
-                    <div className="rounded-2xl border border-[#DDD5CD] overflow-hidden">
-                      <div className="bg-[#FAF9F6] px-4 py-2.5 border-b border-[#DDD5CD] text-xs font-bold text-[#2E2E2E]">
+                    <div className="rounded-2xl border border-[#E2D7C3] overflow-hidden">
+                      <div className="bg-[#FFF7E8] px-4 py-2.5 border-b border-[#E2D7C3] text-xs font-bold text-[#000000]">
                         Recent Internet Sync Events
                       </div>
                       <table className="w-full text-left text-xs">
-                        <thead className="bg-[#F1ECE6]/60 text-[10px] font-bold uppercase text-[#625f5c]">
+                        <thead className="bg-[#FFF7E8]/60 text-[10px] font-bold uppercase text-[#646A73]">
                           <tr>
                             <th className="py-2.5 px-4">Cycle #</th>
                             <th className="py-2.5 px-4">Status</th>
@@ -1015,18 +1011,18 @@ export default function AdminPage() {
                             <th className="py-2.5 px-4">Latency</th>
                           </tr>
                         </thead>
-                        <tbody className="divide-y divide-[#DDD5CD]/60">
+                        <tbody className="divide-y divide-[#E2D7C3]/60">
                           {mindStatus.status.syncHistory.map((s, idx) => (
-                            <tr key={idx} className="hover:bg-[#FAF9F6]">
+                            <tr key={idx} className="hover:bg-[#FFF7E8]">
                               <td className="py-2 px-4 font-mono font-bold">#{s.cycle}</td>
                               <td className="py-2 px-4">
                                 <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">
                                   {s.status}
                                 </span>
                               </td>
-                              <td className="py-2 px-4 text-[#625f5c]">{new Date(s.timestamp).toLocaleString()}</td>
+                              <td className="py-2 px-4 text-[#646A73]">{new Date(s.timestamp).toLocaleString()}</td>
                               <td className="py-2 px-4 font-mono">{s.sourceCount} Feeds</td>
-                              <td className="py-2 px-4 font-mono text-[#625f5c]">{s.durationMs}ms</td>
+                              <td className="py-2 px-4 font-mono text-[#646A73]">{s.durationMs}ms</td>
                             </tr>
                           ))}
                         </tbody>
@@ -1075,23 +1071,23 @@ export default function AdminPage() {
                     {
                       name: 'High-Converting Landing Page',
                       type: 'landing',
-                      primary: '#7D4047',
+                      primary: '#355CDE',
                       accent: '#D97706',
                       psychology: 'Urgency, value clarity, risk reversal, single primary action',
                       hook: 'High-Performance Bespoke Digital Presence Built for Maximum Conversions'
                     }
                   ].map((p, idx) => (
-                    <div key={idx} className="p-4 rounded-2xl bg-[#FAF9F6] border border-[#DDD5CD] space-y-2.5">
+                    <div key={idx} className="p-4 rounded-2xl bg-[#FFF7E8] border border-[#E2D7C3] space-y-2.5">
                       <div className="flex items-center justify-between">
-                        <h4 className="text-xs font-bold text-[#2E2E2E]">{p.name}</h4>
+                        <h4 className="text-xs font-bold text-[#000000]">{p.name}</h4>
                         <div className="flex items-center gap-1.5">
                           <span className="w-3 h-3 rounded-full border border-black/10" style={{ backgroundColor: p.primary }}></span>
                           <span className="w-3 h-3 rounded-full border border-black/10" style={{ backgroundColor: p.accent }}></span>
                         </div>
                       </div>
-                      <p className="text-[11px] text-[#625f5c] italic">"{p.psychology}"</p>
-                      <div className="p-2 rounded-lg bg-white border border-[#DDD5CD] text-[11px] text-[#2E2E2E] font-medium">
-                        <span className="font-bold text-[#7D4047] block text-[10px] uppercase">Hero Hook:</span>
+                      <p className="text-[11px] text-[#646A73] italic">"{p.psychology}"</p>
+                      <div className="p-2 rounded-lg bg-white border border-[#E2D7C3] text-[11px] text-[#000000] font-medium">
+                        <span className="font-bold text-[#355CDE] block text-[10px] uppercase">Hero Hook:</span>
                         {p.hook}
                       </div>
                     </div>
@@ -1104,17 +1100,17 @@ export default function AdminPage() {
         </div>
 
         {/* ================================================================= */}
-        {/* 🌟 INTERACTIVE ADMIN TOUR & WALKTHROUGH MODAL                     */}
+        {/* INTERACTIVE ADMIN TOUR & WALKTHROUGH MODAL */}
         {/* ================================================================= */}
         {tourModalOpen && tourOrder && (
-          <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-2 sm:p-4">
-            <div className="bg-[#1E1E1E] text-white rounded-3xl max-w-6xl w-full h-[92vh] flex flex-col overflow-hidden border border-white/10 shadow-2xl">
+          <div className="fixed inset-0 z-50 bg-black/85 flex items-center justify-center p-2 sm:p-4">
+            <div className="bg-[#1E1E1E] text-white rounded-xl max-w-6xl w-full h-[92vh] flex flex-col overflow-hidden border border-white/10 shadow-2xl">
               
               {/* Tour Header Bar */}
               <div className="px-6 py-4 bg-[#282828] border-b border-white/10 flex items-center justify-between shrink-0">
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#7D4047] to-amber-500 text-white flex items-center justify-center font-bold">
-                    <Sparkles className="w-4 h-4" />
+                  <div className="w-8 h-8 rounded-xl bg-[#000000] text-white flex items-center justify-center font-bold">
+                    <Bot className="w-4 h-4" />
                   </div>
                   <div>
                     <div className="flex items-center gap-2">
@@ -1137,7 +1133,7 @@ export default function AdminPage() {
                     <button
                       onClick={() => setTourViewport('desktop')}
                       className={`px-3 py-1 rounded-lg text-xs font-semibold flex items-center gap-1 ${
-                        tourViewport === 'desktop' ? 'bg-[#7D4047] text-white' : 'text-gray-400 hover:text-white'
+                        tourViewport === 'desktop' ? 'bg-[#000000] text-white' : 'text-gray-400 hover:text-white'
                       }`}
                     >
                       <Monitor className="w-3.5 h-3.5" />
@@ -1146,7 +1142,7 @@ export default function AdminPage() {
                     <button
                       onClick={() => setTourViewport('mobile')}
                       className={`px-3 py-1 rounded-lg text-xs font-semibold flex items-center gap-1 ${
-                        tourViewport === 'mobile' ? 'bg-[#7D4047] text-white' : 'text-gray-400 hover:text-white'
+                        tourViewport === 'mobile' ? 'bg-[#000000] text-white' : 'text-gray-400 hover:text-white'
                       }`}
                     >
                       <Smartphone className="w-3.5 h-3.5" />
@@ -1237,7 +1233,7 @@ export default function AdminPage() {
                       <button
                         type="submit"
                         disabled={isRevising}
-                        className="w-full py-2 rounded-xl bg-[#7D4047] hover:bg-[#67333a] active:scale-95 text-white text-xs font-bold flex items-center justify-center gap-1.5 shadow-md disabled:opacity-50"
+                        className="w-full py-2 rounded-xl bg-[#000000] hover:bg-black active:scale-95 text-white text-xs font-bold flex items-center justify-center gap-1.5 shadow-md disabled:opacity-50"
                       >
                         {isRevising ? (
                           <>
@@ -1280,24 +1276,24 @@ export default function AdminPage() {
 
         {/* Selected Order Full Brief Modal */}
         {selectedOrder && (
-          <div className="fixed inset-0 z-50 overflow-y-auto bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
-            <div className="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 space-y-6 shadow-2xl border border-[#DDD5CD]">
+          <div className="fixed inset-0 z-50 overflow-y-auto bg-black/80 flex items-center justify-center p-4">
+            <div className="bg-white rounded-xl max-w-2xl w-full p-6 sm:p-8 space-y-6 shadow-2xl border border-[#E2D7C3]">
               
-              <div className="flex items-center justify-between pb-4 border-b border-[#DDD5CD]">
+              <div className="flex items-center justify-between pb-4 border-b border-[#E2D7C3]">
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className="font-heading font-extrabold text-xl text-[#2E2E2E]">{selectedOrder.client_name}</span>
-                    <span className="font-mono text-xs px-2 py-0.5 rounded bg-[#7D4047]/10 text-[#7D4047] font-bold">
+                    <span className="font-heading font-extrabold text-xl text-[#000000]">{selectedOrder.client_name}</span>
+                    <span className="font-mono text-xs px-2 py-0.5 rounded bg-[#355CDE]/15 text-[#355CDE] font-bold">
                       {selectedOrder.id}
                     </span>
                   </div>
-                  <p className="text-xs text-[#625f5c] mt-0.5">
+                  <p className="text-xs text-[#646A73] mt-0.5">
                     Phone: +91 {selectedOrder.client_phone} {selectedOrder.client_email && `&bull; ${selectedOrder.client_email}`}
                   </p>
                 </div>
                 <button
                   onClick={() => setSelectedOrder(null)}
-                  className="p-1.5 rounded-full hover:bg-[#F1ECE6] text-[#625f5c]"
+                  className="p-1.5 rounded-full hover:bg-[#FFF7E8] text-[#646A73]"
                 >
                   <span className="text-lg font-bold">&times;</span>
                 </button>
@@ -1305,27 +1301,27 @@ export default function AdminPage() {
 
               {/* Order Key Specs */}
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs">
-                <div className="bg-[#F1ECE6]/60 p-3 rounded-xl border border-[#DDD5CD]">
-                  <span className="text-[#625f5c] block">Category:</span>
-                  <strong className="text-[#2E2E2E] capitalize">{selectedOrder.website_type}</strong>
+                <div className="bg-[#FFF7E8]/60 p-3 rounded-xl border border-[#E2D7C3]">
+                  <span className="text-[#646A73] block">Category:</span>
+                  <strong className="text-[#000000] capitalize">{selectedOrder.website_type}</strong>
                 </div>
-                <div className="bg-[#F1ECE6]/60 p-3 rounded-xl border border-[#DDD5CD]">
-                  <span className="text-[#625f5c] block">Final Price:</span>
-                  <strong className="text-[#2E2E2E] font-mono">₹{selectedOrder.final_budget.toLocaleString('en-IN')}</strong>
+                <div className="bg-[#FFF7E8]/60 p-3 rounded-xl border border-[#E2D7C3]">
+                  <span className="text-[#646A73] block">Final Price:</span>
+                  <strong className="text-[#000000] font-mono">₹{selectedOrder.final_budget.toLocaleString('en-IN')}</strong>
                 </div>
-                <div className="bg-[#F1ECE6]/60 p-3 rounded-xl border border-[#DDD5CD]">
-                  <span className="text-[#625f5c] block">Payment:</span>
-                  <strong className="text-[#7D4047] font-mono">Direct WhatsApp ({selectedOrder.payment_status})</strong>
+                <div className="bg-[#FFF7E8]/60 p-3 rounded-xl border border-[#E2D7C3]">
+                  <span className="text-[#646A73] block">Payment:</span>
+                  <strong className="text-[#355CDE] font-mono">Direct WhatsApp ({selectedOrder.payment_status})</strong>
                 </div>
               </div>
 
               {/* Custom Instructions */}
               <div className="space-y-1.5">
-                <label className="text-xs font-bold uppercase tracking-wider text-[#7D4047] flex items-center gap-1.5">
+                <label className="text-xs font-bold uppercase tracking-wider text-[#355CDE] flex items-center gap-1.5">
                   <FileText className="w-3.5 h-3.5" />
                   <span>Client Custom Instructions Brief:</span>
                 </label>
-                <div className="bg-[#FAF9F6] p-4 rounded-xl border border-[#DDD5CD] text-xs text-[#2E2E2E] max-h-48 overflow-y-auto whitespace-pre-wrap leading-relaxed">
+                <div className="bg-[#FFF7E8] p-4 rounded-xl border border-[#E2D7C3] text-xs text-[#000000] max-h-48 overflow-y-auto whitespace-pre-wrap leading-relaxed">
                   {selectedOrder.custom_instructions || 'No special custom brief written by client.'}
                 </div>
               </div>
@@ -1333,12 +1329,12 @@ export default function AdminPage() {
               {/* Cloud Asset Link */}
               {selectedOrder.cloud_link && (
                 <div className="space-y-1">
-                  <span className="text-xs font-bold text-[#625f5c]">Cloud Assets:</span>
+                  <span className="text-xs font-bold text-[#646A73]">Cloud Assets:</span>
                   <a
                     href={selectedOrder.cloud_link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs text-[#7D4047] underline block truncate hover:text-[#67333a]"
+                    className="text-xs text-[#355CDE] underline block truncate hover:text-[#2447B8]"
                   >
                     {selectedOrder.cloud_link}
                   </a>
@@ -1346,10 +1342,10 @@ export default function AdminPage() {
               )}
 
               {/* Close Button */}
-              <div className="pt-4 border-t border-[#DDD5CD] flex justify-end">
+              <div className="pt-4 border-t border-[#E2D7C3] flex justify-end">
                 <button
                   onClick={() => setSelectedOrder(null)}
-                  className="px-4 py-1.5 rounded-lg bg-[#DDD5CD]/40 hover:bg-[#DDD5CD] text-xs font-semibold text-[#2E2E2E]"
+                  className="px-4 py-1.5 rounded-lg bg-[#E2D7C3]/40 hover:bg-[#E2D7C3] text-xs font-semibold text-[#000000]"
                 >
                   Close
                 </button>
@@ -1361,8 +1357,8 @@ export default function AdminPage() {
 
         {/* Change Master Password Modal */}
         {showPasswordModal && (
-          <div className="fixed inset-0 z-50 overflow-y-auto bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
-            <div className="bg-[#2E2E2E] text-white rounded-3xl max-w-md w-full p-6 sm:p-8 space-y-6 shadow-2xl border border-white/20">
+          <div className="fixed inset-0 z-50 overflow-y-auto bg-black/85 flex items-center justify-center p-4">
+            <div className="bg-[#000000] text-white rounded-xl max-w-md w-full p-6 sm:p-8 space-y-6 shadow-2xl border border-white/20">
               
               <div className="flex items-center justify-between pb-3 border-b border-white/10">
                 <div className="flex items-center gap-3">
@@ -1459,7 +1455,7 @@ export default function AdminPage() {
                   <button
                     type="submit"
                     disabled={passwordChangeSubmitting}
-                    className="px-5 py-2 rounded-xl bg-gradient-to-r from-amber-600 to-[#7D4047] hover:opacity-95 text-white text-xs font-bold shadow-lg transition-all active:scale-95 disabled:opacity-50 flex items-center gap-2"
+                    className="px-5 py-2 rounded-xl bg-gradient-to-r from-amber-600 to-[#355CDE] hover:opacity-95 text-white text-xs font-bold shadow-lg transition-all active:scale-95 disabled:opacity-50 flex items-center gap-2"
                   >
                     {passwordChangeSubmitting ? (
                       <>
